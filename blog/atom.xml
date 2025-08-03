@@ -2,11 +2,40 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2025-07-27T00:00:00.000Z</updated>
+    <updated>2025-08-03T12:49:29.384Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta3  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/beta3 release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/beta3 release"/>
+        <updated>2025-08-03T12:49:29.384Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta3]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
+<p>Important bug fix: Mod now properly handles locales that use commas in place of periods for decimals. If you are in one of these locales (ex France, Germany, etc), highly recommend that you delete all configs, as a number of configurations will have bad values for you. This is what was causing some users to have issues such as facial animations not working.,
+Important optimization: Considerably reduced latency before response generation begins for dialogue. I implemented a significant performance improvement to how we retrieve events, in order to resolve an issue that was causing delays for dialogue generation when large numbers of events were present. The mod is even faster now. ,
+In my local tests, I saw between a 500-1000ms reduction in response time from NPC's with this change. For the other nerds here, event processing and retrieval is now O(1) complexity instead of O(n).
+Enhancement: Several internal systems have been refactored to expand test coverage, and improve our ability to detect and prevent bugs.,
+Bug Fix: There is now a short pause inbetween segments of conversations to avoid piper rapid-fire responding.,
+Enhancement: Added has_magic_effect and has_spell decorators (Still need more testing, not used by any of my templates just yet). I intend to use this for a lot of things, such as influencing RP when calm / fury spells are present, etc. This will make mod integrations much easier.,
+Enhancement: The context history now contains all events that are marked as persistent, aside from a handful of types that I have explicitly excluded.,
+Enhancement: The isTimePaused variable is now present in both builds, allowing mod authors to prevent their papyrus decorators from firing while the VM is paused,
+Bug Fix: The Zonos tests are now fixed in the UI.,
+Bug Fix: The default narrator now has the correct serana voice type.,
+Bug Fix: Zonos now properly supports virtual entities,
+Enhancement: Lowered the default "proximity to ignore LoS" to 350 (From 500). This radius controls the distance at which NPC's ignore line of sight requirements. The old setting was a bit too permissive. Update your game config to the new value.,
+Enhancement: Assorted prompt tweaks,
+Enhancement: Added C++ API for more powerful mod integrations. Mod authors can now integrate with Skyrim from other SKSE plugins. Documentation for this to be added shortly.,
+Enhancement: Zonos caching improvements,
+Bug Fix: Event registration API now handles unknown event types properly.,
+Enhancement: Tweaked dynamic bio update to work with more LLM's, and be less aggressive at pruning old content.,
+Bug Fix: Other small bug fixes.,</p>
+<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3</a></p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta3" term="beta3"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta4  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release</id>
