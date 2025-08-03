@@ -172,8 +172,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta2 Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release"/>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release"/>
         <updated>2025-07-13T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[SkyrimNet Beta2]]></summary>
         <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
@@ -182,16 +182,16 @@
 <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta2" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta2</a></p>
 </blockquote>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-installation-instructions">🚀 Installation Instructions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-installation-instructions" class="hash-link" aria-label="Direct link to 🚀 Installation Instructions" title="Direct link to 🚀 Installation Instructions">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-installation-instructions">🚀 Installation Instructions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#-installation-instructions" class="hash-link" aria-label="Direct link to 🚀 Installation Instructions" title="Direct link to 🚀 Installation Instructions">​</a></h3>
 <p>Install like any other mod through your mod manager, replacing the existing SkyrimNet files.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="important-notes-when-upgrading">Important notes when upgrading:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#important-notes-when-upgrading" class="hash-link" aria-label="Direct link to Important notes when upgrading:" title="Direct link to Important notes when upgrading:">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="important-notes-when-upgrading">Important notes when upgrading:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#important-notes-when-upgrading" class="hash-link" aria-label="Direct link to Important notes when upgrading:" title="Direct link to Important notes when upgrading:">​</a></h4>
 <ol>
 <li>The default values for many configurations have changed. We <strong>recommend deleting</strong> the folder:</li>
 </ol>
 <p>This will restore all settings to default.
 2. New users must still install the models during installation, same as before.</p>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-new-features">✨ New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-new-features" class="hash-link" aria-label="Direct link to ✨ New Features" title="Direct link to ✨ New Features">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-new-features">✨ New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#-new-features" class="hash-link" aria-label="Direct link to ✨ New Features" title="Direct link to ✨ New Features">​</a></h3>
 <ul>
 <li>
 <p><strong>Item customization interface</strong><br>
@@ -237,14 +237,14 @@
 </li>
 </ul>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-memory-generation-changes">🧠 Memory Generation Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-memory-generation-changes" class="hash-link" aria-label="Direct link to 🧠 Memory Generation Changes" title="Direct link to 🧠 Memory Generation Changes">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-memory-generation-changes">🧠 Memory Generation Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#-memory-generation-changes" class="hash-link" aria-label="Direct link to 🧠 Memory Generation Changes" title="Direct link to 🧠 Memory Generation Changes">​</a></h3>
 <ul>
 <li>Improved memory accuracy for <strong>location and people</strong> involved.</li>
 <li>Avoids generating memories for events within the <strong>last 8 minutes</strong>.</li>
 <li>New default for max memories per retrieval: <strong>5</strong>.</li>
 <li>Memory generation algorithm is now <strong>time-segmented</strong>:</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="segmentation-rules">Segmentation Rules:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#segmentation-rules" class="hash-link" aria-label="Direct link to Segmentation Rules:" title="Direct link to Segmentation Rules:">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="segmentation-rules">Segmentation Rules:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#segmentation-rules" class="hash-link" aria-label="Direct link to Segmentation Rules:" title="Direct link to Segmentation Rules:">​</a></h4>
 <ol>
 <li>Segment must last at least <strong>10 game minutes</strong> (<code>min_segment_duration</code>)</li>
 <li>Segment max is <strong>12 game hours</strong> (<code>max_segment_duration</code>)</li>
@@ -252,7 +252,7 @@
 <li>Minimum <strong>5 events</strong></li>
 <li>Time gap of over 60 minutes triggers a boundary</li>
 </ol>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="examples">Examples:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#examples" class="hash-link" aria-label="Direct link to Examples:" title="Direct link to Examples:">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="examples">Examples:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#examples" class="hash-link" aria-label="Direct link to Examples:" title="Direct link to Examples:">​</a></h4>
 <ul>
 <li><strong>Conversation → Travel → Combat</strong></li>
 </ul>
@@ -261,7 +261,7 @@
 <strong>518 → 162</strong> memories<br>
 <!-- -->Nearly same fidelity, significantly more cohesive.</p>
 </blockquote>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="to-regenerate-old-memories">To regenerate old memories:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#to-regenerate-old-memories" class="hash-link" aria-label="Direct link to To regenerate old memories:" title="Direct link to To regenerate old memories:">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="to-regenerate-old-memories">To regenerate old memories:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#to-regenerate-old-memories" class="hash-link" aria-label="Direct link to To regenerate old memories:" title="Direct link to To regenerate old memories:">​</a></h4>
 <ol>
 <li>Set <code>"Event Preload Count"</code> to <code>5000</code> in config</li>
 <li>Delete all memories via in-game UI</li>
@@ -270,7 +270,7 @@
 <li>Repeat as needed or increase batch size in config</li>
 </ol>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-enhancements">🛠 Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-enhancements" class="hash-link" aria-label="Direct link to 🛠 Enhancements" title="Direct link to 🛠 Enhancements">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-enhancements">🛠 Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#-enhancements" class="hash-link" aria-label="Direct link to 🛠 Enhancements" title="Direct link to 🛠 Enhancements">​</a></h3>
 <ul>
 <li>Actors now react to <strong>health/magicka/stamina</strong> in combat</li>
 <li>Increased default <strong>event cooldowns</strong></li>
@@ -291,7 +291,7 @@
 <li>Faction filter now uses <strong>Editor ID</strong></li>
 </ul>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-bug-fixes">🐞 Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-bug-fixes" class="hash-link" aria-label="Direct link to 🐞 Bug Fixes" title="Direct link to 🐞 Bug Fixes">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-bug-fixes">🐞 Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025-07-13-beta2-release#-bug-fixes" class="hash-link" aria-label="Direct link to 🐞 Bug Fixes" title="Direct link to 🐞 Bug Fixes">​</a></h3>
 <ul>
 <li>Actors stop talking on <strong>death</strong></li>
 <li>Speech queues flushed on <strong>save reload</strong></li>
