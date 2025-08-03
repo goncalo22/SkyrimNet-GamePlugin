@@ -1,0 +1,11 @@
+---
+id: prompts
+title: System Prompt
+displayed_sidebar: tutorialSidebar
+
+---
+
+
+<p align="center">
+  <img src="/img/construction.png" alt="construction" width="400"/>
+</p>

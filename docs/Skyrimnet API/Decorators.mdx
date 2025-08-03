@@ -1,0 +1,815 @@
+---
+id: decorators
+title: Decorators
+displayed_sidebar: apiSidebar
+---
+
+
+
+------------------------------
+
+------------------------------
+
+## Actor Functions
+
+### `decnpc(actorUUID: uint64_t) → object`
+
+**Description:**
+Decorates an actor with comprehensive information like name, race, level, factions, pronouns, combat status, and more.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – The UUID of the actor to decorate
+
+**Returns:**
+A JSON object with detailed actor information.
+
+**Examples:**
+
+```jinja
+{{ decnpc(player.UUID) }}
+{% set npc = decnpc(actorID) %}{{ npc.name }} is a {{ npc.race }}
+{% if decnpc(actorID).isInCombat %}The actor is fighting!{% endif %}
+```
+
+---
+
+### `isValidActor(actorUUID: uint64_t) → boolean`
+
+**Description:**
+Checks if an actor UUID is valid and refers to a live actor in the world.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – UUID of the actor to check
+
+**Returns:**
+True if the actor exists, false otherwise.
+
+**Examples:**
+
+```jinja
+{% if isValidActor(targetUUID) %}{{ decnpc(targetUUID).name }}{% endif %}
+{{ isValidActor(player.UUID) }}
+{% for actorId in nearbyActors %}{% if isValidActor(actorId) %}...{% endif %}{% endfor %}
+```
+
+## Environment Functions
+
+### `currentWeather → object`
+
+**Description:**
+Information about the current weather – name, type, precipitation, etc.
+
+**Returns:**
+A weather object with fields like `isRaining`, `isSnowing`, `formID`, and `name`.
+
+**Examples:**
+
+```jinja
+{% if currentWeather.isRaining %}It's raining outside{% endif %}
+The weather is {{ currentWeather.name }} (ID: {{ currentWeather.formID }})
+{% if currentWeather.isSnowing %}Snow is falling
+{% else if currentWeather.isRaining %}Rain is pouring
+{% else %}The sky is clear{% endif %}
+```
+
+## Equipment Functions
+
+### `get_worn_equipment(actorUUID: uint64_t) → object`
+
+**Description:**
+Returns a comprehensive list of all equipment worn by the specified actor, including armor, weapons, jewelry, and hand-held items. Each item includes details like name, type, value, combat statistics, and all associated keywords.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – The UUID of the actor whose equipment to retrieve
+
+**Returns:**
+Object containing worn equipment organized by slot (head, body, hands, etc.) with detailed item information including keywords.
+
+**Examples:**
+
+```jinja
+{{ get_worn_equipment(player.UUID).body.name }}
+{% set equipment = get_worn_equipment(targetActor) %}{% if equipment.head %}Wearing: {{ equipment.head.name }}{% endif %}
+{% for slot, item in get_worn_equipment(player.UUID) %}{{ slot }}: {{ item.name }}{% endfor %}
+Right hand weapon: {{ get_worn_equipment(player.UUID).rightHand.name }}
+{% for keyword in get_worn_equipment(player.UUID).rightHand.keywords %}{{ keyword.editorID }}{% endfor %}
+{% if get_worn_equipment(player.UUID).body.keywords %}Material keywords: {% for kw in get_worn_equipment(player.UUID).body.keywords %}{{ kw.editorID }} {% endfor %}{% endif %}
+```
+
+### `worn_has_keyword(actorUUID: uint64_t, keywordEditorID: string) → boolean`
+
+**Description:**
+Returns true if the actor is wearing any equipment that has the specified keyword.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – The UUID of the actor to check
+* `keywordEditorID (string)` – The editor ID of the keyword to check for
+
+**Returns:**
+Boolean – True if wearing the keyworded item, false otherwise.
+
+**Examples:**
+
+```jinja
+{% if worn_has_keyword(player.UUID, "ArmorMaterialDragonplate") %}You're wearing dragonplate armor!{% endif %}
+{% if worn_has_keyword(targetActor, "WeapTypeSword") %}{{ actor(targetActor).name }} is wielding a sword.{% endif %}
+{% if worn_has_keyword(player.UUID, "ArmorHeavy") %}Heavy armor detected{% else %}Light or no armor{% endif %}
+{{ worn_has_keyword(player.UUID, "MagicDisallowEnchanting") }}
+{% if worn_has_keyword(player.UUID, "VendorItemJewelry") %}Wearing jewelry{% endif %}
+```
+
+### `get_inventory(actorUUID: uint64_t) → object`
+
+**Description:**
+Returns a comprehensive list of all items in the actor's inventory, including count, value, weight, and keywords.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – UUID of the actor to retrieve inventory for
+
+**Returns:**
+Object indexed by form ID with detailed item data.
+
+**Examples:**
+
+```jinja
+{% for formID, item in get_inventory(player.UUID) %}{{ item.name }}: {{ item.count }}{% endfor %}
+{{ get_inventory(player.UUID)["0x12EB7"].count }}
+{% set inv = get_inventory(targetActor) %}Total items: {{ inv|length }}
+```
+
+## Faction Functions
+
+### `is_in_faction(actorUUID: uint64_t, factionName: string) → boolean`
+
+**Description:**
+Returns whether an actor is a member of a specific faction.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – UUID of the actor
+* `factionName (string)` – Name of the faction
+
+**Returns:**
+Boolean – True if in faction, false otherwise.
+
+**Examples:**
+
+```jinja
+{% if is_in_faction(player.UUID, "Companions") %}You are a Companion!{% endif %}
+{{ is_in_faction(actorId, "Thieves Guild") }}
+{% if is_in_faction(npc.UUID, "Guards") %}This is a guard.{% endif %}
+```
+
+### `get_faction_rank(actorUUID: uint64_t, factionName: string) → integer`
+
+**Description:**
+Returns the numeric rank of the specified actor within a given faction.
+
+**Arguments:**
+
+* `actorUUID (uint64_t)` – UUID of the actor
+* `factionName (string)` – Name of the faction
+
+**Returns:**
+Integer – Rank number, or -1 if not in faction.
+
+**Examples:**
+
+```jinja
+Your rank in the Companions is {{ get_faction_rank(player.UUID, "Companions") }}
+{% set rank = get_faction_rank(actorId, "College of Winterhold") %}{% if rank > 0 %}Rank: {{ rank }}{% endif %}
+{% if get_faction_rank(player.UUID, "Thieves Guild") >= 4 %}You are a high-ranking member!{% endif %}
+```
+
+## Game System Functions
+
+### `prompt_file_exists(filename: string, prefix?: string) → boolean`
+
+**Description:**
+Checks whether a specific prompt file exists in the mod's prompt directory or subfolder.
+
+**Arguments:**
+
+* `filename (string)` – Name of the prompt file
+* `prefix (string)` – Optional subfolder (e.g., quests, characters)
+
+**Returns:**
+Boolean – True if the file exists, false otherwise.
+
+**Examples:**
+
+```jinja
+{% if prompt_file_exists("character_dialogue") %}{{ render_template("character_dialogue") }}{% endif %}
+{{ prompt_file_exists("custom_prompt.prompt") }}
+{% if prompt_file_exists("MainQuest", "quests") %}Quest template available{% endif %}
+File check: {{ prompt_file_exists(filename, "components") }}
+```
+
+### `get_form_name(formID: uint32_t) → string`
+
+**Description:**
+Returns the display name of a game object by its form ID.
+
+**Arguments:**
+
+* `formID (uint32_t)` – The form ID
+
+**Returns:**
+String – Display name or empty if not found.
+
+**Examples:**
+
+```jinja
+{{ get_form_name(0x00012eb7) }}
+Item: {{ get_form_name(itemFormID) }}
+{% set itemName = get_form_name(formId) %}{% if itemName %}Found: {{ itemName }}{% endif %}
+```
+
+### `is_narration_enabled → boolean`
+
+**Description:**
+Checks if narration is enabled in the configuration.
+
+**Returns:**
+Boolean – True if enabled, false otherwise.
+
+**Examples:**
+
+```jinja
+{% if is_narration_enabled() %}[Narration enabled]{% endif %}
+{{ is_narration_enabled() }}
+```
+
+### `units_to_meters(units: number|string) → float`
+
+**Description:**
+Converts game units to meters.
+
+**Arguments:**
+
+* `units (number|string)` – Distance in game units
+
+**Returns:**
+Float – Distance in meters.
+
+**Examples:**
+
+```jinja
+{{ units_to_meters(actor.distanceToPlayer) }} meters away
+Distance: {{ units_to_meters(1000) }}m
+{% set meters = units_to_meters(distance) %}{{ meters }}m
+```
+
+### `get_civil_war_side → string`
+
+**Description:**
+Returns the player's civil war allegiance.
+
+**Returns:**
+String – 'Imperial', 'Stormcloak', or 'Neutral'.
+
+**Examples:**
+
+```jinja
+You fight for the {{ get_civil_war_side() }}s!
+{% if get_civil_war_side() == "Imperial" %}Long live the Empire!{% endif %}
+Civil War Side: {{ get_civil_war_side() }}
+```
+# General Variables
+
+| Variable         | Type   | Example                                                   |
+|------------------|--------|-----------------------------------------------------------|
+| `page_name`      | string | `{{ page_name }} → ItemCustomization`                    |
+| `request_path`   | string | `{{ request_path }} → /item-customization`               |
+| `request_method` | string | `{{ request_method }} → GET`                             |
+| `page_title`     | string | `{{ page_title }} → Item Customization Configuration`    |
+| `server_name`    | string | `{{ server_name }} → SkyrimNet HTTP Server`              |
+| `version`        | string | `{{ version }} → 1.0.0`                                  |
+| `page_subtitle`  | string | `{{ page_subtitle }} → Manage custom names and descriptions for game items` |
+| `currentTime`    | string | `{{ currentTime }} → 2025-07-07 07:18:43Z`               |
+| `gameTime`       | string | `{{ gameTime }} → 8:00 AM, Morndas, 17th of Last Seed, 4E 201` |
+| `gameTimeJson`   | object | `{{ gameTimeJson }}`                                     |
+| `currentWeather` | object | `{{ currentWeather }}`                                   |
+
+---
+
+## Item Customization Functions
+
+### `is_item_enabled(formID: number) → boolean`
+
+Check if an item is enabled in the customization system.
+
+**Arguments:**
+- `formID` (number) – The form ID of the item (e.g., `0x12EB7`)
+
+**Returns:** boolean – True if enabled, false if disabled
+
+**Examples:**
+
+```jinja
+{% if is_item_enabled(0x12EB7) %}Item is available{% endif %}
+{{ is_item_enabled(0x3AD5E) }}
+{% if not is_item_enabled(0x12EB7) %}Item is disabled{% endif %}
+get_item_name(formID: number) → string
+Get the effective display name for an item.
+
+Arguments:
+
+formID (number)
+
+Returns: string – Custom or original name
+
+Examples:
+
+jinja
+Copiar
+Editar
+{{ get_item_name(0x12EB7) }}
+Item name: {{ get_item_name(0x3AD5E) }}
+{% set itemName = get_item_name(0x12EB7) %}{{ itemName }}
+get_item_description(formID: number) → string
+Get the custom description for an item.
+
+Arguments:
+
+formID (number)
+
+Returns: string – Custom description or empty string
+
+Examples:
+
+jinja
+Copiar
+Editar
+{{ get_item_description(0x12EB7) }}
+{% set desc = get_item_description(0x3AD5E) %}{% if desc %}{{ desc }}{% endif %}
+Description: {{ get_item_description(0x12EB7) }}
+get_item_customization(formID: number) → object
+Get all customization data for an item.
+
+Arguments:
+
+formID (number)
+
+Returns: object – Includes name, description, enabled state, and flags
+
+Examples:
+
+```jinja
+{{ get_item_customization(0x12EB7).name }}
+{% set item = get_item_customization(0x12EB7) %}
+{{ item.name }}{% if item.description %}: {{ item.description }}{% endif %}
+{% if get_item_customization(0x12EB7).hasCustomName %}Using custom name{% endif %}
+```
+### Mood Functions
+
+---
+
+### moodsList → array
+
+**Description**: List of all available mood types.
+
+**Returns**: `array` – Array of mood strings
+
+**Examples**:
+```jinja
+{% for mood in moodsList %}{{ mood }}{% endfor %}
+{{ length(moodsList) }} moods available
+```
+
+---
+
+### moodDescriptions → object
+
+**Description**: Map of mood types to detailed descriptions.
+
+**Returns**: `object` – Keys: mood names, Values: descriptions
+
+**Examples**:
+```jinja
+{{ moodDescriptions.happy }}
+{% for mood, desc in moodDescriptions %}{{ mood }}: {{ desc }}{% endfor %}
+```
+
+---
+
+### mood_description(mood: string) → string
+
+**Description**: Get the description of a specific mood.
+
+**Arguments**:
+- `mood` (`string`) – The mood name
+
+**Returns**: `string` – The mood’s description
+
+**Examples**:
+```jinja
+{{ mood_description("happy") }}
+The character feels {{ mood_description(currentMood) }}
+{% set moodDesc = mood_description(selectedMood) %}{{ moodDesc }}
+
+### Player Functions
+
+---
+
+### player → object
+
+**Description**: Provides comprehensive information about the current player character including UUID, name, race, level, and combat status.
+
+**Returns**: `object` – Player object containing `UUID`, `name`, `race`, `level`, and `isInCombat`
+
+**Examples**:
+```jinja
+{{ player.name }} is a level {{ player.level }} {{ player.race }}
+{% if player.isInCombat %}The player is fighting!{% endif %}
+{{ decnpc(player.UUID) }}
+Player UUID: {{ player.UUID }}
+```
+
+---
+
+### player (variable)
+
+**Type**: `object`  
+**Example value**:
+```json
+{
+  "UUID": 1215163480972535445,
+  "isInCombat": false,
+  "level": 1,
+  "name": "Prisoner",
+  "race": "Nord"
+}
+```
+
+**Used in**: `web/bundled_base`, `documentation/main` (15 times)
+
+---
+
+### Quest Functions
+
+---
+
+### get_all_active_quests → array
+
+**Description**: Retrieves a list of all quests that are currently active in the player's quest log. Each quest includes `formID`, `editorID`, `name`, and `currentStage`. Uses caching for performance.
+
+**Returns**: `array` – Array of quest objects
+
+**Examples**:
+```jinja
+{% for quest in get_all_active_quests() %}{{ quest.name }}: Stage {{ quest.currentStage }}{% endfor %}
+{% if length(get_all_active_quests()) > 5 %}You have many active quests!{% endif %}
+{{ length(get_all_active_quests()) }} active quests
+{% for quest in get_all_active_quests() %}
+  {% if quest.editorID == "MainQuest" %}Main quest found!{% endif %}
+{% endfor %}
+```
+
+---
+
+### get_quest_stage(questIdentifier: uint32_t|string, onlyWhileActive?: boolean) → integer
+
+**Description**: Gets the current stage of a quest by `formID` or `editorID`. Returns `-1` if the quest is not found or not active (when `onlyWhileActive` is `true`).
+
+**Arguments**:
+- `questIdentifier` (`uint32_t|string`) – Quest `formID` or `editorID`
+- `onlyWhileActive` (`boolean`, optional) – Whether to limit to active quests
+
+**Returns**: `integer` – Current quest stage or `-1` if not found
+
+**Examples**:
+```jinja
+{{ get_quest_stage(0x12345) }}
+{{ get_quest_stage("MainQuest") }}
+{{ get_quest_stage(questId, true) }}
+{% if get_quest_stage("DragonRising") >= 30 %}Quest progressed!{% endif %}
+```
+
+---
+
+### is_quest_active(questIdentifier: uint32_t|string) → boolean
+
+**Description**: Checks whether a quest is currently active in the player's quest log.
+
+**Arguments**:
+- `questIdentifier` (`uint32_t|string`) – Quest `formID` or `editorID`
+
+**Returns**: `boolean` – `true` if active, `false` otherwise
+
+**Examples**:
+```jinja
+{% if is_quest_active("MainQuest") %}Main quest is active!{% endif %}
+{{ is_quest_active(0x12345) }}
+{% for quest in questList %}
+  {% if is_quest_active(quest) %}{{ quest }}{% endif %}
+{% endfor %}
+```
+### Scene Functions
+
+---
+
+### get_short_lived_events_count → integer
+
+**Description**: Returns the number of short-lived events currently active in the scene. Useful for quickly checking scene activity levels.
+
+**Returns**: `integer` – Number of currently active events
+
+**Examples**:
+```jinja
+{{ get_short_lived_events_count() }} events happening
+{% if get_short_lived_events_count() > 5 %}Busy scene!{% endif %}
+Event count: {{ get_short_lived_events_count() }}
+```
+
+---
+
+### get_nearby_npc_list(sourceUUID: uint64_t) → array
+
+**Description**: Gets a structured list of NPCs within interaction distance of the source entity.
+
+**Arguments**:
+- `sourceUUID` (`uint64_t`) – UUID of the entity to check around
+
+**Returns**: `array` – Array of nearby NPCs with UUID, name, distance, etc.
+
+**Examples**:
+```jinja
+{% for npc in get_nearby_npc_list(player.UUID) %}{{ npc.name }}{% endfor %}
+{{ length(get_nearby_npc_list(player.UUID)) }} NPCs nearby
+{% set nearbyNPCs = get_nearby_npc_list(actorUUID) %}
+```
+
+---
+
+### get_active_short_lived_events → array
+
+**Description**: Retrieves all currently active short-lived events in the scene. Includes things like combat, dialogue, and environment changes.
+
+**Returns**: `array` – List of active event objects
+
+**Examples**:
+```jinja
+{% for event in get_active_short_lived_events() %}{{ event.type }}{% endfor %}
+{{ length(get_active_short_lived_events()) }} active events
+{% if contains(get_active_short_lived_events(), "combat") %}Combat in progress!{% endif %}
+```
+
+---
+
+### get_short_lived_events_by_type(eventType: string) → array
+
+**Description**: Gets all active events filtered by type, such as `"combat"`, `"dialogue"`, `"movement"`, etc.
+
+**Arguments**:
+- `eventType` (`string`) – Type of events to filter by
+
+**Returns**: `array` – Events of the specified type
+
+**Examples**:
+```jinja
+{{ length(get_short_lived_events_by_type("combat")) }} combat events
+{% for event in get_short_lived_events_by_type("dialogue") %}{{ event.timestamp }}{% endfor %}
+{% if get_short_lived_events_by_type("combat") %}Combat happening!{% endif %}
+```
+
+---
+
+### get_short_lived_events_by_entity(entityUUID: uint64_t) → array
+
+**Description**: Gets all short-lived events involving a specific entity (as actor or target).
+
+**Arguments**:
+- `entityUUID` (`uint64_t`) – UUID of the entity
+
+**Returns**: `array` – Events involving the entity
+
+**Examples**:
+```jinja
+{% for event in get_short_lived_events_by_entity(player.UUID) %}{{ event.type }}{% endfor %}
+{{ length(get_short_lived_events_by_entity(actorUUID)) }} events for this actor
+{% if get_short_lived_events_by_entity(npc.UUID) %}This NPC is involved in events{% endif %}
+```
+
+---
+
+### String Utility Functions
+
+---
+
+### join(array: array, separator: string) → string
+
+**Description**: Joins elements of an array into a single string using a separator.
+
+**Arguments**:
+- `array` (`array`) – Elements to join
+- `separator` (`string`) – String to insert between items
+
+**Returns**: `string` – Joined string
+
+**Examples**:
+```jinja
+{{ join(fruits, ", ") }}
+{{ join(["hello", "world"], " ") }}
+{{ join(actor.faction, " | ") }}
+```
+
+---
+
+### length(value: array|string) → integer
+
+**Description**: Gets the size of an array or length of a string. Returns `-1` for unsupported types.
+
+**Arguments**:
+- `value` (`array|string`) – Value to measure
+
+**Returns**: `integer` – Element count or character length
+
+**Examples**:
+```jinja
+{{ length(actor.faction) }}
+{{ length("Hello World") }}
+{{ length(recentEvents) }}
+```
+
+---
+
+### lower(text: string) → string
+
+**Description**: Converts a string to lowercase.
+
+**Arguments**:
+- `text` (`string`) – The string to convert
+
+**Returns**: `string` – Lowercased string
+
+**Examples**:
+```jinja
+{{ lower(actor.name) }}
+{{ lower("HELLO WORLD") }}
+{{ lower(location.name) }}
+```
+
+---
+
+### contains(container: array|string, searchValue: string) → boolean
+
+**Description**: Checks if an array contains a value or if a string contains a substring (case-insensitive).
+
+**Arguments**:
+- `container` (`array|string`) – Array or string to search
+- `searchValue` (`string`) – Value to find
+
+**Returns**: `boolean` – `true` if found
+
+**Examples**:
+```jinja
+{{ contains(recentEvents, "combat") }}
+{{ contains(actor.name, "Guard") }}
+{{ contains(["apple", "banana"], "APPLE") }}
+{{ contains(stringArray, "search") }}
+```
+
+---
+
+### to_number(text: string) → number
+
+**Description**: Converts a string to a number. Returns `0` if it fails.
+
+**Arguments**:
+- `text` (`string`) – String to convert
+
+**Returns**: `number` – Resulting number
+
+**Examples**:
+```jinja
+{{ to_number("123") }}
+{{ to_number("45.67") }}
+{{ to_number(actor.level) }}
+```
+
+---
+
+### is_array(value: any) → boolean
+
+**Description**: Checks if a given value is an array.
+
+**Arguments**:
+- `value` (`any`) – Value to check
+
+**Returns**: `boolean` – `true` if array
+
+**Examples**:
+```jinja
+{{ is_array(recentEvents) }}
+{{ is_array(actor.faction) }}
+{{ is_array("hello") }}
+{{ is_array([1, 2, 3]) }}
+```
+### World Functions
+
+---
+
+### currentTime → string
+
+**Description**: Returns the current system time in ISO format (`YYYY-MM-DD HH:MM:SSZ`). Useful for timestamping events, logs, or scheduling.
+
+**Returns**: `string` – Current time in ISO format
+
+**Examples**:
+```jinja
+Current time: {{ currentTime }}
+Event logged at {{ currentTime }}
+{{ short_time(currentTime) }}
+```
+
+---
+
+### gameTime → string
+
+**Description**: Returns the in-game Skyrim time as a formatted string, like `8:30 AM, Morndas, 17th of Last Seed, 4E 201`.
+
+**Returns**: `string` – Current in-game time
+
+**Examples**:
+```jinja
+Current game time: {{ gameTime }}
+The time in Skyrim is {{ gameTime }}
+{{ short_time(gameTime) }}
+```
+
+---
+
+### location → string
+
+**Description**: Returns the name of the player’s current in-game location.
+
+**Returns**: `string` – Name of current location
+
+**Examples**:
+```jinja
+You are currently in {{ location }}
+{% if location == "Whiterun" %}Welcome to the capital!{% endif %}
+The current location is {{ location }}
+```
+
+---
+
+### gameTimeJson → object
+
+**Description**: Returns structured in-game time details such as hour, day, month, year, and formatted names.
+
+**Returns**: `object` – Structured time object with all components
+
+**Examples**:
+```jinja
+{% if gameTimeJson.hour >= 20 %}It's late evening{% endif %}
+Today is {{ gameTimeJson.weekdayName }}, {{ gameTimeJson.dayOrdinal }} of {{ gameTimeJson.monthName }}
+The time is {{ gameTimeJson.displayHour }}:{{ '%02d'|format(gameTimeJson.minute) }} {{ gameTimeJson.ampm }}
+```
+
+---
+
+### short_time(timeString: string) → string
+
+**Description**: Formats a full time string (ISO or game time) into a shorter, human-friendly display string.
+
+**Arguments**:
+- `timeString` (`string`) – Full time string to shorten
+
+**Returns**: `string` – Formatted short time string
+
+**Examples**:
+```jinja
+{{ short_time(currentTime) }}
+{% set briefTime = short_time(gameTime) %}{{ briefTime }}
+Time: {{ short_time(eventTimestamp) }}
+```
+
+---
+
+### Variables
+
+---
+
+#### timestamp → integer
+
+**Example**:
+```jinja
+{{ timestamp }} → 1751897919
+```
+_Used 3 times in template: `web/bundled_base`_
+
+---
+
+#### location → string
+
+**Example**:
+```jinja
+{{ location }} → Unknown
+```
