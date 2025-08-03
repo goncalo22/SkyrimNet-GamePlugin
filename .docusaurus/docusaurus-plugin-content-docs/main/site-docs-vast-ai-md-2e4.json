@@ -1,0 +1,22 @@
+{
+  "id": "Vast.ai",
+  "title": "Vast.ai",
+  "description": "",
+  "source": "@site/docs/Vast.ai.md",
+  "sourceDirName": ".",
+  "slug": "/Vast.ai",
+  "permalink": "/Vast.ai",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar": null,
+    "title": "Vast.ai"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Zonos",
+    "permalink": "/Text to Speech/Zonos"
+  }
+}

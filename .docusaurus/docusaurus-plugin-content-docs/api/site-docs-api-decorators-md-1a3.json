@@ -1,0 +1,23 @@
+{
+  "id": "Decorators",
+  "title": "Decorators",
+  "description": "",
+  "source": "@site/docs/API/Decorators.md",
+  "sourceDirName": ".",
+  "slug": "/Decorators",
+  "permalink": "/api/Decorators",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "Decorators",
+    "title": "Decorators",
+    "sidebar_label": "API"
+  },
+  "sidebar": "apiSidebar",
+  "previous": {
+    "title": "Actions",
+    "permalink": "/api/Actions"
+  }
+}

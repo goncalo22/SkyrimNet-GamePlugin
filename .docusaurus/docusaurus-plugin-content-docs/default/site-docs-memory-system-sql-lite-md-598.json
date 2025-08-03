@@ -1,0 +1,28 @@
+{
+  "id": "Memory System/sql-lite",
+  "title": "Sql Lite",
+  "description": "Your browser does not support the video tag.",
+  "source": "@site/docs/Memory System/Sql Lite.md",
+  "sourceDirName": "Memory System",
+  "slug": "/Memory System/sql-lite",
+  "permalink": "/Memory System/sql-lite",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Memory System/Sql Lite.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "sql-lite",
+    "title": "Sql Lite",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "OpenRouter",
+    "permalink": "/Large Language Models/openrouter"
+  },
+  "next": {
+    "title": "Memory Recall",
+    "permalink": "/Memory System/memory-recall"
+  }
+}

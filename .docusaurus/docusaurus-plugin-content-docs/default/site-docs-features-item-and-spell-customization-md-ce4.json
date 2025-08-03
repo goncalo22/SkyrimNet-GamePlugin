@@ -1,0 +1,15 @@
+{
+  "id": "Features/Item and Spell Customization",
+  "title": "Item and Spell Customization",
+  "description": "",
+  "source": "@site/docs/Features/Item and Spell Customization.md",
+  "sourceDirName": "Features",
+  "slug": "/Features/Item and Spell Customization",
+  "permalink": "/SkyrimNet-GamePlugin/Features/Item and Spell Customization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/Item and Spell Customization.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

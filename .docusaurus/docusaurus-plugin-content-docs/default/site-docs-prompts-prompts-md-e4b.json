@@ -1,0 +1,28 @@
+{
+  "id": "Prompts/prompts",
+  "title": "Prompts",
+  "description": "",
+  "source": "@site/docs/Prompts/Prompts.md",
+  "sourceDirName": "Prompts",
+  "slug": "/Prompts/",
+  "permalink": "/Prompts/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Prompts/Prompts.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "prompts",
+    "title": "Prompts",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Sql Lite",
+    "permalink": "/Memory System/sql-lite"
+  },
+  "next": {
+    "title": "Dynamic Bios",
+    "permalink": "/NPC Bios/dynamic-bios"
+  }
+}

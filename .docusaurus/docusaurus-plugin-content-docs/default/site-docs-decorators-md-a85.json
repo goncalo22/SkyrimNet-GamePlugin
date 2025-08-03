@@ -1,0 +1,24 @@
+{
+  "id": "Decorators",
+  "title": "Decorators",
+  "description": "",
+  "source": "@site/docs/Decorators.md",
+  "sourceDirName": ".",
+  "slug": "/Decorators",
+  "permalink": "/docs/Decorators",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Decorators.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "API",
+    "permalink": "/docs/API/"
+  },
+  "next": {
+    "title": "SkyrimNet",
+    "permalink": "/docs/Features/Overview"
+  }
+}

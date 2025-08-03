@@ -1,0 +1,24 @@
+{
+  "id": "Skyrimnet API/api",
+  "title": "API",
+  "description": "",
+  "source": "@site/docs/Skyrimnet API/API.md",
+  "sourceDirName": "Skyrimnet API",
+  "slug": "/Skyrimnet API/api",
+  "permalink": "/SkyrimNet-GamePlugin/Skyrimnet API/api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Skyrimnet API/API.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "api",
+    "title": "API",
+    "displayed_sidebar": "apiSidebar"
+  },
+  "sidebar": "apiSidebar",
+  "next": {
+    "title": "Library",
+    "permalink": "/SkyrimNet-GamePlugin/Skyrimnet API/library"
+  }
+}

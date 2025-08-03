@@ -1,0 +1,15 @@
+{
+  "id": "Features/Gamedatacenter",
+  "title": "Gamedatacenter",
+  "description": "",
+  "source": "@site/docs/Features/Gamedatacenter.md",
+  "sourceDirName": "Features",
+  "slug": "/Features/Gamedatacenter",
+  "permalink": "/SkyrimNet-GamePlugin/Features/Gamedatacenter",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/Gamedatacenter.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

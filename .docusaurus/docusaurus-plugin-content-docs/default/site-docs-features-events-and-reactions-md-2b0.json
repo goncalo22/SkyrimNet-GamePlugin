@@ -1,0 +1,28 @@
+{
+  "id": "Features/events-and-reactions",
+  "title": "Events and Reactions",
+  "description": "SkyrimNet’s event system enables dynamic memory, LLM-based dialogue, and NPC reactivity by processing structured in-game events. These events act as the core data stream that drives memory formation, conversation context, and AI behavior.",
+  "source": "@site/docs/Features/Events and Reactions.md",
+  "sourceDirName": "Features",
+  "slug": "/Features/events-and-reactions",
+  "permalink": "/SkyrimNet-GamePlugin/Features/events-and-reactions",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/Events and Reactions.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "events-and-reactions",
+    "title": "Events and Reactions",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/SkyrimNet-GamePlugin/Features/overview"
+  },
+  "next": {
+    "title": "GameMaster",
+    "permalink": "/SkyrimNet-GamePlugin/Features/gamemaster"
+  }
+}

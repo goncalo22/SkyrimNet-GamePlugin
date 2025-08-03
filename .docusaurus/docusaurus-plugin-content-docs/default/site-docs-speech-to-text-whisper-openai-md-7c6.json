@@ -1,0 +1,28 @@
+{
+  "id": "Speech to Text/whisper-openai",
+  "title": "Whisper openai",
+  "description": "SkyrimNet supports OpenAI Whisper as a cloud-based speech-to-text (STT) service. When enabled, this mode sends your microphone input to OpenAI’s servers for transcription, and receives highly accurate text in return.",
+  "source": "@site/docs/Speech to Text/Whisper openai.md",
+  "sourceDirName": "Speech to Text",
+  "slug": "/Speech to Text/whisper-openai",
+  "permalink": "/SkyrimNet-GamePlugin/Speech to Text/whisper-openai",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Speech to Text/Whisper openai.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "whisper-openai",
+    "title": "Whisper openai",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Local Whisper",
+    "permalink": "/SkyrimNet-GamePlugin/Speech to Text/local-whisper"
+  },
+  "next": {
+    "title": "Vast ai",
+    "permalink": "/SkyrimNet-GamePlugin/Vast.ai/vast-ai"
+  }
+}

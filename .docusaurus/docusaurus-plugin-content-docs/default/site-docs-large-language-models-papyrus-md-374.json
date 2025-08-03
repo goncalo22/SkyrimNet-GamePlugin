@@ -1,0 +1,24 @@
+{
+  "id": "Large Language Models/Papyrus",
+  "title": "Papyrus",
+  "description": "",
+  "source": "@site/docs/Large Language Models/Papyrus.md",
+  "sourceDirName": "Large Language Models",
+  "slug": "/Large Language Models/Papyrus",
+  "permalink": "/docs/Large Language Models/Papyrus",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Large Language Models/Papyrus.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Dependencies",
+    "permalink": "/docs/Installation Guide/Dependencies"
+  },
+  "next": {
+    "title": "Local Whisper",
+    "permalink": "/docs/Speech to Text/Local Whisper"
+  }
+}

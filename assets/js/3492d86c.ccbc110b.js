@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkskyrimnet_docs=self.webpackChunkskyrimnet_docs||[]).push([[3714],{1916:e=>{e.exports=JSON.parse('{"tags":[{"label":"release","permalink":"/SkyrimNet-GamePlugin/blog/tags/release","count":1},{"label":"beta4","permalink":"/SkyrimNet-GamePlugin/blog/tags/beta-4","count":1}]}')}}]);

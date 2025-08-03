@@ -1,0 +1,28 @@
+{
+  "id": "Large Language Models/openrouter",
+  "title": "OpenRouter",
+  "description": "",
+  "source": "@site/docs/Large Language Models/OpenRouter.md",
+  "sourceDirName": "Large Language Models",
+  "slug": "/Large Language Models/openrouter",
+  "permalink": "/SkyrimNet-GamePlugin/Large Language Models/openrouter",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Large Language Models/OpenRouter.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "openrouter",
+    "title": "OpenRouter",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Model Agents",
+    "permalink": "/SkyrimNet-GamePlugin/Large Language Models/model-agents"
+  },
+  "next": {
+    "title": "Suggested LLMs",
+    "permalink": "/SkyrimNet-GamePlugin/Large Language Models/suggested-llms"
+  }
+}

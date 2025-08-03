@@ -1,0 +1,23 @@
+{
+  "id": "Installation Guide/Dependencies",
+  "title": "System Requirements📋",
+  "description": "🔧 Essential Dependencies",
+  "source": "@site/docs/Installation Guide/Dependencies.md",
+  "sourceDirName": "Installation Guide",
+  "slug": "/Installation Guide/Dependencies",
+  "permalink": "/Installation Guide/Dependencies",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SkyrimNet Installation",
+    "permalink": "/Installation Guide/SkyrimNet Installation"
+  },
+  "next": {
+    "title": "Model Agents and Usage",
+    "permalink": "/Large Language Models/Model Agents"
+  }
+}

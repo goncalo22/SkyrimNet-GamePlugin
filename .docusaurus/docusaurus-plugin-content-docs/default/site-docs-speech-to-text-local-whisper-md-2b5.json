@@ -1,0 +1,28 @@
+{
+  "id": "Speech to Text/local-whisper",
+  "title": "Local Whisper",
+  "description": "Local Whisper STT is SkyrimNet’s offline speech recognition system, powered by OpenAI’s open-source Whisper model. It enables players to speak naturally through a microphone and converts their voice into text entirely on-device, with no audio ever sent to the cloud.",
+  "source": "@site/docs/Speech to Text/Local Whisper.md",
+  "sourceDirName": "Speech to Text",
+  "slug": "/Speech to Text/local-whisper",
+  "permalink": "/SkyrimNet-GamePlugin/Speech to Text/local-whisper",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Speech to Text/Local Whisper.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "local-whisper",
+    "title": "Local Whisper",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Zonos",
+    "permalink": "/SkyrimNet-GamePlugin/Text to Speech/zonos"
+  },
+  "next": {
+    "title": "Whisper openai",
+    "permalink": "/SkyrimNet-GamePlugin/Speech to Text/whisper-openai"
+  }
+}

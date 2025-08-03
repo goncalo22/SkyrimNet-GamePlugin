@@ -1,0 +1,32 @@
+{
+  "permalink": "/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2025-07-27-v1.0-release.md",
+  "source": "@site/blog/2025-07-27-v1.0-release.md",
+  "title": "SkyrimNet Beta4  Released",
+  "description": "SkyrimNet Beta4",
+  "date": "2025-07-27T00:00:00.000Z",
+  "tags": [
+    {
+      "inline": true,
+      "label": "release",
+      "permalink": "/SkyrimNet-GamePlugin/blog/tags/release"
+    },
+    {
+      "inline": true,
+      "label": "beta4",
+      "permalink": "/SkyrimNet-GamePlugin/blog/tags/beta-4"
+    }
+  ],
+  "readingTime": 2.07,
+  "hasTruncateMarker": true,
+  "authors": [],
+  "frontMatter": {
+    "title": "SkyrimNet Beta4  Released",
+    "description": "SkyrimNet Beta4",
+    "tags": [
+      "release",
+      "beta4"
+    ]
+  },
+  "unlisted": false
+}

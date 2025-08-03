@@ -1,0 +1,252 @@
+{
+  "/SkyrimNet-GamePlugin/__docusaurus/debug-075": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/config-78b": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/content-627": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    },
+    "__props": "__props---skyrim-net-game-plugin-docusaurus-debug-content-0-c-7-82e"
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/globalData-bd9": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/metadata-6ae": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/registry-f1b": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/__docusaurus/debug/routes-982": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/SkyrimNet-GamePlugin/characterbios-cea": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---characterbios-172-0ae"
+  },
+  "/SkyrimNet-GamePlugin/customactions-d9c": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---customactionsbaf-866"
+  },
+  "/SkyrimNet-GamePlugin/FAQ-94e": {
+    "__comp": "__comp---site-src-pages-faq-jsxeab-2a9",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "config": "config---faq-5-e-9-7dc"
+  },
+  "/SkyrimNet-GamePlugin/gamedatacenter-437": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---gamedatacenter-8-c-8-029"
+  },
+  "/SkyrimNet-GamePlugin/markdown-page-d29": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---markdown-page-393-028"
+  },
+  "/SkyrimNet-GamePlugin/overrides-034": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---overridesd-5-c-0bf"
+  },
+  "/SkyrimNet-GamePlugin/playerconfiguration-de9": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "content": "content---playerconfiguratione-19-1a2"
+  },
+  "/SkyrimNet-GamePlugin/walkthroughs-393": {
+    "__comp": "__comp---site-src-pages-walkthroughs-jsxf-58-3ff",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "config": "config---faq-5-e-9-7dc"
+  },
+  "/SkyrimNet-GamePlugin/web-ui-869": {
+    "__comp": "__comp---site-src-pages-web-ui-jsx-537-900",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "config": "config---faq-5-e-9-7dc"
+  },
+  "/SkyrimNet-GamePlugin/-c7a": {
+    "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",
+    "__context": {
+      "plugin": "plugin---fa-qa-74-797"
+    },
+    "config": "config---faq-5-e-9-7dc"
+  },
+  "/SkyrimNet-GamePlugin/-992": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---aba-d70"
+    }
+  },
+  "/SkyrimNet-GamePlugin/-8ea": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---skyrim-net-game-plugin-7-e-9-689"
+  },
+  "/SkyrimNet-GamePlugin/-08b": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/SkyrimNet-GamePlugin/Features/action-system-998": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-action-system-498-c50"
+  },
+  "/SkyrimNet-GamePlugin/Features/events-and-reactions-a51": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-events-and-reactions-2-b-0-51e"
+  },
+  "/SkyrimNet-GamePlugin/Features/Gamedatacenter-621": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-gamedatacenterfca-9f8"
+  },
+  "/SkyrimNet-GamePlugin/Features/gamemaster-07c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-gamesmaster-7-f-9-d39"
+  },
+  "/SkyrimNet-GamePlugin/Features/Item and Spell Customization-0a7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-item-and-spell-customizationce-4-dc7"
+  },
+  "/SkyrimNet-GamePlugin/Features/overview-8ac": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-overviewe-6-a-cda"
+  },
+  "/SkyrimNet-GamePlugin/Features/player-dialogue-e1d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-player-dialogue-21-e-bd1"
+  },
+  "/SkyrimNet-GamePlugin/Installation Guide/dependencies-bb2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---installation-guide-dependencies-3-b-1-5cd"
+  },
+  "/SkyrimNet-GamePlugin/Installation Guide/skyrimnet-installation-795": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---installation-guide-skyrimnet-installation-3-e-7-652"
+  },
+  "/SkyrimNet-GamePlugin/intro-d39": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---skyrim-net-game-plugin-intro-0-e-3-3dc"
+  },
+  "/SkyrimNet-GamePlugin/Large Language Models/model-agents-878": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---large-language-models-model-agentse-29-470"
+  },
+  "/SkyrimNet-GamePlugin/Large Language Models/openrouter-d45": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---large-language-models-openrouter-293-6fd"
+  },
+  "/SkyrimNet-GamePlugin/Large Language Models/suggested-llms-c47": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---large-language-models-suggested-llms-754-455"
+  },
+  "/SkyrimNet-GamePlugin/Memory System/memory-recall-69f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---memory-system-memory-recallcab-b61"
+  },
+  "/SkyrimNet-GamePlugin/Memory System/sqlite-storage-9fc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---memory-system-sqlite-storage-9-bd-d60"
+  },
+  "/SkyrimNet-GamePlugin/Mod Integrations-156": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---mod-integrationsc-82-f4b"
+  },
+  "/SkyrimNet-GamePlugin/NPC Bios/Bios Generation-e2d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---npc-bios-bios-generationaa-0-a1f"
+  },
+  "/SkyrimNet-GamePlugin/NPC Bios/dynamic-bios-20e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---npc-bios-dynamic-biosb-07-dfb"
+  },
+  "/SkyrimNet-GamePlugin/NPC Bios/static-bios-650": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---npc-bios-static-bios-513-a10"
+  },
+  "/SkyrimNet-GamePlugin/Prompts/prompts-09f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---prompts-promptsb-25-9f2"
+  },
+  "/SkyrimNet-GamePlugin/Skyrimnet API/api-a98": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---skyrimnet-api-api-5-cf-3de"
+  },
+  "/SkyrimNet-GamePlugin/Skyrimnet API/decorators-d1e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---skyrimnet-api-decorators-9-a-7-842"
+  },
+  "/SkyrimNet-GamePlugin/Skyrimnet API/library-8e7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---skyrimnet-api-library-62-c-5b9"
+  },
+  "/SkyrimNet-GamePlugin/Speech to Text/local-whisper-0f2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---speech-to-text-local-whisper-2-b-5-826"
+  },
+  "/SkyrimNet-GamePlugin/Speech to Text/whisper-openai-470": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---speech-to-text-whisper-openai-7-c-6-cdb"
+  },
+  "/SkyrimNet-GamePlugin/Text to Speech/piper-d95": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---text-to-speech-piper-27-e-85d"
+  },
+  "/SkyrimNet-GamePlugin/Text to Speech/tts-getting-started-438": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---text-to-speech-tts-getting-started-508-11c"
+  },
+  "/SkyrimNet-GamePlugin/Text to Speech/xtts-b25": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---text-to-speech-xttsa-13-aae"
+  },
+  "/SkyrimNet-GamePlugin/Text to Speech/zonos-f6e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---text-to-speech-zonosfec-cd7"
+  },
+  "/SkyrimNet-GamePlugin/Vast.ai/images-681": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---vast-ai-images-373-94d"
+  },
+  "/SkyrimNet-GamePlugin/Vast.ai/vast-ai-4d1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---vast-ai-vast-aic-5-f-617"
+  }
+}

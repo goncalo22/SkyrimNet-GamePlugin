@@ -1,0 +1,28 @@
+{
+  "id": "Features/gamemaster",
+  "title": "GameMaster",
+  "description": "The GameMaster system in SkyrimNet enables dynamic, AI-driven scene narration, ambient storytelling, and autonomous world control. It acts as a virtual Dungeon Master, capable of responding to gameplay events or narrating scenes based on recent context.",
+  "source": "@site/docs/Features/GameMaster.md",
+  "sourceDirName": "Features",
+  "slug": "/Features/gamemaster",
+  "permalink": "/SkyrimNet-GamePlugin/Features/gamemaster",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/GameMaster.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "gamemaster",
+    "title": "GameMaster",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Events and Reactions",
+    "permalink": "/SkyrimNet-GamePlugin/Features/events-and-reactions"
+  },
+  "next": {
+    "title": "Player Dialogue",
+    "permalink": "/SkyrimNet-GamePlugin/Features/player-dialogue"
+  }
+}

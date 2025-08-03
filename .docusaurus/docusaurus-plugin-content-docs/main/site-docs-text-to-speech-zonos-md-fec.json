@@ -1,0 +1,23 @@
+{
+  "id": "Text to Speech/Zonos",
+  "title": "Zonos",
+  "description": "",
+  "source": "@site/docs/Text to Speech/Zonos.md",
+  "sourceDirName": "Text to Speech",
+  "slug": "/Text to Speech/Zonos",
+  "permalink": "/Text to Speech/Zonos",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "XTTS",
+    "permalink": "/Text to Speech/XTTS"
+  },
+  "next": {
+    "title": "Vast.ai",
+    "permalink": "/Vast.ai"
+  }
+}

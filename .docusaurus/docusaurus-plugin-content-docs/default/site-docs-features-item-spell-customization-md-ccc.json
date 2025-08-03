@@ -1,0 +1,15 @@
+{
+  "id": "Features/Item/Spell Customization",
+  "title": "Spell Customization",
+  "description": "",
+  "source": "@site/docs/Features/Item/Spell Customization.md",
+  "sourceDirName": "Features/Item",
+  "slug": "/Features/Item/Spell Customization",
+  "permalink": "/Features/Item/Spell Customization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/Item/Spell Customization.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

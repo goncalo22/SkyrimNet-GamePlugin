@@ -1,0 +1,28 @@
+{
+  "id": "Prompts/prompts",
+  "title": "System Prompt",
+  "description": "",
+  "source": "@site/docs/Prompts/Prompt  System.md",
+  "sourceDirName": "Prompts",
+  "slug": "/Prompts/prompts",
+  "permalink": "/SkyrimNet-GamePlugin/Prompts/prompts",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Prompts/Prompt  System.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "prompts",
+    "title": "System Prompt",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Memory System",
+    "permalink": "/SkyrimNet-GamePlugin/Memory System/memory-recall"
+  },
+  "next": {
+    "title": "Dynamic Bios",
+    "permalink": "/SkyrimNet-GamePlugin/NPC Bios/dynamic-bios"
+  }
+}

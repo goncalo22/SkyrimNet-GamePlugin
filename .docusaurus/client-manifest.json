@@ -1,0 +1,893 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "174": [
+      1869,
+      3249,
+      4813,
+      6120,
+      7643,
+      174
+    ],
+    "2237": [
+      2237
+    ],
+    "6120": [
+      174,
+      1869,
+      3249,
+      4813,
+      6061,
+      7643,
+      8401,
+      6120
+    ],
+    "17256151": [
+      3817
+    ],
+    "17896441": [
+      1869,
+      6120,
+      8401
+    ],
+    "main": [
+      1869,
+      5354,
+      8792
+    ],
+    "runtime~main": [
+      1869,
+      8792,
+      5354
+    ],
+    "01a85c17": [
+      1869,
+      8209
+    ],
+    "0e384e19": [
+      3976
+    ],
+    "1df93b7f": [
+      1869,
+      4583
+    ],
+    "1f391b9e": [
+      1869,
+      6120,
+      6061
+    ],
+    "21ed3a2f": [
+      8247
+    ],
+    "27e309c2": [
+      124
+    ],
+    "2939f597": [
+      479
+    ],
+    "2b0f64fd": [
+      5665
+    ],
+    "2b5ea02a": [
+      4397
+    ],
+    "3492d86c": [
+      3714
+    ],
+    "36994c47": [
+      9858
+    ],
+    "373006d9": [
+      5303
+    ],
+    "38ce85b0": [
+      1669
+    ],
+    "393be207": [
+      4134
+    ],
+    "3b141778": [
+      1578
+    ],
+    "3e79e2f7": [
+      4967
+    ],
+    "468eded1": [
+      2268
+    ],
+    "4986b3fa": [
+      8422
+    ],
+    "50877b20": [
+      7954
+    ],
+    "5137661a": [
+      1965
+    ],
+    "53707c76": [
+      7203
+    ],
+    "5cf81f78": [
+      57
+    ],
+    "5e95c892": [
+      9647
+    ],
+    "62ca9f28": [
+      2804
+    ],
+    "6875c492": [
+      174,
+      1869,
+      6120,
+      4813
+    ],
+    "754827cd": [
+      571
+    ],
+    "7c60b875": [
+      7217
+    ],
+    "7e9d34bb": [
+      6945
+    ],
+    "7f9f3be5": [
+      2952
+    ],
+    "814f3328": [
+      7472
+    ],
+    "8c85309b": [
+      2713
+    ],
+    "9a734f28": [
+      5323
+    ],
+    "9bdf15c2": [
+      8549
+    ],
+    "9e4087bc": [
+      2711
+    ],
+    "a139d2a0": [
+      4664
+    ],
+    "a6aa9e1f": [
+      174,
+      1869,
+      6120,
+      7643
+    ],
+    "a7456010": [
+      1235
+    ],
+    "a7bd4aaa": [
+      7098
+    ],
+    "a94703ab": [
+      1869,
+      9048
+    ],
+    "aa0ee69b": [
+      9780
+    ],
+    "aba21aa0": [
+      5742
+    ],
+    "acecf23e": [
+      1903
+    ],
+    "b0718fbf": [
+      195
+    ],
+    "b25fd282": [
+      8010
+    ],
+    "b4cbe2d8": [
+      1919
+    ],
+    "baf6143c": [
+      1249
+    ],
+    "c5f63fad": [
+      4019
+    ],
+    "c82d014b": [
+      4543
+    ],
+    "cabc7f7f": [
+      1454
+    ],
+    "ccc49370": [
+      174,
+      1869,
+      6120,
+      3249
+    ],
+    "ce47fe9a": [
+      2145
+    ],
+    "d5c1d529": [
+      2280
+    ],
+    "de4d0dd1": [
+      8047
+    ],
+    "e1701602": [
+      1915
+    ],
+    "e19d5fea": [
+      8201
+    ],
+    "e298a37b": [
+      9670
+    ],
+    "e6a59832": [
+      9992
+    ],
+    "eab48280": [
+      7741
+    ],
+    "f58371f5": [
+      2172
+    ],
+    "f86ed84d": [
+      5686
+    ],
+    "fca892de": [
+      673
+    ],
+    "fecf1932": [
+      2242
+    ],
+    "styles": [
+      174,
+      3249,
+      4583,
+      4813,
+      5354,
+      6061,
+      6120,
+      7643,
+      8209,
+      8401,
+      8792,
+      9048,
+      1869
+    ]
+  },
+  "assets": {
+    "57": {
+      "js": [
+        {
+          "file": "assets/js/5cf81f78.5b4983d2.js",
+          "hash": "3888495b787bb689",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/5cf81f78.5b4983d2.js"
+        }
+      ]
+    },
+    "124": {
+      "js": [
+        {
+          "file": "assets/js/27e309c2.071fe391.js",
+          "hash": "217a045249e70587",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/27e309c2.071fe391.js"
+        }
+      ]
+    },
+    "174": {
+      "js": [
+        {
+          "file": "assets/js/174.929b8922.js",
+          "hash": "377e2ffc7d68a2dc",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/174.929b8922.js"
+        }
+      ]
+    },
+    "195": {
+      "js": [
+        {
+          "file": "assets/js/b0718fbf.74970fbc.js",
+          "hash": "bc98a1e62906bfa5",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/b0718fbf.74970fbc.js"
+        }
+      ]
+    },
+    "479": {
+      "js": [
+        {
+          "file": "assets/js/2939f597.10414b8a.js",
+          "hash": "59d679cd4a88ec3b",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/2939f597.10414b8a.js"
+        }
+      ]
+    },
+    "571": {
+      "js": [
+        {
+          "file": "assets/js/754827cd.4f17c682.js",
+          "hash": "8fc6c8eabac051d2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/754827cd.4f17c682.js"
+        }
+      ]
+    },
+    "673": {
+      "js": [
+        {
+          "file": "assets/js/fca892de.fd22ce17.js",
+          "hash": "eeb1c2b6ca5ab84d",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/fca892de.fd22ce17.js"
+        }
+      ]
+    },
+    "1235": {
+      "js": [
+        {
+          "file": "assets/js/a7456010.b2b6fa4a.js",
+          "hash": "a751e2d105764a2a",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/a7456010.b2b6fa4a.js"
+        }
+      ]
+    },
+    "1249": {
+      "js": [
+        {
+          "file": "assets/js/baf6143c.e84c1ec5.js",
+          "hash": "09c6f052a7775b2e",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/baf6143c.e84c1ec5.js"
+        }
+      ]
+    },
+    "1454": {
+      "js": [
+        {
+          "file": "assets/js/cabc7f7f.af849a67.js",
+          "hash": "6e78e68c36abab88",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/cabc7f7f.af849a67.js"
+        }
+      ]
+    },
+    "1578": {
+      "js": [
+        {
+          "file": "assets/js/3b141778.a0f88845.js",
+          "hash": "ee766ee8053d86a9",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/3b141778.a0f88845.js"
+        }
+      ]
+    },
+    "1669": {
+      "js": [
+        {
+          "file": "assets/js/38ce85b0.e4f000c9.js",
+          "hash": "352b1e4f2377a2f6",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/38ce85b0.e4f000c9.js"
+        }
+      ]
+    },
+    "1869": {
+      "css": [
+        {
+          "file": "assets/css/styles.3f7f739c.css",
+          "hash": "4724a910af68c1f6",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/css/styles.3f7f739c.css"
+        }
+      ]
+    },
+    "1903": {
+      "js": [
+        {
+          "file": "assets/js/acecf23e.88688953.js",
+          "hash": "9ffb0a8be13ddc7a",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/acecf23e.88688953.js"
+        }
+      ]
+    },
+    "1915": {
+      "js": [
+        {
+          "file": "assets/js/e1701602.993295c3.js",
+          "hash": "c5b4b5f8f04369b4",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/e1701602.993295c3.js"
+        }
+      ]
+    },
+    "1919": {
+      "js": [
+        {
+          "file": "assets/js/b4cbe2d8.3d106679.js",
+          "hash": "3a10046dfc958a33",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/b4cbe2d8.3d106679.js"
+        }
+      ]
+    },
+    "1965": {
+      "js": [
+        {
+          "file": "assets/js/5137661a.3a0791be.js",
+          "hash": "f58226ec97f9d3d7",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/5137661a.3a0791be.js"
+        }
+      ]
+    },
+    "2145": {
+      "js": [
+        {
+          "file": "assets/js/ce47fe9a.4c677238.js",
+          "hash": "88a513e363045e4b",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/ce47fe9a.4c677238.js"
+        }
+      ]
+    },
+    "2172": {
+      "js": [
+        {
+          "file": "assets/js/f58371f5.f81852fb.js",
+          "hash": "7db3ebf8e3f993fa",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/f58371f5.f81852fb.js"
+        }
+      ]
+    },
+    "2237": {
+      "js": [
+        {
+          "file": "assets/js/2237.df6b98e4.js",
+          "hash": "f267b36fd36e7521",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/2237.df6b98e4.js"
+        }
+      ]
+    },
+    "2242": {
+      "js": [
+        {
+          "file": "assets/js/fecf1932.5d18f8f5.js",
+          "hash": "de3ac1ce186e77d2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/fecf1932.5d18f8f5.js"
+        }
+      ]
+    },
+    "2268": {
+      "js": [
+        {
+          "file": "assets/js/468eded1.3298d996.js",
+          "hash": "6fc1e78ebd22da47",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/468eded1.3298d996.js"
+        }
+      ]
+    },
+    "2280": {
+      "js": [
+        {
+          "file": "assets/js/d5c1d529.3417c7f2.js",
+          "hash": "549206db54103731",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/d5c1d529.3417c7f2.js"
+        }
+      ]
+    },
+    "2711": {
+      "js": [
+        {
+          "file": "assets/js/9e4087bc.43ac912e.js",
+          "hash": "42690f64da0450a2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/9e4087bc.43ac912e.js"
+        }
+      ]
+    },
+    "2713": {
+      "js": [
+        {
+          "file": "assets/js/8c85309b.9e39b922.js",
+          "hash": "4013693ccff548b4",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/8c85309b.9e39b922.js"
+        }
+      ]
+    },
+    "2804": {
+      "js": [
+        {
+          "file": "assets/js/62ca9f28.11ed9f68.js",
+          "hash": "2c8f3930e4d3ae1a",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/62ca9f28.11ed9f68.js"
+        }
+      ]
+    },
+    "2952": {
+      "js": [
+        {
+          "file": "assets/js/7f9f3be5.86f5d8a7.js",
+          "hash": "966ddcf79f63d5f8",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/7f9f3be5.86f5d8a7.js"
+        }
+      ]
+    },
+    "3249": {
+      "js": [
+        {
+          "file": "assets/js/ccc49370.9495f5a7.js",
+          "hash": "78e9549bec959a3b",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/ccc49370.9495f5a7.js"
+        }
+      ]
+    },
+    "3714": {
+      "js": [
+        {
+          "file": "assets/js/3492d86c.ccbc110b.js",
+          "hash": "176971fbcd2d44f8",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/3492d86c.ccbc110b.js"
+        }
+      ]
+    },
+    "3817": {
+      "js": [
+        {
+          "file": "assets/js/17256151.76012ffb.js",
+          "hash": "cf24e370d285d3d2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/17256151.76012ffb.js"
+        }
+      ]
+    },
+    "3976": {
+      "js": [
+        {
+          "file": "assets/js/0e384e19.71b9b19d.js",
+          "hash": "cc36e3cfb8527f2f",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/0e384e19.71b9b19d.js"
+        }
+      ]
+    },
+    "4019": {
+      "js": [
+        {
+          "file": "assets/js/c5f63fad.beb84c31.js",
+          "hash": "104cbe2cb8ce1d65",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/c5f63fad.beb84c31.js"
+        }
+      ]
+    },
+    "4134": {
+      "js": [
+        {
+          "file": "assets/js/393be207.ae2ab0fa.js",
+          "hash": "a6dbcea695d5d7b2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/393be207.ae2ab0fa.js"
+        }
+      ]
+    },
+    "4397": {
+      "js": [
+        {
+          "file": "assets/js/2b5ea02a.edc55093.js",
+          "hash": "dd9535f164b5e1bd",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/2b5ea02a.edc55093.js"
+        }
+      ]
+    },
+    "4543": {
+      "js": [
+        {
+          "file": "assets/js/c82d014b.8d76a6f1.js",
+          "hash": "285cb6e66cbca163",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/c82d014b.8d76a6f1.js"
+        }
+      ]
+    },
+    "4583": {
+      "js": [
+        {
+          "file": "assets/js/1df93b7f.b2cdb16b.js",
+          "hash": "21fab45564875ff1",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/1df93b7f.b2cdb16b.js"
+        }
+      ]
+    },
+    "4664": {
+      "js": [
+        {
+          "file": "assets/js/a139d2a0.7dd8fa49.js",
+          "hash": "42b0c1fc596bb494",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/a139d2a0.7dd8fa49.js"
+        }
+      ]
+    },
+    "4813": {
+      "js": [
+        {
+          "file": "assets/js/6875c492.7cf5f0f7.js",
+          "hash": "059eb1882ea2a173",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/6875c492.7cf5f0f7.js"
+        }
+      ]
+    },
+    "4967": {
+      "js": [
+        {
+          "file": "assets/js/3e79e2f7.eb11fe83.js",
+          "hash": "568f4e48f97e500f",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/3e79e2f7.eb11fe83.js"
+        }
+      ]
+    },
+    "5303": {
+      "js": [
+        {
+          "file": "assets/js/373006d9.00b5a060.js",
+          "hash": "6abe13d5685de1ca",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/373006d9.00b5a060.js"
+        }
+      ]
+    },
+    "5323": {
+      "js": [
+        {
+          "file": "assets/js/9a734f28.604aa8a7.js",
+          "hash": "117fde9ca3feeece",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/9a734f28.604aa8a7.js"
+        }
+      ]
+    },
+    "5354": {
+      "js": [
+        {
+          "file": "assets/js/runtime~main.d07bc8f4.js",
+          "hash": "7a3b7e3ada8dc30c",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/runtime~main.d07bc8f4.js"
+        }
+      ]
+    },
+    "5665": {
+      "js": [
+        {
+          "file": "assets/js/2b0f64fd.8405bed3.js",
+          "hash": "d17c0c072e401adb",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/2b0f64fd.8405bed3.js"
+        }
+      ]
+    },
+    "5686": {
+      "js": [
+        {
+          "file": "assets/js/f86ed84d.6fca90e0.js",
+          "hash": "18e5459c7cb28245",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/f86ed84d.6fca90e0.js"
+        }
+      ]
+    },
+    "5742": {
+      "js": [
+        {
+          "file": "assets/js/aba21aa0.9c471bc6.js",
+          "hash": "69745af87e72c0dd",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/aba21aa0.9c471bc6.js"
+        }
+      ]
+    },
+    "6061": {
+      "js": [
+        {
+          "file": "assets/js/1f391b9e.3c32b29d.js",
+          "hash": "4cca33165e0ca2fc",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/1f391b9e.3c32b29d.js"
+        }
+      ]
+    },
+    "6120": {
+      "js": [
+        {
+          "file": "assets/js/6120.ccea0f8b.js",
+          "hash": "084ffab43ed91e4e",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/6120.ccea0f8b.js"
+        }
+      ]
+    },
+    "6945": {
+      "js": [
+        {
+          "file": "assets/js/7e9d34bb.86046cad.js",
+          "hash": "66a609a9e96aec52",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/7e9d34bb.86046cad.js"
+        }
+      ]
+    },
+    "7098": {
+      "js": [
+        {
+          "file": "assets/js/a7bd4aaa.8f7e31e4.js",
+          "hash": "20a597b78011beed",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/a7bd4aaa.8f7e31e4.js"
+        }
+      ]
+    },
+    "7203": {
+      "js": [
+        {
+          "file": "assets/js/53707c76.ff210fe3.js",
+          "hash": "3d86d47931363317",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/53707c76.ff210fe3.js"
+        }
+      ]
+    },
+    "7217": {
+      "js": [
+        {
+          "file": "assets/js/7c60b875.5ca85f54.js",
+          "hash": "227dcc86bc413c83",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/7c60b875.5ca85f54.js"
+        }
+      ]
+    },
+    "7472": {
+      "js": [
+        {
+          "file": "assets/js/814f3328.caf3ae52.js",
+          "hash": "da95fbfca2d2e334",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/814f3328.caf3ae52.js"
+        }
+      ]
+    },
+    "7643": {
+      "js": [
+        {
+          "file": "assets/js/a6aa9e1f.6171df8e.js",
+          "hash": "bb7ca1cf505d3d76",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/a6aa9e1f.6171df8e.js"
+        }
+      ]
+    },
+    "7741": {
+      "js": [
+        {
+          "file": "assets/js/eab48280.e7a9d2c6.js",
+          "hash": "9af963506a575898",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/eab48280.e7a9d2c6.js"
+        }
+      ]
+    },
+    "7954": {
+      "js": [
+        {
+          "file": "assets/js/50877b20.b8207450.js",
+          "hash": "4d11a382820f1ca3",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/50877b20.b8207450.js"
+        }
+      ]
+    },
+    "8010": {
+      "js": [
+        {
+          "file": "assets/js/b25fd282.afc9def2.js",
+          "hash": "aee9d0756ba153e9",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/b25fd282.afc9def2.js"
+        }
+      ]
+    },
+    "8047": {
+      "js": [
+        {
+          "file": "assets/js/de4d0dd1.4a973c9d.js",
+          "hash": "d74bbe22d751e532",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/de4d0dd1.4a973c9d.js"
+        }
+      ]
+    },
+    "8201": {
+      "js": [
+        {
+          "file": "assets/js/e19d5fea.c53da735.js",
+          "hash": "c5d925a5433fa8ee",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/e19d5fea.c53da735.js"
+        }
+      ]
+    },
+    "8209": {
+      "js": [
+        {
+          "file": "assets/js/01a85c17.f047aa3b.js",
+          "hash": "d56f982031e51e1f",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/01a85c17.f047aa3b.js"
+        }
+      ]
+    },
+    "8247": {
+      "js": [
+        {
+          "file": "assets/js/21ed3a2f.6ba37bd1.js",
+          "hash": "d6ca4ed5603ee766",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/21ed3a2f.6ba37bd1.js"
+        }
+      ]
+    },
+    "8401": {
+      "js": [
+        {
+          "file": "assets/js/17896441.545b2810.js",
+          "hash": "37c095017eb995e1",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/17896441.545b2810.js"
+        }
+      ]
+    },
+    "8422": {
+      "js": [
+        {
+          "file": "assets/js/4986b3fa.5e8b6bc6.js",
+          "hash": "c4bc2892e68878fb",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/4986b3fa.5e8b6bc6.js"
+        }
+      ]
+    },
+    "8549": {
+      "js": [
+        {
+          "file": "assets/js/9bdf15c2.d8b543c3.js",
+          "hash": "86fca6b12cb2e3c6",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/9bdf15c2.d8b543c3.js"
+        }
+      ]
+    },
+    "8792": {
+      "js": [
+        {
+          "file": "assets/js/main.3f6fa6c2.js",
+          "hash": "ba80db3e18ca7542",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/main.3f6fa6c2.js"
+        }
+      ]
+    },
+    "9048": {
+      "js": [
+        {
+          "file": "assets/js/a94703ab.b2ab2880.js",
+          "hash": "71a6f8a54f50e99e",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/a94703ab.b2ab2880.js"
+        }
+      ]
+    },
+    "9647": {
+      "js": [
+        {
+          "file": "assets/js/5e95c892.9e8a1e5b.js",
+          "hash": "bfaae862183a92e2",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/5e95c892.9e8a1e5b.js"
+        }
+      ]
+    },
+    "9670": {
+      "js": [
+        {
+          "file": "assets/js/e298a37b.fb1dd73b.js",
+          "hash": "e5a56d001c417ff1",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/e298a37b.fb1dd73b.js"
+        }
+      ]
+    },
+    "9780": {
+      "js": [
+        {
+          "file": "assets/js/aa0ee69b.009af89a.js",
+          "hash": "39eac339a6532c6c",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/aa0ee69b.009af89a.js"
+        }
+      ]
+    },
+    "9858": {
+      "js": [
+        {
+          "file": "assets/js/36994c47.87f8a204.js",
+          "hash": "9633371ab800d45a",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/36994c47.87f8a204.js"
+        }
+      ]
+    },
+    "9992": {
+      "js": [
+        {
+          "file": "assets/js/e6a59832.7c3b4525.js",
+          "hash": "3490b1bba0ec6cb5",
+          "publicPath": "/SkyrimNet-GamePlugin/assets/js/e6a59832.7c3b4525.js"
+        }
+      ]
+    }
+  }
+}

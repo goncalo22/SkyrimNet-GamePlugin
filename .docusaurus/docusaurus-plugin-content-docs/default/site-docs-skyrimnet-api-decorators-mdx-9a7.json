@@ -1,0 +1,24 @@
+{
+  "id": "Skyrimnet API/decorators",
+  "title": "Decorators",
+  "description": "------------------------------",
+  "source": "@site/docs/Skyrimnet API/Decorators.mdx",
+  "sourceDirName": "Skyrimnet API",
+  "slug": "/Skyrimnet API/decorators",
+  "permalink": "/SkyrimNet-GamePlugin/Skyrimnet API/decorators",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Skyrimnet API/Decorators.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "decorators",
+    "title": "Decorators",
+    "displayed_sidebar": "apiSidebar"
+  },
+  "sidebar": "apiSidebar",
+  "previous": {
+    "title": "Library",
+    "permalink": "/SkyrimNet-GamePlugin/Skyrimnet API/library"
+  }
+}

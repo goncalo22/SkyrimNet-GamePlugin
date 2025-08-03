@@ -1,0 +1,20 @@
+{
+  "id": "Features/gamesmaster",
+  "title": "Gamesmaster",
+  "description": "",
+  "source": "@site/docs/Features/Gamesmaster.md",
+  "sourceDirName": "Features",
+  "slug": "/Features/gamesmaster",
+  "permalink": "/Features/gamesmaster",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Features/Gamesmaster.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "gamesmaster",
+    "title": "Gamesmaster",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar"
+}

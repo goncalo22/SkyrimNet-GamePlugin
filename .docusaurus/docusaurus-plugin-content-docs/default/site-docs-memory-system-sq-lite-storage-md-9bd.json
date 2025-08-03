@@ -1,0 +1,28 @@
+{
+  "id": "Memory System/sqlite-storage",
+  "title": "SQLite storage",
+  "description": "SkyrimNet uses a persistent, lightweight SQLite database to store NPC memories, enabling characters to remember events across sessions — even after saving, quitting, or rebooting the game.",
+  "source": "@site/docs/Memory System/SQLite storage.md",
+  "sourceDirName": "Memory System",
+  "slug": "/Memory System/sqlite-storage",
+  "permalink": "/SkyrimNet-GamePlugin/Memory System/sqlite-storage",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Memory System/SQLite storage.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "sqlite-storage",
+    "title": "SQLite storage",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Suggested LLMs",
+    "permalink": "/SkyrimNet-GamePlugin/Large Language Models/suggested-llms"
+  },
+  "next": {
+    "title": "Memory System",
+    "permalink": "/SkyrimNet-GamePlugin/Memory System/memory-recall"
+  }
+}

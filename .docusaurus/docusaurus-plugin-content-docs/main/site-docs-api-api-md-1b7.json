@@ -1,0 +1,23 @@
+{
+  "id": "API/API",
+  "title": "API",
+  "description": "Scriptname SkyrimNetApi",
+  "source": "@site/docs/API/API.md",
+  "sourceDirName": "API",
+  "slug": "/API/",
+  "permalink": "/API/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tutorial Intro",
+    "permalink": "/intro"
+  },
+  "next": {
+    "title": "Actions",
+    "permalink": "/API/Actions"
+  }
+}

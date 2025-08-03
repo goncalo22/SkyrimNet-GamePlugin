@@ -1,0 +1,23 @@
+{
+  "id": "Text to Speech/Piper",
+  "title": "Piper",
+  "description": "",
+  "source": "@site/docs/Text to Speech/Piper.md",
+  "sourceDirName": "Text to Speech",
+  "slug": "/Text to Speech/Piper",
+  "permalink": "/Text to Speech/Piper",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Getting-started",
+    "permalink": "/Text to Speech/Getting-started"
+  },
+  "next": {
+    "title": "XTTS",
+    "permalink": "/Text to Speech/XTTS"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "NPC Bios/Dynamic Bios",
+  "title": "Dynamic Bios",
+  "description": "",
+  "source": "@site/docs/NPC Bios/Dynamic Bios.md",
+  "sourceDirName": "NPC Bios",
+  "slug": "/NPC Bios/Dynamic Bios",
+  "permalink": "/NPC Bios/Dynamic Bios",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Mod Integrations",
+    "permalink": "/Mod Integrations"
+  },
+  "next": {
+    "title": "Local Whisper",
+    "permalink": "/Speech to Text/Local Whisper"
+  }
+}

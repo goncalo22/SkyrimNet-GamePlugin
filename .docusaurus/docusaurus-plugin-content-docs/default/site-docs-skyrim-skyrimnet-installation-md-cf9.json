@@ -1,0 +1,24 @@
+{
+  "id": "Skyrim/Skyrimnet Installation",
+  "title": "Skyrimnet Installation",
+  "description": "Lets see what appears if i type this",
+  "source": "@site/docs/Skyrim/Skyrimnet Installation.md",
+  "sourceDirName": "Skyrim",
+  "slug": "/Skyrim/Skyrimnet Installation",
+  "permalink": "/docs/Skyrim/Skyrimnet Installation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Skyrim/Skyrimnet Installation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Papyrus",
+    "permalink": "/docs/Dependencies/Papyrus"
+  },
+  "next": {
+    "title": "getting-started",
+    "permalink": "/docs/Skyrim/getting-started"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Vast.Ai/vast.ai",
+  "title": "Vast.ai",
+  "description": "",
+  "source": "@site/docs/Vast.Ai/Vast.ai.md",
+  "sourceDirName": "Vast.Ai",
+  "slug": "/Vast.Ai/",
+  "permalink": "/Vast.Ai/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/MinLL/skyrimnet/edit/main/docs/docs/Vast.Ai/Vast.ai.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "vast.ai",
+    "title": "Vast.ai",
+    "displayed_sidebar": "tutorialSidebar"
+  },
+  "sidebar": "tutorialSidebar"
+}
