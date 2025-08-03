@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl'; // ✅ Required for GitHub Pages asset paths
 
 export default function Walkthrough() {
   return (
@@ -18,7 +19,7 @@ export default function Walkthrough() {
             gap: '2rem',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            marginTop: '2rem'
+            marginTop: '2rem',
           }}
         >
           {/* Card 1 */}
@@ -29,33 +30,28 @@ export default function Walkthrough() {
               rel="noopener noreferrer"
             >
               <img
-                src="/img/dragonborn.png"
+                src={useBaseUrl('/img/dragonborn.png')}
                 alt="SK React Guide"
                 style={{ width: '100%', borderRadius: '8px' }}
               />
             </a>
             <h2>Player Configuration</h2>
-            <p style={{ marginTop: '0.5rem', }}>
+            <p style={{ marginTop: '0.5rem' }}>
               Fully customize the player voice, dialogue, reactions and even his inner thoughts. Have a fully featured Narrator tell your epic story, as it unfolds
             </p>
           </div>
 
           {/* Card 2 */}
           <div style={{ textAlign: 'center', width: '300px' }}>
-           
-              
-          
-              <Link to="/gamedatacenter">
+            <Link to="/gamedatacenter">
               <img
-                src="/img/magedragon.png"
+                src={useBaseUrl('/img/magedragon.png')}
                 alt="Mage and Dragon"
                 style={{ width: '100%', borderRadius: '8px' }}
               />
-              </Link>
-          
-
+            </Link>
             <h2>Custom Context Editor</h2>
-            <p style={{ marginTop: '0.5rem', }}>
+            <p style={{ marginTop: '0.5rem' }}>
               Integrate spells, items and much more with Game Data Manager, making the AI see them, use them and react to them, as you want, when you want.
             </p>
           </div>
@@ -68,14 +64,14 @@ export default function Walkthrough() {
               rel="noopener noreferrer"
             >
               <img
-                src="/img/followers2.png"
+                src={useBaseUrl('/img/followers2.png')}
                 alt="Dialogue Engine"
                 style={{ width: '100%', borderRadius: '8px' }}
               />
             </a>
             <h2>Character Bios Setups</h2>
-            <p style={{ marginTop: '0.5rem', }}>
-              Easily acess and edit more than 3000 lore accurate characters,their detailed bios will evolve dinamically as you play.Generate full bios automatically for custom npcs
+            <p style={{ marginTop: '0.5rem' }}>
+              Easily acess and edit more than 3000 lore accurate characters, their detailed bios will evolve dinamically as you play. Generate full bios automatically for custom npcs
             </p>
           </div>
 
@@ -87,13 +83,13 @@ export default function Walkthrough() {
               rel="noopener noreferrer"
             >
               <img
-                src="/img/npcs.png"
+                src={useBaseUrl('/img/npcs.png')}
                 alt="NPC Memory"
                 style={{ width: '100%', borderRadius: '8px' }}
               />
             </a>
             <h2>NPC Configuration</h2>
-            <p style={{ marginTop: '0.5rem', }}>
+            <p style={{ marginTop: '0.5rem' }}>
               Use the overrides system to easily customize any npc, individually or by groups, giving them different LLMs, voices and settings
             </p>
           </div>
@@ -106,14 +102,14 @@ export default function Walkthrough() {
               rel="noopener noreferrer"
             >
               <img
-                src="/img/greybeard.png"
+                src={useBaseUrl('/img/greybeard.png')}
                 alt="Dragonborn Reflection"
                 style={{ width: '100%', borderRadius: '8px' }}
               />
             </a>
             <h2>Events and Memories</h2>
-            <p style={{ marginTop: '0.5rem', }}>
-              Browse,edit and manage all the generated memories of skyrimNet npcs, including how often they are created and how many events they can register
+            <p style={{ marginTop: '0.5rem' }}>
+              Browse, edit and manage all the generated memories of skyrimNet npcs, including how often they are created and how many events they can register
             </p>
           </div>
         </div>

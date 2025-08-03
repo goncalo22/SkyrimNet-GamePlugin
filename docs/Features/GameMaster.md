@@ -7,7 +7,7 @@ displayed_sidebar: tutorialSidebar
 #  SkyrimNet GameMaster 🎮
 
 <p align="center">
-  <img src="/img/gamemaster.png" alt="gamemaster" width="500"/>
+  <img src="/SkyrimNet-GamePlugin/img/gamemaster.png" alt="gamemaster" width="500"/>
 </p>
 
 

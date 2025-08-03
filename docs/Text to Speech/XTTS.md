@@ -5,7 +5,7 @@ displayed_sidebar: tutorialSidebar
 ---
 
 <p align="center">
-  <img src="/img/xtts.png" alt="XTTS" width="400"/>
+  <img src="/SkyrimNet-GamePlugin/img/xtts.png" alt="XTTS" width="400"/>
 </p>
 
 ## 🧠 XTTS in SkyrimNet — the Default-Quality TTS

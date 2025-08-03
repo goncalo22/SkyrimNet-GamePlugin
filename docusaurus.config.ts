@@ -51,7 +51,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/goncalo22/SkyrimNet-GamePlugin/edit/main/blog/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -72,7 +72,7 @@ plugins: [
       path: 'docs',
       routeBasePath: '/',
       sidebarPath: require.resolve('./sidebars.ts'),
-      editUrl: 'https://github.com/MinLL/skyrimnet/edit/main/docs/',
+      editUrl: 'https://github.com/goncalo22/SkyrimNet-GamePlugin/edit/main/',
     },
   ],
 ],

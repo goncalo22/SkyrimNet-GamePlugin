@@ -7,7 +7,7 @@ displayed_sidebar: tutorialSidebar
 # Piper TTS
 
 <p align="center">
-  <img src="/img/piper.png" alt="piper" width="400"/>
+  <img src="/SkyrimNet-GamePlugin/img/piper.png" alt="piper" width="400"/>
 </p>
 
 ## 🗣️ Piper TTS in SkyrimNet

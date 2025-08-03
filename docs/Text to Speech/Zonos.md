@@ -7,7 +7,7 @@ displayed_sidebar: tutorialSidebar
 # Zonos TTS
 
 <p align="center">
-  <img src="/img/zonos.png" alt="zonos" width="400"/>
+  <img src="/SkyrimNet-GamePlugin/img/zonos.png" alt="zonos" width="400"/>
 </p>
 
 ## 🗣️ High-Fidelity TTS for SkyrimNet
