@@ -2,48 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2025-08-03T12:49:29.384Z</updated>
+    <updated>2025-07-21T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[SkyrimNet Beta3  Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/beta3 release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/beta3 release"/>
-        <updated>2025-08-03T12:49:29.384Z</updated>
-        <summary type="html"><![CDATA[SkyrimNet Beta3]]></summary>
-        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
-<p>Important bug fix: Mod now properly handles locales that use commas in place of periods for decimals. If you are in one of these locales (ex France, Germany, etc), highly recommend that you delete all configs, as a number of configurations will have bad values for you. This is what was causing some users to have issues such as facial animations not working.,
-Important optimization: Considerably reduced latency before response generation begins for dialogue. I implemented a significant performance improvement to how we retrieve events, in order to resolve an issue that was causing delays for dialogue generation when large numbers of events were present. The mod is even faster now. ,
-In my local tests, I saw between a 500-1000ms reduction in response time from NPC's with this change. For the other nerds here, event processing and retrieval is now O(1) complexity instead of O(n).
-Enhancement: Several internal systems have been refactored to expand test coverage, and improve our ability to detect and prevent bugs.,
-Bug Fix: There is now a short pause inbetween segments of conversations to avoid piper rapid-fire responding.,
-Enhancement: Added has_magic_effect and has_spell decorators (Still need more testing, not used by any of my templates just yet). I intend to use this for a lot of things, such as influencing RP when calm / fury spells are present, etc. This will make mod integrations much easier.,
-Enhancement: The context history now contains all events that are marked as persistent, aside from a handful of types that I have explicitly excluded.,
-Enhancement: The isTimePaused variable is now present in both builds, allowing mod authors to prevent their papyrus decorators from firing while the VM is paused,
-Bug Fix: The Zonos tests are now fixed in the UI.,
-Bug Fix: The default narrator now has the correct serana voice type.,
-Bug Fix: Zonos now properly supports virtual entities,
-Enhancement: Lowered the default "proximity to ignore LoS" to 350 (From 500). This radius controls the distance at which NPC's ignore line of sight requirements. The old setting was a bit too permissive. Update your game config to the new value.,
-Enhancement: Assorted prompt tweaks,
-Enhancement: Added C++ API for more powerful mod integrations. Mod authors can now integrate with Skyrim from other SKSE plugins. Documentation for this to be added shortly.,
-Enhancement: Zonos caching improvements,
-Bug Fix: Event registration API now handles unknown event types properly.,
-Enhancement: Tweaked dynamic bio update to work with more LLM's, and be less aggressive at pruning old content.,
-Bug Fix: Other small bug fixes.,</p>
-<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3</a></p>]]></content>
-        <category label="release" term="release"/>
-        <category label="beta3" term="beta3"/>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[SkyrimNet Beta4  Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release"/>
-        <updated>2025-07-27T00:00:00.000Z</updated>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/21/beta4-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/21/beta4-release"/>
+        <updated>2025-07-21T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[SkyrimNet Beta4]]></summary>
         <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 4 Latest</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="major-new-feature">Major new feature:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release#major-new-feature" class="hash-link" aria-label="Direct link to Major new feature:" title="Direct link to Major new feature:">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="major-new-feature">Major new feature:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/21/beta4-release#major-new-feature" class="hash-link" aria-label="Direct link to Major new feature:" title="Direct link to Major new feature:">​</a></h3>
 <ul>
 <li>
 <p>Now supports per-actor customizations (And per-group). Groups are sets of config overrides that you can apply to multiple actors (Ex, "High quality" for followers, etc) to avoid having to maintain the same settings in more than one place. I'll likely expand the "group" feature to allow automatic application to factions, races, genders, etc at a later point.</p>
@@ -52,7 +23,7 @@ Bug Fix: Other small bug fixes.,</p>
 <p>The config system itself supports overriding any config value from any config file anywhere (Assuming that the config value makes sense within a per-actor context), but I need to explicitly enable support the field being overridable like this. Let me know what areas you folks think would benefit the most from being wired up. In the initial implementation, I support overriding the voice id, and openrouter settings, as those seem to be the two highest ROI. It's relatively easy to add more from here, though supporting multiple different TTS engines simultaneously is not currently possible. I'll fix this at a later point.</p>
 </li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature">New Feature:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/27/v1.0-release#new-feature" class="hash-link" aria-label="Direct link to New Feature:" title="Direct link to New Feature:">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature">New Feature:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/21/beta4-release#new-feature" class="hash-link" aria-label="Direct link to New Feature:" title="Direct link to New Feature:">​</a></h3>
 <p>Added a dictionary for changing the pronunciation of words pronounced by the TTS (Khajiit -&gt; Kajeet, etc). If you notice any words that are consistently being misread by TTS and you think it should be part of the default dictionary, let us know in #beta-feedback!</p>
 <ul>
 <li>
@@ -82,5 +53,267 @@ Bug Fix: Other small bug fixes.,</p>
 </ul>]]></content>
         <category label="release" term="release"/>
         <category label="beta4" term="beta4"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta3  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release"/>
+        <updated>2025-07-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta3]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
+<p>Important bug fix: Mod now properly handles locales that use commas in place of periods for decimals. If you are in one of these locales (ex France, Germany, etc), highly recommend that you delete all configs, as a number of configurations will have bad values for you. This is what was causing some users to have issues such as facial animations not working.,
+Important optimization: Considerably reduced latency before response generation begins for dialogue. I implemented a significant performance improvement to how we retrieve events, in order to resolve an issue that was causing delays for dialogue generation when large numbers of events were present. The mod is even faster now. ,
+In my local tests, I saw between a 500-1000ms reduction in response time from NPC's with this change. For the other nerds here, event processing and retrieval is now O(1) complexity instead of O(n).
+Enhancement: Several internal systems have been refactored to expand test coverage, and improve our ability to detect and prevent bugs.,
+Bug Fix: There is now a short pause inbetween segments of conversations to avoid piper rapid-fire responding.,
+Enhancement: Added has_magic_effect and has_spell decorators (Still need more testing, not used by any of my templates just yet). I intend to use this for a lot of things, such as influencing RP when calm / fury spells are present, etc. This will make mod integrations much easier.,
+Enhancement: The context history now contains all events that are marked as persistent, aside from a handful of types that I have explicitly excluded.,
+Enhancement: The isTimePaused variable is now present in both builds, allowing mod authors to prevent their papyrus decorators from firing while the VM is paused,
+Bug Fix: The Zonos tests are now fixed in the UI.,
+Bug Fix: The default narrator now has the correct serana voice type.,
+Bug Fix: Zonos now properly supports virtual entities,
+Enhancement: Lowered the default "proximity to ignore LoS" to 350 (From 500). This radius controls the distance at which NPC's ignore line of sight requirements. The old setting was a bit too permissive. Update your game config to the new value.,
+Enhancement: Assorted prompt tweaks,
+Enhancement: Added C++ API for more powerful mod integrations. Mod authors can now integrate with Skyrim from other SKSE plugins. Documentation for this to be added shortly.,
+Enhancement: Zonos caching improvements,
+Bug Fix: Event registration API now handles unknown event types properly.,
+Enhancement: Tweaked dynamic bio update to work with more LLM's, and be less aggressive at pruning old content.,
+Bug Fix: Other small bug fixes.,</p>
+<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3</a></p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta3" term="beta3"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta2 Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release"/>
+        <updated>2025-07-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta2]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
+<blockquote>
+<p><strong>Download the new release here:</strong><br>
+<a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta2" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta2</a></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-installation-instructions">🚀 Installation Instructions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-installation-instructions" class="hash-link" aria-label="Direct link to 🚀 Installation Instructions" title="Direct link to 🚀 Installation Instructions">​</a></h3>
+<p>Install like any other mod through your mod manager, replacing the existing SkyrimNet files.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="important-notes-when-upgrading">Important notes when upgrading:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#important-notes-when-upgrading" class="hash-link" aria-label="Direct link to Important notes when upgrading:" title="Direct link to Important notes when upgrading:">​</a></h4>
+<ol>
+<li>The default values for many configurations have changed. We <strong>recommend deleting</strong> the folder:</li>
+</ol>
+<p>This will restore all settings to default.
+2. New users must still install the models during installation, same as before.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-new-features">✨ New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-new-features" class="hash-link" aria-label="Direct link to ✨ New Features" title="Direct link to ✨ New Features">​</a></h3>
+<ul>
+<li>
+<p><strong>Item customization interface</strong><br>
+<!-- -->Users can now customize the display of worn equipment and weapons, as well as enable or disable their visibility.</p>
+</li>
+<li>
+<p><strong>HTTP server address/port config</strong> added.</p>
+</li>
+<li>
+<p><strong>Combat variant selection</strong> in OpenRouter config is now used for dialogue in combat. This allows fast models like Sonnet to be used during combat while retaining slow, high-quality models otherwise.</p>
+</li>
+<li>
+<p><strong>Universal "max volume" setting</strong><br>
+<!-- -->Applies to both spatial and virtual entity (narrator/player) audio.</p>
+</li>
+<li>
+<p><strong>Memory generation</strong> now uses its own OpenRouter config variant.</p>
+</li>
+<li>
+<p><strong>Sonnet caching support</strong></p>
+</li>
+<li>
+<p>Significantly reduces costs and response time.</p>
+</li>
+<li>
+<p>Cache TTL is 1 hour (only honored by Anthropic; others use 5 minutes).</p>
+</li>
+<li>
+<p><strong>Dynamic cache-extension</strong><br>
+<!-- -->Allows the event history cache to span 3× longer than normal for better memory fidelity.</p>
+</li>
+<li>
+<p><strong>"The Party" kill attribution toggle</strong> added.</p>
+</li>
+<li>
+<p>Characters no longer ship directly in the <code>prompts</code> folder. They are now <strong>copied only if missing</strong>, to preserve customizations.</p>
+</li>
+<li>
+<p>Settings file also no longer ships in default location. However, <strong>this update will overwrite</strong> it once to enable new format and caching support.</p>
+</li>
+<li>
+<p><strong>VRIK Action hotkey support</strong> added.</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-memory-generation-changes">🧠 Memory Generation Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-memory-generation-changes" class="hash-link" aria-label="Direct link to 🧠 Memory Generation Changes" title="Direct link to 🧠 Memory Generation Changes">​</a></h3>
+<ul>
+<li>Improved memory accuracy for <strong>location and people</strong> involved.</li>
+<li>Avoids generating memories for events within the <strong>last 8 minutes</strong>.</li>
+<li>New default for max memories per retrieval: <strong>5</strong>.</li>
+<li>Memory generation algorithm is now <strong>time-segmented</strong>:</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="segmentation-rules">Segmentation Rules:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#segmentation-rules" class="hash-link" aria-label="Direct link to Segmentation Rules:" title="Direct link to Segmentation Rules:">​</a></h4>
+<ol>
+<li>Segment must last at least <strong>10 game minutes</strong> (<code>min_segment_duration</code>)</li>
+<li>Segment max is <strong>12 game hours</strong> (<code>max_segment_duration</code>)</li>
+<li>Max <strong>200 events</strong> per memory</li>
+<li>Minimum <strong>5 events</strong></li>
+<li>Time gap of over 60 minutes triggers a boundary</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="examples">Examples:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#examples" class="hash-link" aria-label="Direct link to Examples:" title="Direct link to Examples:">​</a></h4>
+<ul>
+<li><strong>Conversation → Travel → Combat</strong></li>
+</ul>
+<blockquote>
+<p>In testing:<br>
+<strong>518 → 162</strong> memories<br>
+<!-- -->Nearly same fidelity, significantly more cohesive.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="to-regenerate-old-memories">To regenerate old memories:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#to-regenerate-old-memories" class="hash-link" aria-label="Direct link to To regenerate old memories:" title="Direct link to To regenerate old memories:">​</a></h4>
+<ol>
+<li>Set <code>"Event Preload Count"</code> to <code>5000</code> in config</li>
+<li>Delete all memories via in-game UI</li>
+<li>Restart game</li>
+<li>Click "Generate" in memory tab (up to 100 each batch)</li>
+<li>Repeat as needed or increase batch size in config</li>
+</ol>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-enhancements">🛠 Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-enhancements" class="hash-link" aria-label="Direct link to 🛠 Enhancements" title="Direct link to 🛠 Enhancements">​</a></h3>
+<ul>
+<li>Actors now react to <strong>health/magicka/stamina</strong> in combat</li>
+<li>Increased default <strong>event cooldowns</strong></li>
+<li>Added <strong>Quick Settings menu</strong> to Easy Setup page</li>
+<li>Fixed <strong>Papyrus decorators</strong> performance — modders can now safely publish plugins</li>
+<li><strong>Dynamic Narration API</strong> now renders template variables</li>
+<li>Exposed <strong>profile generation prompt</strong></li>
+<li>Improved <strong>location &amp; time awareness</strong></li>
+<li>Smarter <strong>target gender/race</strong> awareness</li>
+<li>Removed <code>[ Background ]</code> markers from LLM dialogue</li>
+<li><strong>Papyrus decorators</strong> are now:</li>
+<li>Evaluated ahead-of-time</li>
+<li>Cached</li>
+<li>Only executed when needed</li>
+<li>Speech pacing tweaks: <strong>less spammy dialogue</strong></li>
+<li>Events now sorted by <strong>local time</strong>, not game time</li>
+<li>SKSE version downgraded to <strong>2.0.1.104</strong> (supports older game versions)</li>
+<li>Faction filter now uses <strong>Editor ID</strong></li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-bug-fixes">🐞 Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/13/beta2-release#-bug-fixes" class="hash-link" aria-label="Direct link to 🐞 Bug Fixes" title="Direct link to 🐞 Bug Fixes">​</a></h3>
+<ul>
+<li>Actors stop talking on <strong>death</strong></li>
+<li>Speech queues flushed on <strong>save reload</strong></li>
+<li>Fixed errors in <strong>Dynamic Bio</strong></li>
+<li>Stopped false hit events from triggering LLM dialogue</li>
+<li>Critical fix: prevent <strong>Papyrus decorators</strong> from executing while VM is paused</li>
+<li>Fixed character save failures in editor</li>
+<li>Fixed NPCs <strong>responding to themselves</strong></li>
+<li>Referrer now points to correct GitHub repo</li>
+<li>Fixed template render errors for <code>responseTarget</code></li>
+<li>Case sensitivity issue in decorators' JSON booleans resolved</li>
+<li><strong>Global event cooldown</strong> now functions correctly</li>
+<li>Fixed decimal input issue for <strong>some locales</strong></li>
+<li>Exposed <strong>event cache count</strong> for game load</li>
+<li>Silenced harmless console errors</li>
+<li>Resolved memory generation template errors</li>
+</ul>
+<hr>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta2" term="beta2"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release"/>
+        <updated>2025-07-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta]]></summary>
+        <content type="html"><![CDATA[<p>We're thrilled to announce the <strong>beta release</strong> of <strong>SkyrimNet</strong> – the most advanced AI platform for gaming that transforms every NPC into a living, breathing character!</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-what-makes-skyrimnet-revolutionary">🚀 What Makes SkyrimNet Revolutionary?<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-what-makes-skyrimnet-revolutionary" class="hash-link" aria-label="Direct link to 🚀 What Makes SkyrimNet Revolutionary?" title="Direct link to 🚀 What Makes SkyrimNet Revolutionary?">​</a></h2>
+<p>Unlike other AI projects that require complex external servers or WSL installations, <strong>SkyrimNet runs entirely as a single game DLL</strong>, offering:</p>
+<ul>
+<li>⚡ <strong>Faster response times</strong> and <strong>lower system load</strong></li>
+<li>🛠️ <strong>Streamlined setup</strong> with no server configuration required</li>
+<li>🧠 <strong>Real-time responsiveness</strong> with direct memory access</li>
+<li>👥 <strong>3,000+ unique personalities</strong> for all vanilla NPCs</li>
+<li>🧾 <strong>Advanced memory system</strong> – NPCs remember past conversations and form relationships</li>
+<li>👂 <strong>Smart awareness</strong> – NPCs only know what they can realistically see or hear</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-game-changing-features">💡 Game-Changing Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-game-changing-features" class="hash-link" aria-label="Direct link to 💡 Game-Changing Features" title="Direct link to 💡 Game-Changing Features">​</a></h2>
+<ul>
+<li>
+<p><strong>Dynamic AI Interactions</strong><br>
+<!-- -->NPCs react to in-game events and initiate conversations based on goals, not scripts.</p>
+</li>
+<li>
+<p><strong>Multi-Modal Communication</strong><br>
+<!-- -->Includes voice recognition, text input, and synchronized facial animations.</p>
+</li>
+<li>
+<p><strong>Professional Web Interface</strong><br>
+<!-- -->Monitor characters live, manage memory, configure behavior, and access cloud services.</p>
+</li>
+<li>
+<p><strong>Modder-Friendly Design</strong><br>
+<!-- -->Papyrus API fully supports traditional Skyrim modding workflows.</p>
+</li>
+<li>
+<p><strong>One-Click Cloud Setup</strong><br>
+<!-- -->Automatically provisions <strong>VastAI</strong> for high-quality <strong>XTTS voice generation</strong>.</p>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-easy-installation">🧰 Easy Installation<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-easy-installation" class="hash-link" aria-label="Direct link to 🧰 Easy Installation" title="Direct link to 🧰 Easy Installation">​</a></h2>
+<ol>
+<li>Ensure you meet all requirements and download the models.</li>
+<li><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases" target="_blank" rel="noopener noreferrer">Download from GitHub Releases</a></li>
+<li>Install using your preferred mod manager.</li>
+<li>Enable <code>SkyrimNet.esp</code>.</li>
+<li>Launch the game via <strong>SKSE</strong>.</li>
+<li>Visit <code>http://localhost:8080</code></li>
+<li>Complete the setup wizard with your API keys.</li>
+</ol>
+<blockquote>
+<p>✅ Available in <strong>CUDA (max performance)</strong> and <strong>Universal (broad compatibility)</strong> builds.</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-beta-transparency">🔍 Beta Transparency<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-beta-transparency" class="hash-link" aria-label="Direct link to 🔍 Beta Transparency" title="Direct link to 🔍 Beta Transparency">​</a></h2>
+<p>We're committed to clear communication and continuous updates.</p>
+<p>Current limitations:</p>
+<ul>
+<li>Available NPC actions are limited <em>(expanding soon!)</em></li>
+<li>VR controller keybinds need a workaround <em>(fix in progress)</em></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-whats-coming-next">🔮 What's Coming Next?<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-whats-coming-next" class="hash-link" aria-label="Direct link to 🔮 What's Coming Next?" title="Direct link to 🔮 What's Coming Next?">​</a></h2>
+<ul>
+<li>Expanded NPC actions</li>
+<li>Dynamic quest system</li>
+<li>Enhanced VR support</li>
+<li>Image-to-text integration</li>
+<li>...and much more!</li>
+</ul>
+<hr>
+<blockquote>
+<p>The age of scripted NPCs is over.<br>
+<!-- -->Every conversation is now unique.<br>
+<!-- -->Every character remembers.<br>
+<!-- -->Every interaction shapes their world.</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-download-now-github-releases">📥 <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases" target="_blank" rel="noopener noreferrer">Download Now: GitHub Releases</a><a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/06/beta-release#-download-now-github-releases" class="hash-link" aria-label="Direct link to -download-now-github-releases" title="Direct link to -download-now-github-releases">​</a></h2>
+<p>Thank you for supporting the <strong>future of AI gaming</strong>!<br>
+<!-- -->Your feedback fuels development and helps us build the most immersive RPG experience ever made.</p>
+<blockquote>
+<p>⚠️ <strong>Beta Release Note</strong>: This version has been extensively tested, but please report any issues. Your support makes open AI gaming possible!</p>
+</blockquote>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta" term="beta"/>
     </entry>
 </feed>
