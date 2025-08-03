@@ -62,25 +62,112 @@
             <pubDate>Sat, 19 Jul 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[SkyrimNet Beta3]]></description>
             <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
-<p>Important bug fix: Mod now properly handles locales that use commas in place of periods for decimals. If you are in one of these locales (ex France, Germany, etc), highly recommend that you delete all configs, as a number of configurations will have bad values for you. This is what was causing some users to have issues such as facial animations not working.,
-Important optimization: Considerably reduced latency before response generation begins for dialogue. I implemented a significant performance improvement to how we retrieve events, in order to resolve an issue that was causing delays for dialogue generation when large numbers of events were present. The mod is even faster now. ,
-In my local tests, I saw between a 500-1000ms reduction in response time from NPC's with this change. For the other nerds here, event processing and retrieval is now O(1) complexity instead of O(n).
-Enhancement: Several internal systems have been refactored to expand test coverage, and improve our ability to detect and prevent bugs.,
-Bug Fix: There is now a short pause inbetween segments of conversations to avoid piper rapid-fire responding.,
-Enhancement: Added has_magic_effect and has_spell decorators (Still need more testing, not used by any of my templates just yet). I intend to use this for a lot of things, such as influencing RP when calm / fury spells are present, etc. This will make mod integrations much easier.,
-Enhancement: The context history now contains all events that are marked as persistent, aside from a handful of types that I have explicitly excluded.,
-Enhancement: The isTimePaused variable is now present in both builds, allowing mod authors to prevent their papyrus decorators from firing while the VM is paused,
-Bug Fix: The Zonos tests are now fixed in the UI.,
-Bug Fix: The default narrator now has the correct serana voice type.,
-Bug Fix: Zonos now properly supports virtual entities,
-Enhancement: Lowered the default "proximity to ignore LoS" to 350 (From 500). This radius controls the distance at which NPC's ignore line of sight requirements. The old setting was a bit too permissive. Update your game config to the new value.,
-Enhancement: Assorted prompt tweaks,
-Enhancement: Added C++ API for more powerful mod integrations. Mod authors can now integrate with Skyrim from other SKSE plugins. Documentation for this to be added shortly.,
-Enhancement: Zonos caching improvements,
-Bug Fix: Event registration API now handles unknown event types properly.,
-Enhancement: Tweaked dynamic bio update to work with more LLM's, and be less aggressive at pruning old content.,
-Bug Fix: Other small bug fixes.,</p>
-<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3</a></p>]]></content:encoded>
+<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">📥 Download Beta 3 on GitHub</a></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-important-bug-fixes">🐛 Important Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-important-bug-fixes" class="hash-link" aria-label="Direct link to 🐛 Important Bug Fixes" title="Direct link to 🐛 Important Bug Fixes">​</a></h2>
+<ul>
+<li>
+<p><strong>Locale Support:</strong><br>
+<!-- -->The mod now correctly handles locales where commas are used instead of periods for decimal values (e.g. France, Germany).</p>
+<blockquote>
+<p>⚠️ <strong>Recommendation:</strong> If you're using one of these locales, delete all existing configs. Some configurations may have invalid decimal formatting that breaks functionality (e.g. facial animations not working).</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Zonos UI Tests Fixed:</strong><br>
+<!-- -->Resolved test failures in the Zonos web interface.</p>
+</li>
+<li>
+<p><strong>Virtual Entity Support for Zonos:</strong><br>
+<!-- -->Zonos now fully supports virtual entities (e.g. narrator, player thoughts).</p>
+</li>
+<li>
+<p><strong>Narrator Voice Fix:</strong><br>
+<!-- -->Default narrator voice is now correctly set to <strong>Serana</strong> voice type.</p>
+</li>
+<li>
+<p><strong>Conversation Pausing:</strong><br>
+<!-- -->Fixed bug that caused Piper-style rapid-fire responses. There is now a short pause between dialogue segments.</p>
+</li>
+<li>
+<p><strong>Event Registration Fix:</strong><br>
+<!-- -->API now properly handles unknown event types during registration.</p>
+</li>
+<li>
+<p><strong>Miscellaneous Fixes:</strong><br>
+<!-- -->Other small bug fixes and improvements.</p>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-performance--optimization">⚡ Performance &amp; Optimization<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-performance--optimization" class="hash-link" aria-label="Direct link to ⚡ Performance &amp; Optimization" title="Direct link to ⚡ Performance &amp; Optimization">​</a></h2>
+<ul>
+<li><strong>Significant Latency Reduction in Dialogue Generation:</strong><br>
+<!-- -->A major optimization was implemented for how events are retrieved during dialogue.<!-- -->
+<ul>
+<li><strong>Performance Boost:</strong> ~500–1000ms reduction in response time during heavy load</li>
+<li><strong>Technical Note:</strong> Event retrieval improved from <strong>O(n)</strong> to <strong>O(1)</strong> complexity</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-enhancements">✨ Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-enhancements" class="hash-link" aria-label="Direct link to ✨ Enhancements" title="Direct link to ✨ Enhancements">​</a></h2>
+<ul>
+<li>
+<p><strong>Decorator Enhancements:</strong></p>
+<ul>
+<li>New decorators: <code>has_spell</code> and <code>has_magic_effect</code>
+<blockquote>
+<p>These will enable deeper roleplay and integration (e.g. reacting to Calm/Fury spells)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Persistent Context History:</strong><br>
+<!-- -->Now includes all events marked as persistent, excluding only explicitly blacklisted types.</p>
+</li>
+<li>
+<p><strong><code>isTimePaused</code> Variable (All Builds):</strong><br>
+<!-- -->Added to prevent decorators from firing while the Skyrim VM is paused (useful for modders).</p>
+</li>
+<li>
+<p><strong>Proximity Tweaks:</strong></p>
+<ul>
+<li><strong>Line of Sight Radius</strong> lowered to <strong>350</strong> units (from 500).<!-- -->
+<blockquote>
+<p>Makes NPC awareness slightly more realistic and less permissive.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Zonos Caching Improvements:</strong><br>
+<!-- -->Boosted cache performance and reliability in Zonos.</p>
+</li>
+<li>
+<p><strong>Prompt System Tweaks:</strong><br>
+<!-- -->Various internal adjustments to prompt structures for better clarity and flow.</p>
+</li>
+<li>
+<p><strong>Dynamic Bio Tuning:</strong><br>
+<!-- -->Improved compatibility with more LLMs and reduced aggressiveness in pruning historical content.</p>
+</li>
+<li>
+<p><strong>Test Coverage Refactor:</strong><br>
+<!-- -->Internal systems were refactored for better unit testing and bug prevention.</p>
+</li>
+<li>
+<p><strong>C++ API for Modders:</strong><br>
+<!-- -->New <strong>C++ API</strong> introduced to allow other SKSE plugins to interact directly with SkyrimNet.</p>
+<blockquote>
+<p>📘 Docs coming soon!</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>🧠 SkyrimNet continues to evolve rapidly, enabling deeper immersion, faster interaction, and a more intelligent modding experience.</p>
+<p>➡️ <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">Download Beta 3 now</a></p>
+<p>We appreciate your feedback and support!</p>]]></content:encoded>
             <category>release</category>
             <category>beta3</category>
         </item>
