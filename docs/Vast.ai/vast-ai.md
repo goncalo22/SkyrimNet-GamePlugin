@@ -11,27 +11,17 @@ displayed_sidebar: tutorialSidebar
 </p>
 
 
-**Vast.ai** is a marketplace for renting GPU computing power at low cost from providers around the world. It's widely used for AI, machine learning, 3D rendering, and other compute-heavy tasks — including real-time voice synthesis and LLM inference.
-
----
-
-## 🌍 What Is It?
-
-Vast.ai isn't a traditional cloud provider. Instead, it’s a **decentralized marketplace** where:
-- Individuals and companies rent out their idle GPUs
-- Users (like you) can choose hardware based on price, performance, and location
-
-You get **root access** to a full Linux instance with the GPU of your choice — often much cheaper than AWS, Google Cloud, or Azure.
+**Vast.ai** is a marketplace for renting GPU computing power at low cost from providers around the world. It's widely used for AI, machine learning, 3D rendering, and other compute-heavy tasks — including real-time voice synthesis and LLM inference. It allows you to have high quality STT and TTS for SkyrimNet for $0.07-$0.15 per hour of use (billed by the minute, only when playing).
 
 ---
 
 ## ⚡ Key Features
 
-- ✅ **Cheap GPU Access** – Pay-as-you-go, starting as low as ~$0.10/hour
+- ✅ **Cheap GPU Access** – Pay-as-you-go, starting as low as ~$0.07/hour
 - 🔍 **Smart Filtering** – Filter by GPU type (A100, 4090, etc.), RAM, disk, bandwidth
 - 🚀 **Fast Launch** – Deploy instances in under 60 seconds
 - 📡 **Port Forwarding** – Easily expose ports to access web UIs or APIs
-- 🔧 **Custom Images** – Run any Docker container, or upload your own setup
+- 🔧 **Custom Images** – Run any Dockerhub container, or configure your own template
 - 🧠 **AI-Ready** – Prebuilt images for PyTorch, TensorFlow, Whisper, XTTS, etc.
 
 ---
@@ -40,20 +30,15 @@ You get **root access** to a full Linux instance with the GPU of your choice —
 
 In the context of **SkyrimNet**, Vast.ai can be used to:
 
-- 🗣️ Run **XTTS or Zonos TTS** remotely for real-time voice generation
+- 🗣️ Run **XTTS or Zonos or Higgs TTS** remotely for real-time voice generation and included speech-to-text
 
 
 This allows even low-end machines to offload heavy AI tasks to the cloud.
-
----
-
-
----
-
-## 📎 Additional Notes
-
-- No subscription required — fully pay-as-you-go
-- Supports spot pricing and persistent volumes
+While locally XTTS makes the most sense to ensure you can fit both Skyrim and TTS in your VRAM, the Vast instance runs only the TTS engine (and optionally STT), therefore it's feasible to run more demanding Zonos or Higgs.
+We recommend starting with Zonos (should be around $0.10/hr, pick a xx70 or xx80/xx90 GPU for best speed).
+Optionally you can test Higgs TTS (experimental, may need more tinkering) from this template:
+https://cloud.vast.ai?ref_id=159818&template_id=6aac6f66515a740d7040267daf874ea5
+Keep Zonos settings in Skyrimnet just change the IP:port to the Higgs instance. It has the same API as Zonos from Skyrimnet point of view.
 
 ---
 
