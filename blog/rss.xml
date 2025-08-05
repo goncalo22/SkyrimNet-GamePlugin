@@ -4,10 +4,258 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Mon, 21 Jul 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 04 Aug 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta5  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release</guid>
+            <pubDate>Mon, 04 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta5]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 5 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tldr">TL;DR<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#tldr" class="hash-link" aria-label="Direct link to TL;DR" title="Direct link to TL;DR">​</a></h2>
+<p><strong>Beta 5</strong> represents a major leap forward in mod integration capabilities, with ~90% of integrations now possible <em>without writing code</em> through three core systems:</p>
+<ul>
+<li><strong>Actions</strong> – Expose any Papyrus function as an LLM action.</li>
+<li><strong>Triggers</strong> – Create conditional AI reactions to game events.</li>
+<li><strong>Awareness</strong> – Improved decorators give the LLM real-time access to game state and mod data.</li>
+</ul>
+<p>This release also delivers:</p>
+<ul>
+<li>A <strong>complete voice cloning overhaul</strong> with browser-based management, automatic voice discovery, and real-time TTS testing (XTTS support coming soon).</li>
+<li>The new <strong>Game Data Explorer</strong> lets you browse and manipulate game data in real-time via web, integrating tightly with the AI ecosystem.</li>
+</ul>
+<p>🔧 See <code>ExampleIntegrations.zip</code> for ready-made examples:</p>
+<ul>
+<li><strong>Dirt &amp; Blood</strong> – Dirty state awareness, LLM bathing reactions.</li>
+<li><strong>Sunhelm</strong> – AI awareness of needs.</li>
+<li><strong>Vanilla</strong> – <code>GiveCarriageRideTo</code> action. Carriage drivers now follow LLM instructions.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="major-features">Major Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#major-features" class="hash-link" aria-label="Direct link to Major Features" title="Direct link to Major Features">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="game-data-explorer">Game Data Explorer<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#game-data-explorer" class="hash-link" aria-label="Direct link to Game Data Explorer" title="Direct link to Game Data Explorer">​</a></h3>
+<p>Browse and manipulate <em>all loaded game data</em> in real-time via a web interface.</p>
+<p><strong>Game Data Coverage:</strong></p>
+<ul>
+<li><strong>Plugin Management</strong> – Explore all .esm/.esp/.esl files with type classification.</li>
+<li><strong>Spells &amp; Magic</strong> – Add/remove spells/magic effects with rich property views.</li>
+<li><strong>Items &amp; Equipment</strong> – Full categorization of weapons, armor, consumables, etc.</li>
+<li><strong>Factions</strong> – View hierarchies, crime flags, vendor status, ownership rules.</li>
+<li><strong>Furniture &amp; Activators</strong> – Ideal for trigger testing.</li>
+<li><strong>Races</strong> – See playability, stats, and racial perks.</li>
+<li><strong>Quests</strong> – Navigate quest trees, stages, priorities, and attached scripts.</li>
+</ul>
+<p><strong>Real-Time Manipulation:</strong></p>
+<ul>
+<li>Give/remove spells or items to/from players or NPCs with control over quantity.</li>
+<li>Discover nearby actors dynamically for quick testing.</li>
+<li>Test mod content instantly with one-click execution.</li>
+</ul>
+<p><strong>Quest Scripting:</strong></p>
+<ul>
+<li>View and inspect any mod's quest scripts and properties.</li>
+<li>Call any Papyrus function with live parameters and result preview.</li>
+</ul>
+<p><strong>Integration &amp; Safety:</strong></p>
+<ul>
+<li>One-click trigger creation from explored data.</li>
+<li>Action generation from discovered quest functions.</li>
+<li>Changes blocked until game is fully loaded (prevents corruption).</li>
+<li>Advanced error reporting and rollback on failure.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ai-trigger-system">AI Trigger System<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#ai-trigger-system" class="hash-link" aria-label="Direct link to AI Trigger System" title="Direct link to AI Trigger System">​</a></h2>
+<p>Build conditional AI reactions to <em>any game event</em> via a no-code web interface.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Condition Builder</strong> – Build rules using schema fields with operators (equals, regex, &gt;, etc.).</li>
+<li><strong>Response Types</strong> – Output thoughts, dialogue, narration using templating.</li>
+<li><strong>Auto-generation</strong> – Trigger names &amp; content generated based on event type.</li>
+<li><strong>Advanced Controls</strong> – Probability, cooldowns, priority, audience targeting.</li>
+<li><strong>Real-time validation</strong> – Instant syntax and condition feedback.</li>
+<li><strong>One-click creation</strong> – Use live Event Monitor to auto-generate triggers.</li>
+</ul>
+<p><strong>Technical Details:</strong></p>
+<ul>
+<li>All events follow structured schemas via an <strong>Event Schema Registry</strong>.</li>
+<li>Full template support: <code>{{ event_json.spell }}</code>, <code>{{ originator }}</code>, etc.</li>
+<li>Full <strong>hot-reloading</strong> support.</li>
+<li>Supports mod-distributable triggers.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="custom-ai-action-system">Custom AI Action System<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#custom-ai-action-system" class="hash-link" aria-label="Direct link to Custom AI Action System" title="Direct link to Custom AI Action System">​</a></h2>
+<p>Expose <strong>any Papyrus function</strong> as an LLM action — no code required.</p>
+<p><strong>Creation &amp; Management:</strong></p>
+<ul>
+<li><strong>4-Step Wizard</strong>: Basic Info → Function → Eligibility → Advanced Settings.</li>
+<li><strong>Game Integration</strong>: Create actions directly from quest/script explorer.</li>
+<li><strong>Storage</strong>: Actions stored in hot-reloadable YAML format.</li>
+</ul>
+<p><strong>Parameter Modes:</strong></p>
+<ul>
+<li><strong>Dynamic</strong> – LLM decides values based on prompt and hints.</li>
+<li><strong>Speaker</strong> – Uses triggering actor as parameter.</li>
+<li><strong>Static</strong> – Manually define values with validation.</li>
+<li><strong>Nearby Actor</strong> – Auto-populate parameters with actors near player.</li>
+</ul>
+<p><strong>Eligibility Rules:</strong></p>
+<ul>
+<li>Use decorators like <code>is_follower</code>, <code>has_spell</code>, etc.</li>
+<li>Visual rule editor with suggestions and validation.</li>
+<li>Context-aware: Only show eligible actions at runtime.</li>
+</ul>
+<p><strong>Technical:</strong></p>
+<ul>
+<li>Fast in-memory caching.</li>
+<li>Optional event emission after action completes.</li>
+<li>Full error reporting and safe rollback on failures.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="location-detection-algorithm">Location Detection Algorithm<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#location-detection-algorithm" class="hash-link" aria-label="Direct link to Location Detection Algorithm" title="Direct link to Location Detection Algorithm">​</a></h2>
+<p>NPCs now describe their <strong>surroundings</strong> using in-game context like:</p>
+<blockquote>
+<p>“Quite a ways away from Bleakwind Basin, near Ri’saad’s caravan.”</p>
+</blockquote>
+<p><strong>Details:</strong></p>
+<ul>
+<li>Categorizes surroundings: landmarks, furniture, natural objects, etc.</li>
+<li>Filters redundancy and scales distance descriptors.</li>
+<li>Works indoors and outdoors with configurable thresholds.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="spell-customization">Spell Customization<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#spell-customization" class="hash-link" aria-label="Direct link to Spell Customization" title="Direct link to Spell Customization">​</a></h2>
+<p>Filter out utility/mod spells from showing in AI spellcast events.</p>
+<ul>
+<li>Customize spell names/descriptions for AI clarity.</li>
+<li>Enable/disable individual spells per event tracking.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="voice-system-improvements-by-daikichi">Voice System Improvements (by @Daikichi)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#voice-system-improvements-by-daikichi" class="hash-link" aria-label="Direct link to Voice System Improvements (by @Daikichi)" title="Direct link to Voice System Improvements (by @Daikichi)">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="voice-sample-management-ui">Voice Sample Management UI<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#voice-sample-management-ui" class="hash-link" aria-label="Direct link to Voice Sample Management UI" title="Direct link to Voice Sample Management UI">​</a></h3>
+<p>Manage voice samples <em>via browser</em> — upload, test, and assign voices.</p>
+<p><strong>Voice Discovery:</strong></p>
+<ul>
+<li>Auto-detects voice types from all plugins.</li>
+<li>Grouped by plugin and sorted intelligently.</li>
+<li>Fast filtering &amp; pagination.</li>
+</ul>
+<p><strong>Sample Handling:</strong></p>
+<ul>
+<li>Supports WAV &amp; FUZ with auto conversion.</li>
+<li>Quality checks, drag &amp; drop uploads (1KB–10MB), real-time playback.</li>
+<li>Persistent across sessions.</li>
+</ul>
+<p><strong>Testing &amp; TTS:</strong></p>
+<ul>
+<li>Real-time TTS test/playback.</li>
+<li>Temporary dummy actors for voice testing.</li>
+<li>Live transcription &amp; duration feedback.</li>
+</ul>
+<p><strong>UI Enhancements:</strong></p>
+<ul>
+<li>Resizable panels, saved themes, instant validation.</li>
+<li>Direct link to voice types for workflow integration.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="additional-voice-features">Additional Voice Features:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#additional-voice-features" class="hash-link" aria-label="Direct link to Additional Voice Features:" title="Direct link to Additional Voice Features:">​</a></h3>
+<ul>
+<li>Persistent mapping from in-game dialogue.</li>
+<li>No dependency on vanilla dialogue exposure.</li>
+<li><strong>Kokoro TTS</strong>: New lightweight high-quality narrator voices.</li>
+<li>VastAI, XTTS, Mantella compatibility fixes.</li>
+<li>Timeout &amp; fallback improvements.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-system-additions">Decorator System Additions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#decorator-system-additions" class="hash-link" aria-label="Direct link to Decorator System Additions" title="Direct link to Decorator System Additions">​</a></h2>
+<p>New decorators available:</p>
+<ul>
+<li><code>is_follower</code></li>
+<li><code>is_indoors</code></li>
+<li><code>get_script_property</code></li>
+<li><code>is_in_faction</code></li>
+<li><code>get_global_value</code></li>
+<li><code>has_magic_effect</code></li>
+<li><code>has_spell</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prompt-and-ui-enhancements">Prompt and UI Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#prompt-and-ui-enhancements" class="hash-link" aria-label="Direct link to Prompt and UI Enhancements" title="Direct link to Prompt and UI Enhancements">​</a></h2>
+<ul>
+<li>Smarter narration logic.</li>
+<li>Improved prompt formatting for dialogue/narration.</li>
+<li>Clearer indoor/outdoor differentiation.</li>
+<li>Easy Setup → Hotkeys link added.</li>
+<li>Better default layout scaling (up to 90% width).</li>
+<li>Fixed broken themes, item customization bugs.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bugfixes--stability">Bugfixes &amp; Stability<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#bugfixes--stability" class="hash-link" aria-label="Direct link to Bugfixes &amp; Stability" title="Direct link to Bugfixes &amp; Stability">​</a></h2>
+<ul>
+<li>Fixed CTDs when adding items/spells.</li>
+<li>UTF-8 and broken links resolved.</li>
+<li>Fixed Zonos silent fallback logic.</li>
+<li>Better handling of non-English character names.</li>
+<li>Better logging for events and TTS errors.</li>
+<li>Whisper crash fix on simultaneous recordings.</li>
+<li>Custom event prompt formatting fix.</li>
+<li>Configurable cap for dialogue event history.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="behavior--engine-changes">Behavior &amp; Engine Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#behavior--engine-changes" class="hash-link" aria-label="Direct link to Behavior &amp; Engine Changes" title="Direct link to Behavior &amp; Engine Changes">​</a></h2>
+<blockquote>
+<p>⚠️ <strong>Warning for Non-English Skyrim Players</strong><br>
+<!-- -->Due to a bugfix in NPC ID handling, a <strong>new game is recommended</strong>. Continuing old saves may result in memory/event loss for some NPCs.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Voice File Format Changed</strong><br>
+<!-- -->Custom Zonos voices must be <strong>re-uploaded</strong> using the new Characters UI.</p>
+</blockquote>
+<p><strong>Additional Changes:</strong></p>
+<ul>
+<li>HTTP server now starts <em>after</em> Skyrim fully loads (prevents early-access bugs).</li>
+<li>Native Editor ID Fix is <strong>now required</strong>:<br>
+<!-- -->👉 <a href="https://www.nexusmods.com/skyrimspecialedition/mods/85260" target="_blank" rel="noopener noreferrer">https://www.nexusmods.com/skyrimspecialedition/mods/85260</a></li>
+<li>Mod-supplied configs now properly override defaults.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="upcoming-roadmap">Upcoming Roadmap<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#upcoming-roadmap" class="hash-link" aria-label="Direct link to Upcoming Roadmap" title="Direct link to Upcoming Roadmap">​</a></h2>
+<p>Planned (not ordered):</p>
+<ul>
+<li>Better <strong>group chat</strong> filtering &amp; actor cohesion.</li>
+<li>XTTS &amp; Piper fixes (run-on sentences).</li>
+<li><strong>Image-to-Text (ITT)</strong> pipeline.</li>
+<li>More high-quality <strong>action additions</strong> (and removal of poor ones).</li>
+<li><strong>Dynamic Quest System</strong>.</li>
+<li>Improved <strong>VR support</strong> — aiming for first-class experience.</li>
+<li>Broader <strong>internationalization</strong> support.</li>
+<li>Direct <strong>HIGGS</strong> integration.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-new-skyrimnet-wiki-wip">📚 New SkyrimNet Wiki (WIP)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-new-skyrimnet-wiki-wip" class="hash-link" aria-label="Direct link to 📚 New SkyrimNet Wiki (WIP)" title="Direct link to 📚 New SkyrimNet Wiki (WIP)">​</a></h2>
+<p>@everyone<br>
+<!-- -->We now have a <strong>work-in-progress Wiki</strong> with excellent tutorial videos authored by <strong>@Gonçalo</strong>!<br>
+<!-- -->📖 <a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/" target="_blank" rel="noopener noreferrer">https://goncalo22.github.io/SkyrimNet-GamePlugin/</a></p>
+<blockquote>
+<p>⚠️ Future documentation efforts for the project will live here.</p>
+</blockquote>
+<p>Want to contribute? Feel free to send us <strong>Pull Requests (PRs)</strong>!</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-special-thanks">🙌 Special Thanks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-special-thanks" class="hash-link" aria-label="Direct link to 🙌 Special Thanks" title="Direct link to 🙌 Special Thanks">​</a></h2>
+<p>@everyone<br>
+<!-- -->Huge thanks to everyone who contributed to this release!</p>
+<ul>
+<li>🎙️ <strong>@Daikichi</strong> – Tons of bug fixes and polish, <em>especially</em> around TTS systems, plus the new <strong>Voice Sample Management System</strong>!</li>
+<li>🗣️ <strong>@MIKA</strong> – Implementation of the new <strong>Kokoro narrator voice</strong>!</li>
+<li>🧠 <strong>@Elbios</strong> – Bug fixes and improvements to <strong>Vast.ai</strong> support!</li>
+<li>📘 <strong>@Gonçalo</strong> – Creator of the new <strong>SkyrimNet Wiki</strong>!</li>
+<li>🧪 <strong>All @Alpha Testers</strong> – For tireless playtesting, bug reporting, and feedback!</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-skyrimnet-docs">🔗 SkyrimNet Docs<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-skyrimnet-docs" class="hash-link" aria-label="Direct link to 🔗 SkyrimNet Docs" title="Direct link to 🔗 SkyrimNet Docs">​</a></h2>
+<p><a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/" target="_blank" rel="noopener noreferrer">SkyrimNet Documentation</a><br>
+<em>An AI-driven Skyrim framework</em></p>]]></content:encoded>
+            <category>release</category>
+            <category>beta5</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta4  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/21/beta4-release</link>
