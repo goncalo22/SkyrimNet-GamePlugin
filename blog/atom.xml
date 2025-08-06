@@ -14,7 +14,6 @@
         <updated>2025-08-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[SkyrimNet Beta5]]></summary>
         <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 5 Latest</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tldr">TL;DR<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#tldr" class="hash-link" aria-label="Direct link to TL;DR" title="Direct link to TL;DR">​</a></h2>
 <p><strong>Beta 5</strong> represents a major leap forward in mod integration capabilities, with ~90% of integrations now possible <em>without writing code</em> through three core systems:</p>
 <ul>
 <li><strong>Actions</strong> – Expose any Papyrus function as an LLM action.</li>
