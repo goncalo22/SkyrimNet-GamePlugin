@@ -9,8 +9,7 @@ export default function Walkthrough() {
       <div style={{ padding: '2rem' }}>
         <h1>Walkthroughs</h1>
         <p>
-          *This is where the feature guides will live, including clickable pictures and videos.
-          They lead to step by step pages with simplified, minimal reading. Its mean for even the simplest user to acess the more advanced features
+          click on the picture to acess the step by step video tutorials related to each set of features.
         </p>
 
         <div
@@ -57,23 +56,19 @@ export default function Walkthrough() {
           </div>
 
           {/* Card 3 */}
-          <div style={{ textAlign: 'center', width: '300px' }}>
-            <a
-              href="https://example.com/dialogue"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={useBaseUrl('/img/followers2.png')}
-                alt="Dialogue Engine"
-                style={{ width: '100%', borderRadius: '8px' }}
-              />
-            </a>
-            <h2>Character Bios Setups</h2>
-            <p style={{ marginTop: '0.5rem' }}>
-              Easily acess and edit more than 3000 lore accurate characters, their detailed bios will evolve dinamically as you play. Generate full bios automatically for custom npcs
-            </p>
-          </div>
+<div style={{ textAlign: 'center', width: '300px' }}>
+  <Link to="/characterbios">
+    <img
+      src={useBaseUrl('/img/followers2.png')}
+      alt="Dialogue Engine"
+      style={{ width: '100%', borderRadius: '8px' }}
+    />
+  </Link>
+  <h2>Character Bios Setups</h2>
+  <p style={{ marginTop: '0.5rem' }}>
+    Easily access and edit more than 3000 lore-accurate characters; their detailed bios will evolve dynamically as you play. Generate full bios automatically for custom NPCs.
+  </p>
+</div>
 
           {/* Card 4 */}
           <div style={{ textAlign: 'center', width: '300px' }}>
@@ -96,20 +91,16 @@ export default function Walkthrough() {
 
           {/* Card 5 */}
           <div style={{ textAlign: 'center', width: '300px' }}>
-            <a
-              href="https://example.com/dragonborn-reflection"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={useBaseUrl('/img/greybeard.png')}
-                alt="Dragonborn Reflection"
-                style={{ width: '100%', borderRadius: '8px' }}
-              />
-            </a>
-            <h2>Events and Memories</h2>
+         <Link to="/costumactions">
+    <img
+      src={useBaseUrl('/img/actions.png')}
+      alt="Dialogue Engine"
+      style={{ width: '100%', borderRadius: '8px' }}
+    />
+  </Link>
+            <h2>Custom Action System</h2>
             <p style={{ marginTop: '0.5rem' }}>
-              Browse, edit and manage all the generated memories of skyrimNet npcs, including how often they are created and how many events they can register
+              Search Quests and use their working functions to easily create actions that the ai npcs can autonomously use. Make your game truly come to life!
             </p>
           </div>
         </div>

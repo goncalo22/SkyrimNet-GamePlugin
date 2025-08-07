@@ -4,7 +4,13 @@ title: Memory System
 displayed_sidebar: tutorialSidebar
 ---
 
-# 🧠 SkyrimNet Memory System
+#  SkyrimNet Memory System
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/greybeard.png" alt="vast" width="450"/>
+</p>
+
 
 SkyrimNet’s memory system gives NPCs long-term, context-aware memory — enabling immersive behaviors, dynamic relationships, and narrative consistency. Each memory is generated from actual in-game events and can influence dialogue, emotional state, or behavior.
 
@@ -98,7 +104,9 @@ Each candidate memory is scored with the following weights:
 | Keyword relevance     | 0.10   |
 | Location match        | 0.05   |
 
-Memories are ranked by score, and only those passing thresholds are considered relevant.
+Memories are ranked by score, and only those passing thresholds are considered relevant. You can change those in the settings, but for instance, raising the minimum relevance score would mean that the memories are still stored but npcs wont remember the very mundane events. 
+
+By default there are five memories that are retrieved ( changeable from 1 to 10), ranked by importance and relevance to the ocasion.
 
 ---
 

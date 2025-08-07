@@ -57,6 +57,6 @@ If you're using the **CUDA-accelerated build**, the following is **required**:
 
 - **Cloud GPU Access (Optional):**  
   [Vast.ai Account](https://vast.ai)  
-  Used for **remote GPU inference** and **automated XTTS provisioning**
+  Used for **remote GPU inference** and **automated TTS provisioning**
 
 ---

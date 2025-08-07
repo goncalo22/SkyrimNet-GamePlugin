@@ -45,7 +45,7 @@ The **GameMaster system** in SkyrimNet enables dynamic, AI-driven scene narratio
 |----------------------------------|-------------|-------------|
 | **Toggle Continuous Mode**       | `F10`       | Enables rapid-fire narration mode. Best for focused RP scenes with frequent GameMaster input. |
 | **Direct Input (Text)**          | `Insert`    | Lets the player type any fact (e.g., “A ghost enters”) and have the LLM act on it immediately. |
-| **Voice Direct Input**           | *Disabled*  | (Optional) If enabled, allows spoken commands to direct the GameMaster system. |
+| **Voice Direct Input**           | `O`         |  Allows spoken commands to direct the GameMaster system.                                     |
 | **Continue Narration**           | `F8`        | Manually prompts the AI to continue a previously paused narrative or NPC dialogue. |
 | **Toggle GameMaster**            | `F3`        | Turns autonomous narration on/off in real time. Useful for controlling storytelling flow. |
 | **Toggle World Event Reactions** | `X`         | Enables or disables global NPC reactions to world events (combat, dialogue, quests, etc.). |

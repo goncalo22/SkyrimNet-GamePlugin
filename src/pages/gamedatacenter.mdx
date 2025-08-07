@@ -2,11 +2,28 @@
 
  
 
-## Game Data Center Tutorial
+## Game Data Explorer and Custom Events Walkthrough
 
-This is the game data center tutorial!
+
+### The Game Data Explorer allows you to find and customize pratically every asset you have installed in your game. 
+
+In this example we use the game data center to quickly find a spell (ironflesh). 
+We then use it to create a trigger. That will enable a reaction from the ones you choose ( nearby npcs in this).
+When we choose "Direct Narration" that means the npcs "know about" the spell and will react apropriately to the spell being cast, according to their bios, memories and current situation.
+
 
 <video controls width="100%" style={{ borderRadius: '8px', marginTop: '1rem' }}>
-  <source src="/SkyrimNet-GamePlugin/videos/datavideotutorial.mp4" type="video/mp4" />
+  <source src="/SkyrimNet-GamePlugin/videos/irontrigger.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
+
+
+However to properly describe the spell effect that you want the llm to "see" ( not just it being cast or not), you need to go to the "customize" button. Its very quick and easy:
+
+<video controls width="100%" style={{ borderRadius: '8px', marginTop: '1rem' }}>
+  <source src="/SkyrimNet-GamePlugin/videos/ironcustom.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+The ai will receive whatever information you wanted to describe, so for instance you could create a fireball that is called "nail explosion" and describe it as just that. The NPCs would react as if that was actually happening, whenever that spell is cast (remember, they will react within the chance and cooldown you had set).
+This customization shines the most for those spells and objects that you really wish to see integrated in the living world of skyrimnet.

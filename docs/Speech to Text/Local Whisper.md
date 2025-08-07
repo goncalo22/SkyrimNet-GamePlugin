@@ -5,6 +5,13 @@ displayed_sidebar: tutorialSidebar
 ---
 
 # 🗣️ Local Whisper STT (Speech-to-Text)
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/whisper.png" alt="whisper" width="400"/>
+</p>
+
+
 Local Whisper STT is SkyrimNet’s offline speech recognition system, powered by OpenAI’s open-source Whisper model. It enables players to speak naturally through a microphone and converts their voice into text entirely on-device, with no audio ever sent to the cloud.
 
 This system is ideal for immersive AI interactions—letting NPCs understand spoken commands, dialogue, or emotions, all while preserving user privacy.
@@ -37,7 +44,10 @@ Running Whisper on CPU is not supported in production—performance is insuffici
 Minimum GPU: NVIDIA GTX 1060 or better (6GB+ VRAM recommended).
 
 ## ⚙️ How to Enable
-Drop your desired Whisper model (e.g. ggml-large.en-skyrim.bin) into SkyrimNet/models/.
+
+If you are using the CUDA version an automatic download of the `ggml-large.en-skyrim.bin`  will commence, as soon you as you start the game with skyrimnet for the first time. Give it some time to complete.
+
+ or alternativey drop your desired Whisper model (e.g. ggml-large.en-skyrim.bin) into SkyrimNet/models/.
 
 Set stt.enabled = true in your SkyrimNet config YAML.
 

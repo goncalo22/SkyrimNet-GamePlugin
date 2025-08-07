@@ -118,6 +118,11 @@ plugins: [
     label: 'FAQ',
     position: 'left'
   },
+   {
+      type: 'html',
+      position: 'right',
+      value: '<div id="docsearch"></div>',
+    }, 
   {
     href: 'https://github.com/facebook/docusaurus',
     label: 'GitHub',

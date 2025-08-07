@@ -8,22 +8,20 @@ displayed_sidebar: tutorialSidebar
 
 SkyrimNet uses **specialized language models** for different tasks that collectively simulate intelligent NPC behavior. These models coordinate to deliver a rich, reactive Skyrim experience, from dialogue to memory, action selection, and emotional response.
 
-You can configure model providers and parameters in:  
+There are six of them. You can configure model providers and parameters in:  
 🔧 **Advanced Configuration > OpenRouter**
 
 ---
 
 ## ✨ Default Model  
-The **central model** responsible for generating spoken lines and character dialogue.
+The **central model** responsible for generating spoken lines and character dialogue. Use a good, smart model, suitable for roleplay.
 
 ### 🗨️ Text Generation
 - Converts scene, memory, and personality context into **natural dialogue**.
 - Uses retrieved memories and character profiles to remain consistent and grounded.
 - Can speak to the player, to other NPCs, or monologue when alone.
 
----
-
-## 🎮 Game Master Model  
+### 🎮 Game Master 
 Acts like a **Dungeon Master**, guiding the scene and ensuring the world feels alive.
 
 ### 🎬 Narrative Scene Control
@@ -81,7 +79,7 @@ Creates and updates NPC identity data.
 ---
 
 ## 🎭 Action Evaluation Model  
-Decides **what an NPC does** after speaking.
+Decides **what an NPC does** after speaking. The model just needs to be "decent", no need for an expensive one.
 
 ### 🎯 Action Selection
 - Chooses appropriate **gameplay actions** tied to dialogue intent.  
@@ -95,7 +93,7 @@ Decides **what an NPC does** after speaking.
 ---
 
 ## 🧪 Meta Evaluation Model  
-Performs **scene-level analysis** to keep interaction flow realistic.
+Performs **scene-level analysis** to keep interaction flow realistic. Use a fast, exact model. Its tasks are small and frequent.
 
 ### 😐 Mood Evaluation
 - Updates NPC **emotional state** based on:
