@@ -79,6 +79,15 @@ plugins: [
   themeConfig: {
     // Replace with your project's social card
     image: 'img/Skyrimnet svg wborder icon.svg',
+
+ metadata: [
+      {
+        name: 'algolia-site-verification',
+        content: '24A26FDBCAD11C73',
+      },
+    ],
+
+
     navbar: {
       title: 'SkyrimNet',
       logo: {
