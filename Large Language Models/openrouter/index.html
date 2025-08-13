@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">LLM Tutorial | SkyrimNet Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" name="twitter:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" property="og:url" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/Large Language Models/openrouter"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="algolia-site-verification" content="24A26FDBCAD11C73"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="LLM Tutorial | SkyrimNet Documentation"><meta data-rh="true" name="description" content="SkyrimNet – Understanding LLMs for Roleplay"><meta data-rh="true" property="og:description" content="SkyrimNet – Understanding LLMs for Roleplay"><link data-rh="true" rel="icon" href="/SkyrimNet-GamePlugin/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Large Language Models/openrouter"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Large Language Models/openrouter" hreflang="en"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Large Language Models/openrouter" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Tutorial","item":"https://goncalo22.github.io/SkyrimNet-GamePlugin/Large Language Models/openrouter"}]}</script><link rel="alternate" type="application/rss+xml" href="/SkyrimNet-GamePlugin/blog/rss.xml" title="SkyrimNet Documentation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/SkyrimNet-GamePlugin/blog/atom.xml" title="SkyrimNet Documentation Atom Feed"><link rel="stylesheet" href="/SkyrimNet-GamePlugin/assets/css/styles.93286bb9.css">
-<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.23512bde.js" defer="defer"></script>
+<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.01d61785.js" defer="defer"></script>
 <script src="/SkyrimNet-GamePlugin/assets/js/main.92d2c11a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,9 +21,10 @@
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-key-llm-settings">2. Key LLM Settings<a href="#2-key-llm-settings" class="hash-link" aria-label="Direct link to 2. Key LLM Settings" title="Direct link to 2. Key LLM Settings">​</a></h3>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="tokens">Tokens<a href="#tokens" class="hash-link" aria-label="Direct link to Tokens" title="Direct link to Tokens">​</a></h4>
-<p>Tokens are small chunks of text, usually a few characters long. LLMs have a maximum token limit, which is split between the input (prompt) and the output (response). Long conversations, NPC histories, and game event logs all need to fit into this limit, or older information will be dropped.</p>
+<p>Tokens are small chunks of text, usually a few characters long. LLMs have a maximum token limit, which is split between the input (prompt) and the output (response). Long conversations, NPC histories, and game event logs all need to fit into this limit, or older information will be dropped. However since skyrimnet is structured in relatively small api requests, token limitations will hardly ever be an issue. If needed, max token length can be increased in the settings.
+While tokens and words are related, they are not the same thing. On average, one token corresponds to roughly ¾ of an English word, meaning that 100 tokens might represent about 75 words of normal text. This is only an approximation—short, common words may take just one token each, while rare or compound words, numbers, and symbols can take multiple tokens. For example, “mountain” is usually a single token, but “Dovahkiin’s” might be split into several because of the apostrophe and less common root.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="context-size">Context Size<a href="#context-size" class="hash-link" aria-label="Direct link to Context Size" title="Direct link to Context Size">​</a></h4>
-<p>The amount of conversation and history the LLM can “see” at one time. Larger context sizes let the model remember more backstory, relationship history, and past events in a scene without forgetting earlier details.</p>
+<p>The amount of conversation and history the LLM can “see” at one time. Larger context sizes let the model remember more backstory, relationship history, and past events in a scene without forgetting earlier details.Though this is just for the current context window. Skyrimnet long-term memory system and dynamic bios will ensure that characters will remember events well beyond this recent history.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="temperature">Temperature<a href="#temperature" class="hash-link" aria-label="Direct link to Temperature" title="Direct link to Temperature">​</a></h4>
 <p>Controls how creative or predictable the AI is.<br>
 <!-- -->Lower values (0.1–0.3) make it precise and focused, while higher values (0.8–1.2) make it more unpredictable and creative. Mid-range values often produce natural, human-like conversation.</p>
@@ -157,11 +158,13 @@
 <li>Your new prompt</li>
 <li>The model’s reply</li>
 </ul>
-<p>If replies are getting cut off:</p>
+<p>This size will usually be more than enough for each context window, but you can raise it, if needed.
+Also if you want to try and reduce token useage you can experiment lowering it.
+If replies are then getting cut off:</p>
 <ol>
 <li>Lower Event History Count (e.g., <code>50 → 30</code>)</li>
 <li>Lower Max Tokens for the reply</li>
-<li>Tighten prompts and memory snippets</li>
+<li>Tighten prompts and memory snippets (advanced, see prompt tutorial)</li>
 </ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="reliability-checklist">Reliability Checklist<a href="#reliability-checklist" class="hash-link" aria-label="Direct link to Reliability Checklist" title="Direct link to Reliability Checklist">​</a></h2>
