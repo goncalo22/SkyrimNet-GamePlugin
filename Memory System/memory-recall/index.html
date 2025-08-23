@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Memory System | SkyrimNet Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" name="twitter:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" property="og:url" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/Memory System/memory-recall"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="algolia-site-verification" content="24A26FDBCAD11C73"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Memory System | SkyrimNet Documentation"><meta data-rh="true" name="description" content="SkyrimNet’s memory system gives NPCs long-term, context-aware memory — enabling immersive behaviors, dynamic relationships, and narrative consistency. Each memory is generated from actual in-game events and can influence dialogue, emotional state, or behavior."><meta data-rh="true" property="og:description" content="SkyrimNet’s memory system gives NPCs long-term, context-aware memory — enabling immersive behaviors, dynamic relationships, and narrative consistency. Each memory is generated from actual in-game events and can influence dialogue, emotional state, or behavior."><link data-rh="true" rel="icon" href="/SkyrimNet-GamePlugin/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Memory System/memory-recall"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Memory System/memory-recall" hreflang="en"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Memory System/memory-recall" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Memory System","item":"https://goncalo22.github.io/SkyrimNet-GamePlugin/Memory System/memory-recall"}]}</script><link rel="alternate" type="application/rss+xml" href="/SkyrimNet-GamePlugin/blog/rss.xml" title="SkyrimNet Documentation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/SkyrimNet-GamePlugin/blog/atom.xml" title="SkyrimNet Documentation Atom Feed"><link rel="stylesheet" href="/SkyrimNet-GamePlugin/assets/css/styles.93286bb9.css">
-<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.e6738bde.js" defer="defer"></script>
+<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.5c6c76ea.js" defer="defer"></script>
 <script src="/SkyrimNet-GamePlugin/assets/js/main.1ce41d30.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -73,6 +73,18 @@
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-embedding--storage">4. <strong>Embedding &amp; Storage</strong><a href="#4-embedding--storage" class="hash-link" aria-label="Direct link to 4-embedding--storage" title="Direct link to 4-embedding--storage">​</a></h3>
 <p>Each memory is embedded using <code>MiniLM-L6-v2</code> (384-dimensional vectors) and stored in a <strong>SQLite</strong> database with an <strong>HNSW vector index</strong> for similarity search.</p>
+<p><strong>What is all-MiniLM-L6-v2?</strong></p>
+<p>It&#x27;s part of the Sentence Transformers family, specifically optimized for mapping sentences and short paragraphs to a 384-dimensional dense vector space.</p>
+<p>The model is built on top of Microsoft&#x27;s MiniLM-L6-H384-uncased as a base and is fine-tuned on over 1 billion sentence pairs using a self-supervised contrastive learning objective.</p>
+<p>It is exceptionally lightweight and fast, featuring only around 22 million parameters, making it ideal for real-time and resource-constrained environments.</p>
+<ul>
+<li>
+<p>MiniLM-L6-v2 → gives you semantic embeddings.</p>
+</li>
+<li>
+<p>HNSW index → makes searching those embeddings scalable &amp; fast.</p>
+</li>
+</ul>
 <p>Storage is optimized:</p>
 <ul>
 <li>Max memories per actor: <code>1000</code></li>
@@ -85,8 +97,21 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-semantic-vector-search">🔎 Semantic Vector Search<a href="#-semantic-vector-search" class="hash-link" aria-label="Direct link to 🔎 Semantic Vector Search" title="Direct link to 🔎 Semantic Vector Search">​</a></h3>
 <ul>
 <li>Uses HNSW + cosine similarity</li>
-<li>Embedding model: <code>MiniLM-L6-v2</code></li>
 </ul>
+<p><strong>What is HNSW?</strong></p>
+<p>HNSW = Hierarchical Navigable Small World graph.
+It’s an approximate nearest neighbor (ANN) search algorithm.</p>
+<p>Instead of scanning all vectors (which is slow when you have millions), it organizes vectors into a layered graph structure:</p>
+<p>Upper layers: sparse &quot;shortcuts&quot; for quickly moving across the vector space.</p>
+<p>Lower layers: denser connections for fine-grained nearest-neighbor search.</p>
+<p>This structure allows:</p>
+<p>Sub-millisecond queries even on millions of vectors.</p>
+<p>High recall (close to exact search, but much faster).</p>
+<p>Logarithmic scaling as dataset size grows.</p>
+<p>🔹 Why use HNSW with MiniLM embeddings?</p>
+<p>MiniLM gives you 384-dimensional vectors.</p>
+<p>HNSW lets you search those vectors very quickly.</p>
+<p>Perfect for semantic search, recommendation systems, clustering.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-relevance-scoring-weights">🧮 Relevance Scoring Weights<a href="#-relevance-scoring-weights" class="hash-link" aria-label="Direct link to 🧮 Relevance Scoring Weights" title="Direct link to 🧮 Relevance Scoring Weights">​</a></h3>
 <p>Each candidate memory is scored with the following weights:</p>
 <table><thead><tr><th>Signal</th><th>Weight</th></tr></thead><tbody><tr><td>Semantic similarity</td><td>0.35</td></tr><tr><td>Temporal proximity</td><td>0.20</td></tr><tr><td>Actor involvement</td><td>0.20</td></tr><tr><td>Emotional match</td><td>0.10</td></tr><tr><td>Keyword relevance</td><td>0.10</td></tr><tr><td>Location match</td><td>0.05</td></tr></tbody></table>
