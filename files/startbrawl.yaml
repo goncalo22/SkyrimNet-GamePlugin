@@ -1,0 +1,14 @@
+name: StartBrawl
+description: Start a non-lethal fistfight between two NPCs (no weapons). Prefer this for 'brawl/spar/fistfight/duke it out' or similar requests..
+questEditorId: SkyrimNet_Tools
+scriptName: SkyrimNet_BrawlAPI
+executionFunctionName: StartNPCBrawl
+parameterMapping:
+  - type: dynamic
+    name: akA
+    description: First participant (use crosshair/speaker if specified).
+  - type: dynamic
+    name: akB
+    description: Second participant (the opponent)
+enabled: true
+defaultPriority: 6
