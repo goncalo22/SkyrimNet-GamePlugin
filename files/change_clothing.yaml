@@ -1,0 +1,30 @@
+name: ChangeClothing
+description: "Use to change dress/undress target NPC's clothing or equipment. Targeting: akNPC MUST NEVER be player or 'Prisoner'. If the PLAYER is the speaker, set akNPC to the named NPC or crosshair actor but never the player/Prisoner. Parameters: asTargetParts (one of: all, head, upper_body, hands, feet, jewelry) and asAction (one of: undress, dress, redress, get_dressed). Prefer specific parts over 'all'; use 'redress'/'dress' to put items back on."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_ClothingAPI
+executionFunctionName: ChangeClothing
+# eligibilityScriptName: SkyrimNet_ClothingAPI
+# eligibilityFunctionName: ChangeClothing_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC changing clothing (never the player or 'Prisoner')
+  - type: dynamic
+    name: asTargetParts
+    description: "Token for body part: all | head | upper_body | hands | feet | jewelry"
+  - type: dynamic
+    name: asAction
+    description: "Action token: undress | dress | redress | get_dressed"
+  - type: static
+    value: true
+    name: abAnimate
+    description: Optional pose (currently used for handover only)
+  - type: dynamic
+    name: asMood
+    description: The mood token lowercase is important (friendly, threatened, coerced, annoyed, persistent, romance, flirty, etc.)
+  - type: dynamic
+    name: asReason
+    description: Why the clothing action is requested, lowercase is important (reward, begged, threatened, coerced, romance, flirty, other)
+enabled: true
+defaultPriority: 7
+

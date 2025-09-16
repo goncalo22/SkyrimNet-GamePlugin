@@ -1,0 +1,76 @@
+name: TravelToPlace
+description: "Always use when {{ player.name }} says things to the target NPC like: 'meet me at <place>', 'lead the way to <place> (should run)', 'head to <place>', 'go on ahead to <place>', 'wait for me at <place>', 'go to <place> and I will catch up', 'let's meet at <place>'. DO NOT use if {{ player.name }} says 'follow me', 'come with me', 'let's go together' or anything similar — in those cases choose AccompanyTarget instead. Also pay attention to the context and don't use if inappropriate. If ambiguous, ask one brief clarification. Avoid triggering during combat or if you cannot act. Use the CANONICAL_PLACE values listed below exactly for asPlaceName. If the target NPC agrees to travel/meet, this is a strong indicator that this action SHOULD be chosen."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_TravelAPI
+executionFunctionName: TravelToPlace
+# eligibilityScriptName: SkyrimNet_TravelAPI
+# eligibilityFunctionName: TravelToPlace_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC who will travel
+  - type: dynamic
+    name: asPlaceName
+    description: "CANONICAL_PLACE string. Allowed values (case-sensitive): Whiterun, Riften, Solitude, Windhelm, Markarth, Falkreath, Morthal, Dawnstar, Winterhold, Riverwood, Breezehome, Dragonsreach, Bannered Mare, Jorrvaskr, Temple of Kynareth, Warmaiden's, Belethor's General Goods, Arcadia's Cauldron, Honningbrew Meadery, Whiterun Stables, Riverwood Trader, Alvor's House, Sleeping Giant Inn, Mistveil Keep, Bee and Barb, Riften Stables, Blue Palace, Winking Skeever, Solitude Stables, Palace of the Kings, Candlehearth Hall, Windhelm Stables, Understone Keep, Silver-Blood Inn, Markarth Stables, Dead Man's Drink, Highmoon Hall, White Hall, College of Winterhold, Frozen Hearth"
+  - type: dynamic
+    name: asSpeed
+    description: 'Speed hint: "walk", "jog", or "run" (default - always use "walk" if not specified)'
+  - type: static
+    value: true
+    name: abStopFollowing
+    description: If true, stop following the player before traveling
+enabled: true
+defaultPriority: 1
+
+# Guidance for LLM parameterization
+# Use EXACTLY one of these strings for asPlaceName (case-sensitive):
+# CITIES
+# - Whiterun
+# - Riften
+# - Solitude
+# - Windhelm
+# - Markarth
+# - Falkreath
+# - Morthal
+# - Dawnstar
+# - Winterhold
+# - Riverwood
+# PLACES (WHITERUN)
+# - Breezehome
+# - Dragonsreach
+# - Bannered Mare
+# - Jorrvaskr
+# - Temple of Kynareth
+# - Warmaiden's
+# - Belethor's General Goods
+# - Arcadia's Cauldron
+# - Honningbrew Meadery
+# - Whiterun Stables
+# PLACES (RIVERWOOD)
+# - Riverwood Trader
+# - Alvor's House
+# - Sleeping Giant Inn
+# PLACES (RIFTEN)
+# - Mistveil Keep
+# - Bee and Barb
+# - Riften Stables
+# PLACES (SOLITUDE)
+# - Blue Palace
+# - Winking Skeever
+# - Solitude Stables
+# PLACES (WINDHELM)
+# - Palace of the Kings
+# - Candlehearth Hall
+# - Windhelm Stables
+# PLACES (MARKARTH)
+# - Understone Keep
+# - Silver-Blood Inn
+# - Markarth Stables
+# PLACES (OTHERS)
+# - Dead Man's Drink
+# - Highmoon Hall
+# - White Hall
+# - College of Winterhold
+# - Frozen Hearth
+
+

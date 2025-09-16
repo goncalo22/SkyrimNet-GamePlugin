@@ -1,0 +1,12 @@
+name: CancelTravel
+description: "Always use with prioritywhen {{ player.name }} says 'stop', 'stop running', 'wait', 'hold up', 'cancel that', 'new plan', or gives a different instruction that conflicts with ongoing travel (e.g., follow me, trade, fight, go somewhere else). Important: If the player constantly says stop or wait, this action SHOULD be chosen with highest priority!"
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_TravelAPI
+executionFunctionName: CancelTravel
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC to stop
+enabled: true
+defaultPriority: 1
+
