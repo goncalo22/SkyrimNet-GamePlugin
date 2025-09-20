@@ -1,0 +1,20 @@
+name: "Dragon Soul Trigger"
+description: "Absorption of a dragon soul"
+
+eventCriteria:
+  eventType: "dragon_soul"
+  schemaConditions:
+    - fieldPath: "absorber"
+      operator: "equals"
+      value: "Iggwilv"
+
+response:
+  type: "direct_narration"
+  content: "A swirling flow energy flows from the slain dragon carcass towards {{ player_name }}, its very soul being absorbed. In mere instants the dragon is now only a fallen skeleton..."
+
+audience: "everyone"
+
+enabled: true
+probability: 1
+cooldownSeconds: 30
+priority: 8
