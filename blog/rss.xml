@@ -14,7 +14,8 @@
             <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release</guid>
             <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[SkyrimNet Beta6]]></description>
-            <content:encoded><![CDATA[<h3 class="anchor anchorWithStickyNavbar_LWe7" id="summary">Summary<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary">​</a></h3>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 6 Latest</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="summary">Summary<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary">​</a></h3>
 <p>This release is mostly focused on bugfixes, quality of life improvements, and several cool new features such as model rotation, automatic voiced player vanilla dialogue through DBVO, XTTS voice cloning, and a new whisper mode.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="xtts-voice-cloning-elbios">XTTS Voice cloning @Elbios<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#xtts-voice-cloning-elbios" class="hash-link" aria-label="Direct link to XTTS Voice cloning @Elbios" title="Direct link to XTTS Voice cloning @Elbios">​</a></h3>
 <p>Now XTTS has automatic voice cloning just like Zonos or our other Gradios TTS with the same mechanism.
