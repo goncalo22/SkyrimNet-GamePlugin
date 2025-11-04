@@ -80,8 +80,8 @@ Added get_all_perks decorator</p>
 <p><code>is_sneaking</code> - True if an actor is sneaking.,</p>
 <p><code>is_swimming</code> - True if an actor is swimming.,</p>
 <p><code>is_unconscious</code> - True if an actor is unconscious.,</p>
-<p>Incorporated all of these into a new physical activity prompt, and updated the equipment prompt: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f</a>,
-<code>get_latest_diary_entry</code> - Returns latest diary entry for an actor.,</p>
+<p>Incorporated all of these into a new physical activity prompt, and updated the equipment prompt: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f</a>,</p>
+<p><code>get_latest_diary_entry</code> - Returns latest diary entry for an actor.,</p>
 <p><code>get_diary_entries</code> - Returns the last N diary entries for an actor.,</p>
 <p><code>get_spell_list</code> - Returns an object containing all spells known by an actor.,</p>
 <p><code>is_summoned</code> - Returns true if actor is summoned.,</p>
