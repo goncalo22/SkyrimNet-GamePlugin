@@ -45,7 +45,7 @@ To migrate your database to the new schemas, first:,</p>
 <p>Adds a toggle hotkey (default unset) to use voice activated input as an alternative to push-to-talk.,</p>
 <p>Also changed the default Silence Duration in STTConfig from 500ms to 1000ms (the period of silence required after you speak for the speech to be finalized).,</p>
 <p>Added Open Mic VRIK functions as well.,</p>
-<p>New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-allow-tts-engine-and-tts-language-overrides-daikichi">New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-allow-tts-engine-and-tts-language-overrides-daikichi" class="hash-link" aria-label="Direct link to New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi," title="Direct link to New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,">​</a></h3>
 <p>Now you can set specific npcs or groups to use one tts service while everyone else uses the global TTS,</p>
 <p>Overrides for the narrator / player thoughts can be done in the VirtualEntities config,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-elevenlabs-support-daikichi">New Feature: ElevenLabs support @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-elevenlabs-support-daikichi" class="hash-link" aria-label="Direct link to New Feature: ElevenLabs support @Daikichi" title="Direct link to New Feature: ElevenLabs support @Daikichi">​</a></h3>
@@ -63,11 +63,11 @@ This effectively adds support for Gemini,</p>
 Useful for local model setups (LM Studio),
 Limited support via OpenRouter (only some providers),</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="prompt-improvements-min">Prompt Improvements @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#prompt-improvements-min" class="hash-link" aria-label="Direct link to Prompt Improvements @Min" title="Direct link to Prompt Improvements @Min">​</a></h3>
-<p>Overhauled Dynamic Bio Update prompt to enforce pruning, and generally avoid wild bio swings. Includes last diary entry.,
-Added length guidelines to book reading events.,
-Added awareness of summoned / reanimated / knocked down / etc states from new decorators.,
-Tweaked memory generation to add mild length guidelines.,
-Small presentation changes to various prompts.,</p>
+<p>Overhauled Dynamic Bio Update prompt to enforce pruning, and generally avoid wild bio swings. Includes last diary entry.,</p>
+<p>Added length guidelines to book reading events.,</p>
+<p>Added awareness of summoned / reanimated / knocked down / etc states from new decorators.,</p>
+<p>Tweaked memory generation to add mild length guidelines.,</p>
+<p>Small presentation changes to various prompts.,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-decorators-min">New Decorators @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-decorators-min" class="hash-link" aria-label="Direct link to New Decorators @Min" title="Direct link to New Decorators @Min">​</a></h3>
 <p>Added has_perk decorator <code>{% if has_perk(player.UUID, \"AdvancedSmithing\") %}You have advanced smithing!{% endif %},</code>
 Added get_all_perks decorator</p>
