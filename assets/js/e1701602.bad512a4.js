@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkskyrimnet_docs=self.webpackChunkskyrimnet_docs||[]).push([[1915],{6338:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/SkyrimNet-GamePlugin/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":6,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
