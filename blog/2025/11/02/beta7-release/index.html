@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">SkyrimNet Beta7  Released | SkyrimNet Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" name="twitter:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" property="og:url" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="algolia-site-verification" content="24A26FDBCAD11C73"><meta data-rh="true" property="og:title" content="SkyrimNet Beta7  Released | SkyrimNet Documentation"><meta data-rh="true" name="description" content="SkyrimNet Beta7"><meta data-rh="true" property="og:description" content="SkyrimNet Beta7"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-11-02T00:00:00.000Z"><meta data-rh="true" property="article:tag" content="release,beta7"><link data-rh="true" rel="icon" href="/SkyrimNet-GamePlugin/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release" hreflang="en"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release","mainEntityOfPage":"https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release","url":"https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release","headline":"SkyrimNet Beta7  Released","name":"SkyrimNet Beta7  Released","description":"SkyrimNet Beta7","datePublished":"2025-11-02T00:00:00.000Z","author":[],"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://goncalo22.github.io/SkyrimNet-GamePlugin/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/SkyrimNet-GamePlugin/blog/rss.xml" title="SkyrimNet Documentation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/SkyrimNet-GamePlugin/blog/atom.xml" title="SkyrimNet Documentation Atom Feed"><link rel="stylesheet" href="/SkyrimNet-GamePlugin/assets/css/styles.5ba952ca.css">
-<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.ec4233ff.js" defer="defer"></script>
+<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.9279e597.js" defer="defer"></script>
 <script src="/SkyrimNet-GamePlugin/assets/js/main.f895f468.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -19,11 +19,11 @@
 <p>This will result in stronger and more consistent LLM responses, particularly from non-premium models (Though Sonnet and others benefit as well), and provides a solid base for us to build upon moving forward.  Almost every prompt has been touched in the character_bio and system_head submodules</p>
 <p>Definitely open to suggestions and feedback on the new system prompt structure. Let me know what folks think.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="overhauled-uuid-algorithm----min">Overhauled UUID algorithm.    @Min<a href="#overhauled-uuid-algorithm----min" class="hash-link" aria-label="Direct link to Overhauled UUID algorithm.    @Min" title="Direct link to Overhauled UUID algorithm.    @Min">​</a></h3>
-<p>There were several sources of drift with the old algorithm that could cause duplicate and/or drifting uuid&#x27;s.,
-I&#x27;ve written a diagnostic feature to detect this problem / migrate the entire database to the new uuid algorithm so that people don&#x27;t lose events/memories (Like many of you, I also don&#x27;t like restarting constantly if I can help it  ).,
-This should correct cases where actors lost access to their memories and past events. There were a few reasons why this could happen, including adding/removing mods, changing load order, and other factors.,
-There is still a remaining source of drift for non-generic actors; Their ref id mutates regularly throughout normal play. I haven&#x27;t addressed this just yet entirely, and am not sure if I need to or not as of yet. If I do need to address this, you&#x27;ll be able to use this same tool to migrate to whatever I end up changing without losing data/progress.,
-Consider backing up your database before proceeding if you want to be able to revert back to rc6. The database can be found in skse/plugins/SkyrimNet/data/,
+<p>There were several sources of drift with the old algorithm that could cause duplicate and/or drifting uuid&#x27;s.,</p>
+<p>I&#x27;ve written a diagnostic feature to detect this problem / migrate the entire database to the new uuid algorithm so that people don&#x27;t lose events/memories (Like many of you, I also don&#x27;t like restarting constantly if I can help it  ).,</p>
+<p>This should correct cases where actors lost access to their memories and past events. There were a few reasons why this could happen, including adding/removing mods, changing load order, and other factors.,</p>
+<p>There is still a remaining source of drift for non-generic actors; Their ref id mutates regularly throughout normal play. I haven&#x27;t addressed this just yet entirely, and am not sure if I need to or not as of yet. If I do need to address this, you&#x27;ll be able to use this same tool to migrate to whatever I end up changing without losing data/progress.,</p>
+<p>Consider backing up your database before proceeding if you want to be able to revert back to rc6. The database can be found in skse/plugins/SkyrimNet/data/,
 To migrate your database to the new schemas, first:,</p>
 <ol>
 <li>Visit the debug page at <a href="http://localhost:8080/debug" target="_blank" rel="noopener noreferrer">http://localhost:8080/debug</a></li>
@@ -32,27 +32,27 @@ To migrate your database to the new schemas, first:,</p>
 <li>Save the game and continue playing.</li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-diaries-min">New Feature: Diaries @Min<a href="#new-feature-diaries-min" class="hash-link" aria-label="Direct link to New Feature: Diaries @Min" title="Direct link to New Feature: Diaries @Min">​</a></h3>
-<p>Added UI and experience around generating, viewing, and managing Diary Entries. Diary entries are currently triggered manually, just like dynamic bio updates,
-Diary entries are generated based upon recent memories, and recent events.,
-Added new model type for this, so that you can use a separate model for diaries. Note: The default for this is Sonnet. If you&#x27;re cost-adverse, I&#x27;d suggest changing this to qwen or deepseek r1.,
-Diaries contain their own event type with a proper schema; You can create triggers/etc off of them like anything else. This event is persistent, and exposed only to the actor that made the diary.,
-Diary entries create an entry into the memory database with embeddings, so that they can be recalled by the actor later like any other memory.,
-New Diary specific configuration: Check out the available options.,
-I tested this feature a fair bit, but there may be some rough edges: Send any feedback you may have around this! New diaries for actors that did not previously have one can (currently) only be generated from the Character page or the dashboard.,</p>
+<p>Added UI and experience around generating, viewing, and managing Diary Entries. Diary entries are currently triggered manually, just like dynamic bio updates,</p>
+<p>Diary entries are generated based upon recent memories, and recent events.,</p>
+<p>Added new model type for this, so that you can use a separate model for diaries. Note: The default for this is Sonnet. If you&#x27;re cost-adverse, I&#x27;d suggest changing this to qwen or deepseek r1.,</p>
+<p>Diaries contain their own event type with a proper schema; You can create triggers/etc off of them like anything else. This event is persistent, and exposed only to the actor that made the diary.,</p>
+<p>Diary entries create an entry into the memory database with embeddings, so that they can be recalled by the actor later like any other memory.,</p>
+<p>New Diary specific configuration: Check out the available options.,</p>
+<p>I tested this feature a fair bit, but there may be some rough edges: Send any feedback you may have around this! New diaries for actors that did not previously have one can (currently) only be generated from the Character page or the dashboard.,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-open-mic-input-mode-daikichi">New Feature: Open Mic input mode @Daikichi<a href="#new-feature-open-mic-input-mode-daikichi" class="hash-link" aria-label="Direct link to New Feature: Open Mic input mode @Daikichi" title="Direct link to New Feature: Open Mic input mode @Daikichi">​</a></h3>
-<p>Adds a toggle hotkey (default unset) to use voice activated input as an alternative to push-to-talk.,
-Also changed the default Silence Duration in STTConfig from 500ms to 1000ms (the period of silence required after you speak for the speech to be finalized).,
-Added Open Mic VRIK functions as well.,</p>
-<p>New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,
-Now you can set specific npcs or groups to use one tts service while everyone else uses the global TTS,
-Overrides for the narrator / player thoughts can be done in the VirtualEntities config,</p>
+<p>Adds a toggle hotkey (default unset) to use voice activated input as an alternative to push-to-talk.,</p>
+<p>Also changed the default Silence Duration in STTConfig from 500ms to 1000ms (the period of silence required after you speak for the speech to be finalized).,</p>
+<p>Added Open Mic VRIK functions as well.,</p>
+<p>New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,</p>
+<p>Now you can set specific npcs or groups to use one tts service while everyone else uses the global TTS,</p>
+<p>Overrides for the narrator / player thoughts can be done in the VirtualEntities config,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-elevenlabs-support-daikichi">New Feature: ElevenLabs support @Daikichi<a href="#new-feature-elevenlabs-support-daikichi" class="hash-link" aria-label="Direct link to New Feature: ElevenLabs support @Daikichi" title="Direct link to New Feature: ElevenLabs support @Daikichi">​</a></h3>
 <p>Meant to be used in combination with the per-npc TTS override to give specific NPCs a very high quality (but expensive) TTS.,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-silent-dialogue-tts-daikichi">New Feature: Silent Dialogue TTS @Daikichi<a href="#new-feature-silent-dialogue-tts-daikichi" class="hash-link" aria-label="Direct link to New Feature: Silent Dialogue TTS @Daikichi" title="Direct link to New Feature: Silent Dialogue TTS @Daikichi">​</a></h3>
-<p>Adds a feature to voice silent NPC lines with TTS (from mods with no voice acting).,
-To enable this feature, download Dragonborn Voice Over but disable or delete its DBVO.esp file (no voice pack is needed).,
-Lip sync/subtitles and the spoken dialogue may not match up perfectly, though we make our best effort.,
-Added a config option to aggressively sync displayed subtitles with the TTS audio. Disabled by default due to some potential UX friction. @Daikichi,</p>
+<p>Adds a feature to voice silent NPC lines with TTS (from mods with no voice acting).,</p>
+<p>To enable this feature, download Dragonborn Voice Over but disable or delete its DBVO.esp file (no voice pack is needed).,</p>
+<p>Lip sync/subtitles and the spoken dialogue may not match up perfectly, though we make our best effort.,</p>
+<p>Added a config option to aggressively sync displayed subtitles with the TTS audio. Disabled by default due to some potential UX friction. @Daikichi,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="make-llm-parameters-optional-gemini-support-daikichi">Make LLM parameters optional (Gemini Support) @Daikichi<a href="#make-llm-parameters-optional-gemini-support-daikichi" class="hash-link" aria-label="Direct link to Make LLM parameters optional (Gemini Support) @Daikichi" title="Direct link to Make LLM parameters optional (Gemini Support) @Daikichi">​</a></h3>
 <p>Setting LLM generation parameters such as top_p to blank now removes them from the request,
 This effectively adds support for Gemini,</p>
@@ -70,23 +70,23 @@ Small presentation changes to various prompts.,</p>
 <p>Added has_perk decorator <code>{% if has_perk(player.UUID, \&quot;AdvancedSmithing\&quot;) %}You have advanced smithing!{% endif %},</code>
 Added get_all_perks decorator</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">metadata.returnInfo.description = &quot;Array of objects with &#x27;editorID&#x27; and &#x27;rank&#x27; properties for each perk&quot;; </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> metadata.returnInfo.exampleValue = nlohmann::json::array({</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      {{&quot;editorID&quot;, &quot;AdvancedSmithing&quot;}, {&quot;rank&quot;, 1}},</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      {{&quot;editorID&quot;, &quot;Locksmith&quot;}, {&quot;rank&quot;, 2}} });</span><br></span></code></pre></div></div>
-<p>Added get_relationship_rank decorator <code>{% if get_relationship_rank(player.UUID, npc.UUID) &gt;= 3 %}You are a good friend of John Doe!{% endif %}</code>
-Added is_in_combat decorator <code>{% if is_in_combat(player.UUID) %}You are in combat!{% endif %}</code>
-Added is_capable_of_speech decorator <code>{% if is_capable_of_speech(player.UUID) %}This actor is capable of intelligent speech!{% endif %}</code>
-<code>has_weapon_drawn</code> - Checks if an actor has their weapons drawn.,
-<code>is_sprinting</code> - True if an actor is sprinting.,
-<code>is_walking</code> - True if an actor is walking.,
-<code>is_sneaking</code> - True if an actor is sneaking.,
-<code>is_swimming</code> - True if an actor is swimming.,
-<code>is_unconscious</code> - True if an actor is unconscious.,
-Incorporated all of these into a new physical activity prompt, and updated the equipment prompt: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f</a>,
-<code>get_latest_diary_entry</code> - Returns latest diary entry for an actor.,
-<code>get_diary_entries</code> - Returns the last N diary entries for an actor.,
-<code>get_spell_list</code> - Returns an object containing all spells known by an actor.,
-<code>is_summoned</code> - Returns true if actor is summoned.,
-<code>is_reanimated</code> - Returns true if actor is reanimated.,
-<code>is_knocked_down</code> - Returns true if actor is in essential down or bleedout.,
-<code>is_hostile_to_actor</code> decorator for checking if one actor is hostile to another. @Min,</p>
+<p>Added get_relationship_rank decorator <code>{% if get_relationship_rank(player.UUID, npc.UUID) &gt;= 3 %}You are a good friend of John Doe!{% endif %}</code></p>
+<p>Added is_in_combat decorator <code>{% if is_in_combat(player.UUID) %}You are in combat!{% endif %}</code></p>
+<p>Added is_capable_of_speech decorator <code>{% if is_capable_of_speech(player.UUID) %}This actor is capable of intelligent speech!{% endif %}</code></p>
+<p><code>has_weapon_drawn</code> - Checks if an actor has their weapons drawn.,
+<code>is_sprinting</code> - True if an actor is sprinting.,</p>
+<p><code>is_walking</code> - True if an actor is walking.,</p>
+<p><code>is_sneaking</code> - True if an actor is sneaking.,</p>
+<p><code>is_swimming</code> - True if an actor is swimming.,</p>
+<p><code>is_unconscious</code> - True if an actor is unconscious.,</p>
+<p>Incorporated all of these into a new physical activity prompt, and updated the equipment prompt: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f</a>,
+<code>get_latest_diary_entry</code> - Returns latest diary entry for an actor.,</p>
+<p><code>get_diary_entries</code> - Returns the last N diary entries for an actor.,</p>
+<p><code>get_spell_list</code> - Returns an object containing all spells known by an actor.,</p>
+<p><code>is_summoned</code> - Returns true if actor is summoned.,</p>
+<p><code>is_reanimated</code> - Returns true if actor is reanimated.,</p>
+<p><code>is_knocked_down</code> - Returns true if actor is in essential down or bleedout.,</p>
+<p><code>is_hostile_to_actor</code> decorator for checking if one actor is hostile to another. @Min,</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="api-improvements">API Improvements<a href="#api-improvements" class="hash-link" aria-label="Direct link to API Improvements" title="Direct link to API Improvements">​</a></h3>
 <p>Sending an empty DirectNarration will trigger a response without leaving anything in the context @Min
 ParseString Papyrus function now converts variable names to lowercase @Min
