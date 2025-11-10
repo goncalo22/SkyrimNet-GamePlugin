@@ -814,4 +814,73 @@ More coming in this particular area soon.</li>
         <category label="release" term="release"/>
         <category label="beta" term="beta"/>
     </entry>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta8  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/11/07/beta8-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/11/07/beta8-release"/>
+        <updated>2015-11-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta8]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 8 Latest</p>
+<p>This is a smaller update, scoped mostly to bugfixes, polish, and general quality of life improvements.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks-daikichi">Tweaks @Daikichi,<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/11/07/beta8-release#tweaks-daikichi" class="hash-link" aria-label="Direct link to Tweaks @Daikichi," title="Direct link to Tweaks @Daikichi,">​</a></h3>
+<ul>
+<li>
+<p>GameMaster will no longer initiate conversations while the player is in a dialogue menu. But ongoing conversations will continue to their end, and NPCs will still react to your input.,</p>
+</li>
+<li>
+<p>Audio can now play in parallel for multiple NPCs with Silent NPC TTS (DBVO), and at the same time as regular AI conversations (which still play in sequence),</p>
+</li>
+<li>
+<p>Made various improvements to the Diary / Memory TTS audio player,</p>
+</li>
+<li>
+<p>Diary and Memory TTS now downloads as a compressed mp3,</p>
+</li>
+<li>
+<p>Improved visibility of the variants dropdown in the OpenRouter config page,</p>
+</li>
+<li>
+<p>Added a download button for files in the Voice Samples page,</p>
+</li>
+<li>
+<p>Added Piper Config settings, and slowed its output down by 10%,</p>
+</li>
+<li>
+<p>Added entries to Piper's pronunciation dictionary to better handle pauses - I recommend you delete your Piper.yaml config file to get the new defaults,</p>
+</li>
+<li>
+<p>Restructured the Config page to improve organization, and ease of use.,</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="hotkey-manager-improvements-min">Hotkey Manager Improvements @Min,<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/11/07/beta8-release#hotkey-manager-improvements-min" class="hash-link" aria-label="Direct link to Hotkey Manager Improvements @Min," title="Direct link to Hotkey Manager Improvements @Min,">​</a></h3>
+<ul>
+<li>Hotkey Manager now supports the use of numpad keys, and correctly differentiates them, allowing more potential keybinds.,</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bugfixes-daikichi">Bugfixes @Daikichi,<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/11/07/beta8-release#bugfixes-daikichi" class="hash-link" aria-label="Direct link to Bugfixes @Daikichi," title="Direct link to Bugfixes @Daikichi,">​</a></h3>
+<ul>
+<li>
+<p>Fixed "voice type is nullptr" error introduced in beta 7,</p>
+</li>
+<li>
+<p>Fixed various causes of "invalid UTF-8 byte" errors,</p>
+</li>
+<li>
+<p>Display the IMPERIAL race as Imperial in prompts, to handle a vanilla Skyrim issue,</p>
+</li>
+<li>
+<p>Fixed custom voice sample upload for NPCs with dashes in their name,</p>
+</li>
+<li>
+<p>Fixed custom voice samples for voice types being looked for in the wrong folder,</p>
+</li>
+<li>
+<p>Fixed some causes of Diary and Memory TTS lines not being segmented properly,</p>
+</li>
+<li>
+<p>Fixed Access Violation that could occur when enabling quest stage updates, and other events that do not have an originator @Min</p>
+</li>
+</ul>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta8" term="beta8"/>
+    </entry>
 </feed>
