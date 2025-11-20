@@ -24,6 +24,59 @@ Decorates an actor with comprehensive information like name, race, level, factio
 **Returns:**
 A JSON object with detailed actor information.
 
+| Variable          | Type     | Example                                             |
+| ----------------- | -------- | --------------------------------------------------- |
+| UUID              | uint64_t | `6737805401973683889`                               |
+| name              | string   | `Olfina Gray-Mane`                                  |
+| race              | string   | `Nord`                                              |
+| sex   (preferred) | string   | `female`                                            |
+| gender            | string   | `Female`                                            |
+| level             | int      | `25`                                                |
+| isEssential       | bool     | `false`                                             |
+| faction           | array    | `["Whiterun","Whiterun Bannered Mare Faction",...]` |
+| class             | string   | `Food Vendor`                                       |
+| isGuard           | bool     | `false`                                             |
+| isFemale          | bool     | `true`                                              |
+| distanceToPlayer  | float    | `50.0`                                              |
+| isInCombat        | bool     | `false`                                             |
+| isHostile         | bool     | `false`                                             |
+| firstName         | string   | `Olfina`                                            |
+| lastName          | string   | `Gray-Mane`                                         |
+| subjectivePronoun | string   | `he` / `she`                                        |
+| objectivePronoun  | string   | `him` / `her`                                       |
+| possessivePronoun | string   | `his` / `her`                                       |
+| reflexivePronoun  | string   | `himself` / `herself`                               |
+| isBusy            | bool     | `false`                                             |
+| isDead            | bool     | `false`                                             |
+| health            | float    | `100.0`                                             |
+| maxHealth         | float    | `120.0`                                             |
+| magicka           | float    | `50.0`                                              |
+| maxMagicka        | float    | `60.0`                                              |
+| stamina           | float    | `80.0`                                              |
+| maxStamina        | float    | `90.0`                                              |
+| goldCount         | int      | `100`                                               |
+| oneHanded         | int      | `45`                                                |
+| twoHanded         | int      | `30`                                                |
+| archery           | int      | `20`                                                |
+| block             | int      | `25`                                                |
+| smithing          | int      | `15`                                                |
+| heavyArmor        | int      | `10`                                                |
+| lightArmor        | int      | `38`                                                |
+| pickpocket        | int      | `5`                                                 |
+| lockpicking       | int      | `12`                                                |
+| sneak             | int      | `18`                                                |
+| alchemy           | int      | `8`                                                 |
+| speech            | int      | `25`                                                |
+| alteration        | int      | `20`                                                |
+| conjuration       | int      | `15`                                                |
+| destruction       | int      | `22`                                                |
+| illusion          | int      | `17`                                                |
+| restoration       | int      | `19`                                                |
+| enchanting        | int      | `14`                                                |
+| paralysis         | int      | `0`                                                 |
+| brainCondition    | int      | `0`                                                 |
+| isCapableOfSpeech | bool     | `true`                                              |
+
 **Examples:**
 
 ```jinja
@@ -63,6 +116,14 @@ Information about the current weather – name, type, precipitation, etc.
 
 **Returns:**
 A weather object with fields like `isRaining`, `isSnowing`, `formID`, and `name`.
+| Variable    | Type   | Example                             |
+| ----------- | ------ | ----------------------------------- |
+| `name`      | string | currently the same as the Editor ID |
+| `editorID`  | string | `SkyrimClear`                       |
+| `isRaining` | bool   | `false`                             |
+| `isSnowing` | bool   | `false`                             |
+| `windSpeed` | float  | `0.0`                               |
+| `windAngle` | float  | `0.0`                               |
 
 **Examples:**
 
@@ -282,19 +343,19 @@ Civil War Side: {{ get_civil_war_side() }}
 ```
 # General Variables
 
-| Variable         | Type   | Example                                                   |
-|------------------|--------|-----------------------------------------------------------|
-| `page_name`      | string | `{{ page_name }} → ItemCustomization`                    |
-| `request_path`   | string | `{{ request_path }} → /item-customization`               |
-| `request_method` | string | `{{ request_method }} → GET`                             |
-| `page_title`     | string | `{{ page_title }} → Item Customization Configuration`    |
-| `server_name`    | string | `{{ server_name }} → SkyrimNet HTTP Server`              |
-| `version`        | string | `{{ version }} → 1.0.0`                                  |
+| Variable         | Type   | Example                                                                     |
+| ---------------- | ------ | --------------------------------------------------------------------------- |
+| `page_name`      | string | `{{ page_name }} → ItemCustomization`                                       |
+| `request_path`   | string | `{{ request_path }} → /item-customization`                                  |
+| `request_method` | string | `{{ request_method }} → GET`                                                |
+| `page_title`     | string | `{{ page_title }} → Item Customization Configuration`                       |
+| `server_name`    | string | `{{ server_name }} → SkyrimNet HTTP Server`                                 |
+| `version`        | string | `{{ version }} → 1.0.0`                                                     |
 | `page_subtitle`  | string | `{{ page_subtitle }} → Manage custom names and descriptions for game items` |
-| `currentTime`    | string | `{{ currentTime }} → 2025-07-07 07:18:43Z`               |
-| `gameTime`       | string | `{{ gameTime }} → 8:00 AM, Morndas, 17th of Last Seed, 4E 201` |
-| `gameTimeJson`   | object | `{{ gameTimeJson }}`                                     |
-| `currentWeather` | object | `{{ currentWeather }}`                                   |
+| `currentTime`    | string | `{{ currentTime }} → 2025-07-07 07:18:43Z`                                  |
+| `gameTime`       | string | `{{ gameTime }} → 8:00 AM, Morndas, 17th of Last Seed, 4E 201`              |
+| `gameTimeJson`   | object | `{{ gameTimeJson }}`                                                        |
+| `currentWeather` | object | `{{ currentWeather }}`                                                      |
 
 ---
 
@@ -772,6 +833,28 @@ The current location is {{ location }}
 Today is {{ gameTimeJson.weekdayName }}, {{ gameTimeJson.dayOrdinal }} of {{ gameTimeJson.monthName }}
 The time is {{ gameTimeJson.displayHour }}:{{ '%02d'|format(gameTimeJson.minute) }} {{ gameTimeJson.ampm }}
 ```
+
+**Variables:**
+| Variable        | Type   | Example                                       |
+| --------------- | ------ | --------------------------------------------- |
+| `hour`          | int    | `15` (24-hour format)                         |
+| `displayHour`   | int    | `3` (12-hour format)                          |
+| `minute`        | int    | `12`                                          |
+| `isPM`          | bool   | `true`                                        |
+| `ampm`          | bool   | `AM` / `PM`                                   |
+| `timeString`    | string | `3:12 PM`                                     |
+| `day`           | int    | `17`                                          |
+| `dayOrdinal`    | string | `17th`                                        |
+| `month`         | int    | `3` *(Zero-indexed. 3 = Rain's Hand)          |
+| `monthName`     | string | `Rain's Hand`                                 |
+| `year`          | int    | `202`                                         |
+| `era`           | string | `4E`                                          |
+| `yearFull`      | string | `4E 201`                                      |
+| `weekday`       | int    | `1`  (Zero-indexed. 0 = Sundas)               |
+| `weekdayName`   | string | `Morndas`                                     |
+| `formattedTime` | string | `3:12 PM, Morndas, 17th of Last Seed, 4E 201` |
+| `gameDays`      | float  | Original game time value (in days)            |
+
 
 ---
 
