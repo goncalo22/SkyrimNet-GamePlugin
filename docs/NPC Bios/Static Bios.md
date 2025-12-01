@@ -1,10 +1,15 @@
 ---
 id: static-bios
-title: Static Bios
+title: Character Static Bios
 displayed_sidebar: tutorialSidebar
+sidebar_position: 1 
 ---
 
 #  SkyrimNet Character Bio System 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/bios.png" alt="aela2" width="400"/>
+</p>
 
 ## 🔧 What Is It?
 
@@ -23,7 +28,9 @@ All bios are formatted in a consistent **block-template system**.
 
 - Deepening AI-driven interactions  
 - Providing behavioral context for decision-making  
-- Enabling memory formation, emotional tracking, and natural dialogue based on who the NPC is  
+- Enabling memory formation, emotional tracking, and natural dialogue based on who the NPC is.
+
+When characters interact, the **summary and appearance blocks are exposed**, "publicly shown", so the ai knows how do they look and have a brief notion of who they are.
 
 ---
 
@@ -61,11 +68,12 @@ The bio system is deeply integrated into **SkyrimNet’s AI behavior engine**:
 
 ## 🛠️ Updating Bios
 
-Bios are updated dynamically using **real-time game information**.
+Bios are updated dynamically using **real-time game information**. However The static Bios is more of a starting place for a character development information. If you want to see her evolve, during a playthrough use the **dynamic bios update**. If you want her starting bios to be diferent, to be based on your current events, then update the static bios.
 
-### Updates are driven by:
 
-- **User-written prompts**  
+### Bios Updates are driven by:
+
+- **User-written prompts** (editing the bios itself, before an update)
   _e.g._ `"Abelone recently lost her brother in a bandit raid."`
 
 - **Game state data**  
@@ -83,6 +91,9 @@ Only **relevant sections** are changed. SkyrimNet returns a structured response 
 }
 
 ```
+
+Remember, **Static Bios will be superseded if a Dynamic Bios is created**, this is normal and you will want to keep updating the dynamic one, for your prefered characters. The Static Bios will then be a record of the starting point, important to keep if you start a new game and want that npc story back to the beggining.
+
 
 # 📘 SkyrimNet Character Bio Generation Tutorial
 
@@ -114,3 +125,7 @@ You can enter:
 - Specific goals
 - Cultural flavor
 - Story relevance
+
+You do not need need to to detail all the bios blocks yourself, only a summary, as brief or extensive as you wish, will be enough. The Ai will then autogenerate a complete bios, with all the relevant blocks of information.
+Since the system uses the game recent events for the generation, you can talk with a modded custom character and use its own scripted dialogue to then help with the auto-bios generation.
+Copy and pasting background paragraphs ( found in wikis or a custom follower nexus page,for instance) will also make the process of integrating a new character very quick and precise.

@@ -10,14 +10,14 @@ displayed_sidebar: tutorialSidebar
   <img src="/SkyrimNet-GamePlugin/img/dialogue.png" alt="dialogue" width="500"/>
 </p>
 
-This system allows the player to express **internal thoughts**, **spoken reactions**, and **context-aware dialogue** in response to game events, driven by LLM prompts. It blends narrative depth with character voice, enabling SkyrimNet to act like a true interactive roleplay engine.
+This system allows the player to express **internal thoughts**, **spoken reactions**, and **context-aware dialogue** in response to game events, driven by LLM prompts. It blends narrative depth with character voice, enabling SkyrimNet to act like a true interactive roleplay engine. This system, depending on user settings and preferences turns your character into a blend of someone you control but that can also display a degree of creative and autonomous responses, inside the decisions you make and the personality you set.
 
 ---
 
 ## ✅ Core Concepts
 
 ### 1. **Player Dialogue**
-- Direct dialogue spoken by the player character.
+- Direct dialogue spoken by the player character. (either by text input or using speech-to-text, like open ai.whisper)
 - Can be manually initiated or generated in response to gameplay events.
 - Often injected into conversation trees or scene interactions.
 
@@ -35,6 +35,15 @@ This system allows the player to express **internal thoughts**, **spoken reactio
 - Triggered by configurable event types like `combat`, `book_read`, or `death`.
 
 ---
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/playerevents2.png" alt="dialogue" width="1200"/>
+</p>
+
+
+you can add additional already registered events to the default listing, by using the **add entry** button. Enabling them, allowing automatic reactions, setting the reaction as a thought or audible speech and choosing a specific cooldown for them.
+
+
 
 ## ⚙️ Configuration Overview
 
@@ -80,49 +89,8 @@ Used to distinguish **voices**, **locations**, and **narrative context** for dif
 
 ---
 
-## 💬 Prompt Types Involved
 
-### 1. **Player Thoughts Prompt**
-
-Example Template:
-```jinja
-[Internal Monologue]
-{{ actor_name }} has just experienced: {{ recent_event }}.
-Context:
-{{ recent_context }}
-
-What does {{ actor_name }} think?
-
-```
-
-## 🧠 Prompt Handling Details
-
-### 1. **Player Thought Prompt**
-- Only used when `response_type = thought`
-- Injected silently unless voice output is configured
-
----
-
-### 2. **Player Audible Reaction Prompt**
-
-#### Example Template:
-```jinja
-[Spoken Player Reaction]
-Situation: {{ triggering_event }}
-Location: {{ actor_location }}
-Mood: {{ current_emotion }}
-
-Generate a natural verbal response.
-
-```
-### 🗣️ Audible Reactions
-
-- Used when `response_type = audible`
-- Spoken aloud using the **Player voice** or **TTS configuration**
-
----
-
-## 🧠 How It Works (Internally)
+### 🧠 How It Works (Internally)
 
 1. **Event fires** (e.g., player enters combat)
 2. System checks:
@@ -137,7 +105,7 @@ Generate a natural verbal response.
 
 ---
 
-## 🧠 Use Cases
+### 🧠 Use Cases
 
 - Let players **comment on the world** naturally  
   > *"This book is about... interesting."*
@@ -151,9 +119,83 @@ Generate a natural verbal response.
 
 ---
 
-## ✅ Tips for Customization
+###  ✅ Tips for Customization
 
 - Use **lower cooldowns** and **high probabilities** for frequent inner thoughts (e.g., when exploring ruins)
 - **Mix audible and internal reactions** for a rich, immersive experience
 - Customize the **Player Thoughts** virtual entity to match your character’s voice and personality
 - **Combine with GameMaster, Narrator, and System entities** to produce deeply layered narrative moments
+
+
+## 🕯 Whisper Mode — Privacy Bubble System
+
+**Overview**  
+Whisper Mode is a dynamic interaction system that limits how far NPCs can perceive or respond to player actions, speech, and events. When activated, it creates a *privacy bubble* around the player, reducing detection, dialogue triggers, and AI event propagation beyond a defined range. This allows private or stealthy interactions without unwanted NPC interruptions.
+
+**Core Behavior**  
+- **Event Isolation:** All AI perception, dialogue, and trigger events are ignored by NPCs outside the configured interaction range.  
+- **Dynamic Range Control:** The system adjusts interaction distances in real time based on the player’s mode (Normal or Whisper).  
+- **Hotkey Toggle:** Players can seamlessly switch modes using a designated hotkey.  
+- **Immersive Privacy:** Enables confidential conversations, secret actions, or stealth gameplay without global AI awareness.
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/whisper2.png" alt="dialogue" width="1200"/>
+</p>
+
+**Default Configuration Example**  
+- Max Interaction Distance: 1200 (global upper limit for NPC detection and interaction)  
+- Normal Max Interaction Distance: 1200 (default range for normal dialogue and detection)  
+- Whisper Max Interaction Distance: 200 (reduced range while whispering, isolating nearby events)  
+- Max Audible Distance: 2400 (maximum range before speech becomes inaudible, in the tts sound generation, unrelated to the perception of events itself, this just simulates sound decay)
+
+**Effect**  
+While Whisper Mode is active, no events, speech, or triggers generated by the player are perceived beyond the *Whisper Max Interaction Distance*. NPCs outside this radius remain unaware of the player’s actions or voice until the mode is disabled or the player moves closer.
+
+
+
+
+# 🗣️ Dragonborn Voice Over (DBVO)
+
+**Dragonborn Voice Over (DBVO)** is a **Skyrim SE/AE mod** that makes the **player character fully voiced** — using **text-to-speech (TTS)** or pre-recorded voice packs — for all vanilla and mod-added dialogue.
+
+---
+
+## 🎯 Purpose
+
+By default, the player in Skyrim is silent — dialogue options appear only as text.  
+**DBVO** changes that by giving the **player a voice** that actually *speaks* those dialogue lines aloud, similar to NPCs.
+
+---
+
+## ⚙️ How It Works
+
+- Detects when the **player selects a dialogue line**.  
+- Uses a **prebuilt voice pack** to generate and play the voice audio.  
+- Works for both **vanilla** and **modded dialogue**.  
+- Integrates with mods like **Fuz Ro D-oh** and **SKSE** for handling subtitles and script events.
+
+---
+
+
+
+---
+
+## 🔄 SkyrimNet Integration
+
+SkyrimNet integrates with DBVO to provide **dynamic player voicing** using its own TTS system.
+
+- SkyrimNet **hooks into DBVO’s dialogue events** instead of using static voice packs.  
+- All **TTS generation and playback** is handled by SkyrimNet’s engine (Zonos, XTTS, or other providers).  
+- This ensures consistent tone, personality, and emotional variation across dialogue.
+
+### **Setup with SkyrimNet**
+
+1. Install **Dragonborn Voice Over**.  
+2. **Disable or delete `DBVO.esp`** — no voice pack is needed.  
+3. SkyrimNet will automatically **capture DBVO dialogue events** and send them to TTS.  
+4. You can configure response delay under:  
+   `Advanced Configuration → game → Player-Voiced Vanilla Dialogue (DBVO)`  
+
+> ⚠️ **Note:** If `DBVO.esp` is active, SkyrimNet will automatically **disable this feature** to prevent conflicts with DBVO’s own voice system.
+
+

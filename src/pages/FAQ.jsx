@@ -93,7 +93,7 @@ export default function FAQ() {
 </p>
 <p>
   You don’t need to pay anything to download, install, or use SkyrimNet. However, if you'd like to support the developer, you can do so via 
-  <a href="https://ko-fi.com/yourkofilink" target="_blank" rel="noopener noreferrer"><strong>Ko-fi</strong></a>.
+  <a href="https://ko-fi.com/minll" target="_blank" rel="noopener noreferrer"><strong>Ko-fi</strong></a>.    
 </p>
 <p>
   The only potential cost involved is usage of external <strong>LLMs (large language models)</strong>, which power the AI interactions. These may have minimal fees depending on the provider you choose — 

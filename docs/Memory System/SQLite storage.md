@@ -7,6 +7,10 @@ displayed_sidebar: tutorialSidebar
 
 # 🗄️ SkyrimNet Memory Storage System (SQLite-Based)
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/sqlite.png" alt="vast" width="450"/>
+</p>
+
 SkyrimNet uses a persistent, lightweight **SQLite database** to store NPC memories, enabling characters to remember events across sessions — even after saving, quitting, or rebooting the game.
 
 ---

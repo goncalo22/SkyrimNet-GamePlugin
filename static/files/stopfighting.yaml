@@ -1,0 +1,14 @@
+name: StopFighting
+description: "Use this action to make the speaking NPC immediately disengage from combat with a target. Call it when:\n(A) The Player issues a stop order (e.g., stop / cease / hold fire / stand down / enough), optionally naming a target; or\n(B) the current target yields/surrenders (e.g., lines like “I yield,” “mercy,” “don’t kill me,” kneel/bleedout, or unconscious); or\n(C) continued fighting is clearly counterproductive (wrong target, collateral risk, friendly fire, quest/roleplay conflict).\nTargeting: if a name is given, cease vs that actor; else if the crosshair is on an actor, cease vs them; else cease vs the last engaged target.\nRelationship/faction is irrelevant—you may stop attacks against friend, foe, neutral, guard, civilian, or even The Player.\nAvoid triggering on non-combat idioms (“stop by,” “can’t stop laughing”), nonviolent requests, or when the speaker isn’t in combat. Respect cooldown; don’t spam repeated calls."
+questEditorId: SkyrimNet_Tools
+scriptName: SkyrimNet_AttackAPI
+executionFunctionName: CeaseFire
+parameterMapping:
+  - type: dynamic
+    name: attacker
+    description: The initial attacker
+  - type: dynamic
+    name: Target
+    description: The initial target of the attacker
+enabled: true
+defaultPriority: 7

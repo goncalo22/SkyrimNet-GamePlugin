@@ -21,6 +21,7 @@ SkyrimNet’s memory system gives NPCs long-term, context-aware memory — enabl
 NPCs in SkyrimNet remember what happens around them. Their memories aren’t static — they form, change, and are recalled based on relevance. These memories are built from real events, like conversations, combat, or discoveries, and can persist for the entire game.
 
 
+
 ### 🧠 How Memories Work in SkyrimNet
 
 
@@ -33,6 +34,9 @@ Every time something important occurs (like a conversation, a fight, or a strang
 - **Who was involved**
 - **How they felt about it**
 - **How important it was**
+
+A memory search query generator runs regularly, producing summaries of recent dialogues and events. These summaries are used to search each NPC’s memory and retrieve the five most relevant entries for the current context. In addition, the **player’s last input** to an NPC is also used, verbatim, as a query to pull related memories. This ensures that the injected memories are shaped not only by the broader situation and recent activity, but also by the player’s most recent words to the NPC.
+You can check what memories are being sent to the npc in the API requests log, in the dashboard. Look in the prompt request related to the dialogue LLM being used, for that npc.
 
 > Example:  
 > A vampire NPC might remember turning a player into a thrall, and that memory could make them act possessively or feel proud. These memories help make SkyrimNet characters feel more alive and consistent.
@@ -77,7 +81,21 @@ Each memory is stored with:
 ### 4. **Embedding & Storage**
 Each memory is embedded using `MiniLM-L6-v2` (384-dimensional vectors) and stored in a **SQLite** database with an **HNSW vector index** for similarity search.
 
-Storage is optimized:
+**What is all-MiniLM-L6-v2?**
+
+It's a small llm,  part of the Sentence Transformers family, specifically optimized for mapping sentences and short paragraphs to a 384-dimensional dense vector space.
+
+The model is built on top of Microsoft's MiniLM-L6-H384-uncased as a base and is fine-tuned on over 1 billion sentence pairs using a self-supervised contrastive learning objective.
+
+It is exceptionally lightweight and fast, featuring only around 22 million parameters, making it ideal for real-time and resource-constrained environments.
+
+- MiniLM-L6-v2 → gives you semantic embeddings.
+
+- HNSW index → makes searching those embeddings scalable & fast.
+
+
+
+Sstorage, for after the embeddings, can be optimized with a number of settings. Some default ones are:
 - Max memories per actor: `1000`
 - Min importance to store: `0.2`
 - Async memory generation: 10 threads × 100 batch size
@@ -90,7 +108,34 @@ When an NPC needs to recall, SkyrimNet uses:
 
 ### 🔎 Semantic Vector Search
 - Uses HNSW + cosine similarity
-- Embedding model: `MiniLM-L6-v2`
+
+**What is HNSW?**
+
+HNSW = Hierarchical Navigable Small World graph.
+It’s an approximate nearest neighbor (ANN) search algorithm.
+
+Instead of scanning all vectors (which is slow when you have millions), it organizes vectors into a layered graph structure:
+
+Upper layers: sparse "shortcuts" for quickly moving across the vector space.
+
+Lower layers: denser connections for fine-grained nearest-neighbor search.
+
+This structure allows:
+
+Sub-millisecond queries even on millions of vectors.
+
+High recall (close to exact search, but much faster).
+
+Logarithmic scaling as dataset size grows.
+
+🔹 Why use HNSW with MiniLM embeddings?
+
+MiniLM gives you 384-dimensional vectors.
+
+HNSW lets you search those vectors very quickly.
+
+Perfect for semantic search, recommendation systems, clustering.
+
 
 ### 🧮 Relevance Scoring Weights
 Each candidate memory is scored with the following weights:

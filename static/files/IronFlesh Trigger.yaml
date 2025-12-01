@@ -1,0 +1,23 @@
+name: "IronFlesh Trigger"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Ironflesh"
+    - fieldPath: "spell_editor_id"
+      operator: "equals"
+      value: "Ironflesh"
+
+response:
+  type: "player_thought"
+  content: "I feel my skin tingle as it hardens while I cast {{ event_json.spell }}."
+
+audience: "player"
+
+enabled: true
+probability: 1
+cooldownSeconds: 30
+priority: 1

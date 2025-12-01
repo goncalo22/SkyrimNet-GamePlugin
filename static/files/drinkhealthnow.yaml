@@ -1,0 +1,15 @@
+name: DrinkHealthNow
+description: Force the target NPC to drink a health potion now.
+questEditorId: SkyrimNet_Tools
+scriptName: skyrimnet_autopotionsapi
+executionFunctionName: DrinkNow
+parameterMapping:
+  - type: dynamic
+    name: akActor
+    description: The NPC who will drink the potion
+  - type: static
+    value: "\"health\""
+    name: asType
+    description: Static string parameter
+enabled: true
+defaultPriority: 9

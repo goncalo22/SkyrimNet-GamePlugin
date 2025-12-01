@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl'; // ✅ Required for GitHub Pages asset paths
+import styles from "./walkthroughs.module.css";
 
 export default function Walkthrough() {
   return (
@@ -22,7 +23,7 @@ export default function Walkthrough() {
           }}
         >
           {/* Card 1 */}
-          <div style={{ textAlign: 'center', width: '300px' }}>
+          <div className={styles.card}>
             <a
               href="https://example.com/skreact"
               target="_blank"
@@ -31,7 +32,7 @@ export default function Walkthrough() {
               <img
                 src={useBaseUrl('/img/dragonborn.png')}
                 alt="SK React Guide"
-                style={{ width: '100%', borderRadius: '8px' }}
+                loading="lazy"
               />
             </a>
             <h2>Player Configuration</h2>
@@ -41,12 +42,12 @@ export default function Walkthrough() {
           </div>
 
           {/* Card 2 */}
-          <div style={{ textAlign: 'center', width: '300px' }}>
+          <div className={styles.card}>
             <Link to="/gamedatacenter">
               <img
                 src={useBaseUrl('/img/magedragon.png')}
                 alt="Mage and Dragon"
-                style={{ width: '100%', borderRadius: '8px' }}
+                loading="lazy"
               />
             </Link>
             <h2>Custom Context Editor</h2>
@@ -56,12 +57,12 @@ export default function Walkthrough() {
           </div>
 
           {/* Card 3 */}
-<div style={{ textAlign: 'center', width: '300px' }}>
+<div className={styles.card}>
   <Link to="/characterbios">
     <img
-      src={useBaseUrl('/img/followers2.png')}
+      src={useBaseUrl('/img/bios.png')}
       alt="Dialogue Engine"
-      style={{ width: '100%', borderRadius: '8px' }}
+      loading="lazy"
     />
   </Link>
   <h2>Character Bios Setups</h2>
@@ -71,16 +72,16 @@ export default function Walkthrough() {
 </div>
 
           {/* Card 4 */}
-          <div style={{ textAlign: 'center', width: '300px' }}>
+          <div className={styles.card}>
             <a
               href="https://example.com/memory"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
-                src={useBaseUrl('/img/npcs.png')}
+                src={useBaseUrl('/img/npcs2.png')}
                 alt="NPC Memory"
-                style={{ width: '100%', borderRadius: '8px' }}
+                loading="lazy"
               />
             </a>
             <h2>NPC Configuration</h2>
@@ -90,12 +91,12 @@ export default function Walkthrough() {
           </div>
 
           {/* Card 5 */}
-          <div style={{ textAlign: 'center', width: '300px' }}>
+          <div className={styles.card}>
          <Link to="/costumactions">
     <img
-      src={useBaseUrl('/img/actions.png')}
+      src={useBaseUrl('/img/repository.png')}
       alt="Dialogue Engine"
-      style={{ width: '100%', borderRadius: '8px' }}
+      loading="lazy"
     />
   </Link>
             <h2>Custom Action System</h2>
@@ -103,6 +104,22 @@ export default function Walkthrough() {
               Search Quests and use their working functions to easily create actions that the ai npcs can autonomously use. Make your game truly come to life!
             </p>
           </div>
+
+{/* Card 6 */}
+          <div className={styles.card}>
+         <Link to="/conversations">
+    <img
+      src={useBaseUrl('/img/conversation.png')}
+      alt="Dialogue Engine"
+      loading="lazy"
+    />
+  </Link>
+            <h2>Conversation System</h2>
+            <p style={{ marginTop: '0.5rem' }}>
+              Make even the most complex conversations, with many npcs, truly dynamic!
+            </p>
+          </div>
+
         </div>
       </div>
     </Layout>

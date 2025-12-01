@@ -13,11 +13,12 @@ SkyrimNet depends on several tools and libraries to function effectively, both f
 
 These are required for SkyrimNet to function at all:
 
-- **[Skyrim Script Extender (SKSE)]**  
-- **[Address Library for SKSE Plugins]**  
-- **[PowerOfThree's Papyrus Extender]**  
-- **[Latest Microsoft Visual C++ Redistributable]**  
-- **[Native EditorID Fix]**
+- **[Skyrim Script Extender (SKSE)]**  https://skse.silverlock.org/
+- **[Address Library for SKSE Plugins]**  https://www.nexusmods.com/skyrimspecialedition/mods/32444
+- **[PowerOfThree's Papyrus Extender]**   https://www.nexusmods.com/skyrimspecialedition/mods/22854
+- **[PapyrusUtil SE]**  https://www.nexusmods.com/skyrimspecialedition/mods/13048
+- **[Latest Microsoft Visual C++ Redistributable]**  https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
+- **[Native EditorID Fix]** https://www.nexusmods.com/skyrimspecialedition/mods/85260
 
 ---
 
@@ -26,7 +27,7 @@ These are required for SkyrimNet to function at all:
 If you're using the **CUDA-accelerated build**, the following is **required**:
 
 - NVIDIA GPU with CUDA support  
-- **CUDA Toolkit 12.x**  
+- **CUDA Toolkit 12.x**  (⚠️ install version 12.xx **not the recent 13.xx**, or your dll wont start!!!)
   > ⚠️ _SkyrimNet **will not launch** with the CUDA build unless this is installed!_
 
 ---

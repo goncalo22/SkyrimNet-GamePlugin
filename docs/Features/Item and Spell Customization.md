@@ -5,7 +5,11 @@ displayed_sidebar: tutorialSidebar
 ---
 
 
-# 🧰 Item and Spell Customizations
+#  Item and Spell Customizations
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/custom.png" alt="custom" width="500"/>
+</p>
 
 SkyrimNet supports rich customization of both **items** and **spells**, enabling immersive and dynamic roleplay through custom names and descriptions. These customizations are fully exposed to the language model system, meaning NPCs and the world can react intelligently to what the player or nearby NPCs are wearing or casting.
 
@@ -13,12 +17,18 @@ SkyrimNet supports rich customization of both **items** and **spells**, enabling
 
 ## 🛡️ Item Customization
 
-SkyrimNet detects and displays all **equipped items** from the player and nearby NPCs — not just items in inventory. Any detected item can be renamed and described through the in-game UI or external interface.
+SkyrimNet detects and displays all **equipped items** from the player and nearby NPCs —If only in inventory the items isnt registered, as of beta5.If equipped,any detected item can be renamed and described through the in-game UI or external interface.
 
 For example, a basic armor piece could be renamed:
 
 **Ruined Leather Armor**  
 *“This armor is old and torn, practically worthless…”*
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/items.PNG" alt="items" width="800"/>
+</p>
+
 
 Once customized, the item becomes context-aware:
 - NPCs may **comment** on what you're wearing.
@@ -36,6 +46,12 @@ All **known spells** in the player’s spell list are detected and can be given 
 - Narrate spellcasting with vivid details  
 - Allow NPCs to recognize or react to your magical abilities  
 - Generate **flavorful memory entries** tied to spell usage
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/spells.PNG" alt="items" width="800"/>
+</p>
+
+
 
 For instance, a custom description for *Ironflesh* might be:
 
@@ -69,4 +85,3 @@ Changes are saved automatically and can be toggled, edited, or deleted. Only **e
 
 ---
 
-Customizations bring narrative meaning to gameplay mechanics — and SkyrimNet makes sure the world responds accordingly.

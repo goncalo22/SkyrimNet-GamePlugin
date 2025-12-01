@@ -1,0 +1,61 @@
+---
+slug: trigger-repository
+title: Trigger Repository
+---
+
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/trigger.png" alt="construction" width="500"/>
+</p>
+
+# Trigger Repository
+
+
+This is where the many diferent triggers are exposed and shared by the community. To setup a custom trigger in your game you just need to download its yaml file and place it in \Data\SKSE\Plugins\SkyrimNet\config\triggers or equivalent
+
+
+### Ironflesh spell trigger
+
+A simple example
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/ironflesh_trigger.yaml')}
+    download="ironflesh_trigger.yaml"
+  >
+    📥 Download "Ironflesh Trigger" YAML
+      </a>
+  </div>
+
+  ```yaml
+name: "IronFlesh Trigger"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Ironflesh"
+    - fieldPath: "spell_editor_id"
+      operator: "equals"
+      value: "Ironflesh"
+
+response:
+  type: "player_thought"
+  content: "I feel my skin tingle as it hardens as I cast {{ event_json.spell }}."
+
+audience: "player"
+
+enabled: true
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+

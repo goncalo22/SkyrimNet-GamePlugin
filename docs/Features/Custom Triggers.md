@@ -4,7 +4,7 @@ title: Custom Triggers
 displayed_sidebar: tutorialSidebar
 ---
 
-#  Schema-Aware Trigger System
+#  Event Trigger System
 
 The Schema-Aware Trigger System in SkyrimNet allows you to define custom reactions to in-game events. This system makes NPCs, the player character, and the world itself more dynamic, offering immersive responses that feel tailored to what's happening in real time.
 

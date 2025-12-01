@@ -1,0 +1,104 @@
+---
+slug: troubleshooting
+title: Troubleshooting
+---
+
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+
+# Troubleshooting
+
+⚠️Important! Pirated Versions are not supported! Even beyond the piracy aspect, their tampered dlls often have mismatched runtime versions , missing native functions, broken SKSE & extenders...etc 
+
+So if you trying to use a pirated skyrim version there is no point in troubleshooting, just use a supported, official version of the game
+
+
+### 1. I have a dll game error after installing the mod CUDA version 
+
+
+You probably either didnt restart the pc after the CUDA install or you installed the incorrect version of CUDA (the correct one is 12.xx )
+
+
+### 2. The Web Ui doesnt launch
+
+http://localhost:8080/ is the adress of the web ui, make sure you have nothing else using it, in your system.
+
+If running an older version of Skyrim SE , install BEES.
+
+Your web browser may be blocking it, try it with another one.
+
+
+
+### 3. I am trying to use Piper but i have error messages 
+
+Make sure you installed and have the piper voice models in the apropriate folder
+These models can be found here - https://drive.google.com/file/d/1zmBJCLlaGWKBW8Z87rw2MiaNE-8cdSlv/view?usp=sharing,
+Just install this via your modmanager like any normal mod
+
+### 4. None of the Openrouter LLMs arent starting, they all fail on the testing.
+
+You need a valid Openrouter key, with credits, pasted in the "easy settings" of the Web UI.
+The openrouter endpoint should be exactly the same as this:
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/open.png" alt="construction" width="400"/>
+</p>
+
+
+
+### 5. I dont have npcs starting autonomous conversations
+
+Make sure you have the ai gamemaster enabled ( F3 key by default). If conversations still doesnt start and he is enabled, reload your game. For more frequent conversations lower your action gm cooldown.
+
+The "default" dialogue LLM needs to have a minimum level of competency to start a  gm conversation action (not necessarily an expensive one). Try with the recommended one to see if this was the issue.
+
+
+### 6. My npcs doesnt start actions 
+
+As of Beta5 you need to have any TTS enabled for any actions to be usable, make sure you have one running, such as piper, xtts, etc...
+
+Also , the action selection llm needs to be minimally competent, most Open Router instruct models with 70b+ should do it. Use the recommended model at least to see if this is the source of issue.
+
+For the extra action packs, from the repository, like instructed you need to have downloaded and enabled the plugin and yaml setting files that includes those action scripts
+
+### 7. Using VR, why do NPC's randomly are having silent speech, while the narrator still can talk?
+
+That bug happens when spatial audio is enabled and you are using VR. Disable spatial audio, in that case, until a solution is found.
+
+### 8. NPCs are not behaving how i expect, being too stubborn / agressive, etc...
+
+Check your (or the npc) character dynamic bios "summary block" and "appearance block", those are the blocks exposed publicly to all npcs. Sometimes there is sensible information there, secrets that may trigger intense reactions from npcs. Delete those, if needed.
+
+Also, all LLMS have some tendencies, and like actors, not all are suited for all roles. Especially with followers, use the Override System to give diferent LLMs to diferent followers, according to expected behaviors.
+
+Having an npc for a follower wont automatically make him an utterly loyal subject, check their bios, often a single added or removed line, from a personality or speech block will have dramatic results in their behavior.
+
+Finally, like real persons, the ai npc will remember previous insults and conversations. If animosity surged, things can snowball from there. If really needed, remove memories and past mentions of conflicts, restoring things as you expected.
+
+### 9. How can I disable the AI entirely?
+
+In the web UI, go to Configuration -> Advanced Configuration. Disable all of the following:
+
+game -> GameMaster -> GameMaster and GameMaster Agent
+
+Memory -> Performance -> Background Processing
+
+PlayerDialogue -> General -> System
+
+Events -> Global -> Global Events
+
+You can also unset the keys in the Hotkey section so you don't accidentally press one and trigger an AI response.
+
+### 10. Where to get Skyrimnet logs?
+
+You can obtain them either on the web UI  ( System--»Logs , download the ones you require, usually for troubleshoot it will be the SkyrimNet.log)
+
+or you can directly go to **Documents/My Games/[Skyrim.INI** or **Skyrim Special Edition/VR]/SKSe/SkyrimNet.log**
+
+Keep in mind that the logs are cleared on game load, so if you had a crash you should not obtain them through the web ui, go get them from the folders, to preserve the crash log data.
+
+
+
+
+

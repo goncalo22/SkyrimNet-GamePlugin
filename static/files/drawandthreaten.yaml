@@ -1,0 +1,29 @@
+name: DrawAndThreaten
+description: "Use when: tension escalates in dialogue and a warning stance is appropriate, not a real attack. \nDo not be afraid to use it liberally when the speaker says they are putting their hand on their sword hilt or if a grievous insult is hurled at you. If a narration claims that the speaker has drawn their weapon, use this function as well"
+questEditorId: SkyrimNet_Tools
+scriptName: SkyrimNet_EmotionWeaponFollowAPI
+executionFunctionName: ApplyEmotion
+parameterMapping:
+  - type: dynamic
+    name: akActor
+    description: actor to affect (usually the speaker).
+  - type: dynamic
+    name: asMoodToken
+    description: use "angry" (preferred), "threaten", or "hostile" to trigger the weapon-draw flow; any other value does a neutral pose.
+  - type: static
+    value: 0.1
+    name: afThreatIdleSeconds
+    description: Static float parameter
+  - type: static
+    value: 10
+    name: afHoldSeconds
+    description: Static float parameter
+  - type: static
+    value: true
+    name: abAutoSheathe
+    description: Static bool parameter
+  - type: dynamic
+    name: abApproachPlayer
+    description: true to walk toward the player with weapon out, false to stand and glare in place.
+enabled: true
+defaultPriority: 8

@@ -247,6 +247,9 @@ Your rank in the Companions is {{ get_faction_rank(player.UUID, "Companions") }}
 {% if get_faction_rank(player.UUID, "Thieves Guild") >= 4 %}You are a high-ranking member!{% endif %}
 ```
 
+
+
+
 ## Game System Functions
 
 ### `prompt_file_exists(filename: string, prefix?: string) → boolean`
@@ -270,6 +273,22 @@ Boolean – True if the file exists, false otherwise.
 {% if prompt_file_exists("MainQuest", "quests") %}Quest template available{% endif %}
 File check: {{ prompt_file_exists(filename, "components") }}
 ```
+---
+
+### `isTimePaused()`
+
+**description**
+Returns true if game time is currently paused
+
+
+**Examples:**
+
+```jinja
+{{ isTimePaused }}
+``` 
+
+---
+
 
 ### `get_form_name(formID: uint32_t) → string`
 
@@ -278,7 +297,7 @@ Returns the display name of a game object by its form ID.
 
 **Arguments:**
 
-* `formID (uint32_t)` – The form ID
+`formID (uint32_t)` – The form ID
 
 **Returns:**
 String – Display name or empty if not found.
@@ -290,6 +309,27 @@ String – Display name or empty if not found.
 Item: {{ get_form_name(itemFormID) }}
 {% set itemName = get_form_name(formId) %}{% if itemName %}Found: {{ itemName }}{% endif %}
 ```
+---
+
+### `get_customized_spell_name()`
+
+**Description:**
+Get the customized name of a spell by its form ID
+
+**Parameters** 
+`spellFormID`- The hexadecimal form ID of the spell
+
+
+**Examples:**
+
+```jinja
+
+{{ get_customized_spell_name(0x00012eb7) }}
+```
+
+---
+
+
 
 ### `is_narration_enabled → boolean`
 
@@ -325,6 +365,25 @@ Float – Distance in meters.
 Distance: {{ units_to_meters(1000) }}m
 {% set meters = units_to_meters(distance) %}{{ meters }}m
 ```
+---
+
+### `get_global_value()`
+
+**Description:**
+
+Get the value of a global variable by its editor ID
+
+**Parameters** 
+
+`editorID`- The editor ID of the global variable to retrieve
+
+**Examples:**
+
+```jinja
+{{ get_global_value("GameHour") }}
+```
+---
+
 
 ### `get_civil_war_side → string`
 
@@ -341,6 +400,39 @@ You fight for the {{ get_civil_war_side() }}s!
 {% if get_civil_war_side() == "Imperial" %}Long live the Empire!{% endif %}
 Civil War Side: {{ get_civil_war_side() }}
 ```
+---
+### `is_spell_enabled()`
+
+**Description:**
+Check if a spell is enabled in customization settings
+
+**Parameters**
+`spellFormID`- The hexadecimal form ID of the spell
+
+**Examples:**
+
+```jinja
+{% if is_spell_enabled(spell_id) %}Spell is active{% endif %}
+```
+
+---
+### `is_caching_enabled()`
+
+**Description:**
+
+Check if caching is enabled for a specific variant
+
+**Parameters** 
+
+`variant` - The variant name to check caching for (e.g., 'meta', 'default', '')
+
+**Examples:**
+
+```jinja
+{% if is_caching_enabled() %}Content will be cached{% endif %}
+```
+---
+
 # General Variables
 
 | Variable         | Type   | Example                                                                     |
@@ -359,6 +451,60 @@ Civil War Side: {{ get_civil_war_side() }}
 
 ---
 
+### `get_script_property( questEditorId , scriptName , propertyName )` 
+
+**Parameters**
+
+`questEditorId` - The editor ID of the quest that contains the script
+
+`scriptName` - The name of the script containing the property
+
+`propertyName`- The name of the property to retrieve
+
+**Example:**
+
+```jinja
+
+{{ get_script_property("MQ101", "MQ101Script", "PlayerLevel") }}
+
+```
+---
+
+### `get_all_loaded_plugins()` 
+
+**Description:**
+
+Get a list of all loaded game plugins/mods
+
+**Example:**
+
+```jinja
+
+{% for plugin in get_all_loaded_plugins() %}{{ plugin }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+```
+### `is_plugin_loaded()` 
+
+**Description:**
+
+Check if a specific game plugin/mod is loaded
+
+**Parameters**
+
+`pluginName` - Name of the plugin to check (e.g., 'Skyrim.esm', 'Dawnguard.esm', 'MyMod.esp')
+
+
+**Example:**
+
+```jinja
+
+{% if is_plugin_loaded('Dawnguard.esm') %}Dawnguard content available{% endif %}
+
+```
+
+---
+
+
 ## Item Customization Functions
 
 ### `is_item_enabled(formID: number) → boolean`
@@ -366,7 +512,7 @@ Civil War Side: {{ get_civil_war_side() }}
 Check if an item is enabled in the customization system.
 
 **Arguments:**
-- `formID` (number) – The form ID of the item (e.g., `0x12EB7`)
+- `formID` (number) – The form ID of the item ((can be hex like 0x12EB7 or decimal))
 
 **Returns:** boolean – True if enabled, false if disabled
 
@@ -376,62 +522,108 @@ Check if an item is enabled in the customization system.
 {% if is_item_enabled(0x12EB7) %}Item is available{% endif %}
 {{ is_item_enabled(0x3AD5E) }}
 {% if not is_item_enabled(0x12EB7) %}Item is disabled{% endif %}
-get_item_name(formID: number) → string
-Get the effective display name for an item.
+```
+---
+### `get_item_name(formID: number) → string`
+Get the effective display name for an item (custom name if configured, otherwise original name)
 
-Arguments:
+**Arguments**:
 
-formID (number)
+`formID (number)`-The form ID of the item (can be hex like 0x12EB7 or decimal)
 
-Returns: string – Custom or original name
+**Returns**: `string` – Custom or original name
 
 Examples:
 
-jinja
-Copiar
-Editar
+```jinja
 {{ get_item_name(0x12EB7) }}
 Item name: {{ get_item_name(0x3AD5E) }}
 {% set itemName = get_item_name(0x12EB7) %}{{ itemName }}
-get_item_description(formID: number) → string
+```
+
+### `get_item_description(formID: number) → string`
 Get the custom description for an item.
 
-Arguments:
+**Arguments**:
 
 formID (number)
 
-Returns: string – Custom description or empty string
+**Returns**: `string` – Custom description or empty string
 
-Examples:
+**Examples**:
 
-jinja
-Copiar
-Editar
+
+```jinja
 {{ get_item_description(0x12EB7) }}
 {% set desc = get_item_description(0x3AD5E) %}{% if desc %}{{ desc }}{% endif %}
 Description: {{ get_item_description(0x12EB7) }}
-get_item_customization(formID: number) → object
+```
+
+
+
+
+### `get_item_customization(formID: number) → object`
 Get all customization data for an item.
 
-Arguments:
 
-formID (number)
+**Arguments**:
 
-Returns: object – Includes name, description, enabled state, and flags
+`formID(number)`- The form ID of the item (can be hex like 0x12EB7 or decimal)
+
+**Returns**: `object` – Object containing complete item customization information
 
 Examples:
 
 ```jinja
 {{ get_item_customization(0x12EB7).name }}
 {% set item = get_item_customization(0x12EB7) %}
-{{ item.name }}{% if item.description %}: {{ item.description }}{% endif %}
+{% set item = get_item_customization(0x12EB7) %}{{ item.name }}{% if item.description %}: {{ item.description }}{% endif %}
 {% if get_item_customization(0x12EB7).hasCustomName %}Using custom name{% endif %}
 ```
-### Mood Functions
+
+## Magic Functions
+---
+### `has_spell(actorUUID, "spellEditorID" )`
+
+**Parameters**  
+`actorUUID` -  UUID of the actor to check 
+
+`spellEditorID` - Editor ID of the spell to check for
+
+
+
+**Description**:Check if an actor has a specific spell active
+
+**Example**:
+
+```jinja
+{% if has_spell(player.UUID, "FireShield") %}You are protected by a fire shield!{% endif %}
+```
+---
+
+### `has_magic_effect(actorUUID, "spellEditorID" )`
+
+**Parameters**  
+`actorUUID` -  UUID of the actor to check 
+
+`spellEditorID` - Editor ID of the magic effect to check for
+
+
+
+**Description**:Check if an actor has a specific magic effect active
+
+**Example**:
+
+```jinja
+{% if has_magic_effect(player.UUID, "AlchInfluence") %}You are under the influence of a potion!{% endif %}
+```
+
+
+## Mood Functions
 
 ---
 
-### moodsList → array
+### `moodsList → array`
 
 **Description**: List of all available mood types.
 
@@ -445,7 +637,7 @@ Examples:
 
 ---
 
-### moodDescriptions → object
+### `moodDescriptions → object`
 
 **Description**: Map of mood types to detailed descriptions.
 
@@ -459,7 +651,7 @@ Examples:
 
 ---
 
-### mood_description(mood: string) → string
+### `mood_description(mood: string) → string`
 
 **Description**: Get the description of a specific mood.
 
@@ -473,12 +665,12 @@ Examples:
 {{ mood_description("happy") }}
 The character feels {{ mood_description(currentMood) }}
 {% set moodDesc = mood_description(selectedMood) %}{{ moodDesc }}
-
-### Player Functions
+```
+## Player Functions
 
 ---
 
-### player → object
+### `player → object`
 
 **Description**: Provides comprehensive information about the current player character including UUID, name, race, level, and combat status.
 
@@ -494,29 +686,28 @@ Player UUID: {{ player.UUID }}
 
 ---
 
-### player (variable)
+### `is_follower(npc.UUID)`
 
-**Type**: `object`  
-**Example value**:
-```json
-{
-  "UUID": 1215163480972535445,
-  "isInCombat": false,
-  "level": 1,
-  "name": "Prisoner",
-  "race": "Nord"
-}
-```
+ **Description**: Check if an entity is a player teammate among nearby actors
 
-**Used in**: `web/bundled_base`, `documentation/main` (15 times)
+ **Parameters**  
+
+`npcUUID` -  UUID of the actor to check 
+
+ **Examples**:
+```jinja
+
+ {% if is_follower(npc.UUID) %}This follower is with you!{% endif %}
+
+ ``` 
+
+
+
+## Quest Functions
 
 ---
 
-### Quest Functions
-
----
-
-### get_all_active_quests → array
+### `get_all_active_quests → array`
 
 **Description**: Retrieves a list of all quests that are currently active in the player's quest log. Each quest includes `formID`, `editorID`, `name`, and `currentStage`. Uses caching for performance.
 
@@ -534,7 +725,7 @@ Player UUID: {{ player.UUID }}
 
 ---
 
-### get_quest_stage(questIdentifier: uint32_t|string, onlyWhileActive?: boolean) → integer
+### `get_quest_stage(questIdentifier: uint32_t|string, onlyWhileActive?: boolean) → integer`
 
 **Description**: Gets the current stage of a quest by `formID` or `editorID`. Returns `-1` if the quest is not found or not active (when `onlyWhileActive` is `true`).
 
@@ -554,7 +745,7 @@ Player UUID: {{ player.UUID }}
 
 ---
 
-### is_quest_active(questIdentifier: uint32_t|string) → boolean
+### `is_quest_active(questIdentifier: uint32_t|string) → boolean`
 
 **Description**: Checks whether a quest is currently active in the player's quest log.
 
@@ -571,11 +762,11 @@ Player UUID: {{ player.UUID }}
   {% if is_quest_active(quest) %}{{ quest }}{% endif %}
 {% endfor %}
 ```
-### Scene Functions
+## Scene Functions
 
 ---
 
-### get_short_lived_events_count → integer
+### `get_short_lived_events_count → integer`
 
 **Description**: Returns the number of short-lived events currently active in the scene. Useful for quickly checking scene activity levels.
 
@@ -590,7 +781,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### get_nearby_npc_list(sourceUUID: uint64_t) → array
+### `get_nearby_npc_list(sourceUUID: uint64_t) → array`
 
 **Description**: Gets a structured list of NPCs within interaction distance of the source entity.
 
@@ -608,7 +799,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### get_active_short_lived_events → array
+### `get_active_short_lived_events → array`
 
 **Description**: Retrieves all currently active short-lived events in the scene. Includes things like combat, dialogue, and environment changes.
 
@@ -623,7 +814,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### get_short_lived_events_by_type(eventType: string) → array
+### `get_short_lived_events_by_type(eventType: string) → array`
 
 **Description**: Gets all active events filtered by type, such as `"combat"`, `"dialogue"`, `"movement"`, etc.
 
@@ -641,7 +832,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### get_short_lived_events_by_entity(entityUUID: uint64_t) → array
+### `get_short_lived_events_by_entity(entityUUID: uint64_t) → array`
 
 **Description**: Gets all short-lived events involving a specific entity (as actor or target).
 
@@ -659,11 +850,11 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### String Utility Functions
+## String Utility Functions
 
 ---
 
-### join(array: array, separator: string) → string
+### `join(array: array, separator: string) → string`
 
 **Description**: Joins elements of an array into a single string using a separator.
 
@@ -682,7 +873,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### length(value: array|string) → integer
+### `length(value: array|string) → integer`
 
 **Description**: Gets the size of an array or length of a string. Returns `-1` for unsupported types.
 
@@ -700,7 +891,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### lower(text: string) → string
+### `lower(text: string) → string`
 
 **Description**: Converts a string to lowercase.
 
@@ -718,7 +909,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### contains(container: array|string, searchValue: string) → boolean
+### `contains(container: array|string, searchValue: string) → boolean`
 
 **Description**: Checks if an array contains a value or if a string contains a substring (case-insensitive).
 
@@ -738,7 +929,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### to_number(text: string) → number
+### `to_number(text: string) → number`
 
 **Description**: Converts a string to a number. Returns `0` if it fails.
 
@@ -756,7 +947,7 @@ Event count: {{ get_short_lived_events_count() }}
 
 ---
 
-### is_array(value: any) → boolean
+### `is_array(value: any) → boolean`
 
 **Description**: Checks if a given value is an array.
 
@@ -772,26 +963,49 @@ Event count: {{ get_short_lived_events_count() }}
 {{ is_array("hello") }}
 {{ is_array([1, 2, 3]) }}
 ```
-### World Functions
+
+---
+## Utility Functions
+
+### `random() → number`
+
+Returns a random number between 0 and 100 (inclusive)
+
+**Examples**:
+```jinja
+{{ random }}
+```
+
+---
+## World Functions
 
 ---
 
-### currentTime → string
+### `gameTimeNumeric() → number`
+
+**Description**: Return Current Skyrim game time as numeric seconds since epoch
+
+**Returns**: `number` - Current Skyrim game time
+
+
+**Examples**:
+```jinja
+{% set timeDiff = gameTimeNumeric - event.gameTime %}
+```
+
+
+---
+### `currentTime → string`
 
 **Description**: Returns the current system time in ISO format (`YYYY-MM-DD HH:MM:SSZ`). Useful for timestamping events, logs, or scheduling.
 
 **Returns**: `string` – Current time in ISO format
 
-**Examples**:
-```jinja
-Current time: {{ currentTime }}
-Event logged at {{ currentTime }}
-{{ short_time(currentTime) }}
-```
+
 
 ---
 
-### gameTime → string
+### `gameTime → string`
 
 **Description**: Returns the in-game Skyrim time as a formatted string, like `8:30 AM, Morndas, 17th of Last Seed, 4E 201`.
 
@@ -806,7 +1020,7 @@ The time in Skyrim is {{ gameTime }}
 
 ---
 
-### location → string
+### `location → string`
 
 **Description**: Returns the name of the player’s current in-game location.
 
@@ -821,7 +1035,7 @@ The current location is {{ location }}
 
 ---
 
-### gameTimeJson → object
+### `gameTimeJson → object`
 
 **Description**: Returns structured in-game time details such as hour, day, month, year, and formatted names.
 
@@ -858,7 +1072,20 @@ The time is {{ gameTimeJson.displayHour }}:{{ '%02d'|format(gameTimeJson.minute)
 
 ---
 
-### short_time(timeString: string) → string
+### `is_indoors`
+
+**Description** : Check if the player is currently indoors
+
+**Returns**: boolean - True if the value is found, false otherwise
+
+**Examples**:
+```jinja
+{% if is_indoors %}It's warm inside.{% else %}The weather outside affects you.{% endif %}
+```
+---
+
+
+### `short_time(timeString: string) → string`
 
 **Description**: Formats a full time string (ISO or game time) into a shorter, human-friendly display string.
 
@@ -876,23 +1103,3 @@ Time: {{ short_time(eventTimestamp) }}
 
 ---
 
-### Variables
-
----
-
-#### timestamp → integer
-
-**Example**:
-```jinja
-{{ timestamp }} → 1751897919
-```
-_Used 3 times in template: `web/bundled_base`_
-
----
-
-#### location → string
-
-**Example**:
-```jinja
-{{ location }} → Unknown
-```

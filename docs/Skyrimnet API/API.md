@@ -4,6 +4,7 @@ title: API
 displayed_sidebar: apiSidebar
 ---
 
+The SkyrimNet API is a native, in-game interface that lets modders and scripts communicate directly with the SkyrimNet framework. It exposes functions for registering custom decorators, actions, events, dialogue, packages, and LLM interactions, among others. Through this API, script authors can hook into game logic, define how NPCs behave, raise short-lived or persistent events, and send prompts to the language model — all while maintaining full integration inside the Skyrim environment.
 
 ```Scriptname SkyrimNetApi
 

@@ -1,0 +1,15 @@
+name: DrinkMagickaNow
+description: Force the target NPC to drink a magicka potion now.
+questEditorId: SkyrimNet_Tools
+scriptName: skyrimnet_autopotionsapi
+executionFunctionName: DrinkNow
+parameterMapping:
+  - type: dynamic
+    name: akActor
+    description: The NPC who will drink the potion
+  - type: static
+    value: "\"magicka\""
+    name: asType
+    description: Static string parameter
+enabled: true
+defaultPriority: 9

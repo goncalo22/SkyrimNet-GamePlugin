@@ -6,6 +6,11 @@ displayed_sidebar: tutorialSidebar
 
 #  Event & Reaction System 
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/events.png" alt="events" width="500"/>
+</p>
+
+
 SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, and **NPC reactivity** by processing structured in-game events. These events act as the core data stream that drives memory formation, conversation context, and AI behavior.
 
 ---
@@ -20,6 +25,8 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
   - `Allow NPC Reaction`: Enables live NPC responses.
   - `NPC Reaction Cooldown`: Time in seconds before another reaction to the same type.
 
+  
+
 ### 2. Dialogue Context History
 - **Setting:** `Event History Count – Dialogue`
 - **Default:** 50 (range: 5–200)
@@ -32,6 +39,15 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
 
 ---
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/eventconfig.png" alt="override" width="1200"/>
+</p>
+
+
+Enabled and Persistent Events can be seen in the Web UI dashboard , under "Recent Events". These will be exposed to the memory system, when generating memories.
+Enabled but not persistent Events have a short life in the context, usually around 30 seconds. They are used for immediate LLM behavior responses but will not be registered after their ephemeral duration. These kinds of events are useful for things like "hit" and "container change", to avoid spamming the event context.
+
+
 ## 🧠 How Events Influence Memory & Dialogue
 
 | Feature                    | Uses Events | Needs Persistence | Affected by Cooldowns |
@@ -41,7 +57,7 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
 | NPC Live Reactions         | ✅ Yes      | ❌ No              | ✅ Yes                 |
 | Event Logging / Debugging  | ✅ Yes      | ✅ Yes             | ❌ No                  |
 
-> ✅ Best practice: Events you want remembered or reacted to should be `Enabled`, `Persistent`, and have `Allow NPC Reaction` set appropriately.
+> ✅ Best practice: Events you want remembered or reacted to should be `Enabled`, `Persistent`, or/and have `Allow NPC Reaction` set appropriately.
 
 ---
 
@@ -56,6 +72,8 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
 - NPC comments on spell casting (`spell_cast`)
 - NPC notices player looting a container (`container_changed`)
 - NPC reacts to combat or death (`combat`, `death`)
+
+
 
 ---
 
@@ -88,5 +106,7 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
 - Avoid enabling reactions on every event — pick impactful ones.
 
 ---
+
+
 
 

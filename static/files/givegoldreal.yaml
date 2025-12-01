@@ -1,0 +1,17 @@
+name: GiveGoldReal
+description: "Use this to give the player gold under certain conditions: When asked, when ordered, when threatened, when a job is complete and payment is required. Use your best judgement and think about your relationship with the player before agreeing to give them gold. You may refuse to give gold if it is not in your best interest for roleplay purposes. Only real gold will be removed from inventory"
+questEditorId: SkyrimNet_Tools
+scriptName: SkyrimNet_CurrencyAPI
+executionFunctionName: NPCGivesPlayerReal
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: NPC who will hand over the gold (prefer the speaker or crosshair target).
+  - type: dynamic
+    name: aiAmount
+    description: The aiAmount parameter for this action
+  - type: dynamic
+    name: abAnimate
+    description: Amount of gold (septims) to transfer.
+enabled: true
+defaultPriority: 7

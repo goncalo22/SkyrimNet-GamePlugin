@@ -13,7 +13,7 @@ displayed_sidebar: tutorialSidebar
 **XTTS** (Cross-lingual Text-to-Speech) is a powerful, deep-learning-based TTS engine that brings **realistic**, **emotionally expressive**, and **cloneable voices** to Skyrim. Unlike simpler TTS engines, XTTS can **replicate a specific voice from a short audio clip**, making it ideal for immersive, character-specific dialogue in modded Skyrim.
 
 In **SkyrimNet**, XTTS is used via a **local HTTP endpoint**, making it easy to integrate and fast enough for real-time use.  
-It’s currently considered the **default voice generation system** in SkyrimNet, especially for **voice cloning and good emotional fidelity**.
+It’s currently considered the **default voice generation system** in SkyrimNet, especially for **voice cloning good emotional fidelity. and low latency**.
 
 ---
 
@@ -23,7 +23,7 @@ XTTS converts any input text into **high-quality, expressive speech** — option
 
 > **Input:**  
 > Text: `"You're not from around here, are you?"`  
-> Voice sample: *30-second clip of a female Nord NPC*  
+> Voice sample: *10-second clip of a female Nord NPC*  
 >  
 > **Output:**  
 > High-fidelity audio of that line, spoken in the same voice and tone as the sample

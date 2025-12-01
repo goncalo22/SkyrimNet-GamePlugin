@@ -1,0 +1,176 @@
+---
+slug: customizations
+title: Customizations
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ReactAudioPlayer from 'react-audio-player';
+
+<p align="center">
+  <img
+    src={useBaseUrl('/SkyrimNet-GamePlugin/img/construction.png')}
+    alt="construction"
+    width="400"
+/>
+</p>
+
+
+<p align="center">
+  <img
+    src={useBaseUrl('/SkyrimNet-GamePlugin/img/line.gif')}
+    alt="construction"
+    width="150"
+/>
+</p>
+
+
+
+# Customizations 
+
+This is where you can find altered prompts, new submodules and all manner of custom tweaks to suit your skyrimnet experience
+
+
+---
+
+
+
+### Conditional Knowledge submodule 
+
+<details>
+  <summary>Show Conditional Knowledge prompt</summary>
+```
+ # 0750_conditional_knowledge
+
+ {% if render_mode == "full" %} 
+
+
+{% if is_in_faction(actor.UUID, "playerFaction") %}
+
+{"### Follower Knowledge"}
+
+This is just an example, delete this, whatever you write here only npcs belonging to the player faction will know about. Same on other entries below.
+
+
+
+{% endif %}
+
+
+{% if is_in_faction(actor.UUID, "TownWhiterunFaction") or is_in_faction(actor.UUID, "CrimeFactionWhiterun") %}
+{"### Recent developments in whiterun"}
+
+
+{% endif %}
+
+
+{% if is_in_faction(actor.UUID, "TownSolitudeFaction") or is_in_faction(actor.UUID, "CrimeFactionHaafingar") %}
+{"### Recent developments in Solitude"}
+
+
+{% endif %}
+
+
+{% if is_in_faction(actor.UUID, "JobMerchantFaction") %}
+{"### Merchant Knowledge"}
+
+
+
+{% endif %}
+{% if is_in_faction(actor.UUID, "JobBardFaction") %}
+{"### Recent developments in Skyrim"}
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "PotentialFollowerFaction") %} 
+
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "IsGuardFaction") %}
+{"### General Guard Knowledge"}
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "GuardFactionWhiterun") %}
+{"### Whiterun Guard Knowledge"}
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "JobPriestFaction") %}
+{"### Priest Knowledge"}
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "WhiterunMarketShoppers") %}
+{"### Whiterun Shoppers Knowledge"}
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "ThievesGuildFaction") %}
+{"### Thieves Guild Knowledge"}
+
+
+{% endif %}
+
+{% if is_in_faction(actor.UUID, "TownRiftenFaction") or is_in_faction(actor.UUID, "CrimeFactionRiften") %}
+{"### Recent developments in Riften"}
+
+
+{% if is_in_faction(actor.UUID, "VampireFaction")  %}
+{"### Vampire Knowledge"}
+
+{% endif %}
+{% endif %}
+{% endif %}
+
+```
+</details>
+
+### Gagged dialogue prompt
+
+<details>
+  <summary>Show Gagged Dialogue</summary>
+```
+ [ system ]
+{% if worn_has_keyword(npc.UUID, "zbfWornGag") %}
+You are roleplaying as {{ decnpc(npc.UUID).name }}, a {{ decnpc(npc.UUID).gender }} {{ decnpc(npc.UUID).race }} in Skyrim. {{ decnpc(npc.UUID).name }} is currently gagged and cannot speak plainly. Remain completely in character and react as they would in the given situation.{% if responseTarget %} You are speaking to {% if responseTarget.type == "player" %}{{ player.name }}, a {{ player.gender }} {{ player.race }}{% else if responseTarget.type == "npc" %}{{ decnpc(responseTarget.UUID).name }}, a {{ decnpc(responseTarget.UUID).gender }} {{ decnpc(responseTarget.UUID).race }}{% endif %}{% endif %}.
+{% else %}
+... normal system prompt here ...{% endif %}
+{{ render_subcomponent("system_head", "full") }}
+[ end system ]
+
+{{ render_template("components\\event_history") }}
+
+[ user ]
+{% if worn_has_keyword(npc.UUID, "zbfWornGag") %}
+Respond with only onomatopoeia or brief narrative action from {{ decnpc(npc.UUID).name }}, nothing else. Never repeat the same narration phrases, reword as necessary.
+- Use narration sparingly. Narration is defined as any non-verbal output included in your response, such as *{{ decnpc(npc.UUID).name }} taps their foot in impatience*.
+{{ render_subcomponent("user_final_instructions", "full") }}
+{% else %}
+... normal user prompt here ...
+{% endif %}{% endif %}
+[ end user ]
+
+```
+
+</details>
+
+
+### more text
+
+<details>
+  <summary>Show Custom prompt</summary>
+```
+ this is a custom prompt
+```
+
+</details>
+
+
+
+
+[🎵 Skyrimnet Music](/skyrimnet-music)

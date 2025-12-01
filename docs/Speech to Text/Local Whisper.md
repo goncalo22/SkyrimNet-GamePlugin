@@ -12,7 +12,7 @@ displayed_sidebar: tutorialSidebar
 </p>
 
 
-Local Whisper STT is SkyrimNet’s offline speech recognition system, powered by OpenAI’s open-source Whisper model. It enables players to speak naturally through a microphone and converts their voice into text entirely on-device, with no audio ever sent to the cloud.
+Local Whisper STT is SkyrimNet’s offline speech recognition system, powered by OpenAI’s open-source Whisper model. It enables players to press a key and speak naturally through a microphone, it then converts their voice into text entirely on-device, with no audio ever sent to the cloud.
 
 This system is ideal for immersive AI interactions—letting NPCs understand spoken commands, dialogue, or emotions, all while preserving user privacy.
 

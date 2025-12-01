@@ -1,0 +1,16 @@
+name: GiveGold
+description: "Use this to give the player gold under certain conditions: When asked, when ordered, when threatened, when a job is complete and payment is required. Use your best judgement and think about your relationship with the player before agreeing to give them gold. You may refuse to give gold if it is not in your best interest for roleplay purposes."
+questEditorId: SkyrimNet_Tools
+scriptName: SkyrimNet_CurrencyAPI
+executionFunctionName: NPCGivesPlayerConjured
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC giving gold to the player
+  - type: dynamic
+    name: aiAmount
+    description: The amount of gold received
+  - type: dynamic
+    name: abAnimate
+    description: The animation that should play after gold is given
+enabled: true

@@ -1,0 +1,38 @@
+name: GiveItemToPlayer
+description: "Give an item to the PLAYER on behalf of the target NPC. Targeting: akNPC MUST NEVER be player or 'Prisoner'. If the PLAYER is the speaker, set akNPC to the named NPC or the crosshair actor but never the player/Prisoner; otherwise ask one brief clarification. Category guidance: choose asCategory (bow, crossbow, arrows, bolts, lockpick, potion_health, potion_stamina, potion_magicka). If asPreferredName is provided (e.g., 'Hunting Bow'), prefer that if available in the pool; otherwise use the default item for the category. Respect mood/relationship and only conjure when appropriate for roleplay or configuration. Avoid triggering during combat or when the NPC cannot act."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_ItemsAPI
+executionFunctionName: GiveItem
+# eligibilityScriptName: SkyrimNet_ItemsAPI
+# eligibilityFunctionName: GiveItem_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC speaking (never the player or 'Prisoner')
+  - type: dynamic
+    name: asCategory
+    description: Category key (bow, crossbow, arrows, bolts, lockpick, potion_health, potion_stamina, potion_magicka)
+  - type: static
+    value: ""
+    name: asPreferredName
+    description: Specific item name (e.g., "Hunting Bow") if specified
+  - type: dynamic
+    name: aiAmount
+    description: Stack count for stackable items (default 1)
+  - type: static
+    value: true
+    name: abConjured
+    description: Static bool forcing conjured grant
+  - type: static
+    value: true
+    name: abAnimate
+    description: Whether to play a handover pose
+  - type: dynamic
+    name: asMood
+    description: The mood token, lowercase is important (friendly, threatened, coerced, flirty, romance, etc.)
+  - type: dynamic
+    name: asReason
+    description: Why the item is given, lowercase is important (reward, begged, threatened, coerced, trade, bet_loss, apology, charity, other)
+enabled: true
+defaultPriority: 6
+

@@ -49,6 +49,10 @@ The explorer automatically parses all loaded plugin data and organizes it into i
 
 ---
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/explorer.png" alt="construction" width="1200"/>
+</p>
+
 ## ⚙️ Real-Time Manipulation
 
 The Game Data Explorer is not just for browsing — it offers **live modification and testing** features to accelerate development and enhance mod debugging.

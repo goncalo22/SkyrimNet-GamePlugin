@@ -92,6 +92,20 @@ Decides **what an NPC does** after speaking. The model just needs to be "decent"
 
 ---
 
+## ⚔️ Combat Evaluation Model  
+
+When the characters are currently engaged in combat, instructs the LLM to prioritize recent combat-related events and dialogue in its responses. 
+- Make NPC speech **reactive to active combat**.
+- Emphasize **recent combat-related events** such as:
+  - Enemy actions
+  - Player moves
+  - Damage taken or inflicted
+  - Tactical changes (retreat, push, heal)
+- Maintain immersion by blending **character personality** with **battle context**.
+
+
+---
+
 ## 🧪 Meta Evaluation Model  
 Performs **scene-level analysis** to keep interaction flow realistic. Use a fast, exact model. Its tasks are small and frequent.
 

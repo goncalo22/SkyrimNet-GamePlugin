@@ -117,6 +117,26 @@ plugins: [
     label: 'Walkthroughs',
     position: 'left'
   },
+   {
+    to: '/action-repository',
+    label: 'Action Repository',
+    position: 'left'
+  },
+   {
+    to: '/trigger-repository',
+    label: 'Trigger Repository',
+    position: 'left'
+  },
+  {
+    to: '/mod-integrations',
+    label: 'Mod Integrations',
+    position: 'left'
+  },
+ {
+    to: '/customizations',
+    label: 'Customizations',
+    position: 'left'
+  }, 
   {
     to: '/blog',
     label: 'Releases',
@@ -128,12 +148,17 @@ plugins: [
     position: 'left'
   },
    {
+    to: '/troubleshooting',
+    label: 'Troubleshooting',
+    position: 'left'
+  },
+   {
       type: 'html',
       position: 'right',
       value: '<div id="docsearch"></div>',
     }, 
   {
-    href: 'https://github.com/facebook/docusaurus',
+    href: 'https://github.com/MinLL/SkyrimNet-GamePlugin',
     label: 'GitHub',
     position: 'right'
   }
@@ -164,7 +189,7 @@ plugins: [
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/MinLL/SkyrimNet-GamePlugin',
             },
           ],
         },

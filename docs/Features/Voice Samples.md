@@ -6,7 +6,11 @@ displayed_sidebar: tutorialSidebar
 
 #  Voice Samples System
 
-The Voice Samples section, in the web ui , provides a fast and powerful interface to browse and manage voice data for any NPC in Skyrim. It is primarily used for voice cloning with Zonos TTS and, in the future, XTTS. This system supports rapid audio previewing and selection, enabling high-quality, consistent voice matching for dynamic AI-generated speech.
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/voicesamples.png" alt="voicesamples" width="500"/>
+</p>
+
+The Voice Samples section, in the web ui , provides a fast and powerful interface to browse and manage voice data for any NPC in Skyrim. It is primarily used for voice cloning with XTTs and Zonos TTS. This system supports rapid audio previewing and selection, enabling high-quality, consistent voice matching. 
 
 ---
 
@@ -29,12 +33,16 @@ This makes it easy to evaluate sample quality and assign the most appropriate vo
 
 ## Use Cases
 
-- **Voice cloning** for NPCs using Zonos or soon, XTTS  
+- **Voice cloning** for NPCs using Zonos or XTTS  
 - **Replacing poor-quality auto-selected voices**  
 - **Previewing how an NPC’s voice will sound in generated scenes**  
 - **Quick debugging or review of sound data per voice type**
 
 ---
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/voice.png" alt="voicesamples" width="1200"/>
+</p>
 
 ## How Voice Samples Are Collected
 
@@ -69,15 +77,5 @@ This ensures all NPCs, even obscure ones, can eventually receive a matching voic
 
 ---
 
-## Future Support
 
-XTTS integration is in progress. Once enabled, you’ll be able to:
-
-- Clone NPC voices using neural TTS that closely mimics original delivery  
-- Generate natural responses in the correct tone and accent  
-- Blend seamlessly between recorded lines and AI dialogue  
-
-This system is designed to make TTS feel indistinguishable from vanilla.
-
----
 

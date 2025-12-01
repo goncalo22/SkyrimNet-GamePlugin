@@ -2,8 +2,8 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
    tutorialSidebar: {
-    'Features': ['Features/overview','Features/events-and-reactions','Features/gamemaster','Features/player-dialogue', 'Features/action-system', 'Features/customization', 'Features/gamedataexplorer', 'Features/customtriggers',
-      'Features/voicesamples'
+    'Features': ['Features/overview','Features/events-and-reactions','Features/gamemaster','Features/player-dialogue', 'Features/action-system', 'Features/customization','Features/overrides', 'Features/gamedataexplorer', 'Features/customtriggers',
+      'Features/voicesamples','Features/filter-system'
        ],
 
     'Installation Guide': [
@@ -16,11 +16,11 @@ const sidebars: SidebarsConfig = {
       'Large Language Models/openrouter',
       'Large Language Models/suggested-llms'
     ],
-     'Memory System': ['Memory System/sqlite-storage','Memory System/memory-recall'],
+     'Memory System': ['Memory System/memory-recall','Memory System/sqlite-storage','Memory System/diaries'],
 
-     'Prompts': ['Prompts/prompts'],
+     'Prompts': ['Prompts/prompts','Prompts/prompt_tutorial' ],
 
-    'NPC Bios': ['NPC Bios/dynamic-bios','NPC Bios/static-bios'],
+    'NPC Bios': ['NPC Bios/static-bios','NPC Bios/dynamic-bios'],
 
     'Text to Speech': [
       'Text to Speech/tts-getting-started',

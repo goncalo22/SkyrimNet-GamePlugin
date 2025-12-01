@@ -31,7 +31,7 @@ That means no more canned voice lines: the dialogue can now adapt to your choice
 
 ## 🧠 How It Works Inside SkyrimNet
 
-Piper is now **fully integrated and runs in-process inside SkyrimNet**. That means:
+Piper is now **fully integrated (still requires download and quick install of the provided full model pack) and runs in-process inside SkyrimNet**. That means:
 
 - ❌ No external Python servers or subprocesses  
 - ✅ Runs natively inside the Skyrim DLL  
@@ -67,7 +67,7 @@ So a bandit doesn’t just grunt the same line every time — they might **react
 
 ## 🎭 Voices and Variety
 
-Piper supports **many voice models** — male, female, accents, etc. In SkyrimNet:
+Piper supports **many voice models** — male, female, accents, etc. In SkyrimNet. In the installation you must install the voice models (just download them and install as any other mod, they will be sent to the right folder):
 
 - Each NPC can have a **different Piper voice**
 - Voices can be tied to **race, gender, or personality**
