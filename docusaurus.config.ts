@@ -156,7 +156,7 @@ plugins: [
     position: 'left'
   },
   {
-    to: '/faq',
+    to: '/FAQ',
     label: 'FAQ',
     position: 'left'
   },
