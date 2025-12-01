@@ -10,6 +10,8 @@ The Schema-Aware Trigger System in SkyrimNet allows you to define custom reactio
 
 Triggers are event-driven rules that check for specific gameplay conditions, such as casting a spell or using an item. When conditions are met, a templated response is generated — from a whispered thought to a loud reaction from nearby NPCs.
 
+Triggers, for now, dont allow using additional scripts or decorators on their descriptions.
+
 ---
 
 ## How Triggers Work
@@ -108,6 +110,8 @@ Triggers are created and edited via the **Trigger Management UI**. Each trigger 
 - Live **enabling/disabling** without restarting the game
 
 You can also **search, filter**, and **reload** triggers instantly. The UI is schema-driven and adapts to the selected event type for easier configuration.
+
+For triggers to be listed properly in the web-ui, make sure their yaml file name matches **exactly** with the trigger name, contained in his own setting.
 
 ---
 

@@ -26,8 +26,9 @@ These are required for SkyrimNet to function at all:
 
 If you're using the **CUDA-accelerated build**, the following is **required**:
 
-- NVIDIA GPU with CUDA support  
-- **CUDA Toolkit 12.x**  (⚠️ install version 12.xx **not the recent 13.xx**, or your dll wont start!!!)
+- NVIDIA GPU with CUDA support - https://developer.nvidia.com/cuda-12-9-1-download-archive
+
+ **CUDA Toolkit 12.x**  (⚠️ install version 12.xx **not the recent 13.xx**, or your dll wont start!!!)
   > ⚠️ _SkyrimNet **will not launch** with the CUDA build unless this is installed!_
 
 ---

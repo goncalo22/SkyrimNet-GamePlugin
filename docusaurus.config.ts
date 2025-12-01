@@ -64,7 +64,6 @@ const config: Config = {
     ],
   ],
 plugins: [
-  // Main docs
   [
     '@docusaurus/plugin-content-docs',
     {
@@ -75,7 +74,21 @@ plugins: [
       editUrl: 'https://github.com/goncalo22/SkyrimNet-GamePlugin/edit/main/',
     },
   ],
+
+  // ⭐ Add this block for image zoom
+  [
+    'docusaurus-plugin-image-zoom',
+    {
+      selector: '.markdown img',
+      options: {
+        margin: 24,
+        background: '#000',
+        scrollOffset: 0,
+      },
+    },
+  ],
 ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/Skyrimnet svg wborder icon.svg',

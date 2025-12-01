@@ -153,5 +153,5 @@ Before saving your prompt edits, ask:
 
 - Am I shaping tone and style, not dictating exact dialogue?
 
-✨ With these habits, your SkyrimNet prompts will be clean, stable, and immersive—keeping NPCs dynamic without breaking into hallucinations or robotic, forced chatter.
+✨ With these habits, your SkyrimNet [prompts](/SkyrimNet-GamePlugin/Prompts/prompts)  will be clean, stable, and immersive—keeping NPCs dynamic without breaking into hallucinations or robotic, forced chatter.
 

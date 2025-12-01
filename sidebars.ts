@@ -3,7 +3,7 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
    tutorialSidebar: {
     'Features': ['Features/overview','Features/events-and-reactions','Features/gamemaster','Features/player-dialogue', 'Features/action-system', 'Features/customization','Features/overrides', 'Features/gamedataexplorer', 'Features/customtriggers',
-      'Features/voicesamples','Features/filter-system'
+      'Features/voicesamples','Features/filter-system','Features/omnisight',
        ],
 
     'Installation Guide': [

@@ -36,7 +36,7 @@ XTTS produces rich, natural speech, with subtle pauses, intonation, and personal
 
 XTTS is not currently embedded into SkyrimNet like Piper — instead, it runs **as a separate local TTS service**, typically on:
 
-http://localhost:5002/api/tts
+http://localhost:8002
 
 Here’s how SkyrimNet uses it:
 

@@ -6,13 +6,14 @@ title: Customizations
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ReactAudioPlayer from 'react-audio-player';
 
+
+
+
 <p align="center">
-  <img
-    src={useBaseUrl('/SkyrimNet-GamePlugin/img/construction.png')}
-    alt="construction"
-    width="400"
-/>
+  <img src="/SkyrimNet-GamePlugin/img/dwemer.png" alt="construction" width="500"/>
 </p>
+
+
 
 
 <p align="center">
@@ -36,91 +37,93 @@ This is where you can find altered prompts, new submodules and all manner of cus
 
 ### Conditional Knowledge submodule 
 
+Create a new "7500_conditional_knowledge.prompt" file ( or a numbering suiting the order where you want the context to appear) and add it to Skyrimnet\prompts\submodules\character bio, containing the following:
+
 <details>
   <summary>Show Conditional Knowledge prompt</summary>
 ```
- # 0750_conditional_knowledge
+ # 7500_conditional_knowledge
 
- {% if render_mode == "full" %} 
+ {% if render_mode == "full" or render_mode == "dialogue_target"  %} 
 
 
-{% if is_in_faction(actor.UUID, "playerFaction") %}
+{% if is_in_faction(npc.UUID, "playerFaction") %}
 
 {"### Follower Knowledge"}
 
-This is just an example, delete this, whatever you write here only npcs belonging to the player faction will know about. Same on other entries below.
+{#  whatever you write here only npcs belonging to the player faction will know about. Same on other entries below, only npc belonging to the faction will know it. #}
 
 
 
 {% endif %}
 
 
-{% if is_in_faction(actor.UUID, "TownWhiterunFaction") or is_in_faction(actor.UUID, "CrimeFactionWhiterun") %}
+{% if is_in_faction(npc.UUID, "TownWhiterunFaction") or is_in_faction(npc.UUID, "CrimeFactionWhiterun") %}
 {"### Recent developments in whiterun"}
 
 
 {% endif %}
 
 
-{% if is_in_faction(actor.UUID, "TownSolitudeFaction") or is_in_faction(actor.UUID, "CrimeFactionHaafingar") %}
+{% if is_in_faction(npc.UUID, "TownSolitudeFaction") or is_in_faction(npc.UUID, "CrimeFactionHaafingar") %}
 {"### Recent developments in Solitude"}
 
 
 {% endif %}
 
 
-{% if is_in_faction(actor.UUID, "JobMerchantFaction") %}
+{% if is_in_faction(npc.UUID, "JobMerchantFaction") %}
 {"### Merchant Knowledge"}
 
 
 
 {% endif %}
-{% if is_in_faction(actor.UUID, "JobBardFaction") %}
+{% if is_in_faction(npc.UUID, "JobBardFaction") %}
 {"### Recent developments in Skyrim"}
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "PotentialFollowerFaction") %} 
+{% if is_in_faction(npc.UUID, "PotentialFollowerFaction") %} 
 
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "IsGuardFaction") %}
+{% if is_in_faction(npc.UUID, "IsGuardFaction") %}
 {"### General Guard Knowledge"}
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "GuardFactionWhiterun") %}
+{% if is_in_faction(npc.UUID, "GuardFactionWhiterun") %}
 {"### Whiterun Guard Knowledge"}
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "JobPriestFaction") %}
+{% if is_in_faction(npc.UUID, "JobPriestFaction") %}
 {"### Priest Knowledge"}
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "WhiterunMarketShoppers") %}
+{% if is_in_faction(npc.UUID, "WhiterunMarketShoppers") %}
 {"### Whiterun Shoppers Knowledge"}
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "ThievesGuildFaction") %}
+{% if is_in_faction(npc.UUID, "ThievesGuildFaction") %}
 {"### Thieves Guild Knowledge"}
 
 
 {% endif %}
 
-{% if is_in_faction(actor.UUID, "TownRiftenFaction") or is_in_faction(actor.UUID, "CrimeFactionRiften") %}
+{% if is_in_faction(npc.UUID, "TownRiftenFaction") or is_in_faction(npc.UUID, "CrimeFactionRiften") %}
 {"### Recent developments in Riften"}
 
 
-{% if is_in_faction(actor.UUID, "VampireFaction")  %}
+{% if is_in_faction(npc.UUID, "VampireFaction")  %}
 {"### Vampire Knowledge"}
 
 {% endif %}
@@ -160,7 +163,7 @@ Respond with only onomatopoeia or brief narrative action from {{ decnpc(npc.UUID
 </details>
 
 
-### more text
+### Custom prompt
 
 <details>
   <summary>Show Custom prompt</summary>

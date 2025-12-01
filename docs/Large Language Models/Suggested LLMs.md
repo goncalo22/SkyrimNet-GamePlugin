@@ -99,7 +99,7 @@ Optimized for retrieving context quickly and feeding it back into dialogue.
 
 ---
 
-### 🧬 Character Profile Generation Model – **Claude 3.7 Sonnet**
+### 🧬 Character Profile Generation Model – **Claude 3.7 Sonnet**   current: deepseek/deepseek-r1-0528
 
 <p align="center">
   <img src="/SkyrimNet-GamePlugin/img/sonnet.png" alt="sonnet" width="400"/>
@@ -138,7 +138,7 @@ Several, less capable models are often unable to comply with the prompt Json ins
 
 ---
 
-### 🎭 Action Evaluation Model – **DeepSeek V3 (0324)**
+### 🎭 Action Evaluation Model – **DeepSeek V3 (0324)**  current:  x-ai/grok-4-fast
 Decides what an NPC does after speaking or reacting to an event.  
 Using the same model for actions and dialogue ensures **NPC behavior matches what they say**.
 
@@ -156,7 +156,7 @@ Using the same model for actions and dialogue ensures **NPC behavior matches wha
 
 ---
 
-### 🧪 Meta Evaluation Model – **Gemini 2.5 Flash**
+### 🧪 Meta Evaluation Model – **Gemini 2.5 Flash**    current  x-ai/grok-4-fast
 
 <p align="center">
   <img src="/SkyrimNet-GamePlugin/img/gemini.png" alt="gemini" width="400"/>
@@ -188,3 +188,10 @@ Performs high-frequency, small tasks that keep scenes running smoothly.
 **Alternative Models:**
 
 ---
+
+Diary: anthropic/claude-sonnet-4.5
+
+
+vision : qwen/qwen3-vl-8b-instruct
+
+agent : anthropic/claude-haiku-4.5

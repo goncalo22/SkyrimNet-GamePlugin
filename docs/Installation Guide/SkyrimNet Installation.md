@@ -33,7 +33,8 @@ You’ll see **two versions** — choose **one** based on your system:
 You **must install** all dependencies listed in:  
 🔗 [System Requirements](https://github.com/MinLL/SkyrimNet-GamePlugin?tab=readme-ov-file#-system-requirements)
 
-- For **CUDA users**, make sure to install the **CUDA Toolkit** (⚠️ install version 12.xx **not the recent 13.xx**, or your dll wont start!!!) and **restart your PC** after installing — this is crucial.  
+- For **CUDA users**, make sure to install the **CUDA Toolkit** https://developer.nvidia.com/cuda-12-9-1-download-archive
+ (⚠️ install version 12.xx **not the recent 13.xx**, or your dll wont start!!!) and **restart your PC** after installing — this is crucial.  
 - Check the **Version-Specific Requirements** section for compatibility if using **Skyrim VR** or an older version.
 
 ---

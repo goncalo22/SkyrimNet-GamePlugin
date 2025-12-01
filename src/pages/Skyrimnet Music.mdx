@@ -6,6 +6,8 @@ title: Skyrimnet Music
 
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from "./walkthroughs.module.css";
+
 
 
 ### 🎵 How to add these new music files to your game
@@ -48,8 +50,18 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
 
 
 
-### Bard Mikael new soundtrack 
+### Tavern Bards new soundtracks 
 
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/tavern-music')}>
+    <img
+      src={useBaseUrl('/img/mikael.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -66,7 +78,19 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
   </a>
 </div>
 
-### Mountains new soundtrack 
+### Exploration new soundtracks 
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/exploration-music')}>
+    <img
+      src={useBaseUrl('/img/mountain.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
+
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -83,7 +107,24 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
   </a>
 </div>
 
-### Falkreath new soundtrack 
+
+
+
+
+
+### Towns and Cities new soundtrack 
+
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/towns-and-cities')}>
+    <img
+      src={useBaseUrl('/img/falkreath.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -100,24 +141,22 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
   </a>
 </div>
 
-### Riften new soundtrack 
 
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
-  <audio controls style={{ height: '55px' }}>
-    <source src="/SkyrimNet-GamePlugin/music/Riften.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
 
-  <a
-    href={useBaseUrl('/files/Falkreath (1).xwm')}
-    download="Riften (1).xwm"
-    className="button button--primary button--sm"
-  >
-    📦 Download "Riften (1)" XWM
+
+### Player Home new soundtracks
+
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/player-homes')}>
+    <img
+      src={useBaseUrl('/img/cozy.png')}
+      alt="Whiterun"
+      width="300"
+    />
   </a>
 </div>
-
-### Player Home new soundtrack 
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -134,8 +173,49 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
   </a>
 </div>
 
+### Combat music new soundtracks 
 
-### Castles new soundtrack 
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/battle-music')}>
+    <img
+      src={useBaseUrl('/img/Combat.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
+  <audio controls style={{ height: '55px' }}>
+    <source src="/SkyrimNet-GamePlugin/music/Combat.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <a
+    href={useBaseUrl('/files/CombatMusic01.xwm')}
+    download="CombatMusic01.xwm"
+    className="button button--primary button--sm"
+  >
+    📦 Download "CombatMusic01" XWM
+  </a>
+</div>
+
+
+
+
+### Castles new soundtracks 
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/castles-music')}>
+    <img
+      src={useBaseUrl('/img/castle.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -153,7 +233,18 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
 </div>
 
 
-### Exploration at night new soundtrack 
+### Exploration at night new soundtracks 
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/exploration-night')}>
+    <img
+      src={useBaseUrl('/img/night.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
 
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
@@ -173,27 +264,20 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
 
 
 
-### Far Mountains at night new soundtrack 
-
-(place it in Music/Exploration/Mountain/Night)
+### Eldergleam sanctuary new soundtrack 
 
 
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
-  <audio controls style={{ height: '55px' }}>
-    <source src="/SkyrimNet-GamePlugin/music/mountains-night.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <a
-    href={useBaseUrl('/files/Exploration (2).xwm')}
-    download="Exploration (2).xwm"
-    className="button button--primary button--sm"
-  >
-    📦 Download "Exploration (2)" XWM
+<div className={styles.card}>
+  <a href={useBaseUrl('/special-locations')}>
+    <img
+      src={useBaseUrl('/img/eldergleam.png')}
+      alt="Whiterun"
+      width="300"
+    />
   </a>
 </div>
 
-### Eldergleam sanctuary new soundtrack 
+
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -210,7 +294,21 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
   </a>
 </div>
 
-### Dungeon new soundtrack 
+### Dungeon new soundtracks 
+
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/dungeon-music')}>
+    <img
+      src={useBaseUrl('/img/Dungeon.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
+
+
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>
@@ -228,7 +326,18 @@ Thats it, now the music will play whenever your are in the chosen place , or be 
 </div>
 
 
-### Volkihar Castle new soundtrack 
+### Volkihar Castle new soundtracks 
+
+
+<div className={styles.card}>
+  <a href={useBaseUrl('/volkihar-music')}>
+    <img
+      src={useBaseUrl('/img/volkihar.png')}
+      alt="Whiterun"
+      width="300"
+    />
+  </a>
+</div>
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4em' }}>
   <audio controls style={{ height: '55px' }}>

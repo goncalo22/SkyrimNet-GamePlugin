@@ -1,0 +1,329 @@
+## Actions Pack by Galanx 
+
+Download and install, just like a mod, the following file. it contains all the scripts and yaml files for the following actions.
+The plugins provided in the repository have been deemed safe by their creators and wont occupy an esp slot. 
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--secondary button--lg"
+    href={useBaseUrl('/files/SkyrimNet_Reactions_Plus_0.0.3.zip')}
+    download="SkyrimNet_Reactions_Plus_0.0.3.zip"
+  >
+    📦 Download SkyrimNet_Reactions_Plus_0.0.3 ZIP 
+  </a>
+</div>
+
+
+---
+### Give Item
+
+author: Galanx
+
+ <p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/giveitem.png" alt="construction" width="400"/>
+</p>
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/give_item_to_player.yaml')}
+    download="give_item_to_player.yaml"
+  >
+    📥 Download "Give Item" YAML
+      </a>
+  </div>
+
+
+```yaml
+name: GiveItemToPlayer
+description: "Give an item to the PLAYER on behalf of the target NPC. Targeting: akNPC MUST NEVER be player or 'Prisoner'. If the PLAYER is the speaker, set akNPC to the named NPC or the crosshair actor but never the player/Prisoner; otherwise ask one brief clarification. Category guidance: choose asCategory (bow, crossbow, arrows, bolts, lockpick, potion_health, potion_stamina, potion_magicka). If asPreferredName is provided (e.g., 'Hunting Bow'), prefer that if available in the pool; otherwise use the default item for the category. Respect mood/relationship and only conjure when appropriate for roleplay or configuration. Avoid triggering during combat or when the NPC cannot act."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_ItemsAPI
+executionFunctionName: GiveItem
+# eligibilityScriptName: SkyrimNet_ItemsAPI
+# eligibilityFunctionName: GiveItem_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC speaking (never the player or 'Prisoner')
+  - type: dynamic
+    name: asCategory
+    description: Category key (bow, crossbow, arrows, bolts, lockpick, potion_health, potion_stamina, potion_magicka)
+  - type: static
+    value: ""
+    name: asPreferredName
+    description: Specific item name (e.g., "Hunting Bow") if specified
+  - type: dynamic
+    name: aiAmount
+    description: Stack count for stackable items (default 1)
+  - type: static
+    value: true
+    name: abConjured
+    description: Static bool forcing conjured grant
+  - type: static
+    value: true
+    name: abAnimate
+    description: Whether to play a handover pose
+  - type: dynamic
+    name: asMood
+    description: The mood token, lowercase is important (friendly, threatened, coerced, flirty, romance, etc.)
+  - type: dynamic
+    name: asReason
+    description: Why the item is given, lowercase is important (reward, begged, threatened, coerced, trade, bet_loss, apology, charity, other)
+enabled: true
+defaultPriority: 6
+
+
+```
+
+### Hand over Equipment
+
+
+author: Galanx
+
+ <p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/hand.png" alt="construction" width="400"/>
+</p>
+
+
+
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/hand_over_equipment.yaml')}
+    download="hand_over_equipment.yaml"
+  >
+    📥 Download "Hand-over Equipment" YAML
+      </a>
+  </div>
+
+
+
+```yaml
+name: HandOverEquipment
+description: "Use when the PLAYER asks the target NPC to hand over equipment they are wearing/holding (robbery, playful theft, flirting, gift, reward). Targeting: akNPC MUST NEVER be the player or 'Prisoner'. If the PLAYER is the speaker, set akNPC to the named NPC or crosshair actor but never the player/Prisoner; otherwise ask one brief clarification. Use asTargetParts to specify what to hand over: 'all', or a body part like 'head', 'body/top', 'hands/gloves', 'feet/boots', 'jewelry', 'ring', 'amulet', 'shield', 'weapon_right/mainhand', 'weapon_left/offhand'. If ambiguous, prefer 'all' only when the context indicates coercion/robbery; otherwise ask for a short clarification."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_ClothingAPI
+executionFunctionName: HandOverEquipment
+# eligibilityScriptName: SkyrimNet_ClothingAPI
+# eligibilityFunctionName: HandOverEquipment_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC handing over equipment (never the player or 'Prisoner')
+  - type: dynamic
+    name: asTargetParts
+    description: "'all' or a specific part list (e.g., 'boots', 'ring', 'shield', 'weapon_right', 'weapon_left', 'head', 'body/top', 'hands/gloves', 'feet/boots', 'jewelry', 'ring', 'amulet', 'shield', 'weapon_left/offhand', 'weapon_right/mainhand')"
+  - type: static
+    value: true
+    name: abAnimate
+    description: Whether to play a handover pose
+  - type: dynamic
+    name: asMood
+    description: The mood token, lowercase is important (friendly, threatened, coerced, annoyed, persistent, romance, flirty, playful, etc.)
+  - type: dynamic
+    name: asReason
+    description: Why equipment is handed over, lowercase is important (reward, begged, threatened, coerced, romance, gift, bet_loss, apology, charity, other)
+enabled: true
+defaultPriority: 7
+
+
+
+```
+
+### Travel to place
+
+author: Galanx
+
+ <p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/travel.png" alt="construction" width="400"/>
+</p>
+
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/travel_to_place.yaml')}
+    download="travel_to_place.yaml"
+  >
+    📥 Download "Travel to place" YAML
+      </a>
+  </div>
+
+
+
+
+
+```yaml
+name: TravelToPlace
+description: "Always use when {{ player.name }} says things to the target NPC like: 'meet me at <place>', 'lead the way to <place> (should run)', 'head to <place>', 'go on ahead to <place>', 'wait for me at <place>', 'go to <place> and I will catch up', 'let's meet at <place>'. DO NOT use if {{ player.name }} says 'follow me', 'come with me', 'let's go together' or anything similar — in those cases choose AccompanyTarget instead. Also pay attention to the context and don't use if inappropriate. If ambiguous, ask one brief clarification. Avoid triggering during combat or if you cannot act. Use the CANONICAL_PLACE values listed below exactly for asPlaceName. If the target NPC agrees to travel/meet, this is a strong indicator that this action SHOULD be chosen."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_TravelAPI
+executionFunctionName: TravelToPlace
+# eligibilityScriptName: SkyrimNet_TravelAPI
+# eligibilityFunctionName: TravelToPlace_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC who will travel
+  - type: dynamic
+    name: asPlaceName
+    description: "CANONICAL_PLACE string. Allowed values (case-sensitive): Whiterun, Riften, Solitude, Windhelm, Markarth, Falkreath, Morthal, Dawnstar, Winterhold, Riverwood, Breezehome, Dragonsreach, Bannered Mare, Jorrvaskr, Temple of Kynareth, Warmaiden's, Belethor's General Goods, Arcadia's Cauldron, Honningbrew Meadery, Whiterun Stables, Riverwood Trader, Alvor's House, Sleeping Giant Inn, Mistveil Keep, Bee and Barb, Riften Stables, Blue Palace, Winking Skeever, Solitude Stables, Palace of the Kings, Candlehearth Hall, Windhelm Stables, Understone Keep, Silver-Blood Inn, Markarth Stables, Dead Man's Drink, Highmoon Hall, White Hall, College of Winterhold, Frozen Hearth"
+  - type: dynamic
+    name: asSpeed
+    description: 'Speed hint: "walk", "jog", or "run" (default - always use "walk" if not specified)'
+  - type: static
+    value: true
+    name: abStopFollowing
+    description: If true, stop following the player before traveling
+enabled: true
+defaultPriority: 1
+
+# Guidance for LLM parameterization
+# Use EXACTLY one of these strings for asPlaceName (case-sensitive):
+# CITIES
+# - Whiterun
+# - Riften
+# - Solitude
+# - Windhelm
+# - Markarth
+# - Falkreath
+# - Morthal
+# - Dawnstar
+# - Winterhold
+# - Riverwood
+# PLACES (WHITERUN)
+# - Breezehome
+# - Dragonsreach
+# - Bannered Mare
+# - Jorrvaskr
+# - Temple of Kynareth
+# - Warmaiden's
+# - Belethor's General Goods
+# - Arcadia's Cauldron
+# - Honningbrew Meadery
+# - Whiterun Stables
+# PLACES (RIVERWOOD)
+# - Riverwood Trader
+# - Alvor's House
+# - Sleeping Giant Inn
+# PLACES (RIFTEN)
+# - Mistveil Keep
+# - Bee and Barb
+# - Riften Stables
+# PLACES (SOLITUDE)
+# - Blue Palace
+# - Winking Skeever
+# - Solitude Stables
+# PLACES (WINDHELM)
+# - Palace of the Kings
+# - Candlehearth Hall
+# - Windhelm Stables
+# PLACES (MARKARTH)
+# - Understone Keep
+# - Silver-Blood Inn
+# - Markarth Stables
+# PLACES (OTHERS)
+# - Dead Man's Drink
+# - Highmoon Hall
+# - White Hall
+# - College of Winterhold
+# - Frozen Hearth
+
+```
+### Cancel Travel
+
+author: Galanx
+
+ <p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/cancel.png" alt="construction" width="400"/>
+</p>
+
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/cancel_travel.yaml')}
+    download="cancel_travel.yaml"
+  >
+    📥 Download "Cancel travel" YAML
+      </a>
+  </div>
+
+```yaml
+
+name: CancelTravel
+description: "Always use with prioritywhen {{ player.name }} says 'stop', 'stop running', 'wait', 'hold up', 'cancel that', 'new plan', or gives a different instruction that conflicts with ongoing travel (e.g., follow me, trade, fight, go somewhere else). Important: If the player constantly says stop or wait, this action SHOULD be chosen with highest priority!"
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_TravelAPI
+executionFunctionName: CancelTravel
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC to stop
+enabled: true
+defaultPriority: 1
+
+```
+
+
+
+### Change Clothing 
+
+author: Galanx
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/clothing.png" alt="construction" width="400"/>
+</p>
+
+
+
+<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/change_clothing.yaml')}
+    download="change_clothing.yaml"
+  >
+    📥 Download "Change Clothing" YAML
+      </a>
+  </div>
+
+```yaml
+
+name: ChangeClothing
+description: "Use to change dress/undress target NPC's clothing or equipment. Targeting: akNPC MUST NEVER be player or 'Prisoner'. If the PLAYER is the speaker, set akNPC to the named NPC or crosshair actor but never the player/Prisoner. Parameters: asTargetParts (one of: all, head, upper_body, hands, feet, jewelry) and asAction (one of: undress, dress, redress, get_dressed). Prefer specific parts over 'all'; use 'redress'/'dress' to put items back on."
+questEditorId: SkyrimNet_Reactions_Plus
+scriptName: SkyrimNet_ClothingAPI
+executionFunctionName: ChangeClothing
+# eligibilityScriptName: SkyrimNet_ClothingAPI
+# eligibilityFunctionName: ChangeClothing_IsEligible
+parameterMapping:
+  - type: dynamic
+    name: akNPC
+    description: The NPC changing clothing (never the player or 'Prisoner')
+  - type: dynamic
+    name: asTargetParts
+    description: "Token for body part: all | head | upper_body | hands | feet | jewelry"
+  - type: dynamic
+    name: asAction
+    description: "Action token: undress | dress | redress | get_dressed"
+  - type: static
+    value: true
+    name: abAnimate
+    description: Optional pose (currently used for handover only)
+  - type: dynamic
+    name: asMood
+    description: The mood token lowercase is important (friendly, threatened, coerced, annoyed, persistent, romance, flirty, etc.)
+  - type: dynamic
+    name: asReason
+    description: Why the clothing action is requested, lowercase is important (reward, begged, threatened, coerced, romance, flirty, other)
+enabled: true
+defaultPriority: 7
+
+```

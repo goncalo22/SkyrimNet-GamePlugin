@@ -51,7 +51,6 @@ Initially, only **Voice ID** and **OpenRouter** settings are enabled, but more c
 ---
 
 ### 📌 Limitations
-- **Multiple TTS engines at once** are not supported (per-actor engine selection is not yet possible).
 - Some global-only settings cannot be applied per actor until explicitly wired for override.
 
 ---
