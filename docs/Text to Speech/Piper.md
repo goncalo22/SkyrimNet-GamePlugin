@@ -88,7 +88,4 @@ Before Piper, modded dialogue was silent or used clunky, repetitive voice packs.
 
 ---
 
-## TL;DR
 
-**Piper TTS is the voice of SkyrimNet** — a real-time,immersive, in-process speech system that lets your modded Skyrim world *talk back*.  
-It's fast, integrated directly into the engine, and supports any line an NPC might say, **no matter how unexpected**.

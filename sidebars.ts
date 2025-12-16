@@ -3,7 +3,7 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
    tutorialSidebar: {
     'Features': ['Features/overview','Features/events-and-reactions','Features/gamemaster','Features/player-dialogue', 'Features/action-system', 'Features/customization','Features/overrides', 'Features/gamedataexplorer', 'Features/customtriggers',
-      'Features/voicesamples','Features/filter-system','Features/omnisight',
+      'Features/voicesamples','Features/filter-system','Features/omnisight', 'Features/universal-translator', 'Features/event-manager',
        ],
 
     'Installation Guide': [
@@ -34,6 +34,9 @@ const sidebars: SidebarsConfig = {
       'Speech to Text/whisper-openai',
     ],
      'Vast.ai': ['Vast.ai/vast-ai','Vast.ai/images'],
+
+     'Skyrimnet VR': ['Skyrimnet VR/skyrimnet-vr'],
+
     
   },
 

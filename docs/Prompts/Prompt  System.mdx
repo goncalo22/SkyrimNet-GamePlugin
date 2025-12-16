@@ -15,6 +15,16 @@ displayed_sidebar: tutorialSidebar
 - Doing changes, its recommended you edit just some of the natural language parts and/or some numeric variable instructions.
 - However customization is part of the fun and if your prompt experiences result in strange behaviors, reverting to the original prompt should restore things to working order.  
 
+
+The prompt file structure is located in \Data\SKSE\Plugins\SkyrimNet\prompts 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/prompts2.PNG" alt="actions2" width="500"/>
+</p>
+
+
+
+
 ## character_profile_update.prompt
 ``` 
 [ system ]
@@ -603,6 +613,9 @@ this prompt collects relevant character vitals (health, magicka and stamina) pro
 {% endif %}
 
 ```
+
+
+## Character bio prompts
 
 ## submodules/character_bio/0100_summary.prompt
 
@@ -1641,5 +1654,289 @@ This is the prompt used for updating the dynamic bios of a character
 
     **Response format**: Pure JSON only, markdown ONLY inside of the content field, no explanatory text. Must include all fields exactly as specified.
 [ end user ]
+
+~~~
+
+
+
+## Omnisight prompts
+
+## omnisight/describe_actor.prompt
+~~~mdx-code-block
+[user]
+    You are cataloging characters in the world of Skyrim. Provide a detailed, objective visual description of this character based on the screenshot.
+
+    Character Information:
+    - Race: {{race}}
+    - Gender: {{gender}}
+    {% set actor_equipment = get_worn_equipment(actorUUID) %}
+    {% if actor_equipment and length(actor_equipment) > 0 %}
+        - Equipment Worn (reference only - describe ONLY what you can actually see in the screenshot):
+        {% for slot, item in actor_equipment %}
+            {% if is_item_enabled(item.formID) %}
+                * {{ item.equipment_slot }}: {{ get_item_name(item.formID) }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if has_weapon_drawn(actorUUID) %}
+        - Weapon State: Weapon is DRAWN (ready for combat, visible in hands)
+    {% else %}
+        - Weapon State: Weapon is SHEATHED (at rest, may not be visible depending on angle/clothing)
+    {% endif %}
+
+    IMPORTANT: The equipment list above is for reference only. Only describe items that are ACTUALLY VISIBLE in the screenshot. If a weapon is sheathed or hidden by clothing/armor, do not describe it unless you can see it. If equipment is obscured by the camera angle or covered by other items, omit it from your description.
+
+    Your description should:
+    - Be factual and objective (2-3 paragraphs)
+    - Describe ONLY what is on the character's body: facial features, hair, skin, build, clothing, armor, weapons, visible scars/markings
+    - Include anatomical details when visible (see guidelines below)
+    - Note their physical posture and apparent demeanor
+    - Use appropriate Elder Scrolls lore terminology for equipment and racial features
+
+    ANATOMICAL DESCRIPTION GUIDELINES:
+    When describing body features, use objective, clinical terminology:
+        - ✅ Body proportions: "broad-shouldered," "slender build," "muscular physique," "athletic frame," "heavyset," "lithe"
+        - ✅ Chest/bust: "small-chested," "modest bust," "full-figured," "large bust," "flat-chested," "well-endowed"
+        - ✅ Body shape: "curvaceous," "lean," "stocky," "toned," "soft," "defined musculature"
+        - ✅ Visible anatomy: "bare-chested," "exposed torso," "unclothed," "nude," "partially clothed"
+        - ✅ Condition: "toned abdomen," "muscular arms," "scarred torso," "defined legs"
+
+    Use factual, descriptive language appropriate for character documentation. Describe what is visible without embellishment.
+
+    CRITICAL RESTRICTIONS - DO NOT include:
+        - ❌ The character's name (even if visible in UI)
+        - ❌ Floor, ground, or what they're standing on (rugs, pelts, stone, etc.)
+        - ❌ Background scenery, walls, furniture, or environment
+        - ❌ Other people, creatures, or objects not worn/held by the character
+        - ❌ Lighting, weather, or atmospheric conditions
+        - ❌ UI elements, menus, HUD overlays, health bars, or game interface
+        - ❌ Image framing, camera angle, or screenshot composition
+        - ❌ Speculation about gameplay mechanics, stats, or character backstory
+
+    FOCUS AREAS - DO include (ONLY if visible in the screenshot):
+        - ✅ Body type, build, musculature, proportions
+        - ✅ Anatomical features: chest size, body shape, muscle definition, visible anatomy if unclothed
+        - ✅ Facial structure, features, expression, scars, tattoos, war paint
+        - ✅ Hair style, color, length, grooming (including body hair if visible)
+        - ✅ Skin tone, texture, visible wear or weathering, blemishes, scars, markings
+        - ✅ Clothing details: material, color, condition, style, fasteners, coverage (only describe what you can see)
+        - ✅ State of dress: fully clothed, partially clothed, unclothed, what areas are covered/exposed
+        - ✅ Armor pieces: type, coverage, ornamentation, wear (only describe visible pieces)
+        - ✅ Weapons or tools: ONLY describe weapons if drawn/in hands OR clearly visible when sheathed; do not assume visibility
+        - ✅ Weapon readiness: if weapon is drawn (clearly in hand), if sheathed (only mention if you can see it)
+        - ✅ Jewelry, accessories, pouches, or items: only if clearly visible and not hidden by clothing/armor
+        - ✅ Posture: stance, how they hold themselves, tension or relaxation in body
+        - ✅ Overall impression: weathered, pristine, battle-worn, well-groomed, etc.
+
+    Write as if conducting a close physical examination of the character themselves, describing only what is part of their body or directly worn/carried on their person. Be thorough and objective, including all visible physical characteristics regardless of state of dress.
+
+    CRITICAL: Base your description ENTIRELY on what you can see in the screenshot. The equipment list is metadata for reference - use it to identify items, but ONLY describe equipment that is actually visible in the image. Do not describe or mention items that are hidden, obscured, or not visible from the current angle.
+
+    Describe the visual characteristics and notable features of this character.
+    [image]
+    {{imageDataUrl}}
+    [end image]
+[end user]
+
+~~~
+
+
+
+## omnisight/describe_default.prompt
+~~~mdx-code-block
+
+[user]
+    You are cataloging elements of the world of Skyrim. Provide a detailed, objective description of what you see in this screenshot.
+
+    Subject Information:
+    - Type: {{subject_type}}
+    - Name: {{subject_name}}
+    {% if location_name %}- Location: {{location_name}} ({% if is_indoors %}Indoors{% else %}Outdoors{% endif %}){% endif %}
+    - Time: {{gameTime}}
+    {% if not is_indoors %}- Weather: {{currentWeather.name}}{% if currentWeather.isRaining %} (Raining){% else if currentWeather.isSnowing %} (Snowing){% endif %}{% endif %}
+
+    Your description should:
+    - Be factual and objective (2-3 paragraphs)
+    - Focus on visual details relevant to this type of subject
+    - Note any distinguishing features or characteristics
+    - Consider the environmental context ({% if is_indoors %}indoor setting{% else %}outdoor setting with {{currentWeather.name}}{% if currentWeather.isRaining or currentWeather.isSnowing %} weather effects{% endif %}{% endif %})
+    - Use appropriate Elder Scrolls lore terminology
+    - IGNORE any UI elements, menus, or HUD overlays - describe only the game world content
+    - Avoid speculation about gameplay mechanics
+
+    Describe the visual characteristics and notable features of the subject shown in the image.
+    [image]
+    {{imageDataUrl}}
+    [end image]
+[end user]
+
+
+~~~
+## omnisight/describe_furniture.prompt
+~~~mdx-code-block
+[user]
+    You are cataloging furniture and objects in the world of Skyrim. Provide a detailed, objective description of this furniture based on the screenshot.
+
+    Furniture Information:
+    - Name: {{subject_name}}
+    - Location: {{location_name}} ({% if is_indoors %}Indoors{% else %}Outdoors{% endif %})
+    - Time: {{gameTime}}
+    {% if not is_indoors %}- Weather: {{currentWeather.name}}{% if currentWeather.isRaining %} (Raining){% else if currentWeather.isSnowing %} (Snowing){% endif %}{% endif %}
+
+    Your description should:
+    - Be factual and objective (1-2 paragraphs)
+    - Focus on appearance, design, and materials
+    - Note craftsmanship, condition (new, worn, damaged), and style
+    - Describe any decorative elements or functional features
+    - Consider the lighting and setting ({% if is_indoors %}indoor environment{% else %}outdoor environment with {{currentWeather.name}}{% if currentWeather.isRaining or currentWeather.isSnowing %} weather effects{% endif %}{% endif %})
+    - Use appropriate Elder Scrolls lore terminology
+    - IGNORE any UI elements, menus, or HUD overlays - describe only the furniture
+    - Avoid speculation about gameplay mechanics
+
+    Describe the visual characteristics and notable features of this furniture shown in the image.
+    [image]
+    {{imageDataUrl}}
+    [end image]
+[end user]
+
+~~~
+
+
+## omnisight/describe_location.prompt
+~~~mdx-code-block
+[ user ]
+    You are cataloging "{{subject_name}}" for a visual location database in Skyrim. Use BOTH your knowledge of this location from Elder Scrolls lore AND the visual evidence in this screenshot to create a comprehensive description.
+
+    Location Context:
+    - Name: {{subject_name}}
+    - Type: {% if is_indoors %}Interior{% else %}Exterior{% endif %}
+    - Current Position: {{location_name}}
+
+    YOUR TASK:
+    Describe this location by grounding your response in what you visually observe in the screenshot, supplemented by your knowledge of Skyrim lore where applicable.
+
+    1. PHYSICAL CHARACTERISTICS (primary focus - what you SEE):
+        - {% if is_indoors %}Architectural style and interior layout{% else %}Terrain type and natural features{% endif %}
+        - {% if is_indoors %}Building materials visible (stone, wood, metal, etc.){% else %}Landscape characteristics (vegetation, rock formations, water bodies){% endif %}
+        - {% if is_indoors %}Room structure, key structural features (doors, windows, columns, stairs){% else %}Visible structures, landmarks, or terrain features{% endif %}
+        - Permanent fixtures, furnishings, and distinctive objects
+        - Color schemes and visual atmosphere
+        - {% if not is_indoors %}Geographic context (mountains, forests, water, distant structures){% endif %}
+
+    2. LOCATION IDENTITY (if recognizable from visuals):
+        - What type of place this is (home, shop, guild hall, dungeon, wilderness, etc.)
+        - Its purpose or function in Skyrim (based on what you see)
+        - If you recognize this as a well-known lore location, you may reference its significance
+
+    3. DEFINING FEATURES:
+        - What makes this location visually recognizable or unique
+        - Key visual elements that distinguish it from similar locations
+        - Architectural or natural details that characterize it
+
+    IMPORTANT RULES:
+    - Ground your description in VISUAL EVIDENCE first, supplement with lore knowledge second
+    - DO NOT mention or repeat the location name "{{subject_name}}" in your output
+    - If this appears to be a generic area (wilderness trail, crossroads, unnamed path), describe it as what you see, not as a significant lore location
+    - Start directly with the description (no preamble like "This location is..." or "{{subject_name}} is...")
+    - Focus on PERMANENT features, not temporary conditions
+    - DO NOT describe: NPCs in detail, current lighting/shadows, weather effects, UI elements, time of day.
+    - Use present tense for permanent features
+    - Be concise and factual - don't invent details not visible in the screenshot
+
+    EXAMPLE GOOD OUTPUT (famous location):
+    "The jarl's palace serves as the seat of power in Whiterun. The great hall features soaring Nordic timber construction with massive wooden beams and a raised throne platform. Stone walls are adorned with mounted animal heads and banners, while a long central fire pit runs the length of the hall..."
+
+    EXAMPLE GOOD OUTPUT (generic wilderness):
+    "A forested trail winds through dense evergreen woodland. The dirt path is flanked by tall pine and fir trees with thick undergrowth of ferns covering the forest floor. Rocky outcroppings dot the uneven terrain, while distant mountain peaks rise above the treeline. A stone watchtower is visible on a nearby hillside, suggesting proximity to a settlement or fortification."
+
+    FORMAT: Write 2-3 concise paragraphs describing what you observe and what makes this location distinctive. Do not include the location name itself in your output.
+    [ image ]
+    {{imageDataUrl}}
+    [ end image ]
+[ end user ]
+~~~
+
+## omnisight/describe_scene.prompt
+~~~mdx-code-block
+[ user ]
+    You are describing what is currently visible in this Skyrim screenshot. Provide a grounded, immediate description focusing on the environment, visible objects, and character actions. Do not speculate about gameplay or affordances.
+
+    ## Context:
+    - Location: {{subject_name}}
+    - Time: {{gameTime}}
+    - Setting: {% if is_indoors %}Interior{% else %}Exterior{% endif %}
+    {% if not is_indoors %}- Weather: {{currentWeather.name}}{% if currentWeather.isRaining %} (Raining){% else if currentWeather.isSnowing %} (Snowing){% endif %}{% endif %}
+
+    {% set visibleNPCs = get_visible_npc_list(player.UUID) %}
+    {% if visibleNPCs and length(visibleNPCs) > 0 %}
+    ## Visible People (authoritative list; everyone below is on-camera):
+    {% for npc in visibleNPCs %}
+        {% set pos = get_actor_position_relative_to_camera(npc.UUID) %}
+        - {{npc.name}} ({{decnpc(npc.UUID).race}}, {{decnpc(npc.UUID).gender}}) — {{pos.meters}}m, {{pos.cardinalDirection}} {% if is_in_combat(npc.UUID) %}[COMBAT] {% endif %}{% if has_weapon_drawn(npc.UUID) %}[Armed] {% endif %}{% if is_swimming(npc.UUID) %}[Swimming]{% else if is_sprinting(npc.UUID) %}[Running]{% else if is_sneaking(npc.UUID) %}[Sneaking]{% endif %}
+    {% endfor %}
+    {% else %}
+    ## Visible People: (none detected)
+    {% endif %}
+
+    ## CORE INSTRUCTIONS:
+
+    {% if is_first_person() or is_vr() %}
+        **Perspective:** First-person view. Describe the scene as if looking through the character's eyes. Ignore visible hands/weapons.
+    {% else %}
+        **Perspective:** Third-person view. The player character model in view is a camera artifact—DO NOT mention or describe it. Never reference the viewpoint itself.
+    {% endif %}
+
+    **UI & Speaker Discipline (critical):**
+    - Subtitles, speaker tags, floating nameplates, compass text, quest markers, and HUD elements are **not** reliable indicators of who is visible.
+    - If a subtitle shows a speaker name that is **not** in the **Visible People** list, treat it as **off-camera** information and **do not include that name anywhere in the output**. Do **not** assign that name to any on-screen person.
+
+    **ABSOLUTE NAMING RULES:**
+    1) Only identify a person by **name** if that exact name appears verbatim in the **Visible People** list above.
+    2) Do **not** rename, invent, merge, or substitute identities.
+    3) If you perceive a person who is **not** in the list, do **not** mention them at all.
+    4) When listing people, **copy the name exactly** as written in the **Visible People** list.
+
+    **Description Priorities:**
+
+    1. **Environment & Objects** (ESSENTIAL):
+        - Spatial scale (cramped/medium/expansive) and overall layout
+        - Architecture, materials, textures, and light sources/quality
+        - **Fold in concrete scene details**: shelves/tables/bar tops and what's on them; doors/arches/windows and their state; pillars/beams/hearths; hanging items; floor/wall surfaces; {% if not is_indoors %}terrain/skyline/distant scenery{% endif %}. Use fixtures to anchor locations (bar, doorway, hearth, pillar, window, shelf). No numbers or compass directions.
+
+    2. **Character Actions** (only for people in **Visible People**):
+        - Immediate action, pose, gestures, gaze, speech
+        - Clothing/gear that is clearly visible (aprons, armor, weapons sheathed/drawn)
+        - Placement described via **scene fixtures** only (e.g., "behind the bar," "by the side door")
+        - Threat/readiness level if evident (calm, wary, hostile)
+
+    3. **Atmosphere**:
+        - {% if not is_indoors %}Weather effects{% endif %}, temperature cues
+        - Mood/energy and overall danger level
+
+    **Output Format:**
+
+    **Scene:** [3–6 sentences. Start with scale and layout, then weave in **specific visible objects and structures** (shelves, doors, items on counters, hanging meats/herbs, barrels, windows, torches/hearth) with one concrete visual detail each (material, color, wear, state). Keep it strictly factual and present tense.]
+
+    {% if visibleNPCs and length(visibleNPCs) > 0 %}
+    **Visible characters:**
+    [For each person from **Visible People**, write **one or two vivid sentences** using their **exact name**. Describe action, body language, interaction with props/people, visible clothing/gear, and placement via fixtures only—no distances or directions.]
+    {% endif %}
+
+    **Atmosphere:** [1–2 sentences on lighting, {% if not is_indoors %}weather impact, {% endif %}mood, energy.]
+
+    **Style Rules:**
+    - Active, present tense; concrete details
+    - Anchor with scene fixtures (bar/hearth/doorway/pillar/shelf/window); **do not** use meters/steps or N/S/E/W
+    - Avoid vague words like "various/some"
+    - Never repeat "{{subject_name}}"
+    - ONLY describe what is visible on-screen
+    - Never infer or guess identities from UI elements
+
+    Describe the screenshot:
+    [ image ]
+    {{imageDataUrl}}
+    [ end image ]
+[ end user ]
+
 
 ~~~
