@@ -1179,5 +1179,187 @@ More coming in this particular area soon.</li>
             <category>release</category>
             <category>beta</category>
         </item>
+        <item>
+            <title><![CDATA[SkyrimNet Beta11  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/12/18/beta11-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2015/12/18/beta11-release</guid>
+            <pubDate>Fri, 18 Dec 2015 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta11]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 11 Latest</p>
+<h1>SkyrimNet Beta11</h1>
+<p>Beta11 focuses on bugfixes, quality of life features, polish, and roleplay quality. Core systems like line of sight, continuous mode, and the Game Master have been overhauled, and prompts have been refactored to improve output quality and reduce token overhead. Template authors get new tools for reading mod data and tracking entity state, with new bridges for PapyrusUtil and MinAI expanding mod compatibility.</p>
+<p><strong>Diary/Bio Generation Hotkey</strong></p>
+<ul>
+<li>New Hotkey - Diary/Bio Generation @Min</li>
+<li>Supported in native DLL + Papyrus hotkeys. Press it.</li>
+<li>Select either nearby, pinned actors, player, or target in crosshair.</li>
+<li>Observe that dynamic bio and diary are generated for that actor.</li>
+</ul>
+<p><strong>Line of Sight Overhaul</strong></p>
+<ul>
+<li>Overhauled Line of Sight @Min</li>
+<li>Fixed the poorly performing line of sight algorithm. It had a few bugs / issues preventing it from working correctly.</li>
+<li>We should now accurately and quickly detect obstacles between actors. It should not be possible for people to hear you through walls, doors, or floors anymore.</li>
+<li>We had issues with furniture obstructing LoS previously as well that should now be resolved.</li>
+<li>Line of Sight is disabled while in combat, allowing you to banter with enemies, followers, etc inbetween rooms during combat.</li>
+</ul>
+<p><strong>PapyrusUtil Integration</strong></p>
+<ul>
+<li>PapyrusUtil Integratio. @lemonade</li>
+<li>A native C++ bridge now provides direct memory access to PapyrusUtil's StorageUtil data—bypassing Papyrus scripts entirely.</li>
+<li>Templates can now read mod-stored data instantly via the papyrus_util decorator without Papyrus overhead. Supports AE, SE, GOG, and VR versions of PapyrusUtil (hopefully). Please report if you have issues with this.</li>
+<li>This should enable very easy and powerful mod integrations with anything storing data through StorageUtil.</li>
+<li>Papyrus bridge will attempt to automatically detect offsets; should result in most versions of papyrusutil being supported @naitro2010</li>
+</ul>
+<p><strong>Entity State Tracking</strong></p>
+<ul>
+<li>New Feature: Entity State Tracking @Min</li>
+<li>Added functionality to allow templates to set persistent values that are automatically pruned after expiration. I'm using this at present in a new prompt to detect sudden, sharp drops in key stats like health, magicka, etc since the last time the prompt executed.</li>
+<li>track_entity_state(entityUUID, key, newValue, [timeWindowSeconds=60]): Atomically get previous value and set new one; returns object with current, previous, changed, isRecent, secondsSinceUpdate. Only updates stored value when it actually changes.</li>
+<li>set_entity_state(entityUUID, key, value): Store any JSON-compatible value for an entity. Returns true on success.</li>
+<li>get_entity_state(entityUUID, key, [defaultValue]): Retrieve a stored value. Returns null or defaultValue if not found.</li>
+<li>has_entity_state(entityUUID, key): Check if a key exists for an entity. Returns boolean.</li>
+<li>is_state_recent(entityUUID, key, windowSeconds): Check if stored value was updated within the time window. Returns boolean.</li>
+<li>clear_entity_state(entityUUID, [key]): Clear state for an entity. If key provided, clears only that key; otherwise clears all state for the entity.</li>
+</ul>
+<p><strong>Continuous Mode / Game Master Overhaul</strong></p>
+<ul>
+<li>Updated Feature: Continuous Mode / Game Master @Min</li>
+<li>Started on some work to extend the game master.  Overhauled continuous mode, now works differently. Continuous mode is intended to be toggled on to have a continuous scene play out, and not be left on during general play.</li>
+<li>Instead of continuous mode functioning strictly as a toggle to lower the cooldown, this changes behavior to automatically invoke the GM when the dialogue queue is nearly drained. Continuous mode / "scene" cohesion seems improved quite a bit.</li>
+<li>Important! This does still enforce a lower lull detection timer (new default: 30 seconds), defaults updated. Change your continuous mode (lull) cooldown to 30 seconds, old default of 6 seconds will work poorly with this</li>
+<li>GM timer will not countdown when game is paused</li>
+<li>Added two new GM actions:</li>
+<li>ContinueDialogue - Continues an ongoing dialogue scene. This may have a small context leak problem, still playing with this.</li>
+<li>Narrate - Allows the GM to trigger arbitrary narrations to advance the scene. This part is still a bit WIP; Working well enough in testing that I wouldn't mind getting some more feedback on it. Can be disabled via action library if it results in the GM derailing your game too much. This only triggers when continuous mode is enabled.</li>
+<li>Continuous mode will briefly stop when the player is the target of the interaction to allow the player a chance to respond.</li>
+<li>I will be expanding on this considerably in the near future. Narrate in particular is a little bit "Proof of Concept" at present.</li>
+</ul>
+<p><strong>Actor Dialogue Extractor</strong></p>
+<ul>
+<li>New Feature: Actor Dialogue Extractor @Min</li>
+<li>New tool that extracts dialogue trees directly from the game's data files, including branching conversations, script fragments, and scene data. Accessible via the new Actor Dialogue Explorer in the web UI under Game Data Explorer.</li>
+<li>This is mostly just ground-work for some upcoming very powerful feature work that requires this.</li>
+</ul>
+<p><strong>AI Profile Generation</strong></p>
+<ul>
+<li>Updated Feature: AI Profile Generation @Min</li>
+<li>AI-generated character profiles now leverage extracted dialogue trees, giving NPCs more authentic personalities based on their actual in-game dialogue. Leveraging the above for this short-term. Have a lot more coming on this, later.</li>
+<li>This should result in greatly improved accuracy of ai generated profiles for mod-added npc's. I'll be adding some "Bulk" functionality to this in the future as well.</li>
+</ul>
+<p><strong>Faction Based Overrides</strong></p>
+<ul>
+<li>New Feature: Faction based overrides @Min</li>
+<li>Group overrides can now be applied to actors based on their factions.</li>
+<li>Lot of useful stuff you can do with this (Change models while certain mods are animating, make all citizens of whiterun use a given model, make all bandits use piper, etc).</li>
+</ul>
+<p><strong>MinAI Bridge</strong></p>
+<ul>
+<li>New Feature: MinAI Bridge @Min</li>
+<li>SkyrimNet will now process events from mods that had integrated with MinAI. Events that were intending to register events through minai will now register them through the appropriate persistent / short lived / direct narration api's. Effectively free integration for those mods.</li>
+<li>Tested on several installed mods, and worked well.</li>
+</ul>
+<p><strong>Quick Toggles</strong></p>
+<ul>
+<li>Added Quick Toggles @Daikichi</li>
+<li>Added a button in the navbar to quickly switch off features that make automatic LLM calls, without needing to go in the config page</li>
+<li>Added a master SkyrimNet On/Off toggle as well</li>
+<li>Added a hotkey for the master toggle</li>
+</ul>
+<p><strong>Embedded Actions</strong></p>
+<ul>
+<li>New feature: Embedded Actions @Min</li>
+<li>The action evaluation prompt can now be merged into the dialogue prompt via the enable embedded actions toggle (Currently false). I may make this default true in the future, currently evaluating how well it performs.  The intent behind this  is to allow the dialogue prompt which has intent to also control action, rather than having a second one guessing at it. This should allow for better autonomous use of actions without explicit request. Experimental at present, we'll have to see how it performs.  This will save tokens, but may bias weaker models into behaving differently with the presence of some mod added actions.</li>
+<li>Enable "Embedded Actions" in the config to try it out.</li>
+</ul>
+<p><strong>Omnisight Nude/Dressed Variants</strong></p>
+<ul>
+<li>New Feature: Omnisight Nude/Dressed Variants @Min</li>
+<li>Omnisight can now provide different descriptions based on whether a character is clothed or not.</li>
+</ul>
+<p><strong>Faction-Based Narrator Control</strong></p>
+<ul>
+<li>New Feature: Faction-Based Narrator Control @Min</li>
+<li>New config option to automatically disable the narrator when you're in specific factions. Great for turning off narration during animations from some mods, etc.</li>
+</ul>
+<p><strong>Provider Sorting</strong></p>
+<ul>
+<li>New Feature: Provider sorting</li>
+<li>Users can now specify how they want to prioritize provider selection in the openrouter config (speed, cost, etc).  @MIKA</li>
+</ul>
+<p><strong>New Decorators</strong></p>
+<ul>
+<li>papyrus_util - Access PapyrusUtil StorageUtil data directly from memory (get/has int/float/string/form values and lists.) @lemonade</li>
+<li>read_json - Read and parse a JSON file from disk, optionally navigating to a specific path within i. @lemonade</li>
+<li>json_file_exists - Check if a JSON file exists at the specified pat. @lemonade</li>
+<li>to_string - Converts any value (number, boolean, null, etc.) to its string representatio. @lemonade</li>
+<li>formid_to_uuid - Convert a 32-bit FormID to a UUID for use with decnpc and other UUID-based function. @lemonade</li>
+<li>actor_has_keyword - Check if an actor has a specific keyword on their base form (e.g., ActorTypeNPC, ActorTypeUndead.) @lemonade</li>
+<li>replace(source, haystack, needle, case sensitive, only first) - Replace words within a string.  @Min</li>
+<li>New decnpc attributes: formId, keywords, weigh. @lemonade</li>
+</ul>
+<p><strong>New MCP Tools</strong> @Min</p>
+<ul>
+<li>get_decorators: returns documentation on all available decorators</li>
+<li>get_globals: Search available globals</li>
+<li>Added new MCP tools to get quest scripts, properties, etc. Using this to power automated action assistant creation through Cursor that I'm playing with locally. So far working decently. @Min</li>
+<li>Added get_monitored_events tool to view recent game events from the live event feed. Supports filtering by event type and animation events toggle. Event buffer now configurable, and you can view up to 5000 events when developer mode is active (500 default).</li>
+<li>Added validate_custom_action - Validates custom action YAML configurations without loading them. Catches syntax errors and missing fields.</li>
+<li>Added validate_custom_trigger - Validates custom trigger YAML configurations are syntactically valid without loading them.</li>
+<li>Added validate_prompt - Validates prompt template syntax (Inja) and catches template errors before runtime.</li>
+</ul>
+<p><strong>New Papyrus API</strong> @Min</p>
+<ul>
+<li>Added FindActorByName(string actorName) - Finds an actor by name among nearby actors (4000 unit radius). Case-insensitive matching. Useful for mods that need to resolve actor names to references.</li>
+</ul>
+<p><strong>Game Data Explorer</strong></p>
+<ul>
+<li>Updated Feature: Game data Explorer @Min</li>
+<li>Added new page to game data explorer for viewing available globals.</li>
+<li>Added new page to game data explorer for viewing extracted dialogue trees (WIP)</li>
+</ul>
+<p><strong>New Profiles</strong></p>
+<ul>
+<li>Added bios for Become High King of Skyrim @Min@ErenYegger</li>
+</ul>
+<p><strong>WIP Mod Integration Workflows</strong></p>
+<ul>
+<li>WIP Mod Integration Workflows @Min</li>
+<li>Added 4 of the workflow prompts I've been using to the github repo: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/tree/main/docs/modding" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/tree/main/docs/modding</a></li>
+<li>These should be leveraged from within your AI enabled editor of choice, with the source code for the mod you want to integrate with added to your workspace, as well as your skyrimnet / overwrite folders.</li>
+<li>You must have set up your editor to work with the SkyrimNet mcp server to leverage these.</li>
+</ul>
+<p><strong>Tweaks</strong>  @Min</p>
+<ul>
+<li>Iterated more on prompt tweaks, addressing feedback + my own observations. Tweaked narration behavior</li>
+<li>TalkToPlayer package no longer applies to (acutal skyrim) followers. There's an existing system to allow you to blacklist specific factions for nff /  mods that don't use the vanilla system.</li>
+<li>Added reload button to custom actions page</li>
+<li>All faction decorators can now be called by editor id or formid (previously only formid) (is_in_faction, etc)</li>
+<li>Tweaked thought prompt to encourage thought responses instead of dialogue</li>
+<li>Diary entries no longer include full contents in event history - still in memories. Avoids bloating prompt when using diaries often, and hijacking memories.</li>
+<li>Log spam reduction.</li>
+<li>Added pdb support for SEH handling. Will improve debuggability for these considerably when people report them.</li>
+</ul>
+<p><strong>Prompt Changes</strong> @Min</p>
+<ul>
+<li>Significantly refactored prompt instructions to simplify them, and remove bloat / improve coherency. Reduced token cost, and moved format / length instructions earlier. "Less is more".</li>
+<li>Should result in non state-of-the-art models looping less, becoming obsessed less, and generally working better.</li>
+<li>This may result in a degradation for some models that the prompts were previously fit very well for.</li>
+</ul>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Muted a couple unimportant error messages. @Min</li>
+<li>Fixed several potential access violation errors. @Min</li>
+<li>Fixed an OpenRouter API bug. When we receive cross-contaminated requests, we now immediately abort the http request (saves tokens, and prevents gibberish from bleeding through). @Min</li>
+<li>Comprehensively fixed everywhere that we can leak utf8 characters @Daikichi  ❤️</li>
+<li>Fixed an access violation with the active effect tracker. @Naitro</li>
+<li>Removed agent (like prompt helper agent) config from overrides, as this doesn't make sense to override per-actor @Min</li>
+<li>Fixed missing actor_name context variable for Papyrus Action event lines</li>
+<li>Hit events now filter non-actor hits immediately - Some mods cause a flood of non-actor hit events, which was causing us to choke during combat sometimes.</li>
+<li>Stripped backticks from action evaluation and target selection responses.</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta11</category>
+        </item>
     </channel>
 </rss>
