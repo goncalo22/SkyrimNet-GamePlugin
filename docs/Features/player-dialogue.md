@@ -193,8 +193,6 @@ SkyrimNet integrates with DBVO to provide **dynamic player voicing** using its o
 1. Install **Dragonborn Voice Over**.  
 2. **Disable or delete `DBVO.esp`** — no voice pack is needed.  
 3. SkyrimNet will automatically **capture DBVO dialogue events** and send them to TTS.  
-4. You can configure response delay under:  
-   `Advanced Configuration → game → Player-Voiced Vanilla Dialogue (DBVO)`  
 
 > ⚠️ **Note:** If `DBVO.esp` is active, SkyrimNet will automatically **disable this feature** to prevent conflicts with DBVO’s own voice system.
 
