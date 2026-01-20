@@ -4,10 +4,389 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Wed, 24 Dec 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 19 Jan 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta14  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release</guid>
+            <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta14]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 14 Latest</p>
+<h1>SkyrimNet Beta14 @everyone</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="highlights">Highlights<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#highlights" class="hash-link" aria-label="Direct link to Highlights" title="Direct link to Highlights">​</a></h2>
+<p>This release brings major performance improvements, unified builds for all GPU types, per-save character isolation, and a wealth of new features for both users and template authors. This update should result in considerably snappier AI responses, particularly for users utilizing many of our community plugins.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="unified-build-dowser">Unified Build @Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#unified-build-dowser" class="hash-link" aria-label="Direct link to Unified Build @Dowser" title="Direct link to Unified Build @Dowser">​</a></h3>
+<ul>
+<li>SkyrimNet no longer requires separate CUDA vs universal builds - a single unified build works for all GPU types</li>
+<li>Non-NVIDIA cards can now use local Whisper</li>
+<li>Secondary GPU cards can be used for Whisper by setting the GPU index number</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="parallel-tts-generation-min">Parallel TTS Generation @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#parallel-tts-generation-min" class="hash-link" aria-label="Direct link to Parallel TTS Generation @Min" title="Direct link to Parallel TTS Generation @Min">​</a></h3>
+<ul>
+<li>Enabled parallel TTS generation for ElevenLabs and Inworld engines</li>
+<li>Significant latency improvements for background dialogue and universal translator / silent dialogue with many NPCs</li>
+<li>Per-engine rate limiting to avoid exceeding api limits (default 2 concurrent; Users with fancier Elevenlabs subscriptions can raise this further as desired)</li>
+<li>Configurable via <code>max_parallel_requests</code> in TTS config (1-8: 1=no parallelism)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="per-save-character-bio-isolation-min">Per-Save Character Bio Isolation @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#per-save-character-bio-isolation-min" class="hash-link" aria-label="Direct link to Per-Save Character Bio Isolation @Min" title="Direct link to Per-Save Character Bio Isolation @Min">​</a></h3>
+<ul>
+<li>Character bios are now isolated per save game, allowing different playthroughs to have unique character histories</li>
+<li>Save-specific static and dynamic bios stored in <code>prompts/_saves/&lt;saveId&gt;/characters/</code></li>
+<li>Automatic resolution: uses save-specific version if it exists, falls back to global</li>
+<li>Frontend shows lock icon for characters with save-specific overrides</li>
+<li>Existing dynamic bios migrate automatically the next time they're generated</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="messagebox-events-min">MessageBox Events @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#messagebox-events-min" class="hash-link" aria-label="Direct link to MessageBox Events @Min" title="Direct link to MessageBox Events @Min">​</a></h3>
+<ul>
+<li>Message boxes opening are now a supported event type that can be added to the context, handled like any other event</li>
+<li>Triggers can now react to the content of message boxes</li>
+<li>New <strong>Message Explorer</strong> in the web UI to browse all game messages with filtering and "Create Trigger" integration</li>
+<li>New MCP integration to view and explore message boxes for all loaded plugins</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npc-trigger-actions-min">Virtual NPC Trigger Actions @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#virtual-npc-trigger-actions-min" class="hash-link" aria-label="Direct link to Virtual NPC Trigger Actions @Min" title="Direct link to Virtual NPC Trigger Actions @Min">​</a></h3>
+<ul>
+<li>Virtual NPCs can now be dynamically enabled and disabled through triggers</li>
+<li>Triggers can now scope events specifically to virtual NPCs</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-tts-chatterbox-lemonade339">New TTS: Chatterbox @lemonade339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#new-tts-chatterbox-lemonade339" class="hash-link" aria-label="Direct link to New TTS: Chatterbox @lemonade339" title="Direct link to New TTS: Chatterbox @lemonade339">​</a></h3>
+<ul>
+<li>Added support for Chatterbox TTS engine</li>
+<li>Download: <a href="https://github.com/langfod/chatterbox/releases/latest" target="_blank" rel="noopener noreferrer">https://github.com/langfod/chatterbox/releases/latest</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mcp-memory-management-tools-min">MCP Memory Management Tools @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#mcp-memory-management-tools-min" class="hash-link" aria-label="Direct link to MCP Memory Management Tools @Min" title="Direct link to MCP Memory Management Tools @Min">​</a></h3>
+<p>Added full CRUD operations for the memory system via MCP, enabling agentic workflows to create and manage character memories:</p>
+<ul>
+<li><code>list_memories</code> — List memories with filtering by actor, type, and importance (pagination supported)</li>
+<li><code>get_memory</code> — Get full memory details by ID</li>
+<li><code>create_memory</code> — Create a new memory with automatic vector embedding generation</li>
+<li><code>update_memory</code> — Update existing memory (regenerates embedding if content changes)</li>
+<li><code>search_memories</code> — Semantic similarity search across memories using vector embeddings</li>
+<li><code>delete_memory</code> — Permanently delete a memory and its embedding</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ui-notifications-min">UI Notifications @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#ui-notifications-min" class="hash-link" aria-label="Direct link to UI Notifications @Min" title="Direct link to UI Notifications @Min">​</a></h3>
+<ul>
+<li>New banner notification system in the web UI</li>
+<li>Prompts that fail validation now show a warning banner - you can still use invalid prompts, but you'll know about it</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="http-retry-with-exponential-backoff-min">HTTP Retry with Exponential Backoff @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#http-retry-with-exponential-backoff-min" class="hash-link" aria-label="Direct link to HTTP Retry with Exponential Backoff @Min" title="Direct link to HTTP Retry with Exponential Backoff @Min">​</a></h3>
+<ul>
+<li>HTTP requests now automatically retry on 5xx errors and timeouts</li>
+<li>Reduces failures when AI providers experience temporary issues</li>
+<li>Applies to both TTS and AI providers</li>
+<li>Configurable independently via <code>max_retries</code> in each provider's config (default: 1 retry = 2 total attempts)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="quick-toggles-daikichi">Quick Toggles @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#quick-toggles-daikichi" class="hash-link" aria-label="Direct link to Quick Toggles @Daikichi" title="Direct link to Quick Toggles @Daikichi">​</a></h3>
+<ul>
+<li>Added <strong>Player Memories</strong> option to MemoryFilter config - controls whether player memories are generated<!-- -->
+<ul>
+<li>Can be disabled to reduce memory generation costs, although player thoughts and diary coherency will suffer</li>
+</ul>
+</li>
+<li>Added <strong>NPC Reactions</strong> toggle in the top-right of the web UI - more easily enable/disable NPC reaction events</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="performance-improvements">Performance Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#performance-improvements" class="hash-link" aria-label="Direct link to Performance Improvements" title="Direct link to Performance Improvements">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="template-decorator-caching-min">Template Decorator Caching @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#template-decorator-caching-min" class="hash-link" aria-label="Direct link to Template Decorator Caching @Min" title="Direct link to Template Decorator Caching @Min">​</a></h3>
+<ul>
+<li>Added intelligent callback caching for template decorators - return values from decorators called with the same arguments during a single dialogue generation are now cached and reused. Effectively, this means that we will only execute a decorator once over the course of a single dialogue generation if called with the same arguments. This cache does not persist beyond the life of that single dialogue generation. Multiple template renders happening in parallel will still continue to have strong isolation.</li>
+<li><strong>Significantly</strong> improves render times for users with many add-ons</li>
+<li>Callback cache pre-warms when you press the player input hotkey for faster initial response times</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="eligibility-pre-warming-min">Eligibility Pre-warming @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#eligibility-pre-warming-min" class="hash-link" aria-label="Direct link to Eligibility Pre-warming @Min" title="Direct link to Eligibility Pre-warming @Min">​</a></h3>
+<ul>
+<li>Pre-warm action eligibility caches during input preparation, reducing latency for embedded actions</li>
+<li>Batched decorator and eligibility warmup significantly reduces thread contention</li>
+<li>Improved to utilize far fewer threads used for decorator warmup for users with many Papyrus decorators and/or actions</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="other-performance-min">Other Performance @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#other-performance-min" class="hash-link" aria-label="Direct link to Other Performance @Min" title="Direct link to Other Performance @Min">​</a></h3>
+<ul>
+<li>Active effect event handling performance improvements</li>
+<li>ThreadPool refactored to improve performance and fix potential resource leak (may have been resulting in game freezes when things were breaking)</li>
+<li>Fixed an issue causing up to 2 seconds of LLM response delay when using plugins containing Papyrus actions and Virtual NPCs</li>
+<li>A number of other different inja/template performance enhancements</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="omnisight--item-rendering-improvements-dowser">Omnisight / Item Rendering Improvements @Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#omnisight--item-rendering-improvements-dowser" class="hash-link" aria-label="Direct link to Omnisight / Item Rendering Improvements @Dowser" title="Direct link to Omnisight / Item Rendering Improvements @Dowser">​</a></h2>
+<ul>
+<li>Added PBR (Physically Based Rendering) support for more accurate visuals on a wider variety of item types</li>
+<li>Added support for transparency, specular highlights, and cubemap reflections</li>
+<li>Fixed vertex colors and glossiness issues for more accurate item images</li>
+<li>Improved RGBA handling for better image quality</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="for-template-authors">For Template Authors<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#for-template-authors" class="hash-link" aria-label="Direct link to For Template Authors" title="Direct link to For Template Authors">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-decorators-min">New Decorators @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#new-decorators-min" class="hash-link" aria-label="Direct link to New Decorators @Min" title="Direct link to New Decorators @Min">​</a></h3>
+<ul>
+<li><code>get_location(entityUUID)</code> — Get the formatted location name for any actor, not just the player</li>
+<li><code>get_nearby_references_for_entity(uuid, radius, typeFilter)</code> — Query world objects around any entity's position</li>
+<li><code>group_by(array, field)</code> — Efficient array categorization in templates</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="expanded-decorator-usage-lemonade339-min">Expanded Decorator Usage @lemonade339 @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#expanded-decorator-usage-lemonade339-min" class="hash-link" aria-label="Direct link to Expanded Decorator Usage @lemonade339 @Min" title="Direct link to Expanded Decorator Usage @lemonade339 @Min">​</a></h3>
+<ul>
+<li>Our full library of decorators can now be used in most places (action description strings, etc.)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="debugging-min">Debugging @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#debugging-min" class="hash-link" aria-label="Direct link to Debugging @Min" title="Direct link to Debugging @Min">​</a></h3>
+<ul>
+<li>Added <code>verboseInjaTracing</code> config option for debugging template performance (disabled by default)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks--improvements">Tweaks &amp; Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#tweaks--improvements" class="hash-link" aria-label="Direct link to Tweaks &amp; Improvements" title="Direct link to Tweaks &amp; Improvements">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="audio-min">Audio @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#audio-min" class="hash-link" aria-label="Direct link to Audio @Min" title="Direct link to Audio @Min">​</a></h3>
+<ul>
+<li>Fixed intermittent delays between audio segments</li>
+<li>Should be much snappier now overall</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="continuous-mode-min">Continuous Mode @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#continuous-mode-min" class="hash-link" aria-label="Direct link to Continuous Mode @Min" title="Direct link to Continuous Mode @Min">​</a></h3>
+<ul>
+<li>Simplified and more reliable continuous mode - Continuous mode conversations should now be more coherent and smooth</li>
+<li>Fixed issues where multiple responses could trigger at once</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sttwhisper-daikichidowser">STT/Whisper @Daikichi@Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#sttwhisper-daikichidowser" class="hash-link" aria-label="Direct link to STT/Whisper @Daikichi@Dowser" title="Direct link to STT/Whisper @Daikichi@Dowser">​</a></h3>
+<ul>
+<li>Whisper STT config changes now apply immediately without requiring a game restart @Daikichi</li>
+<li>Improved GPU detection: Vulkan now prioritized over OpenCL for better cross-platform compatibility @Dowser</li>
+<li>Whisper inference provider (e.g CUDA, Vulkan, etc) now displayed in Easy Test &amp; Setup page @Min</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configuration-daikichimin">Configuration @Daikichi@Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#configuration-daikichimin" class="hash-link" aria-label="Direct link to Configuration @Daikichi@Min" title="Direct link to Configuration @Daikichi@Min">​</a></h3>
+<ul>
+<li>Replaced the "Include Reasoning Disabled" LLM config option with "Allow Reasoning" for clarity @Daikichi<!-- -->
+<ul>
+<li><strong>Important:</strong> Players who have customized their "Include Reasoning Disabled" options will need to set it again using the new field</li>
+</ul>
+</li>
+<li>Process TTS text before testing in the Test page, to match how it's actually done in game @Daikichi</li>
+<li>Default TTS connection timeout increased from 2 to 5 seconds for users on slower networks @Min</li>
+<li>Virtual NPCs now appear in the nearby characters API, enabling config overrides for virtual actors @Min</li>
+<li>Added "Invisible Continues Linked to Self" to filtered dialogue topics (add to your <code>excludedTopics</code> list if upgrading) @Min</li>
+<li>Memory generation prompt updated to produce more token efficient memories @Min</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed issue with tag parsing logic resulting in audio tags sometimes being read aloud @Daikichi</li>
+<li>Stop player character from automatically responding to speech by virtual NPCs @Daikichi</li>
+<li>Fixed the default settings for Dynamic Bio update resulting in a "reasoning is mandatory" error - <code>CharacterProfileGeneration</code> variant now defaults to allowing reasoning @Daikichi</li>
+<li>Fixed heap corruption issue for users using some community plugins @Min</li>
+<li>Fixed virtual NPCs not being found when selected as speaker by GM @Min</li>
+<li>Worked around a rare Skyrim engine bug that would cause the player's name to be retrieved as an empty string @vrelk</li>
+<li>Fixed nearby object detection incorrectly including disabled/deleted game objects @Min</li>
+<li>Fixed trigger editor modal closing unexpectedly when clicking outside the form area @Min</li>
+<li>Dead NPCs are no longer selected as dialogue targets (they still appear in scene descriptions) @Min</li>
+<li>Fixed actors getting stuck in "InDialogue" state when LLM requests timeout, causing GM to stop autonomously starting dialogue until the game was rebooted @Min</li>
+<li>Fixed hotkeys being laggy/unresponsive when callbacks took too long to execute @Min</li>
+<li>Fixed duplicate actors appearing in event's involved actors list @Min</li>
+<li>Prompt editor now validates the <code>render_mode</code> requirement when saving @Min</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="softly-breaking-changes">(Softly) Breaking Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#softly-breaking-changes" class="hash-link" aria-label="Direct link to (Softly) Breaking Changes" title="Direct link to (Softly) Breaking Changes">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="template-authors-min">Template Authors @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/19/beta14-release#template-authors-min" class="hash-link" aria-label="Direct link to Template Authors @Min" title="Direct link to Template Authors @Min">​</a></h3>
+<ul>
+<li><code>character_bio</code> submodule templates must now include a <code>render_mode</code> check in the first 5 lines. It is best practice to guard all template logic behind these checks to avoid unnecessary work (As subsets of the character bio are rendered many different times for different usecases)</li>
+<li>The web UI will block saving templates that don't follow this convention</li>
+<li>Existing non-compliant templates will show a warning banner but continue to work</li>
+<li>Plugin authors should update their templates to avoid warnings</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta14</category>
+        </item>
+        <item>
+            <title><![CDATA[SkyrimNet Beta13  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release</guid>
+            <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta13]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 13 Latest</p>
+<h1>SkyrimNet Beta 13 Changelog @everyone</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npcs-daikichi">Virtual NPCs @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#virtual-npcs-daikichi" class="hash-link" aria-label="Direct link to Virtual NPCs @Daikichi" title="Direct link to Virtual NPCs @Daikichi">​</a></h3>
+<p>Create AI entities that exist purely in the prompt context — no physical actor in the game world required.</p>
+<ul>
+<li><strong>Public mode</strong>: Treated like a regular NPC, can talk to everyone and everyone can talk to them. Good for scenarios like "talking ring that the player carries"</li>
+<li><strong>Private mode</strong>: Only the player and other private virtual NPCs can hear their speech. Good for scenarios like "Guide entity that gives advice on the game" or "Sheogorath inhabiting the player's mind"</li>
+<li>When added, a blank prompt file is created for the entity with the name (name)_virtual.prompt; Edit this to customize the behavior of your new Virtual NPC!</li>
+<li>Virtual NPCs always use the player's position for distance and line of sight checks</li>
+<li>They have memories and can write diaries</li>
+<li>Optional config setting to let regular NPCs respond to private virtual NPC speech (without that speech being in their context)</li>
+<li>Papyrus API for dynamic management during playthroughs:<!-- -->
+<ul>
+<li><code>RegisterVirtualNPC</code>, <code>UpdateVirtualNPC</code>, <code>EnableVirtualNPC</code>, <code>DisableVirtualNPC</code></li>
+<li>Useful for modders creating entities for quests, such as on quest update or opening a cursed book</li>
+</ul>
+</li>
+<li>Compatible with Floating Subtitles</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="omnisight-direct-framebuffer-capture-min">OmniSight: Direct Framebuffer Capture @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#omnisight-direct-framebuffer-capture-min" class="hash-link" aria-label="Direct link to OmniSight: Direct Framebuffer Capture @Min" title="Direct link to OmniSight: Direct Framebuffer Capture @Min">​</a></h3>
+<p>Completely rebuilt the screenshot capture portion of the vision system to read directly from Skyrim's renderer instead of using screen capture.</p>
+<ul>
+<li>Should work cross-platform via DXVK on Linux (standard D3D11 API)</li>
+<li>Works without borderless fullscreen being required</li>
+<li>Faster and more performant</li>
+<li>Compatible with Community Shaders, Upscaler, and other rendering mods</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="interrupt-support-min">Interrupt Support @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#interrupt-support-min" class="hash-link" aria-label="Direct link to Interrupt Support @Min" title="Direct link to Interrupt Support @Min">​</a></h3>
+<p>NPCs can now be interrupted mid-speech. When an interrupt happens (e.g., combat starts, you speak over them), the system:</p>
+<ul>
+<li>Stops audio playback immediately</li>
+<li>Rewrites event history to reflect only what was actually heard — if an NPC was halfway through a response, segments that had not yet been played are deleted. This typically truncates at the sentence boundary, rounding up to the end fo the sentence if interrupted mid-sentence. If dialogue was queued but never played, it's deleted entirely. This keeps NPCs from "remembering" things they never actually said.</li>
+<li>New dedicated hotkey (with wheel support) to interrupt dialogue on demand</li>
+<li>New Papyrus API to purge dialogue on demand</li>
+<li>Events and triggers now support an <code>interrupt</code> flag in their config schemas, to specify if they should trigger this behavior.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="just-in-time-speaker-selection-min">Just-in-Time Speaker Selection @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#just-in-time-speaker-selection-min" class="hash-link" aria-label="Direct link to Just-in-Time Speaker Selection @Min" title="Direct link to Just-in-Time Speaker Selection @Min">​</a></h3>
+<p>Previously, the system would figure out who speaks next immediately after generating dialogue, causing dialogue to queue up rapidly with NPCs continuing conversations for minutes after the initial trigger.</p>
+<p>Now, speaker selection is deferred until the audio queue is nearly empty:</p>
+<ul>
+<li>Evaluation triggers when non-silent audio drops to a configurable threshold (default: 1 segment remaining)</li>
+<li>Silent dialogue (Universal Translator) doesn't count — only audible speech matters</li>
+<li>Result: Dialogue stays responsive to the current situation rather than playing out stale queued responses</li>
+<li>Tune with the "Audio Queue Near Completion Threshold" setting in Game Config. If using slow LLMs or TTS this value may need to be raised in order to avoid gaps inbetween sentences; Looking for feedback from people on what ends up working well for them, will raise the default here as needed based on feedback.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="template-preview-system-min">Template Preview System @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#template-preview-system-min" class="hash-link" aria-label="Direct link to Template Preview System @Min" title="Direct link to Template Preview System @Min">​</a></h3>
+<p>Live template preview in the Prompts and Characters pages.</p>
+<ul>
+<li>Preview current editor content or system templates (dialogue_response, player_thoughts, player_transform)</li>
+<li>Select NPCs from nearby actors (including Virtual NPCs) to test with real game context</li>
+<li>Clickable trace links to inspect render performance in Trace Explorer</li>
+<li>Full-text prompt content search with highlighted matching snippets</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-mcp-tools-min">New MCP tools @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#new-mcp-tools-min" class="hash-link" aria-label="Direct link to New MCP tools @Min" title="Direct link to New MCP tools @Min">​</a></h3>
+<ul>
+<li><code>render_template</code> tool for previewing templates in real-time from external tools</li>
+<li>Several new tools for inspecting action eligibility for actors</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="multi-speaker-piper-tts-models-daikichi">Multi-Speaker Piper TTS Models @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#multi-speaker-piper-tts-models-daikichi" class="hash-link" aria-label="Direct link to Multi-Speaker Piper TTS Models @Daikichi" title="Direct link to Multi-Speaker Piper TTS Models @Daikichi">​</a></h3>
+<p>Added support for multi-speaker Piper voice models.</p>
+<ul>
+<li>New <code>speaker_id</code> configuration field in Piper config (0-based speaker index)</li>
+<li>Per-voice override support for speaker selection</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sendcustomprompttollm-api-min">SendCustomPromptToLLM API @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#sendcustomprompttollm-api-min" class="hash-link" aria-label="Direct link to SendCustomPromptToLLM API @Min" title="Direct link to SendCustomPromptToLLM API @Min">​</a></h3>
+<p>New Papyrus API for invoking the LLM with arbitrary prompts and template variables. This API was previously unimplemented; thus, I changed the signature considerably to function better. This allows you to make whatever LLM call you want for any arbitrary prompt that you create, and then receive the response via a callback in-game. LLM Response is truncated to 750 characters to avoid Papyrus string limits.</p>
+<div class="language-papyrus codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-papyrus codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Function SendTestPrompt()</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ; Build context variables as JSON — available in template as {{ playerName }}, {{ location }}, etc.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    string contextJson = "{\"playerName\":\"" + Game.GetPlayer().GetDisplayName() + "\",\"location\":\"Skyrim\"}"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ; Parameters: prompt template name, variant, context JSON, callback quest, script name, callback function</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    int result = SkyrimNetApi.SendCustomPromptToLLM( \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "dev/mcm_test", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        contextJson, \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Self as Quest, \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "SkyrimNet_CustomPromptDemo", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "OnLLMResponse" \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    )</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EndFunction</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Callback invoked when LLM responds — signature must be: Function Name(String response, int success)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Function OnLLMResponse(String response, int success)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    if success == 1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Debug.MessageBox("LLM says:\n\n" + response)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    else</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Debug.MessageBox("LLM Error:\n\n" + response)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    endif</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EndFunction</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mcm-api-testing-panel-min">MCM API Testing Panel @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#mcm-api-testing-panel-min" class="hash-link" aria-label="Direct link to MCM API Testing Panel @Min" title="Direct link to MCM API Testing Panel @Min">​</a></h3>
+<p>New panel in the MCM for exercising and testing API functions. Useful for debugging and mod development.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="structured-json-action-evaluation-naitro2010">Structured JSON Action Evaluation @naitro2010<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#structured-json-action-evaluation-naitro2010" class="hash-link" aria-label="Direct link to Structured JSON Action Evaluation @naitro2010" title="Direct link to Structured JSON Action Evaluation @naitro2010">​</a></h3>
+<p>Optional structured JSON support for action evaluation on OpenRouter providers that support it, as well as local LLMs.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-decorators">New Decorators<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#new-decorators" class="hash-link" aria-label="Direct link to New Decorators" title="Direct link to New Decorators">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="has_line_of_sightactor1uuid-actor2uuid--category-actor-min"><code>has_line_of_sight(actor1UUID, actor2UUID)</code> — Category: Actor @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#has_line_of_sightactor1uuid-actor2uuid--category-actor-min" class="hash-link" aria-label="Direct link to has_line_of_sightactor1uuid-actor2uuid--category-actor-min" title="Direct link to has_line_of_sightactor1uuid-actor2uuid--category-actor-min">​</a></h3>
+<p>Returns true if two actors can see each other using SkyrimNet's Line of Sight algorithm:</p>
+<ul>
+<li>Native gaze direction + field of view checks (is either actor looking at the other?)</li>
+<li>Raycast physics to detect physical obstructions (walls, terrain)</li>
+<li>Special furniture handling for actors sitting, sleeping, or using workbenches</li>
+<li>Bypassed when in combat, or within a tight radius of eachother
+The check is bidirectional — returns true if EITHER actor can potentially perceive the other.</li>
+</ul>
+<blockquote>
+<p>Warning: This decorator is expensive as it must execute on the main game thread. Don't use this on many NPCs in your prompts or it will impact performance.</p>
+</blockquote>
+<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if has_line_of_sight(actor.UUID, player.UUID) %}{{ actor.name }} can see the player{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% for npc in nearbyNPCs %}{% if has_line_of_sight(actor.UUID, npc.UUID) %}Can see: {{ npc.name }}{% endif %}{% endfor %}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="distance_betweenactor1uuid-actor2uuid--category-actor-min"><code>distance_between(actor1UUID, actor2UUID)</code> — Category: Actor @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#distance_betweenactor1uuid-actor2uuid--category-actor-min" class="hash-link" aria-label="Direct link to distance_betweenactor1uuid-actor2uuid--category-actor-min" title="Direct link to distance_betweenactor1uuid-actor2uuid--category-actor-min">​</a></h3>
+<p>Calculates the 3D distance between two actors in game units (~70 units ≈ 1 meter).</p>
+<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if distance_between(actor.UUID, player.UUID) &lt; 200 %}{{ actor.name }} is very close{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set dist = distance_between(guard.UUID, thief.UUID) %}Distance: {{ dist }} units</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_merchant_inventoryactoruuid--category-equipment-min"><code>get_merchant_inventory(actorUUID)</code> — Category: Equipment @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#get_merchant_inventoryactoruuid--category-equipment-min" class="hash-link" aria-label="Direct link to get_merchant_inventoryactoruuid--category-equipment-min" title="Direct link to get_merchant_inventoryactoruuid--category-equipment-min">​</a></h3>
+<p>Returns a merchant NPC's inventory (items for sale). Finds the vendor faction the actor belongs to and retrieves items from the associated merchant container.</p>
+<p>Returns an object containing:</p>
+<ul>
+<li><code>isMerchant</code> — boolean indicating if the actor is a merchant</li>
+<li><code>vendorFaction</code> — the faction name</li>
+<li><code>vendorFactionFormID</code> — the faction's form ID</li>
+<li><code>buysStolen</code> / <code>buysNonStolen</code> — what the merchant will buy</li>
+<li><code>startHour</code> / <code>endHour</code> — trading hours</li>
+<li><code>items</code> — array of items with name, formID, count, value, weight, type, keywords<!-- -->
+<ul>
+<li>Weapons include damage and weaponType</li>
+<li>Armor includes armorRating</li>
+</ul>
+</li>
+</ul>
+<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if get_merchant_inventory(npc.UUID).isMerchant %}{{ actor(npc.UUID).name }} is a merchant!{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set shop = get_merchant_inventory(npc.UUID) %}{% for item in shop.items %}{{ item.name }}: {{ item.value }} gold{% endfor %}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="scene-decorators-for-world-awareness-min">Scene Decorators for World Awareness @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#scene-decorators-for-world-awareness-min" class="hash-link" aria-label="Direct link to Scene Decorators for World Awareness @Min" title="Direct link to Scene Decorators for World Awareness @Min">​</a></h3>
+<p><strong><code>get_nearby_references(radius, typeFilter)</code></strong> — Query nearby items, furniture, and containers with camera-relative positions.</p>
+<ul>
+<li>Filter by type: weapons, potions, furniture, containers, consumables, equipment, treasure, and more</li>
+<li>Enables NPCs to perceive and reference objects in the world around them</li>
+</ul>
+<p><strong><code>get_container_contents(formID)</code></strong> — Inspect what's inside chests, barrels, and other containers.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_quest_alias_actor-min"><code>get_quest_alias_actor</code> @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#get_quest_alias_actor-min" class="hash-link" aria-label="Direct link to get_quest_alias_actor-min" title="Direct link to get_quest_alias_actor-min">​</a></h3>
+<p>Get the actor assigned to a quest alias.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npc-decorators-daikichi">Virtual NPC Decorators @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#virtual-npc-decorators-daikichi" class="hash-link" aria-label="Direct link to Virtual NPC Decorators @Daikichi" title="Direct link to Virtual NPC Decorators @Daikichi">​</a></h3>
+<ul>
+<li><code>decnpc(npc.UUID).isVirtual</code> — true if this is a virtual NPC</li>
+<li><code>decnpc(npc.UUID).isVirtualPublic</code> — true if public mode virtual NPC</li>
+<li><code>decnpc(npc.UUID).isVirtualPrivate</code> — true if private mode virtual NPC</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="decnpcheight-lemonade339"><code>decnpc().height</code> @lemonade339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#decnpcheight-lemonade339" class="hash-link" aria-label="Direct link to decnpcheight-lemonade339" title="Direct link to decnpcheight-lemonade339">​</a></h3>
+<p>The <code>decnpc()</code> decorator now includes a <code>height</code> field that returns the actor's calculated height (race base height × individual height multiplier).</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-improvements">Decorator Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#decorator-improvements" class="hash-link" aria-label="Direct link to Decorator Improvements" title="Direct link to Decorator Improvements">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_script_property--array--object-type-preservation-min"><code>get_script_property</code> — Array &amp; Object Type Preservation @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#get_script_property--array--object-type-preservation-min" class="hash-link" aria-label="Direct link to get_script_property--array--object-type-preservation-min" title="Direct link to get_script_property--array--object-type-preservation-min">​</a></h3>
+<p>Previously returned string values only. Now preserves proper types:</p>
+<ul>
+<li>Arrays are fully iterable with <code>{% for %}</code> loops</li>
+<li>Objects (like ReferenceAlias targets) are resolved and return structured data with formId, editorId, name, baseFormId, baseName fields</li>
+<li>Primitives keep their types (int, float, bool, string)</li>
+<li>Now supports script variables as well as properties</li>
+</ul>
+<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% set actors = get_script_property("MyQuest", "MyScript", "ActorList") %}{% for actor in actors %}{{ actor }}{% endfor %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set npc = get_script_property("MyQuest", "MyScript", "TargetNPC") %}{{ npc.name }} ({{ npc.editorId }})</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set items = get_script_property("MyQuest", "MyScript", "ItemArray") %}{{ length(items) }} items, first: {{ first(items) }}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="enhanced-spell-information-min">Enhanced Spell Information @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#enhanced-spell-information-min" class="hash-link" aria-label="Direct link to Enhanced Spell Information @Min" title="Direct link to Enhanced Spell Information @Min">​</a></h3>
+<p><code>get_spell_list</code> now returns detailed spell metadata:</p>
+<ul>
+<li>School (Destruction, Restoration, etc.)</li>
+<li>Casting type</li>
+<li>Delivery method</li>
+<li>Filters out passive abilities and mod junk (no more bedrolls in spell lists)</li>
+<li>Includes powers, lesser powers, and voice powers alongside regular spells</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="native-decorator-protection-min">Native Decorator Protection @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#native-decorator-protection-min" class="hash-link" aria-label="Direct link to Native Decorator Protection @Min" title="Direct link to Native Decorator Protection @Min">​</a></h3>
+<p>Native decorators now take precedence over Papyrus script decorators. Prevents mods from accidentally overriding core SkyrimNet functionality.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="papyrus-decorator-performance-min">Papyrus Decorator Performance @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#papyrus-decorator-performance-min" class="hash-link" aria-label="Direct link to Papyrus Decorator Performance @Min" title="Direct link to Papyrus Decorator Performance @Min">​</a></h3>
+<p>Papyrus decorators are now pre-cached more aggressively. Before response generation begins (no more than once every 5 seconds), the system pre-resolves Papyrus decorator data for the player plus a configurable number of nearby actors (default: 6), prioritizing followers. This will result in substantive response time improvements for users of mods that are using papyrus decorators, though comes at the cost of increasing Papyrus load a little.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="papyrus_util-decorator-performance-naitro2010">Papyrus_util decorator performance @naitro2010<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#papyrus_util-decorator-performance-naitro2010" class="hash-link" aria-label="Direct link to Papyrus_util decorator performance @naitro2010" title="Direct link to Papyrus_util decorator performance @naitro2010">​</a></h3>
+<ul>
+<li>Significantly sped up the performance of the papyrus_util decorator. No longer has to execute on the main game thread; For users at 60fps, this results in approximately a 99.5% improvement in decorator execution speed (232x). For users below 60fps, this will be even more pronounced.</li>
+<li>This will <strong>significantly</strong> improve the performance of Body Language, and other mods that rely on these decorators.</li>
+<li>These decorators are once more a preferred solution over calling into Papyrus to resolve data where possible.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tracing--debugging">Tracing &amp; Debugging<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#tracing--debugging" class="hash-link" aria-label="Direct link to Tracing &amp; Debugging" title="Direct link to Tracing &amp; Debugging">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-tracing-with-rich-metadata-min">Decorator Tracing with Rich Metadata @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#decorator-tracing-with-rich-metadata-min" class="hash-link" aria-label="Direct link to Decorator Tracing with Rich Metadata @Min" title="Direct link to Decorator Tracing with Rich Metadata @Min">​</a></h3>
+<p>Added comprehensive decorator tracing in the Trace Explorer.</p>
+<ul>
+<li>Visualize which decorators are taking what amount of time in template rendering</li>
+<li>Captures decorator arguments and return values</li>
+<li>Logs errors in trace spans when decorators throw exceptions</li>
+<li>Collapse Decorators / Expand All buttons with hidden span count badge (+N)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks">Tweaks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#tweaks" class="hash-link" aria-label="Direct link to Tweaks" title="Direct link to Tweaks">​</a></h2>
+<ul>
+<li>Changed default speech pacing: time window 35s -&gt; 60s, max recent speech count 5 -&gt; 3 (less frequent chatter)</li>
+<li>Changed default meta model to <code>x-ai/grok-4.1-fast</code> @Min</li>
+<li>Made the LLM variant dropdown literally impossible to miss @Daikichi</li>
+<li>When downloading voiced memories/diaries, now falls back to downloading the WAV file if MP3 conversion fails @Daikichi</li>
+<li>Allow ElevenLabs to skip cloning and go straight to TTS generation if the <code>voices_read</code> permission is missing @Daikichi</li>
+<li>Added <code>IsContinuousModeEnabled</code> Papyrus API @Min</li>
+<li>Disabled gamemaster narrate option by default @Min</li>
+<li>Significantly reduced logging verbosity @Min</li>
+<li>Updated MCP server to properly handle protocol negotiation with latest agentic software @Min</li>
+<li>Disabled the GameMaster DirectNarration action for the time being. Will revisit this again in the future. @Min</li>
+<li>Downgraded a number of harmless errors to warnings.</li>
+<li>Traces are now generated and tracked for non-player initiated requests.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/11/beta13-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed the TTS URL input in the Test &amp; Easy Setup page to show the correct URL when switching engines @Daikichi</li>
+<li>Fixed trigger originator and target for DirectNarration and PersistentEvent triggers — now correctly uses the originator, falling back to the player if unavailable @lemonade339</li>
+<li>Fixed PDB symbol loading for improved SEH diagnostics @Min</li>
+<li>Fixed character bios for Become High King of Skyrim @Daikichi</li>
+<li>Fixed diaries and manually-created memories not being used as memories @Daikichi</li>
+<li>Fixed temporary TTS Test virtual entities from being used later in prompts @Daikichi<!-- -->
+<ul>
+<li>If you have <code>TTS_TestEntity*</code> entries, delete your <code>VirtualEntities.yaml</code> and let it be recreated — this was a source of significant performance problems for some folks</li>
+</ul>
+</li>
+<li>Added more safeguards to prevent calling into Papyrus with invalid actors @Min</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta13</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta12  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/12/24/beta12-release</link>
@@ -1539,205 +1918,6 @@ More coming in this particular area soon.</li>
 </blockquote>]]></content:encoded>
             <category>release</category>
             <category>beta</category>
-        </item>
-        <item>
-            <title><![CDATA[SkyrimNet Beta13  Released]]></title>
-            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release</link>
-            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release</guid>
-            <pubDate>Sat, 11 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[SkyrimNet Beta13]]></description>
-            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 13 Latest</p>
-<h1>SkyrimNet Beta 13 Changelog @everyone</h1>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npcs-daikichi">Virtual NPCs @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#virtual-npcs-daikichi" class="hash-link" aria-label="Direct link to Virtual NPCs @Daikichi" title="Direct link to Virtual NPCs @Daikichi">​</a></h3>
-<p>Create AI entities that exist purely in the prompt context — no physical actor in the game world required.</p>
-<ul>
-<li><strong>Public mode</strong>: Treated like a regular NPC, can talk to everyone and everyone can talk to them. Good for scenarios like "talking ring that the player carries"</li>
-<li><strong>Private mode</strong>: Only the player and other private virtual NPCs can hear their speech. Good for scenarios like "Guide entity that gives advice on the game" or "Sheogorath inhabiting the player's mind"</li>
-<li>When added, a blank prompt file is created for the entity with the name (name)_virtual.prompt; Edit this to customize the behavior of your new Virtual NPC!</li>
-<li>Virtual NPCs always use the player's position for distance and line of sight checks</li>
-<li>They have memories and can write diaries</li>
-<li>Optional config setting to let regular NPCs respond to private virtual NPC speech (without that speech being in their context)</li>
-<li>Papyrus API for dynamic management during playthroughs:<!-- -->
-<ul>
-<li><code>RegisterVirtualNPC</code>, <code>UpdateVirtualNPC</code>, <code>EnableVirtualNPC</code>, <code>DisableVirtualNPC</code></li>
-<li>Useful for modders creating entities for quests, such as on quest update or opening a cursed book</li>
-</ul>
-</li>
-<li>Compatible with Floating Subtitles</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="omnisight-direct-framebuffer-capture-min">OmniSight: Direct Framebuffer Capture @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#omnisight-direct-framebuffer-capture-min" class="hash-link" aria-label="Direct link to OmniSight: Direct Framebuffer Capture @Min" title="Direct link to OmniSight: Direct Framebuffer Capture @Min">​</a></h3>
-<p>Completely rebuilt the screenshot capture portion of the vision system to read directly from Skyrim's renderer instead of using screen capture.</p>
-<ul>
-<li>Should work cross-platform via DXVK on Linux (standard D3D11 API)</li>
-<li>Works without borderless fullscreen being required</li>
-<li>Faster and more performant</li>
-<li>Compatible with Community Shaders, Upscaler, and other rendering mods</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="interrupt-support-min">Interrupt Support @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#interrupt-support-min" class="hash-link" aria-label="Direct link to Interrupt Support @Min" title="Direct link to Interrupt Support @Min">​</a></h3>
-<p>NPCs can now be interrupted mid-speech. When an interrupt happens (e.g., combat starts, you speak over them), the system:</p>
-<ul>
-<li>Stops audio playback immediately</li>
-<li>Rewrites event history to reflect only what was actually heard — if an NPC was halfway through a response, segments that had not yet been played are deleted. This typically truncates at the sentence boundary, rounding up to the end fo the sentence if interrupted mid-sentence. If dialogue was queued but never played, it's deleted entirely. This keeps NPCs from "remembering" things they never actually said.</li>
-<li>New dedicated hotkey (with wheel support) to interrupt dialogue on demand</li>
-<li>New Papyrus API to purge dialogue on demand</li>
-<li>Events and triggers now support an <code>interrupt</code> flag in their config schemas, to specify if they should trigger this behavior.</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="just-in-time-speaker-selection-min">Just-in-Time Speaker Selection @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#just-in-time-speaker-selection-min" class="hash-link" aria-label="Direct link to Just-in-Time Speaker Selection @Min" title="Direct link to Just-in-Time Speaker Selection @Min">​</a></h3>
-<p>Previously, the system would figure out who speaks next immediately after generating dialogue, causing dialogue to queue up rapidly with NPCs continuing conversations for minutes after the initial trigger.</p>
-<p>Now, speaker selection is deferred until the audio queue is nearly empty:</p>
-<ul>
-<li>Evaluation triggers when non-silent audio drops to a configurable threshold (default: 1 segment remaining)</li>
-<li>Silent dialogue (Universal Translator) doesn't count — only audible speech matters</li>
-<li>Result: Dialogue stays responsive to the current situation rather than playing out stale queued responses</li>
-<li>Tune with the "Audio Queue Near Completion Threshold" setting in Game Config. If using slow LLMs or TTS this value may need to be raised in order to avoid gaps inbetween sentences; Looking for feedback from people on what ends up working well for them, will raise the default here as needed based on feedback.</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="template-preview-system-min">Template Preview System @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#template-preview-system-min" class="hash-link" aria-label="Direct link to Template Preview System @Min" title="Direct link to Template Preview System @Min">​</a></h3>
-<p>Live template preview in the Prompts and Characters pages.</p>
-<ul>
-<li>Preview current editor content or system templates (dialogue_response, player_thoughts, player_transform)</li>
-<li>Select NPCs from nearby actors (including Virtual NPCs) to test with real game context</li>
-<li>Clickable trace links to inspect render performance in Trace Explorer</li>
-<li>Full-text prompt content search with highlighted matching snippets</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-mcp-tools-min">New MCP tools @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#new-mcp-tools-min" class="hash-link" aria-label="Direct link to New MCP tools @Min" title="Direct link to New MCP tools @Min">​</a></h3>
-<ul>
-<li><code>render_template</code> tool for previewing templates in real-time from external tools</li>
-<li>Several new tools for inspecting action eligibility for actors</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="multi-speaker-piper-tts-models-daikichi">Multi-Speaker Piper TTS Models @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#multi-speaker-piper-tts-models-daikichi" class="hash-link" aria-label="Direct link to Multi-Speaker Piper TTS Models @Daikichi" title="Direct link to Multi-Speaker Piper TTS Models @Daikichi">​</a></h3>
-<p>Added support for multi-speaker Piper voice models.</p>
-<ul>
-<li>New <code>speaker_id</code> configuration field in Piper config (0-based speaker index)</li>
-<li>Per-voice override support for speaker selection</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sendcustomprompttollm-api-min">SendCustomPromptToLLM API @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#sendcustomprompttollm-api-min" class="hash-link" aria-label="Direct link to SendCustomPromptToLLM API @Min" title="Direct link to SendCustomPromptToLLM API @Min">​</a></h3>
-<p>New Papyrus API for invoking the LLM with arbitrary prompts and template variables. This API was previously unimplemented; thus, I changed the signature considerably to function better. This allows you to make whatever LLM call you want for any arbitrary prompt that you create, and then receive the response via a callback in-game. LLM Response is truncated to 750 characters to avoid Papyrus string limits.</p>
-<div class="language-papyrus codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-papyrus codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Function SendTestPrompt()</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ; Build context variables as JSON — available in template as {{ playerName }}, {{ location }}, etc.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    string contextJson = "{\"playerName\":\"" + Game.GetPlayer().GetDisplayName() + "\",\"location\":\"Skyrim\"}"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ; Parameters: prompt template name, variant, context JSON, callback quest, script name, callback function</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    int result = SkyrimNetApi.SendCustomPromptToLLM( \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "dev/mcm_test", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        contextJson, \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Self as Quest, \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "SkyrimNet_CustomPromptDemo", \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        "OnLLMResponse" \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    )</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EndFunction</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Callback invoked when LLM responds — signature must be: Function Name(String response, int success)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Function OnLLMResponse(String response, int success)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    if success == 1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Debug.MessageBox("LLM says:\n\n" + response)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    else</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Debug.MessageBox("LLM Error:\n\n" + response)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    endif</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EndFunction</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mcm-api-testing-panel-min">MCM API Testing Panel @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#mcm-api-testing-panel-min" class="hash-link" aria-label="Direct link to MCM API Testing Panel @Min" title="Direct link to MCM API Testing Panel @Min">​</a></h3>
-<p>New panel in the MCM for exercising and testing API functions. Useful for debugging and mod development.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="structured-json-action-evaluation-naitro2010">Structured JSON Action Evaluation @naitro2010<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#structured-json-action-evaluation-naitro2010" class="hash-link" aria-label="Direct link to Structured JSON Action Evaluation @naitro2010" title="Direct link to Structured JSON Action Evaluation @naitro2010">​</a></h3>
-<p>Optional structured JSON support for action evaluation on OpenRouter providers that support it, as well as local LLMs.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-decorators">New Decorators<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#new-decorators" class="hash-link" aria-label="Direct link to New Decorators" title="Direct link to New Decorators">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="has_line_of_sightactor1uuid-actor2uuid--category-actor-min"><code>has_line_of_sight(actor1UUID, actor2UUID)</code> — Category: Actor @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#has_line_of_sightactor1uuid-actor2uuid--category-actor-min" class="hash-link" aria-label="Direct link to has_line_of_sightactor1uuid-actor2uuid--category-actor-min" title="Direct link to has_line_of_sightactor1uuid-actor2uuid--category-actor-min">​</a></h3>
-<p>Returns true if two actors can see each other using SkyrimNet's Line of Sight algorithm:</p>
-<ul>
-<li>Native gaze direction + field of view checks (is either actor looking at the other?)</li>
-<li>Raycast physics to detect physical obstructions (walls, terrain)</li>
-<li>Special furniture handling for actors sitting, sleeping, or using workbenches</li>
-<li>Bypassed when in combat, or within a tight radius of eachother
-The check is bidirectional — returns true if EITHER actor can potentially perceive the other.</li>
-</ul>
-<blockquote>
-<p>Warning: This decorator is expensive as it must execute on the main game thread. Don't use this on many NPCs in your prompts or it will impact performance.</p>
-</blockquote>
-<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if has_line_of_sight(actor.UUID, player.UUID) %}{{ actor.name }} can see the player{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% for npc in nearbyNPCs %}{% if has_line_of_sight(actor.UUID, npc.UUID) %}Can see: {{ npc.name }}{% endif %}{% endfor %}</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="distance_betweenactor1uuid-actor2uuid--category-actor-min"><code>distance_between(actor1UUID, actor2UUID)</code> — Category: Actor @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#distance_betweenactor1uuid-actor2uuid--category-actor-min" class="hash-link" aria-label="Direct link to distance_betweenactor1uuid-actor2uuid--category-actor-min" title="Direct link to distance_betweenactor1uuid-actor2uuid--category-actor-min">​</a></h3>
-<p>Calculates the 3D distance between two actors in game units (~70 units ≈ 1 meter).</p>
-<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if distance_between(actor.UUID, player.UUID) &lt; 200 %}{{ actor.name }} is very close{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set dist = distance_between(guard.UUID, thief.UUID) %}Distance: {{ dist }} units</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_merchant_inventoryactoruuid--category-equipment-min"><code>get_merchant_inventory(actorUUID)</code> — Category: Equipment @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#get_merchant_inventoryactoruuid--category-equipment-min" class="hash-link" aria-label="Direct link to get_merchant_inventoryactoruuid--category-equipment-min" title="Direct link to get_merchant_inventoryactoruuid--category-equipment-min">​</a></h3>
-<p>Returns a merchant NPC's inventory (items for sale). Finds the vendor faction the actor belongs to and retrieves items from the associated merchant container.</p>
-<p>Returns an object containing:</p>
-<ul>
-<li><code>isMerchant</code> — boolean indicating if the actor is a merchant</li>
-<li><code>vendorFaction</code> — the faction name</li>
-<li><code>vendorFactionFormID</code> — the faction's form ID</li>
-<li><code>buysStolen</code> / <code>buysNonStolen</code> — what the merchant will buy</li>
-<li><code>startHour</code> / <code>endHour</code> — trading hours</li>
-<li><code>items</code> — array of items with name, formID, count, value, weight, type, keywords<!-- -->
-<ul>
-<li>Weapons include damage and weaponType</li>
-<li>Armor includes armorRating</li>
-</ul>
-</li>
-</ul>
-<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% if get_merchant_inventory(npc.UUID).isMerchant %}{{ actor(npc.UUID).name }} is a merchant!{% endif %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set shop = get_merchant_inventory(npc.UUID) %}{% for item in shop.items %}{{ item.name }}: {{ item.value }} gold{% endfor %}</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="scene-decorators-for-world-awareness-min">Scene Decorators for World Awareness @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#scene-decorators-for-world-awareness-min" class="hash-link" aria-label="Direct link to Scene Decorators for World Awareness @Min" title="Direct link to Scene Decorators for World Awareness @Min">​</a></h3>
-<p><strong><code>get_nearby_references(radius, typeFilter)</code></strong> — Query nearby items, furniture, and containers with camera-relative positions.</p>
-<ul>
-<li>Filter by type: weapons, potions, furniture, containers, consumables, equipment, treasure, and more</li>
-<li>Enables NPCs to perceive and reference objects in the world around them</li>
-</ul>
-<p><strong><code>get_container_contents(formID)</code></strong> — Inspect what's inside chests, barrels, and other containers.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_quest_alias_actor-min"><code>get_quest_alias_actor</code> @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#get_quest_alias_actor-min" class="hash-link" aria-label="Direct link to get_quest_alias_actor-min" title="Direct link to get_quest_alias_actor-min">​</a></h3>
-<p>Get the actor assigned to a quest alias.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npc-decorators-daikichi">Virtual NPC Decorators @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#virtual-npc-decorators-daikichi" class="hash-link" aria-label="Direct link to Virtual NPC Decorators @Daikichi" title="Direct link to Virtual NPC Decorators @Daikichi">​</a></h3>
-<ul>
-<li><code>decnpc(npc.UUID).isVirtual</code> — true if this is a virtual NPC</li>
-<li><code>decnpc(npc.UUID).isVirtualPublic</code> — true if public mode virtual NPC</li>
-<li><code>decnpc(npc.UUID).isVirtualPrivate</code> — true if private mode virtual NPC</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="decnpcheight-lemonade339"><code>decnpc().height</code> @lemonade339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#decnpcheight-lemonade339" class="hash-link" aria-label="Direct link to decnpcheight-lemonade339" title="Direct link to decnpcheight-lemonade339">​</a></h3>
-<p>The <code>decnpc()</code> decorator now includes a <code>height</code> field that returns the actor's calculated height (race base height × individual height multiplier).</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-improvements">Decorator Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#decorator-improvements" class="hash-link" aria-label="Direct link to Decorator Improvements" title="Direct link to Decorator Improvements">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get_script_property--array--object-type-preservation-min"><code>get_script_property</code> — Array &amp; Object Type Preservation @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#get_script_property--array--object-type-preservation-min" class="hash-link" aria-label="Direct link to get_script_property--array--object-type-preservation-min" title="Direct link to get_script_property--array--object-type-preservation-min">​</a></h3>
-<p>Previously returned string values only. Now preserves proper types:</p>
-<ul>
-<li>Arrays are fully iterable with <code>{% for %}</code> loops</li>
-<li>Objects (like ReferenceAlias targets) are resolved and return structured data with formId, editorId, name, baseFormId, baseName fields</li>
-<li>Primitives keep their types (int, float, bool, string)</li>
-<li>Now supports script variables as well as properties</li>
-</ul>
-<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{% set actors = get_script_property("MyQuest", "MyScript", "ActorList") %}{% for actor in actors %}{{ actor }}{% endfor %}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set npc = get_script_property("MyQuest", "MyScript", "TargetNPC") %}{{ npc.name }} ({{ npc.editorId }})</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">{% set items = get_script_property("MyQuest", "MyScript", "ItemArray") %}{{ length(items) }} items, first: {{ first(items) }}</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="enhanced-spell-information-min">Enhanced Spell Information @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#enhanced-spell-information-min" class="hash-link" aria-label="Direct link to Enhanced Spell Information @Min" title="Direct link to Enhanced Spell Information @Min">​</a></h3>
-<p><code>get_spell_list</code> now returns detailed spell metadata:</p>
-<ul>
-<li>School (Destruction, Restoration, etc.)</li>
-<li>Casting type</li>
-<li>Delivery method</li>
-<li>Filters out passive abilities and mod junk (no more bedrolls in spell lists)</li>
-<li>Includes powers, lesser powers, and voice powers alongside regular spells</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="native-decorator-protection-min">Native Decorator Protection @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#native-decorator-protection-min" class="hash-link" aria-label="Direct link to Native Decorator Protection @Min" title="Direct link to Native Decorator Protection @Min">​</a></h3>
-<p>Native decorators now take precedence over Papyrus script decorators. Prevents mods from accidentally overriding core SkyrimNet functionality.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="papyrus-decorator-performance-min">Papyrus Decorator Performance @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#papyrus-decorator-performance-min" class="hash-link" aria-label="Direct link to Papyrus Decorator Performance @Min" title="Direct link to Papyrus Decorator Performance @Min">​</a></h3>
-<p>Papyrus decorators are now pre-cached more aggressively. Before response generation begins (no more than once every 5 seconds), the system pre-resolves Papyrus decorator data for the player plus a configurable number of nearby actors (default: 6), prioritizing followers. This will result in substantive response time improvements for users of mods that are using papyrus decorators, though comes at the cost of increasing Papyrus load a little.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="papyrus_util-decorator-performance-naitro2010">Papyrus_util decorator performance @naitro2010<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#papyrus_util-decorator-performance-naitro2010" class="hash-link" aria-label="Direct link to Papyrus_util decorator performance @naitro2010" title="Direct link to Papyrus_util decorator performance @naitro2010">​</a></h3>
-<ul>
-<li>Significantly sped up the performance of the papyrus_util decorator. No longer has to execute on the main game thread; For users at 60fps, this results in approximately a 99.5% improvement in decorator execution speed (232x). For users below 60fps, this will be even more pronounced.</li>
-<li>This will <strong>significantly</strong> improve the performance of Body Language, and other mods that rely on these decorators.</li>
-<li>These decorators are once more a preferred solution over calling into Papyrus to resolve data where possible.</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tracing--debugging">Tracing &amp; Debugging<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#tracing--debugging" class="hash-link" aria-label="Direct link to Tracing &amp; Debugging" title="Direct link to Tracing &amp; Debugging">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-tracing-with-rich-metadata-min">Decorator Tracing with Rich Metadata @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#decorator-tracing-with-rich-metadata-min" class="hash-link" aria-label="Direct link to Decorator Tracing with Rich Metadata @Min" title="Direct link to Decorator Tracing with Rich Metadata @Min">​</a></h3>
-<p>Added comprehensive decorator tracing in the Trace Explorer.</p>
-<ul>
-<li>Visualize which decorators are taking what amount of time in template rendering</li>
-<li>Captures decorator arguments and return values</li>
-<li>Logs errors in trace spans when decorators throw exceptions</li>
-<li>Collapse Decorators / Expand All buttons with hidden span count badge (+N)</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks">Tweaks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#tweaks" class="hash-link" aria-label="Direct link to Tweaks" title="Direct link to Tweaks">​</a></h2>
-<ul>
-<li>Changed default speech pacing: time window 35s -&gt; 60s, max recent speech count 5 -&gt; 3 (less frequent chatter)</li>
-<li>Changed default meta model to <code>x-ai/grok-4.1-fast</code> @Min</li>
-<li>Made the LLM variant dropdown literally impossible to miss @Daikichi</li>
-<li>When downloading voiced memories/diaries, now falls back to downloading the WAV file if MP3 conversion fails @Daikichi</li>
-<li>Allow ElevenLabs to skip cloning and go straight to TTS generation if the <code>voices_read</code> permission is missing @Daikichi</li>
-<li>Added <code>IsContinuousModeEnabled</code> Papyrus API @Min</li>
-<li>Disabled gamemaster narrate option by default @Min</li>
-<li>Significantly reduced logging verbosity @Min</li>
-<li>Updated MCP server to properly handle protocol negotiation with latest agentic software @Min</li>
-<li>Disabled the GameMaster DirectNarration action for the time being. Will revisit this again in the future. @Min</li>
-<li>Downgraded a number of harmless errors to warnings.</li>
-<li>Traces are now generated and tracked for non-player initiated requests.</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/01/11/beta13-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
-<ul>
-<li>Fixed the TTS URL input in the Test &amp; Easy Setup page to show the correct URL when switching engines @Daikichi</li>
-<li>Fixed trigger originator and target for DirectNarration and PersistentEvent triggers — now correctly uses the originator, falling back to the player if unavailable @lemonade339</li>
-<li>Fixed PDB symbol loading for improved SEH diagnostics @Min</li>
-<li>Fixed character bios for Become High King of Skyrim @Daikichi</li>
-<li>Fixed diaries and manually-created memories not being used as memories @Daikichi</li>
-<li>Fixed temporary TTS Test virtual entities from being used later in prompts @Daikichi<!-- -->
-<ul>
-<li>If you have <code>TTS_TestEntity*</code> entries, delete your <code>VirtualEntities.yaml</code> and let it be recreated — this was a source of significant performance problems for some folks</li>
-</ul>
-</li>
-<li>Added more safeguards to prevent calling into Papyrus with invalid actors @Min</li>
-</ul>]]></content:encoded>
-            <category>release</category>
-            <category>beta13</category>
         </item>
     </channel>
 </rss>
