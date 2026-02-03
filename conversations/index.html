@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Conversations | SkyrimNet Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" name="twitter:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" property="og:url" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/conversations"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="algolia-site-verification" content="24A26FDBCAD11C73"><meta data-rh="true" property="og:title" content="Conversations | SkyrimNet Documentation"><meta data-rh="true" name="description" content="Conversations in Skyrimnet are intended to be seamless, happening organically with the involved characters."><meta data-rh="true" property="og:description" content="Conversations in Skyrimnet are intended to be seamless, happening organically with the involved characters."><link data-rh="true" rel="icon" href="/SkyrimNet-GamePlugin/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/conversations"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/conversations" hreflang="en"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/conversations" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/SkyrimNet-GamePlugin/blog/rss.xml" title="SkyrimNet Documentation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/SkyrimNet-GamePlugin/blog/atom.xml" title="SkyrimNet Documentation Atom Feed"><link rel="stylesheet" href="/SkyrimNet-GamePlugin/assets/css/styles.8368f68e.css">
-<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.4c7e26f8.js" defer="defer"></script>
+<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.33035c7c.js" defer="defer"></script>
 <script src="/SkyrimNet-GamePlugin/assets/js/main.68fb6c9f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -24,6 +24,7 @@
 <p>The interjection guidance for each NPC is the key — it encodes how and when they’re naturally inclined to speak.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="2--seamless-turn-taking">2.  Seamless Turn-Taking<a href="#2--seamless-turn-taking" class="hash-link" aria-label="Direct link to 2.  Seamless Turn-Taking" title="Direct link to 2.  Seamless Turn-Taking">​</a></h3>
 <p>SkyrimNet’s speaker selector, through the <strong>Meta LLM</strong>, acts like a social timing manager. With very frequent, fast calls to decide who and if someone should speak next.</p>
+<p>By default the Meta has instructions to be very strict , allowing only interjections that are mentioned in the npc bios.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-reactive">3. Reactive<a href="#3-reactive" class="hash-link" aria-label="Direct link to 3. Reactive" title="Direct link to 3. Reactive">​</a></h3>
 <p>NPC responses are generated using LLM templates that reference:</p>
 <p>get_scene_context() (event history, current environment)</p>
@@ -35,10 +36,14 @@
 <p>Whether the NPC’s interjection context aligns with recent events (get_scene_context()).</p>
 <p>Whether the NPC has a socially valid reason to speak.</p>
 <p>Whether silence or a different NPC would feel more natural.</p>
+<p>Adding more topics or generic instructions to interject here will greatly increase the autonomous chatter of a given actor.</p>
+<p>So for followers and favorite npcs you should edit his interject block to allow this.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-the-talkto-package-and-ai-actions">5. The Talkto Package and AI actions<a href="#5-the-talkto-package-and-ai-actions" class="hash-link" aria-label="Direct link to 5. The Talkto Package and AI actions" title="Direct link to 5. The Talkto Package and AI actions">​</a></h3>
 <p>They will ensure that speaking or engaged npcs will hang around, listening and responding.
-The Talkto Package makes the npcs aproach the player, being removed some time later.
-The Wait or Follow/Acompany Actions can be used to ensure the npcs stay for the conversation.</p>
+The Talkto Package makes the npcs aproach the player, being removed some time later.</p>
+<p>This package isnt applied to followers, in order for it to not interfere with their movement.</p>
+<p>The Wait or Follow/Acompany Actions can be used to ensure the npcs stay for the conversation.</p>
+<p>Using Severause plugin you can have a hotkey to make any npc follow/unfollow you. This permits extended conversations where the actors stay for as long as you wish.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-model-rotation-conversation-model">🔄 Model Rotation (Conversation Model)<a href="#-model-rotation-conversation-model" class="hash-link" aria-label="Direct link to 🔄 Model Rotation (Conversation Model)" title="Direct link to 🔄 Model Rotation (Conversation Model)">​</a></h3>
 <p>SkyrimNet supports <strong>model rotation</strong> for dialogue generation.</p>
 <p>You can list <strong>multiple models</strong> in the model name field, separated by commas. After <strong>each conversation turn</strong>, the system automatically switches to the <strong>next model in the list</strong> (round-robin).</p>
