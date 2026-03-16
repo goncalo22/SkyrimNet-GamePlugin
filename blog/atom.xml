@@ -2,11 +2,111 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2026-01-28T00:00:00.000Z</updated>
+    <updated>2026-03-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta16  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release"/>
+        <updated>2026-03-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta16]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 16 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="overhauled-package-management-system-min-naitro2010">Overhauled Package Management System @MIn @Naitro2010<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#overhauled-package-management-system-min-naitro2010" class="hash-link" aria-label="Direct link to Overhauled Package Management System @MIn @Naitro2010" title="Direct link to Overhauled Package Management System @MIn @Naitro2010">​</a></h2>
+<p>SkyrimNet now manages NPC AI packages (dialogue, follow) entirely through direct engine hooks, bypassing both Papyrus and PapyrusUtil for package writes. This is a ground-up replacement of the previous package dispatch system.</p>
+<ul>
+<li><strong>Better mod compatibility</strong> — Eliminates race conditions where PapyrusUtil's <code>PackageEnded</code> handler would destroy other mods' package overrides (e.g., MARAS, IntelEngine) when SkyrimNet applied its own packages. Both systems now stay in sync automatically.</li>
+<li><strong>More reliable package application/removal</strong> — Direct engine hooks remove the fragile multi-layer
+dispatch chain (C++ → Papyrus VM → PapyrusUtil → Engine), reducing points of failure for stuck or
+lost packages.</li>
+<li><strong>Behavioral change</strong> — Followers now properly look at their dialogue targets and can use
+NPC-to-NPC dialogue packages now apply to followers (previously excluded).</li>
+<li>This change is scoped to <em>how</em> packages are applied — we're planning further updates to the logic around <em>when</em> packages are added and removed, building on this more robust foundation.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="plugin-configuration-system-galanx">Plugin Configuration System @Galanx<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#plugin-configuration-system-galanx" class="hash-link" aria-label="Direct link to Plugin Configuration System @Galanx" title="Direct link to Plugin Configuration System @Galanx">​</a></h2>
+<ul>
+<li>Third-party plugins can now define config schemas via <code>manifest.yaml</code> and appear automatically in the WebUI</li>
+<li>Plugins can register their own LLM variants with custom endpoints, models, and parameters</li>
+<li>Plugin settings are hot-reloadable — saving in the WebUI immediately re-registers LLM variants</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="c-plugin-api-v4-galanx-min">C++ Plugin API v4 @Galanx @MIn<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#c-plugin-api-v4-galanx-min" class="hash-link" aria-label="Direct link to C++ Plugin API v4 @Galanx @MIn" title="Direct link to C++ Plugin API v4 @Galanx @MIn">​</a></h2>
+<p>New native API functions for SKSE plugins and external DLLs to query SkyrimNet data:</p>
+<ul>
+<li><strong>UUID Resolution</strong> — convert between Skyrim FormIDs and SkyrimNet UUIDs, look up actor names</li>
+<li><strong>Memories</strong> — retrieve NPC memories with optional semantic search</li>
+<li><strong>Events</strong> — query recent events filtered by actor and event type</li>
+<li><strong>Dialogue History</strong> — fetch player-NPC dialogue exchanges and most recent speaker info</li>
+<li><strong>Engagement Analytics</strong> — per-actor engagement stats with configurable recency windows</li>
+<li><strong>Relationship Data</strong> — find related actors via shared event history, directed NPC-to-NPC event pair counts, and comprehensive player context</li>
+<li><strong>Plugin Config</strong> — read any registered plugin's configuration by name or dot-path</li>
+<li><strong>Diary Entries</strong> — query NPC diary entries by UUID with optional date range and limit filters</li>
+</ul>
+<p>Published <code>PublicAPI.h</code> header with parameter docs, JSON return schemas, thread safety notes, and initialization timing guidance — shipped in the <code>CppAPI/</code> directory of the release for easy third-party integration</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="skse-modevent-notifications-min">SKSE ModEvent Notifications @MIn<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#skse-modevent-notifications-min" class="hash-link" aria-label="Direct link to SKSE ModEvent Notifications @MIn" title="Direct link to SKSE ModEvent Notifications @MIn">​</a></h2>
+<p>SkyrimNet now fires SKSE ModEvents at key lifecycle points — external mods can hook these via <code>RegisterForModEvent()</code> to react to SkyrimNet in real time. Configurable via <code>events.enableOutboundModEvents</code> (enabled by default)</p>
+<table><thead><tr><th>Event</th><th>When It Fires</th></tr></thead><tbody><tr><td><code>SkyrimNet_DiaryCreated</code></td><td>Diary entry saved</td></tr><tr><td><code>SkyrimNet_MemoryCreated</code></td><td>New memory stored</td></tr><tr><td><code>SkyrimNet_SpeechStarted</code></td><td>Text segment queued for TTS</td></tr><tr><td><code>SkyrimNet_SpeechComplete</code></td><td>Full LLM response finalized</td></tr><tr><td><code>SkyrimNet_AudioStarted</code></td><td>Audio playback begins</td></tr><tr><td><code>SkyrimNet_AudioEnded</code></td><td>Audio playback ends</td></tr><tr><td><code>SkyrimNet_OnPluginConfigSaved</code></td><td>Plugin config saved via WebUI</td></tr></tbody></table>
+<p>Each event sends a JSON payload in <code>strArg</code> with context like speaker name, form ID, text content, and importance scores. Example Papyrus usage:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">RegisterForModEvent("SkyrimNet_SpeechComplete", "OnSpeechComplete")</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Event OnSpeechComplete(string eventName, string strArg, float numArg, Form sender)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  ; strArg contains JSON: {"speakerFormId": ..., "speakerName": "Lydia", "fullText": "...", "targetName": "Player"}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  Debug.Notification("Speech complete: " + strArg)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EndEvent</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="silent-narration-hotkey-min">Silent Narration Hotkey @MIn<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#silent-narration-hotkey-min" class="hash-link" aria-label="Direct link to Silent Narration Hotkey @MIn" title="Direct link to Silent Narration Hotkey @MIn">​</a></h2>
+<p>New "Silent Narration" hotkey that lets you type facts or events into the world context without triggering NPC dialogue responses — useful for establishing story context that NPCs should be aware of but not react to immediately. Available from the wheel menu or as a configurable hotkey binding. Very similar to direct narration, though without triggering an immediate response.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mcp-console-commands-min">MCP Console Commands @MIn<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#mcp-console-commands-min" class="hash-link" aria-label="Direct link to MCP Console Commands @MIn" title="Direct link to MCP Console Commands @MIn">​</a></h2>
+<p>New <code>execute_console_command</code> MCP tool lets you run arbitrary Skyrim console commands programmatically through the MCP interface — specify a command and an optional target form ID (defaults to player). Functionally, this allows you to ask an agent that is connected to our MCP to do a great many things in game - debugging, fixing issues, adding items, etc.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="console-dialogue-output-min">Console Dialogue Output @MIn<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#console-dialogue-output-min" class="hash-link" aria-label="Direct link to Console Dialogue Output @MIn" title="Direct link to Console Dialogue Output @MIn">​</a></h2>
+<p>New <code>subtitles.enableConsoleOutput</code> toggle (off by default) that mirrors all dialogue and narration to the Skyrim console (<code>~</code>) — works independently of subtitle visibility, so you can read dialogue text even with subtitles disabled</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="optional-action-parameters-lemonade8339">Optional Action Parameters @Lemonade8339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#optional-action-parameters-lemonade8339" class="hash-link" aria-label="Direct link to Optional Action Parameters @Lemonade8339" title="Direct link to Optional Action Parameters @Lemonade8339">​</a></h2>
+<p>Custom Papyrus quest actions now support optional parameters with default values — actions can proceed even if the AI omits certain parameters. Configurable in the WebUI with new optional/default fields for dynamic parameters.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="papyrus-api-additions-min-lemonade8339">Papyrus API Additions @MIn @Lemonade8339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#papyrus-api-additions-min-lemonade8339" class="hash-link" aria-label="Direct link to Papyrus API Additions @MIn @Lemonade8339" title="Direct link to Papyrus API Additions @MIn @Lemonade8339">​</a></h2>
+<table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>TransformDialogue(String text)</code></td><td>New — Transform freeform text into player dialogue via LLM, same as the Transform Dialogue hotkey but callable from scripts</td></tr><tr><td><code>TriggerSilentNarration()</code></td><td>New — Programmatically open the silent narration input dialog</td></tr><tr><td><code>PurgeDialogue(bool abDeferToCurrentFinished)</code></td><td>Updated — New optional parameter: when true, lets the current line finish before clearing the queue</td></tr><tr><td><code>TriggerInterruptDialogue(bool abDeferToCurrentFinished)</code></td><td>Updated — Same deferred mode option as PurgeDialogue</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="npc-to-npc-dialogue-severause">NPC-to-NPC Dialogue @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#npc-to-npc-dialogue-severause" class="hash-link" aria-label="Direct link to NPC-to-NPC Dialogue @Severause" title="Direct link to NPC-to-NPC Dialogue @Severause">​</a></h3>
+<p>Fixed NPC-to-NPC conversations incorrectly showing the player as the dialogue target — NPCs now properly address each other. Added <code>lastDialogueTarget</code> context variable for prompt templates, improving conversation flow and target selection accuracy in multi-NPC scenes.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="model-verification--audio-dowser">Model Verification &amp; Audio @Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#model-verification--audio-dowser" class="hash-link" aria-label="Direct link to Model Verification &amp; Audio @Dowser" title="Direct link to Model Verification &amp; Audio @Dowser">​</a></h3>
+<ul>
+<li>All HuggingFace model downloads now verify file integrity via SHA hashes — prevents silent corruption and version drift</li>
+<li>Each TTS provider now declares its preferred sample rate; resampling happens at load time via FFmpeg instead of ad-hoc downstream conversion</li>
+<li>Added try/catch guards around ONNX model loading in Kokoro, PocketTTS, and SileroVAD — corrupt models now produce clear errors instead of crashes</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="reusable-character-submodule-blocks-lemonade8339">Reusable Character Submodule Blocks @Lemonade8339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#reusable-character-submodule-blocks-lemonade8339" class="hash-link" aria-label="Direct link to Reusable Character Submodule Blocks @Lemonade8339" title="Direct link to Reusable Character Submodule Blocks @Lemonade8339">​</a></h3>
+<p>Added render modes for each individual character bio block to allow for targeted rendering</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="other-improvements">Other Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#other-improvements" class="hash-link" aria-label="Direct link to Other Improvements" title="Direct link to Other Improvements">​</a></h3>
+<ul>
+<li>Interrupt/purge now has an option to let the currently speaking NPC finish their line before cutting off, instead of stopping mid-sentence @Lemonade8339</li>
+<li>Max memories per actor increased from 1,000 to 5,000 (max configurable ceiling also raised from 10,000 to 50,000) @MIn</li>
+<li>SkyrimNet hotkeys are now suppressed when the PrismaUI overlay has focus, preventing accidental triggers. Requires the latest version of PrismaUI to work. @MIn</li>
+<li>CPU, GPU, and RAM info logged at startup to help diagnose performance issues in bug reports @Dowser</li>
+<li>Build now compiles ESP plugin and Papyrus scripts directly from the SkyrimNet-GamePlugin repo @Dowser</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="engine-updates-dowser">Engine Updates @Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#engine-updates-dowser" class="hash-link" aria-label="Direct link to Engine Updates @Dowser" title="Direct link to Engine Updates @Dowser">​</a></h3>
+<ul>
+<li>Updated CommonLibSSE-NG from Dec 2025 to 4.2.0 (Feb 2026)</li>
+<li>Game version and CommonLib version now logged at startup</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed crash when Kokoro TTS was enabled that was occurring for some users from Beta15 @Galanx</li>
+<li>Fixed diary entries showing 1970 dates — was using game time instead of real system time for creation timestamps. Fixes this moving forward, does not retroactively correct timestamps for older diary entries. @MIn</li>
+<li>Fixed crash (CTD) when accessing memory endpoints in the web UI during game load — now returns a "game is loading" message instead @MIn</li>
+<li>Fixed background memory worker generating memories from "future" events when loading an older save before the timeline continuity check completes @MIn</li>
+<li>Fixed stale memory search results persisting after a timeline clear @MIn</li>
+<li>Fixed background dialogue clobbering active player conversations — if you talk to an NPC while they're delivering a vanilla line, your dialogue now takes priority @MIn</li>
+<li>Fixed memory listing sort not working in the web UI @MIn</li>
+<li>Fixed config variant overrides not clearing properly on reload @MIn</li>
+<li>Fixed unconscious/sleeping NPCs being selected as dialogue targets @MIn</li>
+<li>Fixed raw JSON error details being shown to users — error messages are now human-readable @MIn</li>
+<li>Removed SlapTarget action that could cause permanent player ragdoll @MIn</li>
+<li>Fixed file-exists decorator showing unhelpful error messages — now includes the filename and value @MIn</li>
+<li>Fixed SkyrimNet package overrides getting stuck on dead NPCs @MIn</li>
+<li>Fixed OmniSight capture slots leaking permanently if a task was interrupted — now uses RAII cleanup so slots are always released @MIn</li>
+<li>Fixed LLM timeout error messages not showing which variant (dialogue, default, etc.) timed out @MIn</li>
+<li>Removed two unused config settings (<code>language.defaultVariant</code> and <code>openrouter.max_context_length</code>) that were saved to YAML but never actually used @MIn</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="breaking-changes-">Breaking Changes 🚨<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release#breaking-changes-" class="hash-link" aria-label="Direct link to Breaking Changes 🚨" title="Direct link to Breaking Changes 🚨">​</a></h2>
+<p><code>PurgeDialogue</code> and <code>TriggerInterruptDialogue</code> both accept a new optional argument. If you have Papyrus scripts compiled that use either function, you need to recompile them to continue working with this version.</p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta16" term="beta16"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta15  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/01/28/beta15-release</id>
