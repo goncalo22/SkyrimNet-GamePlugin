@@ -4,10 +4,73 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Wed, 04 Mar 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Mar 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta17  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release</guid>
+            <pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta17]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 17 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prismaui-in-game-chat-overlay-min">PrismaUI In-Game Chat Overlay @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release#prismaui-in-game-chat-overlay-min" class="hash-link" aria-label="Direct link to PrismaUI In-Game Chat Overlay @Min" title="Direct link to PrismaUI In-Game Chat Overlay @Min">​</a></h2>
+<p>Complete remake of text-based input into a modern, unified chat overlay rendered directly inside Skyrim via PrismaUI. Consolidates all previous text input modes (dialogue, narration, emotes, thoughts) into a single interface, and adds event management — view, edit, and delete events without alt-tabbing out of the game.</p>
+<p><strong>Input Modes</strong> — A single hotkey opens the overlay. Type naturally, or use prefixes to control how your input is interpreted:</p>
+<ul>
+<li>Single-character prefixes: <code>%</code> think, <code>'</code> action/emote, <code>#</code> silent narration, <code>!</code> direct input, <code>^</code> whisper, <code>@Name</code> direct targeting with tab-completion, <code>@None</code> monologue (logs to history without triggering NPC responses)</li>
+<li>All input modes also have corresponding slash commands if you prefer as opposed to the aforementioned prefixes: <code>/think</code>, <code>/narrate</code>, <code>/transform</code>, <code>/silent</code>, <code>/monologue</code></li>
+<li>Clickable mode buttons above the input field for quick switching without memorizing prefixes</li>
+<li>Empty submit in Transform/Thoughts mode auto-generates NPC responses, matching short-tap voice input behavior</li>
+</ul>
+<p><strong>Event Management</strong> — View, edit, and delete your conversation history without leaving the game:</p>
+<ul>
+<li>Ctrl+Up to edit your last message, Ctrl+Delete to undo the last event</li>
+<li>Arrow keys to browse input history (works even with mode prefixes active)</li>
+<li>Diary entries display as short summaries in the chat feed</li>
+</ul>
+<p><strong>Audience &amp; Targeting</strong> — See who's listening and control who hears you:</p>
+<ul>
+<li>Audience panel shows which nearby NPCs will perceive the event</li>
+<li>Whisper toggle (clickable indicator, purple when active) automatically filters the audience to whisper radius</li>
+</ul>
+<p><strong>Layout &amp; Readability</strong> — Fully customizable positioning with a clean, readable design:</p>
+<ul>
+<li>Top/bottom anchoring, width slider (50-100%), vertical offset (up to 600px), horizontal alignment</li>
+<li>Message history hidden by default, browsable via arrow keys or chevron button</li>
+<li>Text shadows and high-contrast styling for readability over busy game backgrounds</li>
+</ul>
+<p>PrismaUI 1.3+ is now required for text input.</p>
+<p>This is the foundation for a much larger vision — future releases will migrate more interaction use-cases into PrismaUI and expand it considerably to power things like target selection, group conversations, blacklisting/whitelisting, and more. This feature is fully functional, but has a few areas that will be further polished in the future - Would love feedback from folks as to how they like this feature, and what they'd like to see included in the future.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="hierarchical-action-categories-severause">Hierarchical Action Categories @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release#hierarchical-action-categories-severause" class="hash-link" aria-label="Direct link to Hierarchical Action Categories @Severause" title="Direct link to Hierarchical Action Categories @Severause">​</a></h2>
+<ul>
+<li>NPC actions can now be organized into two-level category menus via the <code>customCategory</code> YAML field — the LLM sees manageable category folders instead of dozens of flat actions</li>
+<li>Drill-down uses a lightweight LLM call (~60% token savings) that skips event history, memories, and location context</li>
+<li>The first LLM call can pass a situational intent string (e.g., "sell a health potion to the player") that guides the second call's decisione</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks">Tweaks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release#tweaks" class="hash-link" aria-label="Direct link to Tweaks" title="Direct link to Tweaks">​</a></h2>
+<ul>
+<li>Hotkeys are no longer disabled while message boxes are active @Min</li>
+<li>Memories page actor list now only shows actors that actually have memories, with memory count displayed @Min</li>
+<li>Player dialogue events now include <code>speaker</code> and <code>listener</code> fields matching the schema used by NPC dialogue events, enabling prompt templates to reconstruct full two-way conversations from event history @Severause</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed error when talking to non-Actor references (e.g., Alternate Start Mara statue) @Min</li>
+<li>Fixed lip sync breaking when "Enable NPC Node Updates" was enabled — the node reset calls were incorrectly made async, which reset lip sync before it could start @Daikichi</li>
+<li>Fixed narrative parser using regex that caused false narrator identity swaps mid-dialogue — now uses paired-asterisk scanning @Min</li>
+<li>Web server startup errors (e.g., port already in use) now show an in-game HUD notification on save load instead of silently failing @Min</li>
+</ul>
+<h1>SkyrimNet Beta17.1</h1>
+<p>Small hotfix release.</p>
+<ul>
+<li>Setting Opacity to 100% now makes the chat box purely opaque. The background gradient now properly respects the opacity setting.</li>
+<li>Added missing prompt for action drilldown.</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta17</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta16  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/04/Beta16-release</link>
