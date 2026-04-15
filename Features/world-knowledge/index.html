@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">World Knowledge | SkyrimNet Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" name="twitter:image" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/img/Skyrimnet svg wborder icon.svg"><meta data-rh="true" property="og:url" content="https://goncalo22.github.io/SkyrimNet-GamePlugin/Features/world-knowledge"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="algolia-site-verification" content="24A26FDBCAD11C73"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="World Knowledge | SkyrimNet Documentation"><meta data-rh="true" name="description" content="The World Knowledge System defines persistent facts about the game world that only certain NPCs can know, reference, and react."><meta data-rh="true" property="og:description" content="The World Knowledge System defines persistent facts about the game world that only certain NPCs can know, reference, and react."><link data-rh="true" rel="icon" href="/SkyrimNet-GamePlugin/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Features/world-knowledge"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Features/world-knowledge" hreflang="en"><link data-rh="true" rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/Features/world-knowledge" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"World Knowledge","item":"https://goncalo22.github.io/SkyrimNet-GamePlugin/Features/world-knowledge"}]}</script><link rel="alternate" type="application/rss+xml" href="/SkyrimNet-GamePlugin/blog/rss.xml" title="SkyrimNet Documentation RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/SkyrimNet-GamePlugin/blog/atom.xml" title="SkyrimNet Documentation Atom Feed"><link rel="stylesheet" href="/SkyrimNet-GamePlugin/assets/css/styles.8368f68e.css">
-<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.8b08eab0.js" defer="defer"></script>
+<script src="/SkyrimNet-GamePlugin/assets/js/runtime~main.c044869b.js" defer="defer"></script>
 <script src="/SkyrimNet-GamePlugin/assets/js/main.7c518ed9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -26,19 +26,20 @@
 <li>&quot;The player is a known Dragonborn&quot;</li>
 <li>&quot;Bandits control the northern roads&quot;</li>
 </ul>
-<p>Each entry can be selectively known by NPCs based on configurable conditions.</p>
+<p>Each entry can be selectively known by NPCs based on configurable conditions.
+It can be as short and simple , or convoluted and extensive as you wish. Though for &quot;always-inject&quot; entries its better to keep it in a manageable size.</p>
 <hr>
 <p align="center"><img src="/SkyrimNet-GamePlugin/img/knowledge.PNG" alt="voicesamples" width="1200"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-core-features">⚙️ Core Features<a href="#️-core-features" class="hash-link" aria-label="Direct link to ⚙️ Core Features" title="Direct link to ⚙️ Core Features">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="conditional-knowledge-distribution">Conditional Knowledge Distribution<a href="#conditional-knowledge-distribution" class="hash-link" aria-label="Direct link to Conditional Knowledge Distribution" title="Direct link to Conditional Knowledge Distribution">​</a></h3>
-<p align="center"><img src="/SkyrimNet-GamePlugin/img/entry.PNG" alt="voicesamples" width="800"></p>
+<p align="center"><img src="/SkyrimNet-GamePlugin/img/entry.PNG" alt="voicesamples" width="600"></p>
 <p>Each entry includes a <strong>condition expression</strong> that determines which NPCs know it.</p>
 <p>Supported condition types include:</p>
 <ul>
 <li><code>is_in_faction(...)</code></li>
 <li><code>get_quest_stage(...)</code></li>
 <li><code>is_in_npc_group(...)</code></li>
-<li>Custom template expressions</li>
+<li>Custom template expressions : this allow the full use of skyrimnet decorator system, where you can</li>
 </ul>
 <p>This allows fine-grained control, such as:</p>
 <ul>
@@ -64,7 +65,7 @@
 </ul>
 </li>
 </ul>
-<p align="center"><img src="/SkyrimNet-GamePlugin/img/groups.PNG" alt="voicesamples" width="800"></p>
+<p align="center"><img src="/SkyrimNet-GamePlugin/img/groups.PNG" alt="voicesamples" width="600"></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="relevance--limits">Relevance &amp; Limits<a href="#relevance--limits" class="hash-link" aria-label="Direct link to Relevance &amp; Limits" title="Direct link to Relevance &amp; Limits">​</a></h3>
 <ul>
@@ -100,7 +101,7 @@
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-knowledge-packs">📦 Knowledge Packs<a href="#-knowledge-packs" class="hash-link" aria-label="Direct link to 📦 Knowledge Packs" title="Direct link to 📦 Knowledge Packs">​</a></h2>
-<p>Knowledge Packs allow grouping entries into reusable collections.</p>
+<p>Knowledge Packs allow grouping entries into reusable collections. You can save your entries as a pack at anytime.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="features">Features<a href="#features" class="hash-link" aria-label="Direct link to Features" title="Direct link to Features">​</a></h3>
 <ul>
 <li>Export/import as <code>.sknpack</code></li>
@@ -123,6 +124,7 @@
 <li><strong>Papyrus API</strong> for in-game scripting</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="mcp-tools">MCP Tools<a href="#mcp-tools" class="hash-link" aria-label="Direct link to MCP Tools" title="Direct link to MCP Tools">​</a></h3>
+<p>With the Skyriment MPC, the LLM agent will be able to read, edit and create knowledge for you, using your entire game data information!</p>
 <ul>
 <li>Full CRUD operations:<!-- -->
 <ul>
