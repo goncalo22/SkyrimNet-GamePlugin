@@ -2,11 +2,92 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2026-03-11T00:00:00.000Z</updated>
+    <updated>2026-03-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta18  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release"/>
+        <updated>2026-03-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta18]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 18 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="external-c-api-enhancements-galanx-severause">External C++ API Enhancements @Galanx @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#external-c-api-enhancements-galanx-severause" class="hash-link" aria-label="Direct link to External C++ API Enhancements @Galanx @Severause" title="Direct link to External C++ API Enhancements @Galanx @Severause">​</a></h2>
+<ul>
+<li><strong>Custom Template Decorators</strong> — External SKSE plugins can register their own template functions via <code>PublicRegisterDecorator()</code>. These work anywhere in Inja templates (e.g. <code>{{ my_standing(actor_uuid) }}</code>) and in action eligibility YAML rules, just like built-in decorators</li>
+<li><strong>Event Subscriptions</strong> — <code>PublicRegisterEventCallback(eventType, callback)</code> lets plugins receive real-time notifications when SkyrimNet events fire (dialogue, combat, spell casts, etc.). Filter by event type or pass empty string for all events. Returns a callback ID for clean unregistration via <code>PublicUnregisterEventCallback()</code></li>
+<li><strong>Memory Creation</strong> — <code>PublicAddMemory(formId, content, importance, type, emotion, location, tags, relatedActors)</code> creates first-class memories for any actor. Created memories get full vector embeddings and integrate with semantic search, importance decay, and consolidation just like native memories</li>
+<li><strong>Actor Busy State</strong> — <code>PublicSetActorBusy(formId, reason)</code> / <code>PublicClearActorBusy(formId)</code> / <code>PublicIsActorBusy(formId)</code> let plugins mark actors as occupied during multi-step actions. Two new template decorators <code>is_busy()</code> and <code>busy_reason()</code> expose this in prompts and eligibility rules. ActionManager also auto-sets busy state during any dispatched action with a descriptive reason (e.g. "GoToLocation (destination: Bannered Mare)")</li>
+<li>Public API version bumped to 6. Full API header with usage examples at <code>include/PublicAPI.h</code></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="llm-testing-overhaul-daikichi">LLM Testing Overhaul @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#llm-testing-overhaul-daikichi" class="hash-link" aria-label="Direct link to LLM Testing Overhaul @Daikichi" title="Direct link to LLM Testing Overhaul @Daikichi">​</a></h2>
+<ul>
+<li>Completely revamped the LLM test on the Test &amp; Easy Setup page — you can now test specific model variants (vision, non-vision, or all), use a dedicated vision prompt with an image file picker, and test all comma-separated models in rotation</li>
+<li>Added a "Save &amp; Test" button directly on the LLM Config page next to the model name, so you can test your model right where you configure it without switching pages</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="custom-ime-overlay-for-asian-text-input-daikichi">Custom IME Overlay for Asian Text Input @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#custom-ime-overlay-for-asian-text-input-daikichi" class="hash-link" aria-label="Direct link to Custom IME Overlay for Asian Text Input @Daikichi" title="Direct link to Custom IME Overlay for Asian Text Input @Daikichi">​</a></h2>
+<ul>
+<li>Japanese and Chinese players now get a proper in-line IME overlay when typing in PrismaUI — composition and conversion candidates appear directly in the text window instead of the ugly unstyled system IME in the top-left corner</li>
+<li>The system IME no longer activates when the text input is unfocused, fixing the issue where movement keys would appear as text input</li>
+<li>Requires PrismaUI 1.4.1 or later for the new IME functionality to work.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improved-combat-target-awareness-min">Improved Combat Target Awareness @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#improved-combat-target-awareness-min" class="hash-link" aria-label="Direct link to Improved Combat Target Awareness @Min" title="Direct link to Improved Combat Target Awareness @Min">​</a></h2>
+<ul>
+<li>New <code>get_combat_targets(uuid)</code> template decorator — returns UUIDs of all actors in the given actor's combat group. Use with <code>decnpc()</code> to get full entity details (name, race, level, etc.)</li>
+<li>Default combat status prompt updated to list target names during combat (e.g. "Fighting: Bandit, Bandit Chief, Frost Troll")</li>
+<li>Works for any actor type including generic creatures and summons — reads directly from the engine's CombatGroup, no external mod dependency</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="player-location-change-events-severause">Player Location Change Events @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#player-location-change-events-severause" class="hash-link" aria-label="Direct link to Player Location Change Events @Severause" title="Direct link to Player Location Change Events @Severause">​</a></h2>
+<ul>
+<li>SkyrimNet now detects when the player changes location (entering a city, fast traveling, etc.) and emits <code>location_change</code> events — enabling triggers like "New City Arrival" or "Dungeon Entered"</li>
+<li>Note: Users with an existing Events.yaml where <code>location_change</code> is disabled will need to toggle it to Enabled under Event Configuration in the web UI</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="omnisight-description-locking-min">OmniSight Description Locking @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#omnisight-description-locking-min" class="hash-link" aria-label="Direct link to OmniSight Description Locking @Min" title="Direct link to OmniSight Description Locking @Min">​</a></h2>
+<ul>
+<li>You can now lock OmniSight location descriptions to prevent them from being overwritten on auto-refresh — useful when you've manually edited a description to be just right</li>
+<li>Descriptions are auto-locked when edited via the web UI, and can be manually toggled with a lock button on each screenshot card</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="voice-input-interrupts-npc-speech-bellbound">Voice Input Interrupts NPC Speech @Bellbound<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#voice-input-interrupts-npc-speech-bellbound" class="hash-link" aria-label="Direct link to Voice Input Interrupts NPC Speech @Bellbound" title="Direct link to Voice Input Interrupts NPC Speech @Bellbound">​</a></h2>
+<ul>
+<li>New option to allow NPCs to stop speaking immediately when voice input begins, rather than waiting for voice synthesis to complete (or voice recording to end)</li>
+<li>Controlled by "Interrupt Dialogue On Voice Start" config option (disabled by default)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="race-editor-id-voice-fallback-daikichi">Race Editor ID Voice Fallback @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#race-editor-id-voice-fallback-daikichi" class="hash-link" aria-label="Direct link to Race Editor ID Voice Fallback @Daikichi" title="Direct link to Race Editor ID Voice Fallback @Daikichi">​</a></h2>
+<ul>
+<li>TTS voice fallback now also checks the actor's race Editor ID (e.g. KhajiitRace) in addition to the localized race name — fixes voice assignment for non-English game localizations and modded NPCs</li>
+<li>Non-English players who had issues with voice fallback may need to delete their TTS config YAML file(s) so the editor IDs get added to the fallback config list</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks">Tweaks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#tweaks" class="hash-link" aria-label="Direct link to Tweaks" title="Direct link to Tweaks">​</a></h2>
+<ul>
+<li>Improved NPC Action Selection Context: The NPC action selector now uses the same rich NPC context (from scene_context) as other prompts @jykej</li>
+<li>The <code>get_nearby_npc_list</code> template decorator now accepts an optional custom search radius @lemonade</li>
+<li>Eligibility condition UI now supports variadic decorators and resolves placeholders correctly in Expected Result fields @Min</li>
+<li>Added sliders to control talk to player / npc package duration @Min</li>
+<li>Whitelisting an actor by faction, race, OR gender now works independently — previously all three had to match, which meant manually whitelisted creatures like dragons or horses were still filtered out @aikichi</li>
+<li>Fixed several sources of "SkyrimNet can't keep up with game load!" messages caused by various modded spells. @Min</li>
+<li>Keyboard input no longer leaks to other mods while typing in PrismaUI chat — keypresses meant for the chat window no longer trigger other mod hotkeys @naitro2010</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed NPC packages not being cleaned up when an actor dies mid-conversation @Min</li>
+<li>Fixed persistent packages (e.g. FollowPlayer) not being re-applied after loading a save @Bellbound</li>
+<li>Fixed PocketTTS using the Skyrim voice type instead of the NPC's custom voice sample @Daikichi</li>
+<li>Fixed delayed audio playback when using Silent TTS @Daikichi</li>
+<li>Fixed non-English character prompts failing to load from save-isolated folders with a JSON parse error @Daikichi</li>
+<li>Fixed UTF-8 errors caused by non-ASCII characters in short-lived events @Daikichi</li>
+<li>Fixed voice input "recording end" sound playing when the game was out of focus @Bellbound</li>
+<li>Fixed equipment prompt using NPC variable, preventing use in custom prompts @lemonade</li>
+<li>Fixed decorator direct calls failing when variables are dynamic @lemonade</li>
+<li>Fixed plugin config pages (e.g. IntelEngine) showing 404 in the web UI — a bug since beta16 @Min</li>
+<li>Reduced log noise across memory retrieval, eligibility checks, and other hot paths @Min</li>
+<li>Downgraded a number of harmless errors to warnings @Min</li>
+<li>Fixed an error when the content response from the LLM is null instead of empty @Daikichi</li>
+</ul>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta18" term="beta18"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta17  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/11/beta17-release</id>
