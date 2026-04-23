@@ -4,10 +4,171 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Mon, 30 Mar 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 13 Apr 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta19  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release</guid>
+            <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta19]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 19 Latest</p>
+<h1>SkyrimNet Beta19</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ai-bard-singing-galanx--min">AI Bard Singing @Galanx  @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#ai-bard-singing-galanx--min" class="hash-link" aria-label="Direct link to AI Bard Singing @Galanx  @Min" title="Direct link to AI Bard Singing @Galanx  @Min">​</a></h2>
+<ul>
+<li>Bards now compose and perform original songs using AI — lyrics are written from the bard's memories and experiences, with music generated via Suno API (Note: This is a third-party api provider on top of Suno, Suno does not have an official API)</li>
+<li>Bards auto-perform when you enter an inn; new songs generate every 8 game-hours (configurable in the Web UI)</li>
+<li>Ask any bard to sing about a specific topic, or tell them to stop their current performance</li>
+<li>Songs cached per save (10 max, configurable), with gender-matched vocals and spatial audio — vanilla bard sounds silenced automatically during AI performances</li>
+<li>Player song composition: use <code>/compose [topic]</code> in chat to write and perform your own songs, and <code>/playsong [title]</code> with Tab autocomplete to replay any cached song — jumping stops the performance</li>
+<li>Requires a Suno API key from sunoapi.org — configure in Web UI Configuration -&gt; AI Model -&gt; Bard Singing</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="world-knowledge-min-severause">World Knowledge @Min @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#world-knowledge-min-severause" class="hash-link" aria-label="Direct link to World Knowledge @Min @Severause" title="Direct link to World Knowledge @Min @Severause">​</a></h2>
+<ul>
+<li>New system for defining persistent world facts that NPCs know about — things like "The Stormcloaks won the civil war" or "There are three dangerous factions of bandits in my world"</li>
+<li>Each entry has a condition expression controlling which NPCs know it — uses the same template functions you already have (<code>is_in_faction</code>, <code>get_quest_stage</code>, <code>is_in_npc_group</code>, etc.). A Stormcloak war plan only reaches Stormcloak NPCs; a rumor about the Companions only reaches their members</li>
+<li>Entries can be always-injected (guaranteed in every matching NPC's prompt) or semantically retrieved (only surfaced when relevant to conversation, scored by keyword match, embedding similarity, and importance)</li>
+<li>Configurable limits for semantic and always-inject entries, with a minimum relevance score threshold (default: 0.6)</li>
+<li>Full condition builder in the Web UI with a Test button to verify which NPCs receive each entry</li>
+<li>MCP tools for bulk create/read/update/delete and search operations</li>
+<li>C++ and Papyrus APIs available for mod integration</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="knowledge-packs-min">Knowledge Packs @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#knowledge-packs-min" class="hash-link" aria-label="Direct link to Knowledge Packs @Min" title="Direct link to Knowledge Packs @Min">​</a></h2>
+<ul>
+<li>Bundle world knowledge entries into named, shareable collections</li>
+<li>Export packs as <code>.sknpack</code> files, share with other users, and import — making it easy to distribute lore, quest knowledge, or custom world-building</li>
+<li>Enable/disable toggle per pack — disabled packs exclude their entries from NPC knowledge entirely</li>
+<li>Full Web UI with bulk selection, inline pack assignment, and import/export</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="npc-groups-minseverause">NPC Groups @Min@Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#npc-groups-minseverause" class="hash-link" aria-label="Direct link to NPC Groups @Min@Severause" title="Direct link to NPC Groups @Min@Severause">​</a></h2>
+<ul>
+<li>General-purpose NPC grouping system — create named groups like "Dawnguard Scouts" or "Whiterun Market Vendors" and assign specific NPCs (including the player)</li>
+<li>Groups plug directly into World Knowledge conditions — restrict knowledge to only members of a specific group</li>
+<li>Pinned actors now use the NPC Groups system internally, unifying pin and group management</li>
+<li>New template decorators <code>is_in_npc_group</code>, <code>get_npc_groups</code>, and <code>get_npc_group_members</code> for prompt templates</li>
+<li>Manage through Web UI, in-game chat context menu, or MCP tools</li>
+<li>Will be expanded in the future to integrate fully with other systems like config groups.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="chat-context-menu--group-management-min">Chat Context Menu &amp; Group Management @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#chat-context-menu--group-management-min" class="hash-link" aria-label="Direct link to Chat Context Menu &amp; Group Management @Min" title="Direct link to Chat Context Menu &amp; Group Management @Min">​</a></h2>
+<ul>
+<li>Right-click any speaker name or audience member in the chat UI to access a new context menu with Talk to, Whisper to, Pin/Unpin, Groups, and Copy Name</li>
+<li>Pin and unpin NPCs directly from the context menu with immediate visual feedback — pinned actors show gold highlighting in the audience strip</li>
+<li>Manage NPC group membership directly from chat — the Groups submenu shows all groups with checkmarks for quick toggling</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="group-chat-mode-min">Group Chat Mode @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#group-chat-mode-min" class="hash-link" aria-label="Direct link to Group Chat Mode @Min" title="Direct link to Group Chat Mode @Min">​</a></h2>
+<ul>
+<li>New <code>&amp;</code> prefix modifier restricts dialogue to members of your Pinned NPC group only — non-group actors won't be selected as targets or interject</li>
+<li>Combinable with <code>^</code> whisper in either order (<code>&amp;^</code> or <code>^&amp;</code>) and works with all input modes</li>
+<li>GROUP toggle button added to the chat input bar for easy toggling</li>
+<li>Group restriction propagates through the entire dialogue and interjection chain — NPC responses also stay within the group</li>
+<li>This will serve as a foundation for some planned group conversation coherency improvements and optimizations. Already functions as a step-function improvement for people that play with parties.</li>
+<li>Currently limited to input via PrismaUI only; Deliberating options on how to best bring this to voice input in an intuitive manner.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="summon-command-min">/summon Command @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#summon-command-min" class="hash-link" aria-label="Direct link to /summon Command @Min" title="Direct link to /summon Command @Min">​</a></h2>
+<ul>
+<li>New <code>/summon &lt;name&gt;</code> slash command in the in-game chat — teleports any NPC to the player</li>
+<li>Tab completion cycles through pinned actor names for quick selection</li>
+<li>Works with both nearby actors and far-away pinned group members</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="voice-slot-lru-cache-daikichi">Voice Slot LRU Cache @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#voice-slot-lru-cache-daikichi" class="hash-link" aria-label="Direct link to Voice Slot LRU Cache @Daikichi" title="Direct link to Voice Slot LRU Cache @Daikichi">​</a></h2>
+<ul>
+<li>Automatic voice slot management for ElevenLabs and Inworld TTS — configurable <code>max_voices</code> limit with least-recently-used eviction</li>
+<li>When the voice slot limit is reached, the oldest unused cloned voice is automatically deleted before cloning a new one — no more manual cleanup or subscription cap errors</li>
+<li>🚨 ElevenLabs has limits on the number of voices that you can clone monthly; Using this feature may cause you to exceed the limit depending on how often it needs to delete voices, and what your plan limit is. See here for details: <a href="https://help.elevenlabs.io/hc/en-us/articles/24351056337937-How-many-voice-slots-do-I-get-per-tier-and-how-can-I-increase-it" target="_blank" rel="noopener noreferrer">https://help.elevenlabs.io/hc/en-us/articles/24351056337937-How-many-voice-slots-do-I-get-per-tier-and-how-can-I-increase-it</a> 🚨</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="memory-retrieval-improvements-min">Memory Retrieval Improvements @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#memory-retrieval-improvements-min" class="hash-link" aria-label="Direct link to Memory Retrieval Improvements @Min" title="Direct link to Memory Retrieval Improvements @Min">​</a></h2>
+<ul>
+<li>Significantly improved the semantic search engine — NPC memory recall is noticeably more accurate, finding the right memories more often based on conversational context</li>
+<li>Existing memories are automatically upgraded on first launch (~10 seconds, with HUD notifications as to progress)</li>
+<li>Retuned how NPCs prioritize memories — relevance matters more, recency matters less</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="config-defaults-review-system-min">Config Defaults Review System @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#config-defaults-review-system-min" class="hash-link" aria-label="Direct link to Config Defaults Review System @Min" title="Direct link to Config Defaults Review System @Min">​</a></h2>
+<ul>
+<li>New system to keep your configuration aligned with our latest recommended settings — when we update defaults between versions, you'll see a banner notification with a one-click review flow</li>
+<li>Accept individual changes to adopt our new recommendations, or keep your current values — full control over what updates and what stays</li>
+<li>No more guessing what changed between versions or manually comparing release notes against your config.</li>
+<li>This will mostly benefit future releases; Changes you've already made from the defaults before this release will not reflect in the UI (with a few exceptions for specific things I changed in this release)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="updated-default-llm-models-min">Updated Default LLM Models @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#updated-default-llm-models-min" class="hash-link" aria-label="Direct link to Updated Default LLM Models @Min" title="Direct link to Updated Default LLM Models @Min">​</a></h2>
+<ul>
+<li>Default model assignments updated to more budget-friendly alternatives based on community feedback — dialogue now uses DeepSeek v3.2, action evaluation uses DeepSeek Chat v3-0324, character profile/memory/diary now use Qwen 3 235B, and GameMaster now uses Llama 3.3 70B</li>
+<li>Provider sorting now defaults to latency-based ordering for faster real-time responses</li>
+<li>Atlas Cloud provider excluded by default — it was producing garbage output for DeepSeek v3.2</li>
+<li>Existing users will need to delete and recreate their openrouter.yaml file to pick up all of the changed variant settings.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="embed-actions-in-dialogue-new-default-min">Embed Actions in Dialogue (New Default) @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#embed-actions-in-dialogue-new-default-min" class="hash-link" aria-label="Direct link to Embed Actions in Dialogue (New Default) @Min" title="Direct link to Embed Actions in Dialogue (New Default) @Min">​</a></h2>
+<ul>
+<li><code>embedActionsInDialogue</code> now defaults to <code>true</code> — eligible actions are listed directly in the dialogue prompt so the NPC can choose to act as part of its response. This has been available for quite some time, but is now the default and preferred path for action evaluation.</li>
+<li>When the dialogue LLM wants to act, it picks a top-level action category and provides an intent (e.g., "I want to give the player a healing potion"). The action evaluation LLM then drills down within that category to select and execute the specific action, guided by the dialogue LLM's intent. When the NPC doesn't want to act, no second LLM call happens at all — saving latency and tokens.</li>
+<li>The old separate-evaluation mode (a second LLM call after every response to decide on actions independently) is still available but no longer recommended. The new approach considerably improves action execution accuracy over the old one.</li>
+<li>If you previously had this set to <code>false</code>, the defaults review system will prompt you to consider switching. Unless you're using a small local model that has problems with doing double-duty on this use-case, it is recommended that you use this setting. Users may be concerned with this overly biasing LLM behavior based on the actions that are present (Like we observed with MinAI and the "horny llama"); This is not a significant problem with this implementation, due to us primarily exposing top level categories. The vast majority of actions are not exposed to the dialogue llm, and thus we still maintain a reasonable level of isolation.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="trade-events-min">Trade Events @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#trade-events-min" class="hash-link" aria-label="Direct link to Trade Events @Min" title="Direct link to Trade Events @Min">​</a></h2>
+<ul>
+<li>NPCs now perceive when you open a merchant's shop and complete trades — with summaries of items bought/sold and gold exchanged.</li>
+<li>These are full-fledged events; you can create triggers on them like anything else if you wanted shop-keepers to automatically comment on trades, and so forth. Try talking to the next merchant you sell stuff to; this is a pretty fun awareness improvement.</li>
+<li>Empty trades (opening and closing the menu without trading) are silently skipped</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dialogue-event-collapsing-min">Dialogue Event Collapsing @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#dialogue-event-collapsing-min" class="hash-link" aria-label="Direct link to Dialogue Event Collapsing @Min" title="Direct link to Dialogue Event Collapsing @Min">​</a></h2>
+<ul>
+<li>Consecutive dialogue lines from the same speaker (e.g., a bard singing 10 lines) are now collapsed into a single event in NPC context prompts, dramatically reducing prompt waste</li>
+<li>Fixes false "time has passed" dividers that could appear between rapid-fire dialogue lines</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="chat-ui-improvements-min">Chat UI Improvements @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#chat-ui-improvements-min" class="hash-link" aria-label="Direct link to Chat UI Improvements @Min" title="Direct link to Chat UI Improvements @Min">​</a></h2>
+<ul>
+<li>Tab completion now shows a visual popup with pill-style candidates instead of cycling blindly</li>
+<li>Pressing <code>/</code> then Tab cycles through available slash commands</li>
+<li>Smooth flow from command completion to argument input</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="plugin--template-integration-vrelk">Plugin &amp; Template Integration @Vrelk<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#plugin--template-integration-vrelk" class="hash-link" aria-label="Direct link to Plugin &amp; Template Integration @Vrelk" title="Direct link to Plugin &amp; Template Integration @Vrelk">​</a></h2>
+<ul>
+<li>Current save unique ID now available via Papyrus <code>GetSaveUniqueID()</code>, C++ <code>PublicGetSaveUniqueID()</code>, and Inja <code>{{ saveUUID }}</code></li>
+<li>C++ decorator results are now parsed as JSON objects (matching Papyrus decorator behavior)</li>
+<li>Variable documentation page no longer shows giant base64 image blobs</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="configurable-text-splitting-lemonade8339">Configurable Text Splitting @Lemonade8339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#configurable-text-splitting-lemonade8339" class="hash-link" aria-label="Direct link to Configurable Text Splitting @Lemonade8339" title="Direct link to Configurable Text Splitting @Lemonade8339">​</a></h2>
+<ul>
+<li>Added configuration option to control word-length-based line breaking when full lines are available for TTS, giving more control over how text is split for speech</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="misc-tweaks-and-enhancements">Misc Tweaks And Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#misc-tweaks-and-enhancements" class="hash-link" aria-label="Direct link to Misc Tweaks And Enhancements" title="Direct link to Misc Tweaks And Enhancements">​</a></h2>
+<ul>
+<li>Updated default Inworld model to <code>inworld-tts-1.5-mini</code> (previous <code>inworld-tts-1</code> is deprecated) @Daikichi</li>
+<li>Fixed calendar date desyncs and added support for mods that change the calendar like Seasons of Skyrim @Min</li>
+<li>Reduced log noise across memory retrieval, eligibility checks, and quest property lookups @Min</li>
+<li>Player thoughts now better adapt prompted topics to fit the NPC's character @Min</li>
+<li>Added support for pre-built Inworld system voices (e.g., Ashley, Vinny) that don't count toward cloned voice limits @Daikichi</li>
+<li>Added support for using voices cloned directly on the Inworld dashboard by specifying the full voice ID @Daikichi</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed weather missing from NPC dialogue prompts — the weather section wasn't wrapped in a block tag, so NPCs had no weather awareness @Min</li>
+<li>Fixed MO2 VFS template resolution issue — templates created in MO2's overwrite folder while the game is running now load correctly @Min&gt;</li>
+<li>Fixed error when editing plugin variant config fields with null initial data @Galanx</li>
+<li>Fixed keyboard input hook thread safety crash — <code>FlushKeyboard</code> now only runs in the keyboard process hook @naitro2010</li>
+<li>Fixed Korean IME users unable to press Enter to submit chat messages @Daikichi</li>
+<li>Fixed <code>contains</code> template decorator failing when checking non-string array elements (e.g., numbers, booleans) @Lemonade8339</li>
+<li>Fixed followers stopping and facing each other mid-travel during conversations — now uses headtracking only instead of overriding follow behavior @Min</li>
+<li>Eliminated several sources of game thread stutters caused by SkyrimNet hooks, including a full rewrite of the framebuffer capture pipeline @Min</li>
+<li>Fixed spurious "Configuration not found" error logs on first-time plugin config loading @Min</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-important-back-up-your-database-before-upgrading-">🚨 Important: Back Up Your Database Before Upgrading 🚨<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#-important-back-up-your-database-before-upgrading-" class="hash-link" aria-label="Direct link to 🚨 Important: Back Up Your Database Before Upgrading 🚨" title="Direct link to 🚨 Important: Back Up Your Database Before Upgrading 🚨">​</a></h2>
+<p>Memory data is automatically upgraded on first launch as part of the accuracy improvements in this release. This has been tested on long-term playthroughs and works fine. However — if you hit issues, you will <strong>not</strong> be able to revert to an older version of SkyrimNet without restoring a backup of your database. We are forward compatible, but not backward compatible for this update.</p>
+<h1>SkyrimNet Beta 19.1, rc1</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npc-actions-daikichi">Virtual NPC Actions @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#virtual-npc-actions-daikichi" class="hash-link" aria-label="Direct link to Virtual NPC Actions @Daikichi" title="Direct link to Virtual NPC Actions @Daikichi">​</a></h2>
+<ul>
+<li>Virtual NPCs can now use actions! Previously, actions were hard-gated to only work with real (in-game) NPCs. This adds a new <code>dynamic_uuid</code> parameter type that passes the selected actor's UUID to Papyrus, enabling vNPCs to perform actions like reading books, trading, and more</li>
+<li>Action creators can opt-in their actions for vNPC use with the new "available for virtual NPC" flag in action definitions</li>
+<li>Action categories are now automatically hidden from the action selection prompt if all their items are filtered out (by cooldown or vNPC availability), keeping the action list clean and relevant</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes-1">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#bug-fixes-1" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fixed orphaned TalkToPlayer packages — when audio delivery fails (player moved too far, TTS failure), the TalkToPlayer package get stuck resulting in NPC's permanently chasing the player (until removed manually in the package manager UI) because the dialogue cleanup was never triggered. The orphaned package source is now properly handled. Note, that this comes with a behavioral change: The package is now applied when audio playback begins rather than when the speech is queued in our system. @Galanx</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta19</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta18  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/03/30/beta18-release</link>
