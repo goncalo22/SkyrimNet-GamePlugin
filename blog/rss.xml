@@ -4,10 +4,209 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Mon, 13 Apr 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 02 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta20  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release</guid>
+            <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta20]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 20 Latest</p>
+<p>Beta20 is a major systems release focused on deeper NPC cognition, more reliable spatial awareness, richer world knowledge authoring, and new modding/plugin APIs. The headline changes are NPC Thoughts, Telepathy, the Knowledge Builder, the line-of-sight overhaul, Voice Effects, and a much stronger foundation for virtual actors and external integrations.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="knowledge-builder-min">Knowledge Builder @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#knowledge-builder-min" class="hash-link" aria-label="Direct link to Knowledge Builder @Min" title="Direct link to Knowledge Builder @Min">​</a></h2>
+<p>New AI-powered Knowledge Builder integrated into the World Knowledge page for authoring and maintaining world knowledge packs.</p>
+<p>The builder can inspect live game data from all loaded mods, existing knowledge entries, quests, stages, factions, races, condition expressions, and Skyrim lore context, then propose batches of entries for review. You can select a knowledge pack, browse/search/sort existing entries, and run the agent in that context so it can extend what is already there instead of duplicating it.</p>
+<p>New <code>knowledge_key</code> deduplication: when multiple entries share a key, only the highest-importance entry whose condition passes is injected for a given NPC. This lets specific knowledge override general rumors without both appearing in the prompt.</p>
+<p>While building this, a few other improvements were made:</p>
+<ul>
+<li>For agents (prompt editor / world knowledge builder), Pretty-printed / multi-line tool calls now parse correctly. @Min</li>
+<li>Faction and race dropdowns for the World Knowledge page now list full game data instead of only currently loaded actors.</li>
+<li>Fixed an issue causing poor retrieval for first-turn world knowledge lookups.</li>
+<li>Also added bulk delete support for World Knowledge entries.</li>
+</ul>
+<p>New MCP tools for modders and for the Knowledge Builder:</p>
+<ul>
+<li><code>get_quest_stages</code></li>
+<li><code>get_npcs</code></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="line-of-sight-and-awareness-overhaul-min">Line-of-Sight and Awareness Overhaul @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#line-of-sight-and-awareness-overhaul-min" class="hash-link" aria-label="Direct link to Line-of-Sight and Awareness Overhaul @Min" title="Direct link to Line-of-Sight and Awareness Overhaul @Min">​</a></h2>
+<p>SkyrimNet already used physics-based line of sight, but beta20 significantly overhauls it. NPCs can now “bend” their sight checks around open obstacles and corners while still being blocked by closed doors, closed rooms, and solid walls. See the included illustration: open geometry can be peeked around; closed spaces still block.</p>
+<p>The old close-range LOS bypass has been removed. Instead of letting nearby NPCs see through walls, the underlying false blockers were fixed:</p>
+<ul>
+<li>Furniture no longer blocks seated NPCs across a table.</li>
+<li>Bystanders no longer block sight over someone’s shoulder.</li>
+<li>Trees, invisible AI markers, and small nearby clutter are handled more reliably.</li>
+<li>Exterior cell-boundary failures are fixed.</li>
+<li>Self-hits and target body hits are handled better.</li>
+<li>A torso-eye fallback helps when the head ray is awkwardly occluded.</li>
+</ul>
+<p>The new peek system samples 17 fixed directions and tries two-stage sight paths: outward to a possible vantage point, then from that point to the target. This allows natural “around the pillar” or “around the doorway” cases without allowing sight through sealed rooms.</p>
+<p>Interaction range defaults were also expanded:</p>
+<ul>
+<li><code>interaction.maxDistance</code> default: <code>800 -&gt; 1600</code></li>
+<li><code>interaction.normalMaxDistance</code> default: <code>800 -&gt; 1600</code></li>
+<li>max allowed interaction distance: <code>2000 -&gt; 8000</code></li>
+<li><code>interaction.whisperMaxDistance</code> remains unchanged</li>
+<li><code>interaction.pinnedTargetRangeMultiplier</code> added, default <code>2.0</code>, range <code>1.0-5.0</code></li>
+</ul>
+<p>Pinned targets now reach farther than normal interaction distance, which should make travelling with companions much less frustrating when Skyrim pathing leaves them behind.</p>
+<p>Combat awareness is also stronger: NPCs in combat always remain mutually visible for SkyrimNet purposes, and combat targets are always aware of each other. This allows for easier back-and-forth banter during combat as the player repositions and maneuvers.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="npc-thoughts-min">NPC Thoughts @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#npc-thoughts-min" class="hash-link" aria-label="Direct link to NPC Thoughts @Min" title="Direct link to NPC Thoughts @Min">​</a></h2>
+<p>NPC Thoughts are a major new cognition layer for characters. They let NPCs generate private, unvoiced internal thoughts that are saved to their event history and influence future prompts, improving LLM coherency, continuity, and depth.</p>
+<p>This behaves a bit like giving characters a “reasoning mode” for roleplay cohesion, while explicitly not being model scratchpad/reasoning mode and without adding response latency. Thoughts happen alongside normal dialogue and are parsed into separate thought events instead of delaying speech. This has very little token cost in its out-of-the-box configuration, though it does result in the effective event history filling faster for dialogue use cases. Users can disable inline thoughts if they do not desire this behavior.</p>
+<p>Thoughts can be triggered through:</p>
+<ul>
+<li>Trigger responses: <code>response.type: npc_thought</code></li>
+<li>Papyrus: <code>SkyrimNetApi.GenerateNPCThought</code></li>
+<li>Chat command: <code>/npcthink &lt;name&gt; [prompt]</code></li>
+<li>Inline dialogue tags: <code>&lt;internal_thought&gt;...&lt;/internal_thought&gt;</code></li>
+</ul>
+<p><code>/npcthink</code> supports nearby and pinned actors, and pinned actors can be targeted at any distance.</p>
+<p>Inline internal thoughts are stripped from TTS and saved as separate thought events. Player thoughts now follow the same separation path, so transform mode and voice mode no longer mix internal thoughts into spoken dialogue history.</p>
+<p>Config defaults:</p>
+<ul>
+<li><code>enabled: true</code></li>
+<li><code>perNPCCooldownSeconds: 60</code></li>
+<li><code>allowInlineInDialogue: true</code></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="telepathy-min">Telepathy @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#telepathy-min" class="hash-link" aria-label="Direct link to Telepathy @Min" title="Direct link to Telepathy @Min">​</a></h2>
+<p>Telepathy builds on NPC Thoughts and adds player-facing thought perception and long-distance mental communication.</p>
+<p>There are two independent perks. You can use either one, or both at the same time. Accessible via the MCM in the new powers menu.</p>
+<p><strong>Telepathy</strong>
+Read-only player-facing telepathy. When enabled, the player sees NPC thoughts in the PrismaUI chat interface. Additionally, when eavesdropping is on, nearby NPC thoughts are voiced through TTS so the player can hear them. This does not make the player character canonically aware of those thoughts.</p>
+<p><strong>Telepathy (Canonical)</strong>
+In-fiction telepathy. When eavesdropping is on, the player character can perceive nearby NPC thoughts; those thoughts are voiced through TTS and included in the chat/history context so the LLM can let the character act on that knowledge.</p>
+<p>Canonical Telepathy also controls long-distance mental communication. With the canonical perk, the player can project a thought to a single NPC anywhere in Skyrim and receive a privately voiced reply.</p>
+<p>Commands:</p>
+<ul>
+<li><code>/telepathy Lydia meet me outside</code></li>
+<li><code>~Lydia meet me outside</code></li>
+<li><code>~'Lydia meet me outside</code></li>
+</ul>
+<p>The apostrophe form routes the message through transform mode, with behavior adjusted for <code>defaultTransform</code>.</p>
+<p>Eavesdropping controls whether thought audio/perception is active:</p>
+<ul>
+<li><strong>Listen In</strong>: Illusion spell, 140 magicka base, silent, instant, non-hostile, 60 seconds, reduced by Adept Illusion.</li>
+<li><strong>Eavesdrop Debug</strong>: Lesser Power toggle for testing.</li>
+<li>Eavesdropping resets to off on save load.</li>
+</ul>
+<p>Remote telepathy tells the target that the player is not physically present and provides both locations, so replies should not claim the NPC turned toward you from another city.</p>
+<p>Telepathy and thoughts also suppress facial animation: NPC mouths no longer move while inner thoughts or telepathic replies are being voiced.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="voice-effects-daikichi">Voice Effects @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#voice-effects-daikichi" class="hash-link" aria-label="Direct link to Voice Effects @Daikichi" title="Direct link to Voice Effects @Daikichi">​</a></h2>
+<p>Create recipes of post-processing effects to apply to TTS output and save them as Voice Effects.</p>
+<ul>
+<li>Accessible in the web UI from Manage Data -&gt; Voice Effects.</li>
+<li>Available effects include pitch, formant, speed, bitcrush, distortion, reverb, chorus, tremolo, ringmod, echo, EQ, whisper, and gain.</li>
+<li>Effects can be toggled from the Characters page, Actor tab, in Triggers, and from Papyrus.</li>
+<li>Added Papyrus scripts: <code>SetVoiceEffect</code>, <code>ClearVoiceEffect</code>, <code>GetVoiceEffect</code>, <code>SetVoiceEffectByUUID</code>, <code>ClearVoiceEffectByUUID</code>, <code>GetVoiceEffectByUUID</code>.</li>
+<li>Effect assignments are persisted to the SKSE cosave.</li>
+</ul>
+<p>This release includes several default Voice Effect definitions, such as Werewolf and Vampire Lord, but these are placeholders and do not really represent those creatures very well. Please ping @Daikichi if you find good recipes to replace the defaults in a follow-up release.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-npcs-actions-and-plugin-apis-daikichi--lemonade8339--galanx">Virtual NPCs, Actions, and Plugin APIs @Daikichi / @lemonade8339 / @Galanx<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#virtual-npcs-actions-and-plugin-apis-daikichi--lemonade8339--galanx" class="hash-link" aria-label="Direct link to Virtual NPCs, Actions, and Plugin APIs @Daikichi / @lemonade8339 / @Galanx" title="Direct link to Virtual NPCs, Actions, and Plugin APIs @Daikichi / @lemonade8339 / @Galanx">​</a></h2>
+<p>Actions can now be enabled to work with virtual NPCs. As part of this, new UUID-based Papyrus API variants allow scripts to work with virtual NPCs and entities that do not have a game Actor reference. @Daikichi</p>
+<p>New helpers include:</p>
+<ul>
+<li><code>GetEntityUUID</code></li>
+<li><code>GetEntityDisplayNameByUUID</code></li>
+<li><code>IsVirtualEntity</code></li>
+<li><code>GetActorByUUID</code></li>
+</ul>
+<p>New ByUUID variants include:</p>
+<ul>
+<li><code>ExecuteActionByUUID</code></li>
+<li><code>RegisterEventByUUID</code></li>
+<li><code>RegisterShortLivedEventByUUID</code></li>
+<li><code>RegisterDialogueByUUID</code></li>
+<li><code>RegisterDialogueToListenerByUUID</code></li>
+<li><code>DirectNarrationByUUID</code></li>
+<li><code>RegisterPersistentEventByUUID</code></li>
+<li><code>GenerateDiaryEntryByUUID</code></li>
+</ul>
+<p>Virtual NPC action support was expanded with <code>availableForVirtualNpc</code> and dynamic UUID parameter mapping. @Daikichi</p>
+<p>New public C++ APIs:</p>
+<ul>
+<li><code>SendCustomPromptToLLM</code> lets third-party plugins invoke LLM generation directly, just like they could in Papyrus. @lemonade8339</li>
+<li><code>PublicGetWorldKnowledgeForActor</code> exposes the same per-NPC world knowledge resolution used in prompts. @Galanx</li>
+<li>Public API version bumped to v9. @Galanx</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="action-system-and-prompt-targeting-min--severause">Action System and Prompt Targeting @Min / @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#action-system-and-prompt-targeting-min--severause" class="hash-link" aria-label="Direct link to Action System and Prompt Targeting @Min / @Severause" title="Direct link to Action System and Prompt Targeting @Min / @Severause">​</a></h2>
+<p>New runtime Actions master switch lets you temporarily disable NPC action execution from the wheel menu or Web UI QuickToggles. This is process-lifetime only and resets on restart. @Min</p>
+<p>Prompt improvements from SeverActions were merged: @Severause</p>
+<ul>
+<li>Plugin-defined action categories now work correctly without requiring SeverActions.</li>
+<li>Player requests like “wait here” are picked up more reliably.</li>
+<li>Dialogue speaker targeting is more stable in multi-NPC scenes.</li>
+<li>Drilldown action selection now gets a lightweight NPC profile for action-relevant details.</li>
+<li>Player dialogue target selection is tighter when the crosshair target is virtual, unresolved, or not the actual addressee.</li>
+</ul>
+<p>Dialogue target parsing is also more robust. NPC-to-NPC followups no longer fail when names are wrapped in brackets, markdown emphasis, or odd casing. @Min</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prompt-and-roleplay-improvements-min--daikichi">Prompt and Roleplay Improvements @Min / @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#prompt-and-roleplay-improvements-min--daikichi" class="hash-link" aria-label="Direct link to Prompt and Roleplay Improvements @Min / @Daikichi" title="Direct link to Prompt and Roleplay Improvements @Min / @Daikichi">​</a></h2>
+<p>Several prompt refinements improve character consistency and reduce drift:</p>
+<ul>
+<li>Diary entries now better preserve the character’s actual temperament. @Min</li>
+<li>Player dialogue transform preserves subject, opinion, and confidence more faithfully. Characters should argue with you a lot less. @Min</li>
+<li>Player thoughts stay closer to the input you provided. Characters should argue with you a lot less. @Min</li>
+<li>Universal translator transforms now receive world/setting context. @Min</li>
+<li>NPCs are no longer instructed to constantly comment on their surroundings. @Daikichi</li>
+<li>Dynamic bio updates now use a stricter “Stranger Test” so private context does not leak into public-facing summary/appearance fields. @Min</li>
+<li>Combat status prompts now describe whether a target seems beneath, equal to, or beyond the NPC’s capability without exposing raw numbers. @Min</li>
+</ul>
+<p>The response-format prompt was moved into final user instructions to improve adherence around thoughts, narration, embedded actions, and response formatting. @Min</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="memory-and-diary-recall-min--dowser--galanx">Memory and Diary Recall @Min / @Dowser / @Galanx<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#memory-and-diary-recall-min--dowser--galanx" class="hash-link" aria-label="Direct link to Memory and Diary Recall @Min / @Dowser / @Galanx" title="Direct link to Memory and Diary Recall @Min / @Dowser / @Galanx">​</a></h2>
+<p>Diary memories are no longer automatically recalled by default. Diary entries still receive embeddings and remain searchable through explicit paths like MCP <code>search_memories</code>, the web UI, IntelEngine, and vector queries, but automatic NPC recall skips them unless configured otherwise. @Min</p>
+<p>Config:</p>
+<ul>
+<li><code>DiaryConfig.excludeFromRecall = true</code> by default</li>
+<li>Set it to <code>false</code> to restore the old behavior</li>
+</ul>
+<p>The memory candidate pre-filter pool was widened to compensate. @Min</p>
+<p>World knowledge is also now preserved correctly across save reload timeline cleanup, so user-curated world knowledge entries are no longer deleted when loading older saves. @Min</p>
+<p>Fixed recent-interaction name filtering / game-time arithmetic affecting the C++ API and IntelEngine integrations. @Dowser / @Galanx</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bard-songs-min">Bard Songs @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#bard-songs-min" class="hash-link" aria-label="Direct link to Bard Songs @Min" title="Direct link to Bard Songs @Min">​</a></h2>
+<p>Bard songs now correctly attribute to their original composer instead of the performing bard.</p>
+<p>Player-composed songs are filtered out of random bard repertoires, so unknown bards should not randomly perform songs your character wrote. Player performance paths such as <code>/playsong</code> still work.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="project-aho-bios-kiloughs">Project AHO Bios @kiloughs<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#project-aho-bios-kiloughs" class="hash-link" aria-label="Direct link to Project AHO Bios @kiloughs" title="Direct link to Project AHO Bios @kiloughs">​</a></h2>
+<p>Added character bios for NPCs from Project AHO.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="removed-and-cleanup-min--dowser--daikichi">Removed and Cleanup @Min / @Dowser / @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#removed-and-cleanup-min--dowser--daikichi" class="hash-link" aria-label="Direct link to Removed and Cleanup @Min / @Dowser / @Daikichi" title="Direct link to Removed and Cleanup @Min / @Dowser / @Daikichi">​</a></h2>
+<p>Removed the old Gesture action and its backing generic animation library. NPCs will no longer perform the old applaud / drink / pray / wave style idle gestures during dialogue. These actions were often blocking more appropriate usage. This has been removed for now, and is intended to make room for a more intelligent animation system later. @Min</p>
+<p>Removed unused <code>textentrymenu.swf</code>. The chat overlay moved to PrismaUI, so this file was dead weight and could conflict with other UI mods. @Dowser</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes-and-tweaks-min--dowser--daikichi--severause">Bug Fixes and Tweaks @Min / @Dowser / @Daikichi / @Severause<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/05/02/beta20-release#bug-fixes-and-tweaks-min--dowser--daikichi--severause" class="hash-link" aria-label="Direct link to Bug Fixes and Tweaks @Min / @Dowser / @Daikichi / @Severause" title="Direct link to Bug Fixes and Tweaks @Min / @Dowser / @Daikichi / @Severause">​</a></h2>
+<ul>
+<li>Stripped model <code>&lt;thinking&gt;</code> reasoning blocks from TTS by default, fixing issues with models like DeepSeek-R1 / QwQ voicing scratchpad text. @Min</li>
+<li>Fixed response-format prompt guidance to explicitly forbid <code>&lt;thinking&gt;</code> reasoning tags. @Min</li>
+<li>Fixed two simultaneous LLM streams to the same NPC corrupting TTS playback. @Min</li>
+<li>Fixed short TTS segments sometimes not being voiced. @Min</li>
+<li>Fixed NPC faces lip-syncing during player/npc thoughts and telepathy. @Min</li>
+<li>Fixed SkyrimNet UI message boxes entering NPC awareness. @Min</li>
+<li>Fixed Skyrim’s missing-plugin load dialog leaking into LLM context. @Dowser</li>
+<li>Message boxes now are only perceived by the player when enabled. @Min</li>
+<li>Fixed seated NPCs standing up when spoken to. @Min</li>
+<li>Tuned default facial animation intensity and ramp rate for less twitchy mouth motion. @Min</li>
+<li>Fixed world knowledge location-condition context resolution. @Min</li>
+<li>Fixed event originator location for pinned followers, bystanders, remote thoughts, diary context, and thought context. A number of these were using the player's location, causing confusion in diaries and memories for non-present actors. @Min</li>
+<li>Fixed <code>has_perk</code> decorator missing runtime-added perks. @Min</li>
+<li>Fixed vNPC bios from community plugins being overwritten by blank templates. @Daikichi</li>
+<li>Fixed nested Custom Actions rows displaying blank fields and losing hidden metadata on save. @Severause</li>
+<li>Fixed Knowledge Builder crashes and stale streaming UI state. @Min</li>
+<li>Fixed Web UI EventText crashes on non-string values. @Min</li>
+<li>Fixed LLM <code>topP</code> / <code>topK</code> sending hardcoded defaults when unset. @Min</li>
+<li>Fixed config float fields being marked customized due to precision drift. @Min</li>
+<li>Fixed defaults changed notification in web UI reappearing after dismissal. @Min</li>
+<li>Fixed ElevenLabs voice list pagination for accounts with over 100 cloned voices. @Min</li>
+<li>Fixed issue preventing non-skyrimnet-cloned voices from being usable in ElevenLabs @Min</li>
+<li>Exposed <code>max_parallel_requests</code> in ElevenLabs and Inworld web UI schemas. @Min</li>
+<li>Fixed NPCGroups page title rendering blank. @Dowser</li>
+<li>Fixed bundled web UI asset loading via webpack manifest. @Dowser</li>
+<li>Fixed trigger forms requiring content for content-less response types such as <code>deactivate_voice_effect</code>, <code>diary_entry</code>, and <code>dynamic_bio_update</code>. @Min</li>
+<li>Fixed voice-effect deletion/rename edge cases, hot reload behavior, and path traversal handling. @Daikichi</li>
+<li>Internal system build improvements @Dowser</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+            <category>beta20</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta19  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release</link>
@@ -15,7 +214,6 @@
             <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[SkyrimNet Beta19]]></description>
             <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 19 Latest</p>
-<h1>SkyrimNet Beta19</h1>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ai-bard-singing-galanx--min">AI Bard Singing @Galanx  @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/04/13/beta19-release#ai-bard-singing-galanx--min" class="hash-link" aria-label="Direct link to AI Bard Singing @Galanx  @Min" title="Direct link to AI Bard Singing @Galanx  @Min">​</a></h2>
 <ul>
 <li>Bards now compose and perform original songs using AI — lyrics are written from the bard's memories and experiences, with music generated via Suno API (Note: This is a third-party api provider on top of Suno, Suno does not have an official API)</li>
