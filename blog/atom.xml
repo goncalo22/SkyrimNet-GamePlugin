@@ -2,11 +2,58 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2026-06-27T00:00:00.000Z</updated>
+    <updated>2026-08-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta23  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release"/>
+        <updated>2026-08-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta23]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 23 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="native-audio-engine-integration-zevick">Native Audio Engine Integration @Zevick<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#native-audio-engine-integration-zevick" class="hash-link" aria-label="Direct link to Native Audio Engine Integration @Zevick" title="Direct link to Native Audio Engine Integration @Zevick">​</a></h2>
+<p>SkyrimNet speech, bard performances, and virtual entities now play through Skyrim's own audio engine instead of a separate audio device the game knew nothing about. Voices pick up the game's spatial audio, acoustic spaces, occlusion and ducking for free, so an NPC talking to you in a dungeon now carries the same reverb as vanilla dialogue. It's on by default; you can turn it off at the top of Settings &gt; Audio &amp; Voice &gt; Audio. <strong>This is particularly impactful for VR players</strong></p>
+<p><strong>Three new sliders in Skyrim's own Audio settings.</strong> Each is its own sound category parented to Master, so they're independent of each other and of vanilla's voice mix.</p>
+<ul>
+<li><strong>SkyrimNet Voice</strong> — NPC and player speech</li>
+<li><strong>SkyrimNet Bards</strong> — AI-generated bard songs</li>
+<li><strong>SkyrimNet Virtual Speakers</strong> — narrator and virtual entities</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="higgs-audio-v3-lemonade8339">Higgs Audio v3 @lemonade8339<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#higgs-audio-v3-lemonade8339" class="hash-link" aria-label="Direct link to Higgs Audio v3 @lemonade8339" title="Direct link to Higgs Audio v3 @lemonade8339">​</a></h2>
+<p>A new TTS engine option, set up in the Voice/TTS section of the web UI.</p>
+<p>Emotion, style and prosody tags now carry across sentences instead of resetting every segment, so a line that starts angry stays angry — and <em>narration is skipped</em>, so stage directions don't inherit the speaking tone. Tags work in either form:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[emotion-angry]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;|emotion:angry|&gt;</span><br></span></code></pre></div></div>
+<p>Additionally, Ellipses reach the engine intact as real pauses. XTTS still collapses them, since feeding it <code>...</code> made it stutter.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="sealed-rooms-line-of-sight-min">Sealed Rooms Line of Sight @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#sealed-rooms-line-of-sight-min" class="hash-link" aria-label="Direct link to Sealed Rooms Line of Sight @Min" title="Direct link to Sealed Rooms Line of Sight @Min">​</a></h2>
+<p>Several fixes to stop line of sight clipping through walls and floors in sealed rooms, so NPCs are less likely to eavesdrop upon things they shouldn't be able to hear or see. Structural geometry now blocks correctly at the ray origin. Note: This should help prevent NPC's from eavesdropping on you in closed rooms. There is still work to be done in this space to improve game-master response target selection, but this should materially improve things.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="quest-system-fixes">Quest System Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#quest-system-fixes" class="hash-link" aria-label="Direct link to Quest System Fixes" title="Direct link to Quest System Fixes">​</a></h2>
+<ul>
+<li><strong>Quest journal context is back</strong> — NPC awareness of your tracked quests and journal entries was disabled in Beta22.1 pending a crash fix. The quest tracking layer has been rewritten underneath (a performance change, otherwise invisible) and the quest journal prompts are restored. If NPC quest awareness acts differently than before, report it. @Dowser  on the rewrite, @PhospheneOverdirve  on the prompt restore, @Min on stability improvements and fixes.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="provider--connectivity-fixes">Provider &amp; Connectivity Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#provider--connectivity-fixes" class="hash-link" aria-label="Direct link to Provider &amp; Connectivity Fixes" title="Direct link to Provider &amp; Connectivity Fixes">​</a></h2>
+<ul>
+<li><strong>OpenRouter sorting leaked into other providers</strong> — <code>provider.sort</code> was written into every request body regardless of endpoint, so NVIDIA NIM and other OpenAI-compatible providers received an unknown <code>provider</code> object and rejected the request outright. Sorting is now scoped to the OpenRouter endpoint and resolves against the active rotation slot instead of falling back to the global value. @Zevick</li>
+<li><strong>External Whisper no longer demands an API key for self-hosted servers</strong> — If your STT endpoint isn't OpenAI (e.g. whisper.cpp on a Vast.ai box), the API key field can be left empty; the auth header is only sent when a key is actually set. @Elbios</li>
+<li><strong>vast.ai instances and invoices failed</strong> — Those two endpoints moved to <code>/api/v1</code> while the rest of the API stayed on <code>/api/v0</code>. @Elbios</li>
+<li><strong>Chatterbox voice sample bitrate is now configurable</strong> — 8–48 kHz instead of hardcoded at 16. @Dowser</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="assorted-bug-fixes">Assorted Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#assorted-bug-fixes" class="hash-link" aria-label="Direct link to Assorted Bug Fixes" title="Direct link to Assorted Bug Fixes">​</a></h2>
+<ul>
+<li><strong>Action eligibility stuck on stale values</strong> — Checking whether an action was eligible refreshed the cache's 10-second expiration timer, so anything checked frequently never expired and could stay (in)eligible long after conditions changed. Cache hits no longer reset the timer. @lemonade8339</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="skyrimnet-beta231-everyone">SkyrimNet Beta23.1 @everyone<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/10/beta23-release#skyrimnet-beta231-everyone" class="hash-link" aria-label="Direct link to SkyrimNet Beta23.1 @everyone" title="Direct link to SkyrimNet Beta23.1 @everyone">​</a></h2>
+<p>Small hotfix release addressing several issues with Beta 23:</p>
+<ul>
+<li>Fixed a compatibility issue that was causing a CTD for players on version 1.6.640 of Skyrim.</li>
+<li>Fixed a compatibility issue with Vast's v1 API that was preventing some operations from succeeding for users of Vast.AI</li>
+</ul>
+<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta23.1-rc2" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta23.1-rc2</a></p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta23" term="beta23"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta22  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/06/27/beta22-release</id>
@@ -2552,121 +2599,5 @@ More coming in this particular area soon.</li>
 </ul>]]></content>
         <category label="release" term="release"/>
         <category label="beta4" term="beta4"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SkyrimNet Beta3  Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release"/>
-        <updated>2025-07-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[SkyrimNet Beta3]]></summary>
-        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 3 Latest</p>
-<p><a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">📥 Download Beta 3 on GitHub</a></p>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-important-bug-fixes">🐛 Important Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-important-bug-fixes" class="hash-link" aria-label="Direct link to 🐛 Important Bug Fixes" title="Direct link to 🐛 Important Bug Fixes">​</a></h2>
-<ul>
-<li>
-<p><strong>Locale Support:</strong><br>
-<!-- -->The mod now correctly handles locales where commas are used instead of periods for decimal values (e.g. France, Germany).</p>
-<blockquote>
-<p>⚠️ <strong>Recommendation:</strong> If you're using one of these locales, delete all existing configs. Some configurations may have invalid decimal formatting that breaks functionality (e.g. facial animations not working).</p>
-</blockquote>
-</li>
-<li>
-<p><strong>Zonos UI Tests Fixed:</strong><br>
-<!-- -->Resolved test failures in the Zonos web interface.</p>
-</li>
-<li>
-<p><strong>Virtual Entity Support for Zonos:</strong><br>
-<!-- -->Zonos now fully supports virtual entities (e.g. narrator, player thoughts).</p>
-</li>
-<li>
-<p><strong>Narrator Voice Fix:</strong><br>
-<!-- -->Default narrator voice is now correctly set to <strong>Serana</strong> voice type.</p>
-</li>
-<li>
-<p><strong>Conversation Pausing:</strong><br>
-<!-- -->Fixed bug that caused Piper-style rapid-fire responses. There is now a short pause between dialogue segments.</p>
-</li>
-<li>
-<p><strong>Event Registration Fix:</strong><br>
-<!-- -->API now properly handles unknown event types during registration.</p>
-</li>
-<li>
-<p><strong>Miscellaneous Fixes:</strong><br>
-<!-- -->Other small bug fixes and improvements.</p>
-</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-performance--optimization">⚡ Performance &amp; Optimization<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-performance--optimization" class="hash-link" aria-label="Direct link to ⚡ Performance &amp; Optimization" title="Direct link to ⚡ Performance &amp; Optimization">​</a></h2>
-<ul>
-<li><strong>Significant Latency Reduction in Dialogue Generation:</strong><br>
-<!-- -->A major optimization was implemented for how events are retrieved during dialogue.<!-- -->
-<ul>
-<li><strong>Performance Boost:</strong> ~500–1000ms reduction in response time during heavy load</li>
-<li><strong>Technical Note:</strong> Event retrieval improved from <strong>O(n)</strong> to <strong>O(1)</strong> complexity</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-enhancements">✨ Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/07/19/beta3-release#-enhancements" class="hash-link" aria-label="Direct link to ✨ Enhancements" title="Direct link to ✨ Enhancements">​</a></h2>
-<ul>
-<li>
-<p><strong>Decorator Enhancements:</strong></p>
-<ul>
-<li>New decorators: <code>has_spell</code> and <code>has_magic_effect</code>
-<blockquote>
-<p>These will enable deeper roleplay and integration (e.g. reacting to Calm/Fury spells)</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Persistent Context History:</strong><br>
-<!-- -->Now includes all events marked as persistent, excluding only explicitly blacklisted types.</p>
-</li>
-<li>
-<p><strong><code>isTimePaused</code> Variable (All Builds):</strong><br>
-<!-- -->Added to prevent decorators from firing while the Skyrim VM is paused (useful for modders).</p>
-</li>
-<li>
-<p><strong>Proximity Tweaks:</strong></p>
-<ul>
-<li><strong>Line of Sight Radius</strong> lowered to <strong>350</strong> units (from 500).<!-- -->
-<blockquote>
-<p>Makes NPC awareness slightly more realistic and less permissive.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Zonos Caching Improvements:</strong><br>
-<!-- -->Boosted cache performance and reliability in Zonos.</p>
-</li>
-<li>
-<p><strong>Prompt System Tweaks:</strong><br>
-<!-- -->Various internal adjustments to prompt structures for better clarity and flow.</p>
-</li>
-<li>
-<p><strong>Dynamic Bio Tuning:</strong><br>
-<!-- -->Improved compatibility with more LLMs and reduced aggressiveness in pruning historical content.</p>
-</li>
-<li>
-<p><strong>Test Coverage Refactor:</strong><br>
-<!-- -->Internal systems were refactored for better unit testing and bug prevention.</p>
-</li>
-<li>
-<p><strong>C++ API for Modders:</strong><br>
-<!-- -->New <strong>C++ API</strong> introduced to allow other SKSE plugins to interact directly with SkyrimNet.</p>
-<blockquote>
-<p>📘 Docs coming soon!</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<p>🧠 SkyrimNet continues to evolve rapidly, enabling deeper immersion, faster interaction, and a more intelligent modding experience.</p>
-<p>➡️ <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/Beta3" target="_blank" rel="noopener noreferrer">Download Beta 3 now</a></p>
-<p>We appreciate your feedback and support!</p>]]></content>
-        <category label="release" term="release"/>
-        <category label="beta3" term="beta3"/>
     </entry>
 </feed>
