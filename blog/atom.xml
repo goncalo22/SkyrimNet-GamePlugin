@@ -2,11 +2,200 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2026-08-23T00:00:00.000Z</updated>
+    <updated>2026-09-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta25  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release"/>
+        <updated>2026-09-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta25]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 25 Latest</p>
+<p>Beta25 is our largest release yet. It brings quest progression and scripted dialogue actions into SkyrimNet conversations, launches the Plugin Hub and Content Library, and introduces a new routing system built to keep conversations moving when AI providers slow down or fail.</p>
+<p>This release also launches <a href="https://fateless.ai/" target="_blank" rel="noopener noreferrer">Fateless</a>, a home for community plugins and public model and provider statistics. Alongside those additions are major improvements to speech playback, voice input, memory context, customization, and support for Skyrim 1.7.104.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-update">Before You Update<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#before-you-update" class="hash-link" aria-label="Direct link to Before You Update" title="Direct link to Before You Update">​</a></h2>
+<p><strong>Existing saves are supported. You do not need to start a new game.</strong> There are, however, important changes to plugins and custom content:</p>
+<ul>
+<li><strong>Update your SkyrimNet plugins.</strong> Plugins built for Beta24 and earlier need to be converted to Beta25's new Content Library format. Compatible plugins are published on the Plugin Hub, accessible from the dashboard's <strong>Plugins</strong> page. Old-format plugins will not work as-is.</li>
+<li><strong>Install powerofthree's Tweaks <a href="https://www.nexusmods.com/skyrimspecialedition/mods/51073" target="_blank" rel="noopener noreferrer">se/ae</a> <a href="https://www.nexusmods.com/skyrimspecialedition/mods/59510" target="_blank" rel="noopener noreferrer">vr</a> and leave its Load EditorIDs fix enabled.</strong> This is the default. SkyrimNet now uses it instead of Native EditorID Fix and no longer ships the Native EditorID Fix INI override.</li>
+<li><strong>Import older custom edits.</strong> Files in the old <code>prompts/</code>, <code>config/triggers/</code>, and <code>config/actions/</code> folders are left untouched but are no longer read. Use <strong>Plugins → Installed Plugins → Import Old Content</strong> to bring over the content (Including save-specific bios for your current playthrough) you want to keep. The importer copies selected files rather than moving or deleting the originals and skips files identical to SkyrimNet's defaults. Its optional cleanup only removes files identical to stock. Some actions are renamed during import; the importer lists any enabled/disabled states or cooldowns you will need to reapply under <strong>Behavior → Actions</strong>.</li>
+<li><strong>Install the bio packs for your mods.</strong> SkyrimNet now bundles vanilla, DLC, and Creation Club bios only. Bio packs for other mods are distributed through the hub. Use <strong>View bio packs → Install all</strong> to install the packs matching your load order. Until then, NPCs from those mods will not have their written bios.</li>
+</ul>
+<p>Existing virtual NPC definitions and settings newly supported by the Content Library migrate automatically on first launch. Their old files are retained, and any settings that could not migrate are identified in the relevant dashboard section. This automatic migration is separate from importing older prompt, trigger, and action edits.</p>
+<p><strong>Auto-Update Base Content is enabled by default.</strong> SkyrimNet can receive updates to its own prompts, triggers, and actions between releases. These apply at startup, never in the middle of a game. You can disable this under <strong>Settings → General</strong> or restore the content that shipped with your version.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="skyrim-17104-support-min-dowser">Skyrim 1.7.104 Support (Min, Dowser)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#skyrim-17104-support-min-dowser" class="hash-link" aria-label="Direct link to Skyrim 1.7.104 Support (Min, Dowser)" title="Direct link to Skyrim 1.7.104 Support (Min, Dowser)">​</a></h3>
+<p>Skyrim 1.7.104 is supported with <strong>SKSE 2.3.1</strong>, the matching <strong>Address Library</strong>, and 1.7-compatible versions of <strong>powerofthree's Tweaks, PrismaUI, Papyrus Extender, PapyrusUtil, and MfgFix</strong>. Make sure those dependencies match your game version when upgrading. Support for 1.6.1170 and all other versions is unchanged.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dialogue-actions--quest-integration-zevick">Dialogue Actions &amp; Quest Integration (Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#dialogue-actions--quest-integration-zevick" class="hash-link" aria-label="Direct link to Dialogue Actions &amp; Quest Integration (Zevick)" title="Direct link to Dialogue Actions &amp; Quest Integration (Zevick)">​</a></h2>
+<p>Quests and scripts normally triggered through the dialogue menu can now be used naturally through SkyrimNet-enabled speech. A new prompt exposes quest dialogue trees to the LLM and a new action allows for the execution of any dialogue script, or TIF. This system works with any script from any mod or vanilla.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="quests">Quests<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#quests" class="hash-link" aria-label="Direct link to Quests" title="Direct link to Quests">​</a></h3>
+<p>The new <code>0740_quest_dialogue</code> prompt exposes any currently available quest dialogue to the speaking NPC with the help of the new <code>available_dialogue(npc.UUID)</code> decorator. This simulates the engine to display the dialogue options available for an NPC at that moment as if you were talking to them through the Skyrim dialogue menu. The LLM sees a full step-by-step dialogue tree and is instructed to follow it naturally in its own words, only when relevant to the conversation.</p>
+<p><code>TriggerDialogueLine</code> is the action that enables the LLM to move quests forward. When the conversation naturally reaches the decision point, the LLM will execute the dialogue script that starts a quest, progresses it, or rewards you. The wording of its instructions can be edited in <code>dialogue_actions.prompt</code>.</p>
+<p>Note; this system cannot and makes no attempt to restructure any quests. They must still follow the same normal progression, just now in your own words.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="more-actions">More Actions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#more-actions" class="hash-link" aria-label="Direct link to More Actions" title="Direct link to More Actions">​</a></h3>
+<p>This system extends beyond more than quests. Any dialogue script from any source can be now be executed through a single action. This includes things like renting a room, trading with a merchant, hiring a carriage, or anything added from a mod, such as refilling your waterskin or asking someone to ride on your horse.</p>
+<p>You may find this to be too many options at first. In <strong>Settings &gt; Dialogue Actions &gt; Filters</strong> you can blacklist/whitelist plugins, quests, or TIFs from the system. NFF comes blacklisted by default because it dumps 20+ options for followers. There are also categories for vanilla scripts that can be toggled such as follower commands or merchant trading.</p>
+<p>Additionally, you may find some scripts require more context for the LLM. In <strong>Settings &gt; Dialogue Actions &gt; Instructions</strong> you can create entries for specific TIFs that inject your guidance into the action prompt. To identify/obtain a TIF, you can use the Game Data Explorer's actor dialogue tab or search 'QUEST-TIF` in your SkyrimNet.log after it has been used in-game.</p>
+<p>There are safeguards in place to ensure the scripts can only be used by the LLM when the game itself would allow the player to do so. More improvements to this system are planned, including quest discoverability and decision making.</p>
+<p><strong>Embedded Actions is recommended for this feature</strong></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="plugin-hub-min-zevick">Plugin Hub (Min, Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#plugin-hub-min-zevick" class="hash-link" aria-label="Direct link to Plugin Hub (Min, Zevick)" title="Direct link to Plugin Hub (Min, Zevick)">​</a></h2>
+<p>The SkyrimNet Plugin Hub brings community content into one catalog, browsable both on Fateless and from the dashboard's <strong>Plugins</strong> page. <strong>No account or subscription is required to browse, install, or manage plugins.</strong></p>
+<p>The hub supports two kinds of entry. <strong>Bundles</strong> contain content SkyrimNet installs directly, such as prompts, bios, triggers, actions, and knowledge packs. You can preview and examine the contents of a bundle prior to installing through the dashboard. <strong>Listings</strong> point to mods hosted elsewhere, such as Nexus or GitHub, for integrations that also need their own ESP or DLL.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="find-and-manage-content">Find and Manage Content<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#find-and-manage-content" class="hash-link" aria-label="Direct link to Find and Manage Content" title="Direct link to Find and Manage Content">​</a></h3>
+<p>Every submission is reviewed before it is listed, and the catalog includes a curated selection. Signing in lets you endorse plugins or publish your own, but is not needed to use other people's content.</p>
+<p>Published plugins also receive Discord discussion threads, with announcements when new versions are published, giving authors and users a place to discuss each plugin.</p>
+<p>Bio packs for 215 mods are available out of the box, with bulk installation for matching packs.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="content-library-and-shareable-settings-min-zevick">Content Library and Shareable Settings (Min, Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#content-library-and-shareable-settings-min-zevick" class="hash-link" aria-label="Direct link to Content Library and Shareable Settings (Min, Zevick)" title="Direct link to Content Library and Shareable Settings (Min, Zevick)">​</a></h2>
+<p><strong>SkyrimNet's defaults, installed plugins, and your own edits now live separately.</strong> Updating SkyrimNet or a plugin no longer overwrites your custom version of a file.</p>
+<p>The Content Library resolves files by priority: SkyrimNet's base content comes first, plugins override it in the order you choose, and your personal edits sit on top. When two plugins supply the same file, the higher-priority one wins. Conflicts are shown on <strong>Installed Plugins</strong>, where you can adjust the order. These conventions are similar to Mod Organizer (MO2)'s, and should feel familiar for modders that are used to managing Skyrim Mods through the tool.</p>
+<p>Editors show which source supplies a file, let you <strong>Compare versions</strong>, and offer <strong>Revert</strong> to remove your edit and use the version beneath it. Customizing base or installed-plugin content through its dashboard editor saves your version to your personal <strong>overlay</strong>, leaving the original intact.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="more-than-prompts">More Than Prompts<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#more-than-prompts" class="hash-link" aria-label="Direct link to More Than Prompts" title="Direct link to More Than Prompts">​</a></h3>
+<p>Plugins can now include <strong>virtual NPCs, voice effects, item and spell names, furniture names, identity links, filters, and Dialogue Actions rules</strong>, alongside prompts, bios, triggers, actions, and knowledge packs.</p>
+<p>These settings are stored as individual Content Library entries rather than one large configuration file per feature. Entries show which plugin provides them and have their own on/off switches, comparison tools, and options to add them to a plugin. Editing a supplied entry creates your own version; <strong>Revert to plugin</strong> restores the original.</p>
+<p>Built-in filter and Dialogue Actions defaults are organized into named lists, such as <strong>Animals don't speak</strong>. Remove a list you do not want, restore it later, or create your own without replacing the entire configuration.</p>
+<p>Plugins can also bundle their own <strong>Settings page definitions</strong>, so those pages install, update, and uninstall with the plugin. Changes to a plugin's settings page take effect without a restart.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="editors-and-character-bios">Editors and Character Bios<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#editors-and-character-bios" class="hash-link" aria-label="Direct link to Editors and Character Bios" title="Direct link to Editors and Character Bios">​</a></h3>
+<p><strong>Tools → File Editor</strong> provides a single unified place to browse and manage the base content, installed plugins, your overlay, and the active save's files. This serves as a single convenient location for managing all types of content (prompts, triggers, knowledge entries, etc) across all of your installed content. It includes file comparison, pinning, conflict indicators, activation controls, and tools for copying content into your own plugins. Authoring details are covered below.</p>
+<p>The <strong>Triggers</strong> and <strong>Actions</strong> pages group entries by the plugin that supplies them, with per-entry toggles, filters, and summary cards. Trigger search now includes event types, condition fields and values, and response text, not just names and descriptions.</p>
+<p>Character bios have always had <strong>Static, Save-Specific, and Dynamic</strong> tabs. These are now exposed to you for easier and more visible control now through the updated UI. Regenerating a bio through sleep, a hotkey, or a script now preserves a backup that can be restored from the dashboard. Virtual NPCs can also be pinned on the Characters page once they exist in the current save.</p>
+<p>Reloading configs from the dashboard also reloads Content Library edits without restarting. If a plugin installation is underway, the content reload waits until it finishes.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="persistent-world-knowledge-min">Persistent World Knowledge (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#persistent-world-knowledge-min" class="hash-link" aria-label="Direct link to Persistent World Knowledge (Min)" title="Direct link to Persistent World Knowledge (Min)">​</a></h3>
+<p>World knowledge can now be <strong>save-specific</strong> or <strong>persistent across playthroughs</strong>. Persistent packs live in the Content Library, load into each save, and synchronize again when their providing plugin updates. The World Knowledge page identifies them with <strong>Persistent</strong> and <strong>From plugin</strong> labels and lets you filter them separately from save-specific entries.</p>
+<p>You can disable a supplied pack or individual entry for one save, and that choice survives plugin updates. Editing a supplied entry lets you choose between a save-specific copy and an overlay copy that applies across playthroughs. <strong>Copy to Overlay</strong> makes a whole pack editable, while <strong>Revert to plugin</strong> restores the supplied version.</p>
+<p>Use <strong>Export to Overlay</strong> to make one of your own packs persistent and available for packaging into a plugin. The Knowledge Builder's AI Assistant can commit entries into packs you published yourself; packs supplied by installed hub plugins remain protected. Its proposal board also survives switching between the proposal and Packs tabs within the same browser tab.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="fateless-and-community-stats-min">Fateless and Community Stats (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#fateless-and-community-stats-min" class="hash-link" aria-label="Direct link to Fateless and Community Stats (Min)" title="Direct link to Fateless and Community Stats (Min)">​</a></h2>
+<p>SkyrimNet has a new home at <a href="https://fateless.ai/" target="_blank" rel="noopener noreferrer">fateless.ai</a>, bringing together the <a href="https://fateless.ai/plugins" target="_blank" rel="noopener noreferrer">Plugin Hub</a> and a new way to see what is working well for the community.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="see-what-the-community-is-using">See What the Community Is Using<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#see-what-the-community-is-using" class="hash-link" aria-label="Direct link to See What the Community Is Using" title="Direct link to See What the Community Is Using">​</a></h3>
+<p>Ever wondered which models other people use for dialogue, actions, or memory? Or whether a provider is having a rough day for everyone, not just you?</p>
+<p>The <a href="https://fateless.ai/stats" target="_blank" rel="noopener noreferrer">community stats page</a> lets you explore which models and providers people are using for each variant, compare response speeds and success rates, and see which providers are running smoothly or having trouble. It gives us all a little less guesswork when choosing a setup, and helps us improve the defaults and catch problems earlier. The page is public and available to everyone, whether or not you contribute.</p>
+<p>Contributions are anonymous usage and performance statistics, not conversations. No prompts, dialogue, or audio are included, and the statistics are not linked to your Fateless account.</p>
+<p>Participation is your choice, under <strong>Settings → General → Privacy</strong>. <strong>Send Anonymous Usage Data</strong> is on by default and can be turned off. This setting allows us to gauge how many users we have, roughly what sort of general system specs they have, and to broadcast out notifications (such as new updates, or urgent security issue notifications) to clients. <strong>Send Anonymous Usage Metrics</strong>, which contributes to the community stats, is off by default and requires the first option. This setting shares things such as the typical TTFT / throughput / response times of the providers you're communicating with (Nothing about what you're actually sending to these providers), and powers the stats page. You can change either setting at any time; neither is required to play, install plugins, or use local smart routing.</p>
+<p>The <a href="https://fateless.ai/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://fateless.ai/privacy/telemetry" target="_blank" rel="noopener noreferrer">What SkyrimNet sends</a> explain this in plain language, including a complete list of the fields each option can send.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="smarter-model-and-provider-routing-min">Smarter Model and Provider Routing (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#smarter-model-and-provider-routing-min" class="hash-link" aria-label="Direct link to Smarter Model and Provider Routing (Min)" title="Direct link to Smarter Model and Provider Routing (Min)">​</a></h2>
+<p>The routing system has been rebuilt to recover from provider failures and slow responses instead of leaving a conversation stalled. All of the local improvements below are available to everyone, with no account or telemetry required.</p>
+<p>Local smart routing is enabled by default under <strong>AI → Providers</strong>. Turning it off restores strict round-robin behavior.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="local-smart-routing">Local Smart Routing<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#local-smart-routing" class="hash-link" aria-label="Direct link to Local Smart Routing" title="Direct link to Local Smart Routing">​</a></h3>
+<p>Failed requests can retry on the next model or provider in your rotation. Timeouts, rate limits, server errors, empty or invalid responses, and connection failures are recognized separately. Repeatedly failing providers are temporarily skipped, then allowed back after a cooldown.</p>
+<p>The dashboard gives you more control over those decisions:</p>
+<ul>
+<li><strong>Provider mixer:</strong> inspect available providers, prices, and statistics, and choose the order in which they should be tried.</li>
+<li><strong>Model rotation:</strong> choose sequential or weighted-random selection, set per-slot weights, and reserve backup slots for failover. A weight of zero makes a slot failover-only. Rotations remain overridable per character under <strong>AI → Models</strong>.</li>
+<li><strong>Health and planning:</strong> see whether a model or upstream provider is healthy, cooling down, or being routed around, including the reason and retry countdown. The <strong>Plan</strong> tab previews which models the next request would try and why others would be skipped.</li>
+</ul>
+<p>An optional <strong>quantization floor</strong> lets you exclude providers running more heavily compressed versions of a model.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="faster-recovery-from-slow-responses-min">Faster Recovery From Slow Responses (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#faster-recovery-from-slow-responses-min" class="hash-link" aria-label="Direct link to Faster Recovery From Slow Responses (Min)" title="Direct link to Faster Recovery From Slow Responses (Min)">​</a></h3>
+<p>A new latency guard detects providers that take too long to start responding and tries another model or upstream provider before waiting out the full timeout. Local routing learns expected response times during normal play; community routing can use the community's observations from the first request.</p>
+<p>The original request can stay active while that early retry starts, and SkyrimNet uses whichever starts responding first. This reduces unnecessary silence when the original was only slightly late. Slow providers can also be deprioritized for the session, while the final attempt is allowed to finish rather than abandoning every slow-but-working option.</p>
+<p>Fine-tune this under <strong>AI → Providers → Routing → First-token guard</strong>. Turn early retries on or off, adjust the patience multiplier, set the minimum and cold-start waits, choose whether the original reply can still win the race, and decide whether slow providers move to the back of the order for the session.</p>
+<p>Routing notices explain temporary provider avoidance and clear automatically after 45 seconds. The warning that all providers are failing remains until the problem clears.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="community-routing-min">Community Routing (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#community-routing-min" class="hash-link" aria-label="Direct link to Community Routing (Min)" title="Direct link to Community Routing (Min)">​</a></h3>
+<p>Community routing puts those shared statistics to work. Alongside local smart routing, which learns from your own session, it uses community performance results and provider checks to help SkyrimNet avoid providers that are already having trouble. That means it can make a better first choice rather than waiting for your own request to fail.</p>
+<p><strong>Community routing is included with every Patreon and Ko-fi supporter tier.</strong> The shared infrastructure behind it costs money to run, and your support helps cover those costs. We are not pay-walling anything - This is an additional hosted service; the mod and all of the local routing improvements remain free for everyone, with no account or telemetry required.</p>
+<p>Choose <strong>Balanced</strong>, <strong>Cheapest</strong>, or <strong>Fastest</strong> to guide provider ordering based on reliability, response speed, generation speed, and price. The <strong>Activity</strong> tab shows the routing updates and decisions.</p>
+<p>To use community routing, link your active ko-fi or patreon supporter membership through Fateless and enable both anonymous usage options described above. The statistics remain anonymous and are not linked to your account. Turning either option off, or no longer having an active membership, automatically switches you back to local smart routing without a restart.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="speech-voice-input-and-audio">Speech, Voice Input, and Audio<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#speech-voice-input-and-audio" class="hash-link" aria-label="Direct link to Speech, Voice Input, and Audio" title="Direct link to Speech, Voice Input, and Audio">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="more-reliable-speech-playback-min">More Reliable Speech Playback (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#more-reliable-speech-playback-min" class="hash-link" aria-label="Direct link to More Reliable Speech Playback (Min)" title="Direct link to More Reliable Speech Playback (Min)">​</a></h3>
+<p>The speech pipeline has been rebuilt across NPC dialogue, player speech, Dragonborn Voice Over, Universal Translator, telepathy, thoughts, narration, and bard announcements. It addresses long-standing problems with lines never playing, sentences disappearing mid-response, and audio getting stuck behind stale queue state.</p>
+<p>Subtitles now appear when playback actually begins rather than when a line is queued. Vanilla-voice muting follows real playback start and end, and the lipsync driver has been rewritten alongside the rest of the pipeline.</p>
+<p>Back-to-back responses from the same actor now execute their associated actions with each line instead of dropping them or handling them out of order. Telepathy and standalone narration no longer make an NPC walk over and face the player; ordinary NPC dialogue and voiced scene lines do so when playback starts.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sentence-splitting-and-subtitle-only-narration-min">Sentence Splitting and Subtitle-Only Narration (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#sentence-splitting-and-subtitle-only-narration-min" class="hash-link" aria-label="Direct link to Sentence Splitting and Subtitle-Only Narration (Min)" title="Direct link to Sentence Splitting and Subtitle-Only Narration (Min)">​</a></h3>
+<p>Abbreviations and initials such as <code>Mr. Dragonborn</code> or <code>J. R.</code> no longer split speech at every period. Editable abbreviation tables are included for English, German, Spanish, French, Italian, Polish, Portuguese, and Russian under <strong>Settings → Voice → Sentence Splitting</strong>.</p>
+<p><strong>Voice → Narration → Subtitles only</strong> lets you keep descriptive narration on screen without generating narrator audio. Each segment remains visible for approximately as long as it would take to speak. Disabling narration still removes it entirely.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tts-text-filters-min">TTS Text Filters (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#tts-text-filters-min" class="hash-link" aria-label="Direct link to TTS Text Filters (Min)" title="Direct link to TTS Text Filters (Min)">​</a></h3>
+<p>Under <strong>Audio &amp; Voice → TTS Text Filter</strong>, you can remove or replace text before it is spoken while keeping the complete subtitle. This is useful for pronunciation guides, romanization, or bracketed notes that should be visible but not read aloud.</p>
+<p>Rules use regular expressions and run in order. An empty replacement removes a match; a nonempty replacement is spoken instead. If filtering removes an entire line, it remains subtitle-only. Invalid patterns are skipped and shown with an error rather than breaking speech.</p>
+<p>An optional rule for parenthesized Latin text ships disabled by default. For example, <code>好 (hǎo)</code> can be voiced as <code>好</code> while retaining the pronunciation guide in the subtitle.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="openai-compatible-tts-elbios">OpenAI-Compatible TTS (Elbios)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#openai-compatible-tts-elbios" class="hash-link" aria-label="Direct link to OpenAI-Compatible TTS (Elbios)" title="Direct link to OpenAI-Compatible TTS (Elbios)">​</a></h3>
+<p>A new <strong>Voice/TTS → OpenAI-Compatible</strong> engine supports <strong>Boson.ai Higgs 3</strong> and compatible self-hosted servers, including SkyrimNet audio.cpp deployments, Windows wrappers, and Vast.ai setups.</p>
+<p>Choose the Boson.ai service profile or provide your own self-hosted endpoint. The Vast.ai option can create a matching Higgs/Whisper instance. Endpoint testing, health checks, rate-limit handling, and setup guidance are integrated into the dashboard.</p>
+<p>Voice cloning enrolls a reference sample once per session and reuses the provider's voice handle. The <strong>Transcribe missing reference samples</strong> option uses your active speech-recognition provider to recover missing transcripts and caches the result. Uploaded samples retain their transcripts, including samples with non-ASCII filenames, and upload-format guidance is shown on the Voice Samples page.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="voice-input-and-playback-fixes-min">Voice Input and Playback Fixes (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#voice-input-and-playback-fixes-min" class="hash-link" aria-label="Direct link to Voice Input and Playback Fixes (Min)" title="Direct link to Voice Input and Playback Fixes (Min)">​</a></h3>
+<ul>
+<li><strong>Local Whisper's first transcription is faster.</strong> Warm-up happens while the model loads, adding a little loading time instead of delaying the first thing you say after loading a save.</li>
+<li><strong>Open Mic handles overlapping input more reliably.</strong> It keeps speech that starts while the previous sentence is still transcribing, remains responsive to toggles and voice hotkeys, and continues listening after a voice hotkey is released in a menu. The menu recording itself is discarded.</li>
+<li><strong>Push-to-talk respects interruption settings.</strong> Releasing it no longer discards queued NPC lines when interrupt-on-voice-start is disabled.</li>
+<li><strong>Silent dialogue placeholders no longer delay generated speech.</strong> Actual voiced dialogue still receives the appropriate playback window. Pre-voiced Universal Translator menu replies also register their transformed text correctly instead of being dropped.</li>
+<li><strong>Player thoughts can begin streaming without waiting for the full response</strong>, including replies wrapped entirely in internal-thought tags. With Dragonborn Voice Over, SkyrimNet no longer adds the malformed, underscore-filled subtitle to the player's own dialogue-menu line.</li>
+</ul>
+<p>Pocket TTS now defaults to <strong>one parallel request</strong> rather than two to reduce CPU contention on weaker systems. The setting remains adjustable from 1 to 8.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="gameplay-memory-and-dashboard-improvements">Gameplay, Memory, and Dashboard Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#gameplay-memory-and-dashboard-improvements" class="hash-link" aria-label="Direct link to Gameplay, Memory, and Dashboard Improvements" title="Direct link to Gameplay, Memory, and Dashboard Improvements">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="conversations-and-actions">Conversations and Actions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#conversations-and-actions" class="hash-link" aria-label="Direct link to Conversations and Actions" title="Direct link to Conversations and Actions">​</a></h3>
+<p><strong>Action confirmations (Min):</strong> Custom actions can ask permission before running. Enable <strong>Ask the player to confirm before this action runs</strong> in the action editor's Advanced settings. Choosing No cancels that action quietly and lets the NPC do something else. This is off by default and configured per action.</p>
+<p><strong>Better action targeting (Min):</strong> Action selection now identifies nearby actors that are hostile to the player, helping prevent a follower from choosing a friendly target when the requested enemy is not available.</p>
+<p><strong>Renamed NPCs (Min):</strong> Speaker and target selection can match a plain name to a name extended by a renaming mod, such as <code>Hofgrad the Beggar [Male Nord]</code>. Ambiguous partial matches do not guess between multiple nearby NPCs.</p>
+<p><strong>Speech scheduling (Min):</strong> GameMaster-directed speech is no longer blocked by the speech-density window, while player-busy and post-interaction cooldowns still apply. Private virtual speakers do not consume the nearby-NPC speech budget and no longer reply to themselves in a loop.</p>
+<p><strong>Speaker selection (Oldcustard):</strong> The speaker-selection prompt only offers silence when silence is actually a valid choice for that selection.</p>
+<p><strong>Carriage awareness (PhospheneOverdrive):</strong> Carriage occupants are described as seated in a carriage rather than walking, standing, or occupying a technical marker. Vanilla seats and Convenient Carriages are recognized. The scripted opening cart sequence is not covered.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="memory-and-player-input-min">Memory and Player Input (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#memory-and-player-input-min" class="hash-link" aria-label="Direct link to Memory and Player Input (Min)" title="Direct link to Memory and Player Input (Min)">​</a></h3>
+<p>Recalled memories now include relative age, such as <strong>Several days ago</strong>, <strong>Last month</strong>, or <strong>Over a year ago</strong>. Memories from a different season also include that season, giving NPCs clearer context about when something happened.</p>
+<p>The chat box now supports combining an NPC target with in-character rewriting. Both <code>@Lydia 'hello</code> and <code>'@Lydia hello</code> rewrite the line and send it to Lydia alone.</p>
+<p>Opening the chat overlay can automatically turn Caps Lock off. <strong>Reset Caps Lock</strong> is enabled by default in chat settings and can be disabled. The telepathy eavesdrop setting now persists between launches.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dashboard-and-diagnostics">Dashboard and Diagnostics<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#dashboard-and-diagnostics" class="hash-link" aria-label="Direct link to Dashboard and Diagnostics" title="Direct link to Dashboard and Diagnostics">​</a></h3>
+<p><strong>Trigger creation (PhospheneOverdrive):</strong> <strong>Create Trigger</strong> in the Event Log uses the same event-specific condition generation as the Event Monitor. Actor names also resolve correctly from UUIDs on the History Events page.</p>
+<p><strong>NPC package settings (Min):</strong> Working package controls now live under <strong>Conversations → NPC packages</strong>. The separate Packages section and its nonfunctional Follow Player and High Priority tables have been removed.</p>
+<p><strong>Conversation logs (Min, Dowser):</strong> <code>conversation_log.log</code> now includes NPC and player internal thoughts alongside spoken dialogue, including standalone thoughts and inline internal-thought segments. This logging is always enabled, independently of the telepathy setting that filters the Chat UI.</p>
+<p><strong>Request and speech diagnostics (Min):</strong> System Logs show time to first token alongside total request duration, with generation speed in request details. Provider speed displays use measurements from the current session, falling back to published figures when needed. <strong>System → Traces</strong> now follows individual spoken lines through synthesis and playback, making slow or missing speech easier to investigate.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="performance-and-other-fixes-min">Performance and Other Fixes (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#performance-and-other-fixes-min" class="hash-link" aria-label="Direct link to Performance and Other Fixes (Min)" title="Direct link to Performance and Other Fixes (Min)">​</a></h3>
+<ul>
+<li>Removed an unintended <strong>two-second delay</strong> from NPC responses, reduced main-thread stalls associated with configuration access, and improved throughput and request prioritization under heavy load.</li>
+<li>Configuration saves now replace files with complete versions, preventing a crash during saving from leaving a partially written configuration.</li>
+<li>Fixed a potential crash when Papyrus mods register custom event schemas after a game has loaded.</li>
+<li>Fixed generated player bios being treated as NPC bios on the Characters page, which could hide Player Settings and the player's voice slots. The memory-recall test dialog also displays memory text, scores, and actor names correctly again.</li>
+<li>Fixed OmniSight repeating the first worn item's details for other equipment. Provider authentication errors now show the relevant provider's response instead of always claiming an OpenRouter session expired.</li>
+<li>Reduced repeated warnings from missing optional scene integrations and notifications from custom-prompt calls while global AI is disabled.</li>
+</ul>
+<p>The <strong>Balanced</strong> and <strong>Budget</strong> presets now use <code>google/gemma-4-26b-a4b-it</code> for vision, replacing the previous rate-limited default.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="for-mod-and-content-authors">For Mod and Content Authors<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#for-mod-and-content-authors" class="hash-link" aria-label="Direct link to For Mod and Content Authors" title="Direct link to For Mod and Content Authors">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="packaging-and-migration-min-zevick">Packaging and Migration (Min, Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#packaging-and-migration-min-zevick" class="hash-link" aria-label="Direct link to Packaging and Migration (Min, Zevick)" title="Direct link to Packaging and Migration (Min, Zevick)">​</a></h3>
+<p>Beta25 changes how SkyrimNet discovers and loads content. See the <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/blob/main/docs/modding/MIGRATING_TO_BETA25.md" target="_blank" rel="noopener noreferrer">Beta25 migration guide</a> when updating an existing integration.</p>
+<p>Under <code>Data/SKSE/Plugins/SkyrimNet/</code>, content is organized as follows:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">library/skyrimnet.base/   SkyrimNet's base content</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">library/{plugin}/        Installed and locally created plugins</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">external/{plugin}/       Content bundled inside another mod</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">overlay/                Personal overrides</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">saves/{id}/              Per-save character bios</span><br></span></code></pre></div></div>
+<p>Base content has the lowest priority. Library and external plugins share the user-controlled plugin order, with the overlay above them. <code>content-registry.json</code> records order, activation, and per-file settings. Per-save character data is stored separately under <code>saves/{id}/</code>.</p>
+<p>Trigger and action filenames must match their <code>name</code> field, case-insensitively. Virtual NPCs are individual <code>entities/&lt;name&gt;_virtual.entity.yaml</code> files; existing definitions migrate from <code>VirtualEntities.yaml</code> into the overlay, with a backup of the old file retained. Knowledge packs derive their author from the plugin that provides them. Older packs containing an author field still import.</p>
+<p>Voice effects, naming entries, furniture names, identity links, filters, and Dialogue Actions rules can also be packaged as individual content entries. Furniture-name entries extend and override the built-in aliases rather than replacing the entire list.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="plugin-settings-pages-min">Plugin Settings Pages (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#plugin-settings-pages-min" class="hash-link" aria-label="Direct link to Plugin Settings Pages (Min)" title="Direct link to Plugin Settings Pages (Min)">​</a></h3>
+<p>Plugins can now ship their Settings page schema as <strong><code>settings/{Name}.yaml</code> inside the plugin folder</strong>, instead of a separate <code>config/plugins/{Name}/manifest.yaml</code>. The schema installs, updates, and uninstalls with the plugin, and changes apply without a restart.</p>
+<p>Use the same <code>{Name}</code> as your old <code>config/plugins/</code> folder. Your scripts continue to use the same <code>Plugin_{Name}</code> configuration, and players keep their saved values.</p>
+<p>The legacy path remains supported. If both files exist, the <code>settings/</code> version takes priority and the log warns about the legacy file. <strong><code>content-convert</code> moves the legacy schema for you.</strong> Set <code>min_skyrimnet_version</code> to this release when publishing a plugin using the new path.</p>
+<p>Nested defaults such as <code>general.enabled</code> now save in the correct structure rather than as flat keys that read as unset. For an existing <code>settings.yaml</code> affected by that issue, back up the file before removing it to regenerate the defaults. This repair is only for affected files, not a normal upgrade step.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="file-editor-and-publishing-zevick-min">File Editor and Publishing (Zevick, Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#file-editor-and-publishing-zevick-min" class="hash-link" aria-label="Direct link to File Editor and Publishing (Zevick, Min)" title="Direct link to File Editor and Publishing (Zevick, Min)">​</a></h3>
+<p><strong>Tools → File Editor</strong> exposes each content layer as an ordered tree. Unlike the normal editing workflow, it edits the specific copy you select, not whichever version currently wins resolution. Hub and external plugins are read-only; copy them into a new local plugin before editing.</p>
+<p>Drag plugins to reorder them, move or copy files with drag-and-drop or <strong>Ctrl+C/X/V</strong>, and edit plugin metadata from the tree. Relative paths are preserved when files move between plugins. Knowledge packs expand into individually editable entries, with move/copy support between packs even without a save loaded. Active-save bios can be copied into a plugin for reuse across saves. New files target the selected plugin, or the overlay if none is selected. New action definitions still begin in Game Data Explorer.</p>
+<p>Package content through <strong>Plugins → Package Plugin</strong> or the editor toolbar. <strong>Create Snapshot</strong> freezes a version for publication, while also serving as a backup that can be restored. After signing in and submitting, <strong>My Plugins</strong> shows the review result, including reasons for rejected submissions.</p>
+<p>Plugin metadata supports one or more content languages, required mods, and cover images. Choose languages on the package and publish forms; multilingual plugins appear under each selected language in the hub. Covers must be PNG or JPEG, use a 16:9 aspect ratio, be no larger than 5 MB, and meet the hub's pixel-dimension requirements. Listings can declare their associated mods as well as bundles.</p>
+<p>Each published version requires a <strong>What changed in this version</strong> entry. It supports restricted Markdown without images or links, has a 2,000-character limit, and must be updated when the version changes. This text is shown to users before installation or update and included in the submission's review information.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="developer-kit-min">Developer Kit (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#developer-kit-min" class="hash-link" aria-label="Direct link to Developer Kit (Min)" title="Direct link to Developer Kit (Min)">​</a></h3>
+<p>A separate developer-kit release asset now contains the modding documentation, C++ public API headers, and tools for working outside the game. Documentation and C++ headers are no longer bundled in the normal mod archive.</p>
+<ul>
+<li><strong><code>content-convert.exe</code></strong> converts Beta24-and-earlier plugins to the new format. The kit includes a <code>/migrate-beta25</code> Claude skill to help guide that process.</li>
+<li><strong><code>content-validate.exe</code></strong> loads plugins using SkyrimNet's own parsing code and renders prompts with placeholder data. It validates prompts, triggers, actions, and entities without launching the game and uses the same validation approach as the hub. <code>--report out.json</code> writes a report; exit code <code>0</code> means clean, <code>1</code> means findings, and <code>2</code> or higher indicates a tool error.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="api-action-and-audio-behavior">API, Action, and Audio Behavior<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#api-action-and-audio-behavior" class="hash-link" aria-label="Direct link to API, Action, and Audio Behavior" title="Direct link to API, Action, and Audio Behavior">​</a></h3>
+<p><strong>Actor registration (lemonade8339):</strong> C++ PublicAPI functions accepting a FormID register the actor when SkyrimNet has not encountered it yet, instead of failing on an unknown UUID.</p>
+<p><strong>Managed packages (Min):</strong> The package API supports arbitrary EditorID lookup when adding or removing packages, allowing third-party integrations to use their own packages through SkyrimNet's managed system.</p>
+<p><strong>Action eligibility (Min):</strong> Eligibility is recalculated each turn in mod-triggered scenes instead of remaining stale after narration or another mod starts the scene. Warnings identify the action, rule index, and decorator, and blank comparison operators are flagged at load time. Actor-less events checked with <code>is_follower</code> produce a warning rather than an error.</p>
+<p><strong>Audio events (Min):</strong> Existing Papyrus natives and event names remain compatible. <code>SkyrimNet_AudioStarted</code> and <code>SkyrimNet_AudioEnded</code> now include <code>voiced</code>, which is false for subtitle-only segments. Those segments still emit both events in the same order as voiced segments. A line purged before its first segment starts emits neither event.</p>
+<p>The old <code>facialAnimation.resolution</code> setting is retired. Existing values are ignored and removed on the next configuration save.</p>
+<p><strong>Trigger targets (Min)</strong> are available as <code>target_actor</code>, alongside <code>actor</code> and <code>player</code>. <code>target_uuid</code> and <code>originator_uuid</code> are numeric handles suitable for UUID-taking decorators.</p>
+<p><strong><code>notification</code> events (Min)</strong> expose corner HUD messages through a <code>message</code> field, including messages from other mods. SkyrimNet's own notifications are excluded.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-and-updated-decorators">New and Updated Decorators<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#new-and-updated-decorators" class="hash-link" aria-label="Direct link to New and Updated Decorators" title="Direct link to New and Updated Decorators">​</a></h3>
+<ul>
+<li><strong><code>available_dialogue</code> (Min)</strong> - This decorator exposes the actor's currently available dialogue:</li>
+</ul>
+<div class="language-jinja codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-jinja codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">available_dialogue(npc.UUID)              {# Full dialogue tree #}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">available_dialogue(npc.UUID, "quest")     {# Quest-progressing branches #}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">available_dialogue(npc.UUID, "quest ids") {# Quest branches with script-bearing line IDs #}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">available_dialogue(npc.UUID, "fires")     {# Executable endpoints with their form IDs #}</span><br></span></code></pre></div></div>
+<p>Prefer the filtered modes when a full dialogue tree is unnecessary. Game Data Explorer's actor dialogue tab includes an interactive <strong>Conversation Simulator</strong> with voice playback for inspecting those choices.</p>
+<ul>
+<li><strong><code>get_stage_done(quest, stage)</code> (Min)</strong> checks whether a particular quest stage was ever reached, rather than only reporting the current stage. <strong><code>season</code> (Min)</strong> exposes winter, spring, summer, or autumn.</li>
+<li><strong><code>uses_higgs_native_tags(actorUUID)</code> (Elbios)</strong> resolves the actor's effective TTS engine, overrides, and native-tag settings for prompt packages. Native Higgs tags are shared with the legacy Higgs connector.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-tracing-min">Request Tracing (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#request-tracing-min" class="hash-link" aria-label="Direct link to Request Tracing (Min)" title="Direct link to Request Tracing (Min)">​</a></h3>
+<p>Request traces include <code>provider</code>, <code>upstream_provider</code> when reported by OpenRouter, and streaming <code>ttft_ms</code> on success and failure paths. Late responses from an abandoned attempt can still contribute timing measurements without being served as the reply. Routing also supports directives scoped to an individual variant, so a provider can be skipped for one task without excluding it from all tasks.</p>
+<p>Full release notes and download on GitHub (vbeta25-rc13): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13</a></p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta25" term="beta25"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta24  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/08/23/beta24-release</id>
@@ -2402,252 +2591,5 @@ More coming in this particular area soon.</li>
 </ul>]]></content>
         <category label="release" term="release"/>
         <category label="beta6" term="beta6"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SkyrimNet Beta5  Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release"/>
-        <updated>2025-08-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[SkyrimNet Beta5]]></summary>
-        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 5 Latest</p>
-<p><strong>Beta 5</strong> represents a major leap forward in mod integration capabilities, with ~90% of integrations now possible <em>without writing code</em> through three core systems:</p>
-<ul>
-<li><strong>Actions</strong> – Expose any Papyrus function as an LLM action.</li>
-<li><strong>Triggers</strong> – Create conditional AI reactions to game events.</li>
-<li><strong>Awareness</strong> – Improved decorators give the LLM real-time access to game state and mod data.</li>
-</ul>
-<p>This release also delivers:</p>
-<ul>
-<li>A <strong>complete voice cloning overhaul</strong> with browser-based management, automatic voice discovery, and real-time TTS testing (XTTS support coming soon).</li>
-<li>The new <strong>Game Data Explorer</strong> lets you browse and manipulate game data in real-time via web, integrating tightly with the AI ecosystem.</li>
-</ul>
-<p>🔧 See <code>ExampleIntegrations.zip</code> for ready-made examples:</p>
-<ul>
-<li><strong>Dirt &amp; Blood</strong> – Dirty state awareness, LLM bathing reactions.</li>
-<li><strong>Sunhelm</strong> – AI awareness of needs.</li>
-<li><strong>Vanilla</strong> – <code>GiveCarriageRideTo</code> action. Carriage drivers now follow LLM instructions.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="major-features">Major Features<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#major-features" class="hash-link" aria-label="Direct link to Major Features" title="Direct link to Major Features">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="game-data-explorer">Game Data Explorer<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#game-data-explorer" class="hash-link" aria-label="Direct link to Game Data Explorer" title="Direct link to Game Data Explorer">​</a></h3>
-<p>Browse and manipulate <em>all loaded game data</em> in real-time via a web interface.</p>
-<p><strong>Game Data Coverage:</strong></p>
-<ul>
-<li><strong>Plugin Management</strong> – Explore all .esm/.esp/.esl files with type classification.</li>
-<li><strong>Spells &amp; Magic</strong> – Add/remove spells/magic effects with rich property views.</li>
-<li><strong>Items &amp; Equipment</strong> – Full categorization of weapons, armor, consumables, etc.</li>
-<li><strong>Factions</strong> – View hierarchies, crime flags, vendor status, ownership rules.</li>
-<li><strong>Furniture &amp; Activators</strong> – Ideal for trigger testing.</li>
-<li><strong>Races</strong> – See playability, stats, and racial perks.</li>
-<li><strong>Quests</strong> – Navigate quest trees, stages, priorities, and attached scripts.</li>
-</ul>
-<p><strong>Real-Time Manipulation:</strong></p>
-<ul>
-<li>Give/remove spells or items to/from players or NPCs with control over quantity.</li>
-<li>Discover nearby actors dynamically for quick testing.</li>
-<li>Test mod content instantly with one-click execution.</li>
-</ul>
-<p><strong>Quest Scripting:</strong></p>
-<ul>
-<li>View and inspect any mod's quest scripts and properties.</li>
-<li>Call any Papyrus function with live parameters and result preview.</li>
-</ul>
-<p><strong>Integration &amp; Safety:</strong></p>
-<ul>
-<li>One-click trigger creation from explored data.</li>
-<li>Action generation from discovered quest functions.</li>
-<li>Changes blocked until game is fully loaded (prevents corruption).</li>
-<li>Advanced error reporting and rollback on failure.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ai-trigger-system">AI Trigger System<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#ai-trigger-system" class="hash-link" aria-label="Direct link to AI Trigger System" title="Direct link to AI Trigger System">​</a></h2>
-<p>Build conditional AI reactions to <em>any game event</em> via a no-code web interface.</p>
-<p><strong>Features:</strong></p>
-<ul>
-<li><strong>Condition Builder</strong> – Build rules using schema fields with operators (equals, regex, &gt;, etc.).</li>
-<li><strong>Response Types</strong> – Output thoughts, dialogue, narration using templating.</li>
-<li><strong>Auto-generation</strong> – Trigger names &amp; content generated based on event type.</li>
-<li><strong>Advanced Controls</strong> – Probability, cooldowns, priority, audience targeting.</li>
-<li><strong>Real-time validation</strong> – Instant syntax and condition feedback.</li>
-<li><strong>One-click creation</strong> – Use live Event Monitor to auto-generate triggers.</li>
-</ul>
-<p><strong>Technical Details:</strong></p>
-<ul>
-<li>All events follow structured schemas via an <strong>Event Schema Registry</strong>.</li>
-<li>Full template support: <code>{{ event_json.spell }}</code>, <code>{{ originator }}</code>, etc.</li>
-<li>Full <strong>hot-reloading</strong> support.</li>
-<li>Supports mod-distributable triggers.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="custom-ai-action-system">Custom AI Action System<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#custom-ai-action-system" class="hash-link" aria-label="Direct link to Custom AI Action System" title="Direct link to Custom AI Action System">​</a></h2>
-<p>Expose <strong>any Papyrus function</strong> as an LLM action — no code required.</p>
-<p><strong>Creation &amp; Management:</strong></p>
-<ul>
-<li><strong>4-Step Wizard</strong>: Basic Info → Function → Eligibility → Advanced Settings.</li>
-<li><strong>Game Integration</strong>: Create actions directly from quest/script explorer.</li>
-<li><strong>Storage</strong>: Actions stored in hot-reloadable YAML format.</li>
-</ul>
-<p><strong>Parameter Modes:</strong></p>
-<ul>
-<li><strong>Dynamic</strong> – LLM decides values based on prompt and hints.</li>
-<li><strong>Speaker</strong> – Uses triggering actor as parameter.</li>
-<li><strong>Static</strong> – Manually define values with validation.</li>
-<li><strong>Nearby Actor</strong> – Auto-populate parameters with actors near player.</li>
-</ul>
-<p><strong>Eligibility Rules:</strong></p>
-<ul>
-<li>Use decorators like <code>is_follower</code>, <code>has_spell</code>, etc.</li>
-<li>Visual rule editor with suggestions and validation.</li>
-<li>Context-aware: Only show eligible actions at runtime.</li>
-</ul>
-<p><strong>Technical:</strong></p>
-<ul>
-<li>Fast in-memory caching.</li>
-<li>Optional event emission after action completes.</li>
-<li>Full error reporting and safe rollback on failures.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="location-detection-algorithm">Location Detection Algorithm<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#location-detection-algorithm" class="hash-link" aria-label="Direct link to Location Detection Algorithm" title="Direct link to Location Detection Algorithm">​</a></h2>
-<p>NPCs now describe their <strong>surroundings</strong> using in-game context like:</p>
-<blockquote>
-<p>“Quite a ways away from Bleakwind Basin, near Ri’saad’s caravan.”</p>
-</blockquote>
-<p><strong>Details:</strong></p>
-<ul>
-<li>Categorizes surroundings: landmarks, furniture, natural objects, etc.</li>
-<li>Filters redundancy and scales distance descriptors.</li>
-<li>Works indoors and outdoors with configurable thresholds.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="spell-customization">Spell Customization<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#spell-customization" class="hash-link" aria-label="Direct link to Spell Customization" title="Direct link to Spell Customization">​</a></h2>
-<p>Filter out utility/mod spells from showing in AI spellcast events.</p>
-<ul>
-<li>Customize spell names/descriptions for AI clarity.</li>
-<li>Enable/disable individual spells per event tracking.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="voice-system-improvements-by-daikichi">Voice System Improvements (by @Daikichi)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#voice-system-improvements-by-daikichi" class="hash-link" aria-label="Direct link to Voice System Improvements (by @Daikichi)" title="Direct link to Voice System Improvements (by @Daikichi)">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="voice-sample-management-ui">Voice Sample Management UI<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#voice-sample-management-ui" class="hash-link" aria-label="Direct link to Voice Sample Management UI" title="Direct link to Voice Sample Management UI">​</a></h3>
-<p>Manage voice samples <em>via browser</em> — upload, test, and assign voices.</p>
-<p><strong>Voice Discovery:</strong></p>
-<ul>
-<li>Auto-detects voice types from all plugins.</li>
-<li>Grouped by plugin and sorted intelligently.</li>
-<li>Fast filtering &amp; pagination.</li>
-</ul>
-<p><strong>Sample Handling:</strong></p>
-<ul>
-<li>Supports WAV &amp; FUZ with auto conversion.</li>
-<li>Quality checks, drag &amp; drop uploads (1KB–10MB), real-time playback.</li>
-<li>Persistent across sessions.</li>
-</ul>
-<p><strong>Testing &amp; TTS:</strong></p>
-<ul>
-<li>Real-time TTS test/playback.</li>
-<li>Temporary dummy actors for voice testing.</li>
-<li>Live transcription &amp; duration feedback.</li>
-</ul>
-<p><strong>UI Enhancements:</strong></p>
-<ul>
-<li>Resizable panels, saved themes, instant validation.</li>
-<li>Direct link to voice types for workflow integration.</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="additional-voice-features">Additional Voice Features:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#additional-voice-features" class="hash-link" aria-label="Direct link to Additional Voice Features:" title="Direct link to Additional Voice Features:">​</a></h3>
-<ul>
-<li>Persistent mapping from in-game dialogue.</li>
-<li>No dependency on vanilla dialogue exposure.</li>
-<li><strong>Kokoro TTS</strong>: New lightweight high-quality narrator voices.</li>
-<li>VastAI, XTTS, Mantella compatibility fixes.</li>
-<li>Timeout &amp; fallback improvements.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="decorator-system-additions">Decorator System Additions<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#decorator-system-additions" class="hash-link" aria-label="Direct link to Decorator System Additions" title="Direct link to Decorator System Additions">​</a></h2>
-<p>New decorators available:</p>
-<ul>
-<li><code>is_follower</code></li>
-<li><code>is_indoors</code></li>
-<li><code>get_script_property</code></li>
-<li><code>is_in_faction</code></li>
-<li><code>get_global_value</code></li>
-<li><code>has_magic_effect</code></li>
-<li><code>has_spell</code></li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="prompt-and-ui-enhancements">Prompt and UI Enhancements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#prompt-and-ui-enhancements" class="hash-link" aria-label="Direct link to Prompt and UI Enhancements" title="Direct link to Prompt and UI Enhancements">​</a></h2>
-<ul>
-<li>Smarter narration logic.</li>
-<li>Improved prompt formatting for dialogue/narration.</li>
-<li>Clearer indoor/outdoor differentiation.</li>
-<li>Easy Setup → Hotkeys link added.</li>
-<li>Better default layout scaling (up to 90% width).</li>
-<li>Fixed broken themes, item customization bugs.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bugfixes--stability">Bugfixes &amp; Stability<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#bugfixes--stability" class="hash-link" aria-label="Direct link to Bugfixes &amp; Stability" title="Direct link to Bugfixes &amp; Stability">​</a></h2>
-<ul>
-<li>Fixed CTDs when adding items/spells.</li>
-<li>UTF-8 and broken links resolved.</li>
-<li>Fixed Zonos silent fallback logic.</li>
-<li>Better handling of non-English character names.</li>
-<li>Better logging for events and TTS errors.</li>
-<li>Whisper crash fix on simultaneous recordings.</li>
-<li>Custom event prompt formatting fix.</li>
-<li>Configurable cap for dialogue event history.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="behavior--engine-changes">Behavior &amp; Engine Changes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#behavior--engine-changes" class="hash-link" aria-label="Direct link to Behavior &amp; Engine Changes" title="Direct link to Behavior &amp; Engine Changes">​</a></h2>
-<blockquote>
-<p>⚠️ <strong>Warning for Non-English Skyrim Players</strong><br>
-<!-- -->Due to a bugfix in NPC ID handling, a <strong>new game is recommended</strong>. Continuing old saves may result in memory/event loss for some NPCs.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ <strong>Voice File Format Changed</strong><br>
-<!-- -->Custom Zonos voices must be <strong>re-uploaded</strong> using the new Characters UI.</p>
-</blockquote>
-<p><strong>Additional Changes:</strong></p>
-<ul>
-<li>HTTP server now starts <em>after</em> Skyrim fully loads (prevents early-access bugs).</li>
-<li>Native Editor ID Fix is <strong>now required</strong>:<br>
-<!-- -->👉 <a href="https://www.nexusmods.com/skyrimspecialedition/mods/85260" target="_blank" rel="noopener noreferrer">https://www.nexusmods.com/skyrimspecialedition/mods/85260</a></li>
-<li>Mod-supplied configs now properly override defaults.</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="upcoming-roadmap">Upcoming Roadmap<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#upcoming-roadmap" class="hash-link" aria-label="Direct link to Upcoming Roadmap" title="Direct link to Upcoming Roadmap">​</a></h2>
-<p>Planned (not ordered):</p>
-<ul>
-<li>Better <strong>group chat</strong> filtering &amp; actor cohesion.</li>
-<li>XTTS &amp; Piper fixes (run-on sentences).</li>
-<li><strong>Image-to-Text (ITT)</strong> pipeline.</li>
-<li>More high-quality <strong>action additions</strong> (and removal of poor ones).</li>
-<li><strong>Dynamic Quest System</strong>.</li>
-<li>Improved <strong>VR support</strong> — aiming for first-class experience.</li>
-<li>Broader <strong>internationalization</strong> support.</li>
-<li>Direct <strong>HIGGS</strong> integration.</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-new-skyrimnet-wiki-wip">📚 New SkyrimNet Wiki (WIP)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-new-skyrimnet-wiki-wip" class="hash-link" aria-label="Direct link to 📚 New SkyrimNet Wiki (WIP)" title="Direct link to 📚 New SkyrimNet Wiki (WIP)">​</a></h2>
-<p>@everyone<br>
-<!-- -->We now have a <strong>work-in-progress Wiki</strong> with excellent tutorial videos authored by <strong>@Gonçalo</strong>!<br>
-<!-- -->📖 <a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/" target="_blank" rel="noopener noreferrer">https://goncalo22.github.io/SkyrimNet-GamePlugin/</a></p>
-<blockquote>
-<p>⚠️ Future documentation efforts for the project will live here.</p>
-</blockquote>
-<p>Want to contribute? Feel free to send us <strong>Pull Requests (PRs)</strong>!</p>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-special-thanks">🙌 Special Thanks<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-special-thanks" class="hash-link" aria-label="Direct link to 🙌 Special Thanks" title="Direct link to 🙌 Special Thanks">​</a></h2>
-<p>@everyone<br>
-<!-- -->Huge thanks to everyone who contributed to this release!</p>
-<ul>
-<li>🎙️ <strong>@Daikichi</strong> – Tons of bug fixes and polish, <em>especially</em> around TTS systems, plus the new <strong>Voice Sample Management System</strong>!</li>
-<li>🗣️ <strong>@MIKA</strong> – Implementation of the new <strong>Kokoro narrator voice</strong>!</li>
-<li>🧠 <strong>@Elbios</strong> – Bug fixes and improvements to <strong>Vast.ai</strong> support!</li>
-<li>📘 <strong>@Gonçalo</strong> – Creator of the new <strong>SkyrimNet Wiki</strong>!</li>
-<li>🧪 <strong>All @Alpha Testers</strong> – For tireless playtesting, bug reporting, and feedback!</li>
-</ul>
-<hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-skyrimnet-docs">🔗 SkyrimNet Docs<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/08/04/beta5-release#-skyrimnet-docs" class="hash-link" aria-label="Direct link to 🔗 SkyrimNet Docs" title="Direct link to 🔗 SkyrimNet Docs">​</a></h2>
-<p><a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/" target="_blank" rel="noopener noreferrer">SkyrimNet Documentation</a><br>
-<em>An AI-driven Skyrim framework</em></p>]]></content>
-        <category label="release" term="release"/>
-        <category label="beta5" term="beta5"/>
     </entry>
 </feed>
