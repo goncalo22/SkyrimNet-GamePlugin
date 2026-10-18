@@ -22,9 +22,8 @@ These are required for SkyrimNet to function at all:
 
 ---
 
-## 🚀 CUDA Build Requirements (Maximum Performance)
+## 🚀 CUDA Build Requirements (will slightly accelerate your STT whisper model)
 
-If you're using the **CUDA-accelerated build**, the following is **required**:
 
 - NVIDIA GPU with CUDA support - https://developer.nvidia.com/cuda-12-9-1-download-archive
 

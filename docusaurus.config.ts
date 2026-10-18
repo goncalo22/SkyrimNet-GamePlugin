@@ -114,6 +114,11 @@ plugins: [
     position: 'left',
     label: 'Tutorial',
   },
+  {
+    to: '/getting-started',
+    label: 'Getting Started',
+    position: 'left',
+  },
    {
     type: 'docSidebar',
     sidebarId: 'apiSidebar',
@@ -122,7 +127,7 @@ plugins: [
   },
   {
     to: '/web-ui',
-    label: 'Web UI',
+    label: 'Dashboard',
     position: 'left'
   },
   {

@@ -22,24 +22,21 @@ export default function Walkthrough() {
             marginTop: '2rem',
           }}
         >
-          {/* Card 1 */}
-          <div className={styles.card}>
-            <a
-              href="https://example.com/skreact"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={useBaseUrl('/img/dragonborn.png')}
-                alt="SK React Guide"
-                loading="lazy"
-              />
-            </a>
-            <h2>Player Configuration</h2>
-            <p style={{ marginTop: '0.5rem' }}>
-              Fully customize the player voice, dialogue, reactions and even his inner thoughts. Have a fully featured Narrator tell your epic story, as it unfolds
-            </p>
-          </div>
+         {/* Card 1 */}
+<div className={styles.card}>
+  <Link to="/player-configuration">
+    <img
+      src={useBaseUrl('/img/dragonborn.png')}
+      alt="Player Configuration"
+      loading="lazy"
+    />
+  </Link>
+
+  <h2>Player Configuration</h2>
+  <p style={{ marginTop: '0.5rem' }}>
+    Fully customize the player voice, dialogue, reactions and even his inner thoughts. Have a fully featured Narrator tell your epic story, as it unfolds.
+  </p>
+</div>
 
           {/* Card 2 */}
           <div className={styles.card}>
@@ -71,39 +68,37 @@ export default function Walkthrough() {
   </p>
 </div>
 
-          {/* Card 4 */}
-          <div className={styles.card}>
-            <a
-              href="https://example.com/memory"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={useBaseUrl('/img/npcs2.png')}
-                alt="NPC Memory"
-                loading="lazy"
-              />
-            </a>
-            <h2>NPC Configuration</h2>
-            <p style={{ marginTop: '0.5rem' }}>
-              Use the overrides system to easily customize any npc, individually or by groups, giving them different LLMs, voices and settings
-            </p>
-          </div>
-
-          {/* Card 5 */}
-          <div className={styles.card}>
-         <Link to="/costumactions">
+        {/* Card 4 */}
+<div className={styles.card}>
+  <Link to="/npc-configuration">
     <img
-      src={useBaseUrl('/img/repository.png')}
-      alt="Dialogue Engine"
+      src={useBaseUrl('/img/npcs2.png')}
+      alt="NPC Configuration"
       loading="lazy"
     />
   </Link>
-            <h2>Custom Action System</h2>
-            <p style={{ marginTop: '0.5rem' }}>
-              Search Quests and use their working functions to easily create actions that the ai npcs can autonomously use. Make your game truly come to life!
-            </p>
-          </div>
+
+  <h2>NPC Configuration</h2>
+  <p style={{ marginTop: '0.5rem' }}>
+    Use the overrides system to easily customize any NPC, individually or by groups, giving them different LLMs, voices and settings.
+  </p>
+</div>
+
+         {/* Card 5 */}
+<div className={styles.card}>
+  <Link to="/custom-actions">
+    <img
+      src={useBaseUrl('/img/repository.png')}
+      alt="Custom Actions"
+      loading="lazy"
+    />
+  </Link>
+
+  <h2>Custom Actions</h2>
+  <p style={{ marginTop: '0.5rem' }}>
+    Create custom actions that allow NPCs to interact with the world in new ways.
+  </p>
+</div>
 
 {/* Card 6 */}
           <div className={styles.card}>

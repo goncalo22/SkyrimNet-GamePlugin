@@ -38,14 +38,7 @@ The most advanced AI platform for gaming - transforming every NPC into a living,
 
 ### 🚀 Installation & Setup
 
-📥 Choose Your Build
-
-- CUDA Build: Maximum performance for NVIDIA users with in-process Whisper
-
-- Universal Build: Broad compatibility for all hardware configurations
-
-### ⚙️ Quick Start
-Download from GitHub Releases
+- Download from GitHub Releases
 
 - Install using your preferred mod manager
 
@@ -72,11 +65,11 @@ Download from GitHub Releases
 
 - Latest Microsoft Visual C++ Redistributable
 
-### CUDA Build Requirements (For Maximum Performance) 🚀
+### CUDA Build Optional Requirements (For improved Whisper STT Performance) 🚀
 
 - NVIDIA GPU with CUDA support
 
-- CUDA Toolkit 12.x - IMPORTANT: If using the CUDA build, SkyrimNet will not load without this!(⚠️ install version 12.x **not the recent 13.x**, or your dll wont start!!!) 
+- CUDA Toolkit 12.x - IMPORTANT: If using CUDA , SkyrimNet will not load without this!(⚠️ install version 12.x **not the recent 13.x**, or your dll wont start!!!) 
 
 ### Optional Dependencies 📋
 
@@ -91,8 +84,7 @@ Download from GitHub Releases
 Skyrim VR:
 
 - Skyrim VR ESL Support - Use instead of BEES
-
-#### Important:⚠️  CUDA Toolkit is required for the CUDA build to load properly   
+  
 
 ### External API Requirements🌐
 

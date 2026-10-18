@@ -10,7 +10,7 @@ displayed_sidebar: tutorialSidebar
   <img src="/SkyrimNet-GamePlugin/img/voicesamples.png" alt="voicesamples" width="500"/>
 </p>
 
-The Voice Samples section, in the web ui , provides a fast and powerful interface to browse and manage voice data for any NPC in Skyrim. It is primarily used for voice cloning with XTTs and Zonos TTS. This system supports rapid audio previewing and selection, enabling high-quality, consistent voice matching. 
+The Voice Samples section, in the web ui , provides a fast and powerful interface to browse and manage voice data for any NPC in Skyrim. It is primarily used for the voice cloning capable TTS ( that are integrated with SkyrimNet. This system supports rapid audio browsing, previewing and selection.
 
 ---
 
@@ -33,7 +33,7 @@ This makes it easy to evaluate sample quality and assign the most appropriate vo
 
 ## Use Cases
 
-- **Voice cloning** for NPCs using Zonos or XTTS  
+- **Voice cloning** for NPCs using  XTTS, PocketTTS, Zonos and other SN integrated TTS  
 - **Replacing poor-quality auto-selected voices**  
 - **Previewing how an NPC’s voice will sound in generated scenes**  
 - **Quick debugging or review of sound data per voice type**

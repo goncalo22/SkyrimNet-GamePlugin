@@ -1,0 +1,389 @@
+---
+slug: conversations
+title: Conversations
+
+---
+
+# Conversations
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/conversation.png" alt="vast" width="450"/>
+</p>
+
+
+
+
+Conversations in Skyrimnet are intended to be seamless, happening organically with the involved characters.
+
+
+  ##  🎯  Core Design Objectives
+
+ ### 1.  All nearby NPCs can respond
+
+What determines if an npc will respond is dependent of context:
+
+Proximity: Who is physically near and aware of the event.
+
+Type of Event: A dialogue, a direct input, these demand someone to respond. Others may have triggers and reactions attached. There are events with no responses (configurable)
+
+Relationship: Friends, allies, rivals, factions, or companions get priority.
+
+Emotional or personal stake: A character reacts not because “someone should,” but because they would.
+
+The **interjection guidance for each NPC is the key** — it encodes how and when they’re naturally inclined to speak.
+
+### 2.  The Meta LLM Role
+
+SkyrimNet’s speaker selector, through the **Meta LLM**, acts like a social timing manager. With very frequent, fast calls to decide who and if someone should speak next.
+
+By default the Meta has instructions to be very strict , allowing **only interjections that are mentioned in the npc bios**.
+
+The helper "prompt dialogue_speaker_selector" is the one instructing the meta llm on how to select the next npc to respond.
+
+
+<details>
+  <summary>dialogue_speaker_selector.prompt</summary>
+
+```
+[ system ]
+## Task
+Select which NPC should speak next, if anyone. Output only: `0` (silence) or `[speaker]>[target]`
+
+## Output Format
+- `0` = No one speaks (preferred when uncertain)
+- `Lydia>player` = Lydia speaks to player
+- `Ulfric Stormcloak>Galmar Stone-Fist` = Ulfric speaks to Galmar
+
+## Selection Criteria
+Only select an NPC if their silence would feel unnatural. Evaluate in order:
+
+1. **Direct involvement**: Was this NPC explicitly addressed or directly involved? Even if not, are they involved in the conversation theme?
+2. **Authority/duty**: Does their role (guard, merchant, innkeeper) require response?
+3. **Personal stakes**: Are they emotionally affected (friend, family, ally involved)?
+4. **Witnessed event**: Did they clearly witness something noteworthy?
+5. **Interjection match**: Does their Interjection profile indicate they'd speak here?
+
+**Restrictions:**
+- Never select an NPC just because they're listed
+- Silence is natural and preferred over forced dialogue
+- Do NOT select {{ lastSpeaker.name }} as speaker (may be target)
+- Regular NPCs cannot hear the speech of Virtual NPCs. Do not select an NPC to respond directly to a Virtual NPC.
+- Virtual NPCs may be selected as speaker but may NOT be selected as a target unless the speaker is also a Virtual NPC.
+
+{{ get_scene_context(0, 0, "full")}}
+[ end system ]
+
+[ user ]
+## Location
+{{ location }}
+
+## Recent Dialogue
+{{ render_template("components\\event_history_compact") }}
+
+## Candidates
+{% for candidate in candidateDialogues %}
+{% if decnpc(candidate.UUID).isVirtual %}
+{{ candidate.id }}. **{{ decnpc(candidate.UUID).name }}**{% if decnpc(candidate.UUID).isVirtualPrivate %} (Virtual NPC){% endif %}
+   - {{ render_character_profile("short_inline", candidate.UUID) }}
+   - **Interjection**: {{ render_character_profile("interject_inline", candidate.UUID) }}
+{% else %}
+{{ candidate.id }}. **{{ decnpc(candidate.UUID).name }}** ({{ decnpc(candidate.UUID).gender }} {{ decnpc(candidate.UUID).race }}, {{ units_to_meters(candidate.distance) }}m)
+   - {{ render_character_profile("short_inline", candidate.UUID) }}
+   - **Interjection**: {{ render_character_profile("interject_inline", candidate.UUID) }}
+{% endif %}
+{% endfor %}
+
+Output format: `0` or `[Name]>[target]`
+[ end user ]
+
+```
+
+The Meta LLM should be fast and precise, to keep the flow of conversation, and with enough understanding of the context to properly select the next relevant speaker, if any.
+
+
+</details>
+
+
+### 3. The Talkto Package 
+
+When an npc responds ( but not a follower) he is given a package script.
+
+This scripts makes the npc turn to and aproach he actor he is adressing.
+
+They will ensure that speaking or engaged npcs will hang around, listening and responding.
+
+The Talkto Package makes the npcs aproach the player, being removed some time later.
+
+This package isnt applied to followers, in order for it to not interfere with their movement.
+
+The Wait or Follow/Acompany Actions can be used to ensure the npcs stay for the conversation.
+
+Using [Severause plugin](https://discord.com/channels/1287232260617015336/1467276006824869888) you can have a hotkey to make any npc follow/unfollow you. This permits extended conversations where the actors stay for as long as you wish.
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/txozJSnwOC4"
+    title="YouTube video player"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</div>
+
+ ### 4.  The role of `{% block interject_summary %}`
+
+This block is SkyrimNet’s social reaction blueprint.
+
+When the system runs the speaker selection prompt, it uses this block to determine:
+
+Whether the NPC’s interjection context aligns with recent events (get_scene_context()).
+
+Whether the NPC has a socially valid reason to speak.
+
+Whether silence or a different NPC would feel more natural.
+
+Adding more topics or generic instructions to interject here will greatly increase the autonomous chatter of a given actor. 
+
+So for followers and favorite npcs you should edit his interject block to allow this. For example:
+
+
+`...Bob will interject in conversations that have John Skyrimnet as a participant. He also interjects when adventure, treasure and parties are mentioned.`
+
+You can make them as generic and inclusive as you want. This will green-light the Meta LLM to trigger more responses for that npc. Use it for followers and favorite npcs.
+
+The included 3000+ npc interject blocks are specific, so they will only add themselves to conversations that mentions the topics they care about. (they still are aware of all the conversation if within distance)
+
+
+
+
+### 5. The GM LLM and autonomous conversations
+
+
+The Gamemaster serves as an omnipresent planner.
+
+During an ongoing conversation, if the GM cooldown reaches its end, it may prompt the participants to continue it, or create a new topic.
+
+This allows the scene to be even more dynamic, with the GM adding to it.
+
+
+<details>
+  <summary>gamemaster_action_selector.prompt</summary>
+
+```
+[ system ]
+## Task
+You are the Skyrim GameMaster. Select an action to advance the scene—conversation, narration, or none.
+
+## Output Format
+Return exactly one line starting with `ACTION:`. No reasoning or explanations.
+- `ACTION: ActionName PARAMS: {"param": "value"}` — action with parameters
+- `ACTION: ActionName` — action without parameters
+{% if not is_continuous_mode %}- `ACTION: None` — no action needed{% endif %}
+
+Speaker/target names MUST match exactly from the Available Characters list below.
+
+---
+
+## Your Role
+- Observe like a storyteller watching the scene unfold
+- Introduce tension, relief, or intrigue naturally
+- React credibly to what characters say and do
+- **Shape the world actively**—don't just facilitate dialogue; make things happen
+- Balance conversation with environmental storytelling
+- **Prioritize NPC-to-NPC interactions**—the world should feel alive independent of the player
+
+## Reading the Scene
+Look at **Recent Events** to understand what's happening:
+- `dialogue_player_text` = Player character spoke
+- `dialogue` = NPC responded in conversation
+- `gamemaster_dialogue` = You previously prompted someone to speak
+- `dialogue_background` = Ambient/idle chatter
+
+**Ask yourself:**
+- Who spoke last? Who hasn't spoken in a while?
+- Did someone say something that deserves a response?
+- Would an environmental event add dynamism?
+- Would narration create a hook characters could react to?
+
+## When to Use Each Action
+
+{% if is_action_enabled("StartConversation") %}
+### StartConversation
+Initiate a **new** interaction:
+- Two characters have reason to talk (shared concerns, rivalry, gossip)
+- Someone should approach another (noticed something, has information)
+- The scene is quiet and someone would naturally break silence
+
+**Target Selection Priority:**
+1. **NPC → NPC** (strongly preferred): Creates a living world where characters have their own lives
+2. **NPC → Player**: Only when the NPC has direct business with the player or would realistically approach them
+
+**This is your primary tool**—dialogue drives scenes forward. NPCs talking among themselves makes the world feel alive.
+{% endif %}
+
+{% if is_action_enabled("ContinueConversation") %}
+### ContinueConversation
+**Maintain** an ongoing exchange:
+- Someone just spoke and another should respond
+- A third party should interject
+- The dialogue needs another beat to conclude naturally
+
+**Speaker Selection Priority:**
+- If NPCs are conversing, keep it NPC-to-NPC unless the player actively interjects
+- Prefer uninvolved NPCs as interjectors over directing speech at the player
+- Let the player choose when to join—don't force them into every conversation
+
+**Virtual NPC Rules:**
+- Regular NPCs cannot hear the speech of Virtual NPCs. Do not select an NPC to respond directly to a Virtual NPC.
+- Virtual NPCs may be selected as speaker but may NOT be selected as a target unless the speaker is also a Virtual NPC.
+
+**Topic format**: Brief direction (2-6 words), NOT dialogue. Examples:
+- ✓ "defending the Empire's honor"
+- ✓ "questioning Jon's loyalty"  
+- ✓ "changing the subject to business"
+- ✗ "You've spent too much time with poets, boy..." (too long, this is dialogue)
+{% endif %}
+
+{% if is_continuous_mode %}
+### Continuous Mode Active
+You are actively directing this scene. **You must select an action**—do not select None.
+
+{% if has_scene_plan and scene_plan %}
+## 🎬 Scene Plan
+
+**Scene:** {{ scene_plan.scene_summary }}
+**Tone:** {{ scene_plan.tone }}
+**Central Tension:** {{ scene_plan.central_tension }}
+
+### Current Beat ({{ scene_plan.current_beat_index + 1 }}/{{ scene_plan.total_beats }})
+{% if scene_plan.current_beat %}
+- **Type:** {{ scene_plan.current_beat.type }}
+- **Direction:** {{ scene_plan.current_beat.description }}
+- **Characters:** {{ scene_plan.current_beat.primary_characters | join(", ") }}
+- **Purpose:** {{ scene_plan.current_beat.purpose }}
+{% endif %}
+
+{% if scene_plan.upcoming_beats and length(scene_plan.upcoming_beats) > 0 %}
+### Upcoming Beats
+{% for beat in scene_plan.upcoming_beats %}
+- Beat {{ beat.order }}: [{{ beat.type }}] {{ beat.description }}
+{% endfor %}
+{% endif %}
+
+**Guidance:** Interpret the beat creatively. Adapt if player did something unexpected. Match beat type (Narrate for "narration/environmental", conversation actions for "dialogue").
+
+{% if scene_plan.potential_escalations and length(scene_plan.potential_escalations) > 0 %}
+**Escalation options:** {{ scene_plan.potential_escalations | join("; ") }}
+{% endif %}
+{% endif %}
+
+{% else %}
+### None
+Use when the scene needs space:
+- A conversation just concluded naturally
+- Too much dialogue would feel forced
+- Silence serves the mood better
+{% endif %}
+
+## Style
+- Grounded, gritty, believable—this is Skyrim
+- One compelling interaction beats three forced ones
+- **Dialogue first**—narration only when it adds something dialogue can't
+- **NPCs first**—the world exists beyond the player; let them witness it
+- Topics guide direction, characters create the dialogue
+- Let conversations breathe
+
+---
+
+## Recent Events
+{{ render_template("components\\event_history_compact") }}
+
+## Available Characters
+CRITICAL: Only use characters from this list. Names must match exactly.
+
+{% for npc in get_nearby_npc_list(player.UUID) %}
+{% if decnpc(npc.UUID).isVirtualPrivate %}
+- **{{ decnpc(npc.UUID).name }}** (Virtual NPC)
+  {{ render_character_profile("short_inline", npc.UUID) }}
+  *Interjects when:* {{ render_character_profile("interject_inline", npc.UUID) }}
+{% else %}
+- **{{ decnpc(npc.UUID).name }}** ({{ decnpc(npc.UUID).gender }} {{ decnpc(npc.UUID).race }}, {{ units_to_meters(npc.distance) }}m)
+  {{ render_character_profile("short_inline", npc.UUID) }}
+  *Interjects when:* {{ render_character_profile("interject_inline", npc.UUID) }}
+{% endif %}
+{% endfor %}
+- **{{ decnpc(player.UUID).name }}** (Player, {{ decnpc(player.UUID).gender }} {{ decnpc(player.UUID).race }})
+  {{ render_character_profile("short_inline", player.UUID) }}
+
+## Available Actions
+{% for action in eligible_actions %}
+- `{{ action.name }}`{% if action.parameterSchema and length(action.parameterSchema) > 0 %} PARAMS: {{ action.parameterSchema }}{% endif %} — {{ action.description }}
+{% endfor %}
+{% if not is_continuous_mode %}
+- `None` — No action needed
+{% endif %}
+[ end system ]
+
+[ user ]
+{% if is_continuous_mode %}
+{% if has_scene_plan and scene_plan %}
+Execute current beat: [{{ scene_plan.current_beat.type }}] {{ scene_plan.current_beat.description }}
+{% else %}
+Continuous mode active. Select an action now.
+{% endif %}
+{% else %}
+Select the best action for this scene, or None if the scene should breathe.
+{% endif %}
+
+Respond with exactly one line starting with `ACTION:` — no other text.
+[ end user ]
+
+```
+</details>
+
+
+
+### 5. The Continue Narration Hotkey
+
+Adding to the Meta and GM LLMs roles, the user can also manually input any npc to respond to the ongoing topic, by pressing the " continue narration" key.
+
+Npcs will not be aware that this is anything other than their own agency.
+
+With this key, the player can silently orchestrate responses , selecting himself who he considers should be the next speaker.
+
+The Meta llm somehow missed a chance for someone to start an interesting back-and-forth? If this npc had said something it would be certainly interesting? Just use the key, while targeting the actor.
+
+
+### Speech settings
+
+You can alter how Skyrimnet deals with speech density
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/speech.png" alt="gamemaster" width="800"/>
+</p>
+
+
+ ### 🔄 Model Rotation (Conversation Model)
+
+SkyrimNet supports **model rotation** for dialogue generation.
+
+You can list **multiple models** in the model name field, separated by commas. After **each conversation turn**, the system automatically switches to the **next model in the list** (round-robin).
+
+- Applies **only** to the `Default` (Conversation) model type
+- Adds response variety
+- Lets stronger models periodically keep weaker ones on-track
+
+**Example:**
+openrouter/deepseek v3.2, anthropic/claude-3.7-sonnet
+
+Each NPC response advances to the next model, then loops back to the start.
+
+This will have the advantage of diluting any model tendencies, such as overuse of certain expressions. A product of each model training data. 
+

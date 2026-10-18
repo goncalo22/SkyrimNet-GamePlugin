@@ -40,7 +40,7 @@ SkyrimNet’s event system enables **dynamic memory**, **LLM-based dialogue**, a
 ---
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/eventconfig.png" alt="override" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/events1.PNG" alt="override" width="1200"/>
 </p>
 
 
@@ -60,6 +60,14 @@ Enabled but not persistent Events have a short life in the context, usually arou
 > ✅ Best practice: Events you want remembered or reacted to should be `Enabled`, `Persistent`, or/and have `Allow NPC Reaction` set appropriately.
 
 ---
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/events3.PNG" alt="override" width="1200"/>
+</p>
+
+
+
+
 
 ## 💬 NPC Reactions Overview
 

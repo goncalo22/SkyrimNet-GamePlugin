@@ -11,6 +11,16 @@ sidebar_position: 1
   <img src="/SkyrimNet-GamePlugin/img/bios.png" alt="aela2" width="400"/>
 </p>
 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/options2.PNG" alt="actions2" width="1200"/>
+</p>
+
+
+
+
+
+
 ## 🔧 What Is It?
 
 The **SkyrimNet Bio System** is a structured character profiling system for NPCs in *The Elder Scrolls V: Skyrim*.  

@@ -5,24 +5,12 @@ title: Customizations
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ReactAudioPlayer from 'react-audio-player';
+import styles from './index.module.css';
+import Link from '@docusaurus/Link';
 
 
 
 
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/dwemer.png" alt="construction" width="500"/>
-</p>
-
-
-
-
-<p align="center">
-  <img
-    src={useBaseUrl('/SkyrimNet-GamePlugin/img/line.gif')}
-    alt="construction"
-    width="150"
-/>
-</p>
 
 
 
@@ -35,145 +23,45 @@ This is where you can find altered prompts, new submodules and all manner of cus
 
 
 
-### Conditional Knowledge submodule 
-
-Create a new "7500_conditional_knowledge.prompt" file ( or a numbering suiting the order where you want the context to appear) and add it to Skyrimnet\prompts\submodules\character bio, containing the following:
-
-<details>
-  <summary>Show Conditional Knowledge prompt</summary>
-```
- # 7500_conditional_knowledge
-
- {% if render_mode == "full" or render_mode == "dialogue_target"  %} 
 
 
-{% if is_in_faction(npc.UUID, "playerFaction") %}
+               ## Skyrimnet Custom Music
 
-{"### Follower Knowledge"}
+<div className={styles.features} style={{ marginTop: '5rem' }}>
+  <section>
+  <a
+  href="https://goncalo22.github.io/SkyrimNet-GamePlugin/skyrimnet-music"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={useBaseUrl('/img/Maestro2.png')}
+    alt="OStimNet"
+    className={styles.featureImage}
+  />
+</a>
+    <h2>Enrich your playthrough with carefully crafted and edited exclusive music</h2>
+    <p>
+    Lore friendly tracks that dont replace any vannila ones, use all or only the ones you prefer
+    </p>
+  </section>
 
-{#  whatever you write here only npcs belonging to the player faction will know about. Same on other entries below, only npc belonging to the faction will know it. #}
+  <section>
+  <a
+  href="/SkyrimNet-GamePlugin/custom-bios"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={useBaseUrl('/img/Templates.png')}
+    alt="OStimNet"
+    className={styles.featureImage}
+  />
+</a>
+    <h2>Quickly add small bios blocks to flesh out npcs</h2>
+    <p>
+     Improve context richness by adding templated details such as inteligence levels, hobbies, dislikes and more
+    </p>
+  </section>
 
-
-
-{% endif %}
-
-
-{% if is_in_faction(npc.UUID, "TownWhiterunFaction") or is_in_faction(npc.UUID, "CrimeFactionWhiterun") %}
-{"### Recent developments in whiterun"}
-
-
-{% endif %}
-
-
-{% if is_in_faction(npc.UUID, "TownSolitudeFaction") or is_in_faction(npc.UUID, "CrimeFactionHaafingar") %}
-{"### Recent developments in Solitude"}
-
-
-{% endif %}
-
-
-{% if is_in_faction(npc.UUID, "JobMerchantFaction") %}
-{"### Merchant Knowledge"}
-
-
-
-{% endif %}
-{% if is_in_faction(npc.UUID, "JobBardFaction") %}
-{"### Recent developments in Skyrim"}
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "PotentialFollowerFaction") %} 
-
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "IsGuardFaction") %}
-{"### General Guard Knowledge"}
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "GuardFactionWhiterun") %}
-{"### Whiterun Guard Knowledge"}
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "JobPriestFaction") %}
-{"### Priest Knowledge"}
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "WhiterunMarketShoppers") %}
-{"### Whiterun Shoppers Knowledge"}
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "ThievesGuildFaction") %}
-{"### Thieves Guild Knowledge"}
-
-
-{% endif %}
-
-{% if is_in_faction(npc.UUID, "TownRiftenFaction") or is_in_faction(npc.UUID, "CrimeFactionRiften") %}
-{"### Recent developments in Riften"}
-
-
-{% if is_in_faction(npc.UUID, "VampireFaction")  %}
-{"### Vampire Knowledge"}
-
-{% endif %}
-{% endif %}
-{% endif %}
-
-```
-</details>
-
-### Gagged dialogue prompt
-
-<details>
-  <summary>Show Gagged Dialogue</summary>
-```
- [ system ]
-{% if worn_has_keyword(npc.UUID, "zbfWornGag") %}
-You are roleplaying as {{ decnpc(npc.UUID).name }}, a {{ decnpc(npc.UUID).gender }} {{ decnpc(npc.UUID).race }} in Skyrim. {{ decnpc(npc.UUID).name }} is currently gagged and cannot speak plainly. Remain completely in character and react as they would in the given situation.{% if responseTarget %} You are speaking to {% if responseTarget.type == "player" %}{{ player.name }}, a {{ player.gender }} {{ player.race }}{% else if responseTarget.type == "npc" %}{{ decnpc(responseTarget.UUID).name }}, a {{ decnpc(responseTarget.UUID).gender }} {{ decnpc(responseTarget.UUID).race }}{% endif %}{% endif %}.
-{% else %}
-... normal system prompt here ...{% endif %}
-{{ render_subcomponent("system_head", "full") }}
-[ end system ]
-
-{{ render_template("components\\event_history") }}
-
-[ user ]
-{% if worn_has_keyword(npc.UUID, "zbfWornGag") %}
-Respond with only onomatopoeia or brief narrative action from {{ decnpc(npc.UUID).name }}, nothing else. Never repeat the same narration phrases, reword as necessary.
-- Use narration sparingly. Narration is defined as any non-verbal output included in your response, such as *{{ decnpc(npc.UUID).name }} taps their foot in impatience*.
-{{ render_subcomponent("user_final_instructions", "full") }}
-{% else %}
-... normal user prompt here ...
-{% endif %}{% endif %}
-[ end user ]
-
-```
-
-</details>
-
-
-### Custom prompt
-
-<details>
-  <summary>Show Custom prompt</summary>
-```
- this is a custom prompt
-```
-
-</details>
-
-
-
-
-[🎵 Skyrimnet Music](/skyrimnet-music)
+</div>

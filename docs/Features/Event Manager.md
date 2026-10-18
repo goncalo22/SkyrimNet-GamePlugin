@@ -5,6 +5,14 @@ displayed_sidebar: tutorialSidebar
 ---
 
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/monitor3.png" alt="events" width="500"/>
+</p>
+
+
+
+
+
 The **Event Monitor** provides a live, real-time view of **all events flowing through SkyrimNet**. It acts as an inspection and debugging tool, allowing you to observe event traffic, examine event payloads, and rapidly build AI triggers based on real in-game activity.
 
 ### Core Capabilities

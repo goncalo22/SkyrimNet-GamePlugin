@@ -11,6 +11,100 @@ displayed_sidebar: tutorialSidebar
 </p>
 
 
+
+
+
+
+# World Settings Guidelines
+
+World Settings should define **what makes *your* world different**, not restate what SkyrimNet already knows or enforce broad personality traits across every NPC.
+
+## Keep It Minimal
+
+Less is often more. Large world prompts can introduce unnecessary prompt bloat, reduce context efficiency, and make NPC behavior less varied.
+
+Before adding a rule, ask:
+
+> *Is this information already available through SkyrimNet's prompts, NPC bios, memories, or game context?*
+
+If the answer is yes, it usually does **not** belong in the World Settings.
+
+## Avoid Redundant Instructions
+
+Do not restate information that SkyrimNet already provides, such as:
+
+* NPCs are living in Skyrim.
+* NPCs should not break the fourth wall.
+* NPCs should behave naturally within the Elder Scrolls universe.
+* General dialogue or roleplay rules already enforced by SkyrimNet.
+
+Duplicating existing instructions only increases prompt size without improving behavior.
+
+## Avoid Global Personality Rules
+
+Instructions such as:
+
+* "People are greedy."
+* "Everyone mistrusts strangers."
+* "Corruption is everywhere."
+* "The world is dark and hopeless."
+
+can unintentionally influence every NPC in similar ways, reducing personality diversity and encouraging repetitive or exaggerated responses.
+
+Instead, allow NPC bios, memories, relationships, factions, and current circumstances to shape individual personalities naturally.
+
+A kind character should remain kind. A cruel character should remain cruel. Variety produces more believable interactions than forcing a universal tone.
+
+## Use World Knowledge Instead
+
+If you want to change the world's history, current events, or shared beliefs, prefer **World Knowledge** over global prompt instructions.
+
+Examples include:
+
+* A recent Thalmor invasion.
+* A devastating plague.
+* A civil war that ended differently.
+* The disappearance of a major city.
+* New religious movements.
+* Changes to political power.
+
+These facts become part of the world's shared understanding, allowing NPCs to react according to their own personalities rather than because every character received the same behavioral instruction.
+
+For vanilla lore (such as Alduin or the Civil War), there is usually no need to restate existing events unless you are intentionally changing history or informing NPCs about the current state of the world.
+
+## Let Context Drive Behavior
+
+Rather than telling every NPC that the world is dark, provide the events that made it dark.
+
+For example, instead of:
+
+> "The world is cruel. Everyone is afraid."
+
+Prefer World Knowledge entries describing:
+
+* villages destroyed,
+* wars,
+* famine,
+* political upheaval,
+* monster attacks,
+* economic collapse.
+
+Good-hearted NPCs may try to help others. Selfish NPCs may exploit the situation. Cowards may flee. Brave characters may fight.
+
+The same world naturally produces different reactions from different people, resulting in richer, more believable roleplay.
+
+## A Good World Setting Is Small
+
+Many playthroughs work well with little or even no World Settings at all. In many cases, a single custom rule (for example, regarding dialogue style or explicit language) is sufficient, while SkyrimNet's existing prompts, NPC bios, memories, and World Knowledge provide the rest.
+
+When in doubt, keep World Settings focused, specific, and minimal.
+
+
+
+
+
+
+
 ## Prompts in Skyrimnet
 
 In SkyrimNet, all prompts are defined in their respective prompt files in SKSE/plugins/SkyrimNet/prompts. This does not only apply to the prompt for getting the npc to speak, but also things like Generating Memories, Prompts for choosing the appropriate action to call as well as prompts added through mods.
@@ -154,4 +248,3 @@ Before saving your prompt edits, ask:
 - Am I shaping tone and style, not dictating exact dialogue?
 
 ✨ With these habits, your SkyrimNet [prompts](/SkyrimNet-GamePlugin/Prompts/prompts)  will be clean, stable, and immersive—keeping NPCs dynamic without breaking into hallucinations or robotic, forced chatter.
-

@@ -11,7 +11,9 @@ displayed_sidebar: tutorialSidebar
   <img src="/SkyrimNet-GamePlugin/img/diary.png" alt="vast" width="450"/>
 </p>
 
-
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/options8.PNG" alt="actions2" width="1100"/>
+</p>
 
 #  Diary System — SkyrimNet Diary Feature
 
@@ -32,6 +34,15 @@ The diary system builds a structured LLM prompt that includes:
 - A detailed set of **writing and style guidelines** for authentic diary generation  
 
 ---
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/diaries1.PNG" alt="vast" width="800"/>
+</p>
+
+
+
+
 
 ### **2. Memory Integration**
 Each diary entry is automatically:

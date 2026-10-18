@@ -15,15 +15,6 @@ SkyrimNet is easy to set up and flexible to use, whether you're running it local
 Download the latest release from:  
 👉 [SkyrimNet Releases on GitHub](https://github.com/MinLL/SkyrimNet-GamePlugin/releases)
 
-You’ll see **two versions** — choose **one** based on your system:
-
-- **🎮 CUDA Build**  
-  Use this if you have an **NVIDIA graphics card**.  
-  Includes Whisper STT locally and improves performance of some components.
-
-- **🧩 Universal Build**  
-  Use this if you **don’t have an NVIDIA GPU**, or plan to use Whisper remotely via **Vast.ai**, **OpenAI**, or **text input only**.
-
 > 📥 Install the downloaded `.zip` as a **mod** via your mod manager (e.g., MO2 or Vortex).
 
 ---

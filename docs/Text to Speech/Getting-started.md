@@ -18,11 +18,22 @@ SkyrimNet supports multiple TTS backends — each with unique strengths in quali
 
 ---
 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/TTS1.PNG" alt="voicesamples" width="1200"/>
+</p>
+
+
+
+
+
+
+
 ## ⚖️ Feature Comparison
 
 | Feature                 | 🧠 Zonos                        | 🗣️ XTTS (Default)              | ⚡ Piper                         |
 |-------------------------|---------------------------------|--------------------------------|----------------------------------|
-| **Voice Quality**       | 🎙️ Studio-grade, cinematic      | 🎧 Very high, expressive        | 🔉 Good, clean, lightweight      |
+| **Voice Quality**       | 🎙️ high, cinematic             | 🎧 good, expressive             | 🔉 acceptable, clean, lightweight  |
 | **Voice Cloning**       | ✅ Yes, identity cloning         | ✅ Yes, from voice sample       | ❌ No cloning                    |
 | **Emotional Control**   | 🟡 Planned                      | 🟡 Basic support (tone hints)   | ❌ None                          |
 | **Accent/Language Support** | ✅ Wide                      | ✅ Cross-lingual                | 🟡 Limited                       |
@@ -74,3 +85,5 @@ SkyrimNet supports multiple TTS backends — each with unique strengths in quali
 - **Piper** = *Fastest engine, perfect for lightweight real-time voice playback*
 
 All three engines can eventually be mixed and matched per actor or event within SkyrimNet for optimal performance and immersion. (note: not currently as of beta4)
+
+  [Player Dialogue](/Features/player-dialogue)       

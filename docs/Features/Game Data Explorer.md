@@ -50,7 +50,7 @@ The explorer automatically parses all loaded plugin data and organizes it into i
 ---
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/explorer.png" alt="construction" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/Explorer1.PNG" alt="construction" width="1200"/>
 </p>
 
 ## ⚙️ Real-Time Manipulation
@@ -63,6 +63,11 @@ The Game Data Explorer is not just for browsing — it offers **live modificatio
 - Fully compatible with mod-added content, no extra setup needed
 
 ---
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/explorer2.PNG" alt="construction" width="1200"/>
+</p>
+
 
 ## 📜 Quest Scripting Interface
 
@@ -78,6 +83,12 @@ One of the most advanced features is direct access to **Papyrus scripts** attach
 This enables fast testing of quest logic, debugging of broken stages, and experimentation without needing CK or in-game console workarounds.
 
 ---
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/explorer3.PNG" alt="construction" width="1200"/>
+</p>
+
+
 
 ## 💡 Use Cases
 

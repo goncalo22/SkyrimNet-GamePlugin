@@ -4,17 +4,18 @@ title: Web Ui
 ---
 
 
-# Skyrimnet Web UI 
+# Skyrimnet Dashboard
 
 The SkyrimNet web dashboard presents a clean, real-time command center for monitoring the entire AI simulation. 
 It displays the latest in-game omnisight screenshot, the system status, nearby NPCs, short-lived events, and any recent errors.
-Detailed logs display ongoing dialogue, player interactions, and world events as they unfold, while the API request panel reveals every LLM call with timing, tokens, and outputs for deep debugging
+Detailed logs display ongoing dialogue, player interactions, and world events as they unfold, while the API request panel reveals every LLM call with timing, tokens, inputs and outputs for deep debugging
+In terms of size, expect around 4k-20k tokens of input, depending of if its a ordinary npc or a very fleshed out favorite companion, and if how many plugins and addons are inserting extra context.
+Modern cloud LLMs can process context in the order of milions of tokens, so a few thousand token input is a "focused", rather easy call for a competent cloud LLM to analyze and respond immersively, roleplaying according to its nuance and details.
 
 
-## Dashboard
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Dashboard.PNG" alt="construction" width="1500"/>
+  <img src="/SkyrimNet-GamePlugin/img/UI dashboard.PNG" alt="construction" width="1500"/>
 </p>
 
 
@@ -22,7 +23,8 @@ Detailed logs display ongoing dialogue, player interactions, and world events as
 
 In here you can see, in real time, the requests being made, while each llm is doing its task. From the dialogue, memory, meta, to gamemaster calls, you can look at their inputs and outputs.
 By looking at what is being sent to the llm, in a given call, you can quickly assert why the output was done in a certain way.
-
+LLMS would only "invent" details if told to roleplay without proper context, this isnt the case.
+With extremely detailed information, a minimally competent LLM will never hallucinate and keep their decisions and outputs fully grounded on the input context.
 
 <p align="center">
   <img src="/SkyrimNet-GamePlugin/img/requests.PNG" alt="construction" width="1200"/>
@@ -34,61 +36,45 @@ This is an example of a dialogue llm call, containing all the context provided t
 Skyrimnet prompts and overall system strives for the cleanest and more detailed context possible, in order to get the best immersiveness from the llm responses.
 
 
+### NPC bios, submodules, integrations, item awareness
+
+Nearby items, worn items, NPC full bios, these inputs are exposing crucial data about everything the LLM needs to know to produce immersive, believable responses that fit the context and the npc personality and motives.
+
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Context.PNG" alt="construction" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/input1.PNG" alt="construction" width="1200"/>
 </p>
 
-### Action LLM call example
+### Temporal and Spatial Context
+
+ Time, Weather,Nearby people, Recent Events, Scene summary: 
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/ActionCall.PNG" alt="construction" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/input2.PNG" alt="construction" width="1200"/>
 </p>
 
-## Configuration Manager
+### Vision Context
+
+Omnisight vision descriptions, about scene, location and characters will fill out any possible gaps that in-game data wouldnt send. ( like what is the npc current expression, cracks in the ceiling,etc)
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Manager.PNG" alt="construction" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/input3.PNG" alt="construction" width="1200"/>
 </p>
 
-## Events Manager 
+### Conversation history
 
+ Kept separate, by npc (keeping information private), by default stores the last 50 dialogue lines ( can be increased), acting as a short term memory
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/EventsManager.PNG" alt="construction" width="1200"/>
-</p>
-
-
-
-## Manage Data dropdown menu
-
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/ManageData.PNG" alt="construction" width="1200"/>
-</p>
-
-
-## Automation dropdown menu
-
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Automation.PNG" alt="construction" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/input4.PNG" alt="construction" width="1200"/>
 </p>
 
 
-## Customization dropdown menu
 
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Customization.PNG" alt="construction" width="1200"/>
-</p>
 
-## Configuration dropdown menu
 
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/Configuration.PNG" alt="construction" width="1200"/>
-</p>
 
-## System Menu dropdown menu
 
-<p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/SystemMenu.PNG" alt="construction" width="1200"/>
-</p>
+
+
 
 
 

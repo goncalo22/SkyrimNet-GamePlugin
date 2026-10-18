@@ -199,3 +199,20 @@ If replies are then getting cut off:
 
 These settings are a strong baseline. Adjust temperature and penalties per NPC or scene to shape voice and variety without sacrificing consistency.
 
+
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/ORproviders.PNG" alt="llm2" width="1200"/>
+</p>
+
+
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/exclude.PNG" alt="llm2" width="1200"/>
+</p>
+
+
+
+

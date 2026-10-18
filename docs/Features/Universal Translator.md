@@ -9,6 +9,9 @@ displayed_sidebar: tutorialSidebar
   <img src="/SkyrimNet-GamePlugin/img/translator2.png" alt="dialogue" width="500"/>
 </p>
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/options14.PNG" alt="dialogue" width="1100"/>
+</p>
 
 
 Completely reimagine Skyrim’s dialogue. Universal Translator transforms both vanilla *and* modded lines using custom speech patterns, along with awareness of each NPC’s bio and recent events.
@@ -36,8 +39,11 @@ Want Imperials to sound like city folk and Stormcloaks like Southern rebels? Thi
   - The player’s actions and reputation
 
 
+
+
+
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/translator.PNG" alt="dialogue" width="800"/>
+  <img src="/SkyrimNet-GamePlugin/img/UT1.PNG" alt="dialogue" width="1200"/>
 </p>
 
 ### How it works

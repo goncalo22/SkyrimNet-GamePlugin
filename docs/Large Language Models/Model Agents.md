@@ -85,9 +85,6 @@ Decides **what an NPC does** after speaking. The model just needs to be "decent"
   - Examples: `FollowPlayer`, `SlapTarget`, `Gesture`
 - Prevents dialogue from feeling disconnected from in-game behavior.
 
-###  Gesture Generation
-- Selects expressive **gestures or animations** that match speech tone.  
-  - e.g., nodding, shrugging, dramatic motions
 
  Configurable at: `Automation > Action Library` 
 

@@ -2,7 +2,7 @@
 
 {% if render_mode == "full" or render_mode == "thoughts" and actorUUID == player.UUID %}
 
-{% set hunger_level = to_number(get_script_property("PlayerVampireQuest", "playervampirequestscript", "VampireStatus")) %}
+{% set hunger_level = (get_script_property("PlayerVampireQuest", "playervampirequestscript", "VampireStatus")) %}
 {{ "## Vampiric Hunger" }}
 {% if hunger_level == 1 %}
 {{ player.name }} has fed recently, and is not hungry.
@@ -15,7 +15,7 @@
 {% endif %}
 
 {% else if render_mode == "dialogue_target"  and actorUUID == player.UUID %}
-{% set hunger_level = to_number(get_script_property("PlayerVampireQuest", "playervampirequestscript", "VampireStatus")) %}
+{% set hunger_level = (get_script_property("PlayerVampireQuest", "playervampirequestscript", "VampireStatus")) %}
 {% if hunger_level == 4 %}
 {{ "## Vampirism" }}
 {{ player.name }} is displaying traits that clearly mark them as a dangerous blood-starved vampire.

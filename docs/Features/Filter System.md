@@ -40,11 +40,21 @@ WhitelistOnly
 → Only actors explicitly listed are allowed. Everyone else is ignored.
 Useful for testing or limited-interaction setups.
 
+You can use the Skyrimnet Wheel ( F12) to quickly add actors to the blacklist or whitelist factions.
+
+
+<video width="640" height="360" controls>
+  <source src="/SkyrimNet-GamePlugin/videos/Whitelistnpcs.mp4" type="video/mp4" />
+</video>
+
+---
 
 <p align="center">
   <img src="/SkyrimNet-GamePlugin/img/actorfilter.png" alt="construction" width="1200"/>
 </p>
 
+
+---
 ## 3. Speech Capability
 
 Allow Only Speech-Capable Actors:
@@ -99,7 +109,7 @@ Interactions in-game now follow the new inclusion/exclusion rules.
 
 
 
-# SkyrimNet Memory Filter
+## SkyrimNet Memory Filter
 
 In practice, the Memory Filter “listing” works just like the Actor Filter: you can maintain whitelists and blacklists for factions and races (and optionally require speech-capable actors). Anything that lands on the blacklist simply can’t emit memories; anything on the whitelist (when using WhitelistOnly) is allowed to. This symmetry makes it easy to keep your interaction scope and your memory scope in lockstep—if an actor isn’t eligible for interaction, they usually shouldn’t be filling your memory store either.
 
@@ -113,3 +123,119 @@ to add use the console comand:
 <p align="center">
   <img src="/SkyrimNet-GamePlugin/img/memoryfilter.png" alt="construction" width="1200"/>
 </p>
+
+
+
+---
+
+
+## Dialogue Filter
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/delphine.png" alt="construction" width="500"/>
+</p>
+
+
+
+The **Dialogue Filter** preprocesses vanilla Skyrim dialogue **before it reaches the AI**.  
+It uses **regular expression (regex) rules** to **skip, clean, or replace** unwanted dialogue lines such as combat grunts, filler barks, or repetitive NPC phrases.
+
+This ensures the AI receives **meaningful, high-signal dialogue**, improving response quality and immersion.
+
+Its Ui is located in Configuration Manager ---> Reactions and Events---> Dialogue Filter
+
+---
+
+### Design Notes
+
+- Regex anchoring (`^...$`) is used for **precise bark removal**
+- Filtering occurs **before AI processing**, not after
+- Prevents irrelevant or low-quality dialogue from influencing AI behavior
+*the 
+
+---
+
+
+### Filter Rules
+
+Each rule uses a **case-insensitive regex pattern**.
+
+**Rule behavior:**
+- If **Replacement is empty** → the dialogue line is **skipped**
+- If **Replacement is provided** → the matched portion is **replaced**
+- Regex anchors (`^` / `$`) may be used to match entire lines exactly
+
+**if you dont use these anchors, over-filtering will occur! Meaning all included words, instead of the precise sentence!**
+
+---
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/filter2.PNG" alt="construction" width="1200"/>
+</p>
+
+### Example Rules
+
+#### `combat_grunts`
+- **Pattern:**
+  ```regex
+  ^(Rrargh!|Hnargh!|Uunnff!|Yeaargh!)$
+
+ 
+Skips pure combat grunt lines entirely.
+
+---
+
+#### Serana
+**Pattern:**  
+`^(That's it! Let's go.)$`
+
+**Behavior:**  
+Removes a repetitive vanilla bark spoken verbatim.
+
+---
+
+#### Taarie
+**Pattern:**  
+`if you're heading to the Blue Palace`
+
+**Replacement:**  
+`oh hello my dear`
+
+**Behavior:**  
+Rewrites part of a longer dialogue line to custom text.
+
+---
+
+### 🧪 Regex Simple Examples
+
+**🔹 Exact text**
+`hello`
+
+**Matches:**
+- `hello`
+- `hello there`
+- `oh hello`
+
+---
+
+**🔹 Exact whole line** 
+`^hello$`
+
+**Matches:**
+- `hello`
+
+**Does NOT match:**
+- `hello there`
+- `oh hello`
+
+---
+
+**🔹 One of several words**
+`(cat|dog|wolf)`
+
+**Matches:**
+- `cat`
+- `dog`
+- `wolf`
+

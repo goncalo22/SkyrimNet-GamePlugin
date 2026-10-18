@@ -8,6 +8,15 @@ displayed_sidebar: tutorialSidebar
   <img src="/SkyrimNet-GamePlugin/img/omnisight.png" alt="gamemaster" width="500"/>
 </p>
 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/options5.PNG" alt="actions2" width="1200"/>
+</p>
+
+
+
+
+
 # OmniSight System
 
 **OmniSight** is SkyrimNet’s AI-powered image-to-text system that gives the LLM real, continuous visual awareness of the game world. It captures in-game screenshots automatically or on demand, analyzes them with a vision model, and generates detailed descriptions , injected in the NPC surrounding context and dynamic behaviors.
@@ -59,9 +68,22 @@ To send a player screenshot press and hold the hotkey, instead of just clicking 
 - **Location descriptions** (architecture, objects, terrain, layout)
 
 Each time the player enters a new location, a screenshot is taken and evaluated. Location descriptions are stored and used to provide surrounding context to the npcs.
+
+
 - **Scene descriptions** (real-time environment + NPC activity)
 
 Taken whenever the player engages and speaks with someone. This way the llm is aware of the current scene.
+
+The Scene screenshot is taken whenever an input text or speech is done. 
+
+It can then work as a all-around screenshot taker, since you dont even need to produce the input, just open the text box.
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/omniscene.png" alt="gamemaster" width="1200"/>
+</p>
+
+The scene description will appear until a new one is taken.
 
 
 - **Furniture descriptions**( function, design, materials, notable characteristics)                                
@@ -88,7 +110,7 @@ All templates enforce:
 
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/omnisettings.PNG" alt="gamemaster" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/omni1.PNG" alt="gamemaster" width="1200"/>
 </p>
 
 
@@ -114,7 +136,13 @@ All templates enforce:
 
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/omnisettings2.PNG" alt="gamemaster" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/omni2.PNG" alt="gamemaster" width="1200"/>
+</p>
+
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/omni3.PNG" alt="gamemaster" width="1200"/>
 </p>
 
 ### Limits
@@ -122,5 +150,5 @@ All templates enforce:
 You can set capture limitations per game session and per time, for a complete budget friendly setting ( though it is very a inexpensive feature)
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/omnisettings3.PNG" alt="gamemaster" width="1200"/>
+  <img src="/SkyrimNet-GamePlugin/img/omni3.PNG" alt="gamemaster" width="1200"/>
 </p>

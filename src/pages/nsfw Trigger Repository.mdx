@@ -1,0 +1,208 @@
+---
+slug: nsfw-triggers
+title: NFSW Trigger Repository
+---
+
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+
+# NFSW Trigger Repository
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/kinks.png" alt="construction" width="500"/>
+</p>
+
+
+## Gag trigger
+
+```yaml
+name: "equipped_zbf_gag_ball_trigger"
+description: "Trigger on equip event "
+
+eventCriteria:
+  eventType: "equip"
+  schemaConditions:
+    - fieldPath: "item"
+      operator: "equals"
+      value: "zbf Gag Ball"
+    - fieldPath: "action"
+      operator: "equals"
+      value: "equipped"
+
+response:
+  type: "direct_narration"
+  content: "{{ event_json.actor }} has a {{ event_json.item }} put on the mouth, making {{ event_json.actor }} unable to speak"
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+
+
+```yaml
+name: "unequipped_zbf_gag_ball_trigger"
+description: "Trigger on unequip event"
+
+eventCriteria:
+  eventType: "equip"
+  schemaConditions:
+    - fieldPath: "item"
+      operator: "equals"
+      value: "zbf Gag Ball"
+    - fieldPath: "action"
+      operator: "equals"
+      value: "unequipped"
+
+response:
+  type: "direct_narration"
+  content: "{{ event_json.actor }} has the {{ event_json.item }} removed from the mouth, being now able to speak again. The jaw hurts a little and {{ event_json.actor }} was drooling"
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+
+
+
+
+
+ Testing: [NSFW Bios Blocks](/SkyrimNet-GamePlugin/nsfw-bios)
+
+
+   Testing: [NSFW Bios Kink Blocks](/SkyrimNet-GamePlugin/nsfw-kinks)
+
+
+    Testing: [NSFW Bios sex Speech Blocks](/SkyrimNet-GamePlugin/nsfw-speech)
+
+
+ ```yaml
+
+
+## Fondle tits (requires Shadowman fondle tits shout mod)
+
+name: "Fondle Tits"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Fondle any Tits Shout"
+
+response:
+  type: "direct_narration"
+  content: "{{ player }} grabs and fondles {{ target }} tits,from behind,caressing them with lust and desire. they bounce in her hands"
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+
+
+ ```
+
+## Pole Dance ( requires Shadowman Pole Dance shout mod)
+
+ ```yaml
+
+name: "Pole Dance"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Pole dance Shout"
+
+response:
+  type: "direct_narration"
+  content: "you start doing a sensual pole dance, with slow, graceful, erotic movements. You are being watched as you move around the pole, exposing your body, your curves, your ass, while you dance."
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+
+```
+
+
+## Slap Butt ( requires Shadowman Slap Butt shout mod)
+
+```yaml
+
+name: "slap butt"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Slap Butt Shout"
+    - fieldPath: "spell_editor_id"
+      operator: "equals"
+      value: "SlapButtShout"
+
+response:
+  type: "direct_narration"
+  content: "{{ originator }} slaps {{ target }} butt with a open hand, making a loud, satisfying sound. {{ target }} butt cheeks wobble."
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 5
+priority: 1
+
+
+
+```
+
+```yaml
+name: "spell_erection_trigger"
+description: "Trigger on spell_cast event"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Erection"
+   
+
+response:
+  type: "direct_narration"
+  content: "{{ event_json.actor }} member is starting to grow, getting hard ... its big and veiny"
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+

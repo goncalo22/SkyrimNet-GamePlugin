@@ -9,31 +9,25 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 <p align="center">
-  <img src="/SkyrimNet-GamePlugin/img/trigger.png" alt="construction" width="500"/>
+  <img src="/SkyrimNet-GamePlugin/img/trigger2.png" alt="construction" width="500"/>
 </p>
 
 # Trigger Repository
 
 
-This is where the many diferent triggers are exposed and shared by the community. To setup a custom trigger in your game you just need to download its yaml file and place it in \Data\SKSE\Plugins\SkyrimNet\config\triggers or equivalent
+This is where the many diferent triggers are exposed and shared by the community. To setup a custom trigger in your game you just need to download its file and install it as mod. The yaml trigger file will appear in the web ui and be enabled by default
 
+### Slap anyone shout trigger
 
-### Ironflesh spell trigger
+Gives npcs awareness and reaction to the slap (where a paired animation plays)
+Requires "Shadowman slap anyone" mod https://www.nexusmods.com/skyrimspecialedition/mods/125499
 
-A simple example
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/slap.png" alt="construction" width="400"/>
+</p>
 
-<div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
-  <a
-    className="button button--primary button--lg"
-    href={useBaseUrl('/files/ironflesh_trigger.yaml')}
-    download="ironflesh_trigger.yaml"
-  >
-    📥 Download "Ironflesh Trigger" YAML
-      </a>
-  </div>
-
-  ```yaml
-name: "IronFlesh Trigger"
+ ```yaml
+name: "slap on face"
 description: "Auto-generated trigger for spell_cast"
 
 eventCriteria:
@@ -41,21 +35,231 @@ eventCriteria:
   schemaConditions:
     - fieldPath: "spell"
       operator: "equals"
-      value: "Ironflesh"
+      value: "Slap Anyone Shout"
     - fieldPath: "spell_editor_id"
       operator: "equals"
-      value: "Ironflesh"
+      value: "SlapAnyoneShout"
 
 response:
-  type: "player_thought"
-  content: "I feel my skin tingle as it hardens as I cast {{ event_json.spell }}."
+  type: "direct_narration"
+  content: "{{ player.name }} slaps you hard and painfully, your face turns red, you feel subdued"
+
+audience: "everyone"
+
+enabled: true
+probability: 1
+cooldownSeconds: 5
+priority: 1
+
+```
+  <div style={{ display:'flex', gap:'1rem', justifyContent:'center',flexWrap:'wrap', marginBottom:'1rem'}}>
+  <a
+    className="button button--primary button--lg"
+    href={useBaseUrl('/files/slap trigger.rar')}
+    download="slap trigger.rar"
+  >
+    📥 Download "Slap Trigger" RAR
+  </a>
+  </div>                   
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/diarytrig.png" alt="construction" width="500"/>
+</p>
+
+### Create Diary when sleeping
+
+```yaml
+
+name: "Diary Sleep Trigger"
+description: "generates diary entries for all nearby npcs on sleep"
+eventCriteria:
+  eventType: "sleep_start"
+  schemaConditions:
+    - fieldPath: "actor"
+      operator: "equals"
+      value: "{{ player.name }}"
+      caseSensitive: "false"
+audience: "player"
+response:
+  type: "diary_entry"
+  content: "I notice {{ event_json.actor }} settling down to rest."
+  targetScope: "all_pinned_actors"
+  nearbyRadius: "2000"
+enabled: "false"
+cooldownSeconds: "30"
+priority: "5"
+```
+
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/mephala.png" alt="construction" width="500"/>
+</p>
+
+
+### Enable and Disable Virtual Entity
+
+In this example the Ebony Blade is used , as well as a virtual entity called "Ebon Blade". In order to work for you use the item you desire, as well as your virtual entity name. Altering the content description is not necessary.
+
+```yaml
+name: "Ebony Blade Trigger"
+description: "Activates Virtual Entity when equipping the blade"
+
+eventCriteria:
+  eventType: "equip"
+  schemaConditions:
+    - fieldPath: "item"
+      operator: "equals"
+      value: "Ebony Blade"
+    - fieldPath: "action"
+      operator: "equals"
+      value: "equipped"
+
+response:
+  type: "enable_virtual_npc"
+  content: "I {% if event_json.action == \"equipped\" %}equip{{ else }}unequip{% endif %} {{ event_json.item }}, feeling its {% if event_json.action == \"equipped\" %}weight and presence{% else %}absence{% endif %}."
+  targetName: "Ebon Blade"
 
 audience: "player"
 
 enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+
+```
+
+```yaml
+name: "Ebony Blade Disable"
+description: "Disables Virtual Entity when unequipping the blade"
+
+eventCriteria:
+  eventType: "equip"
+  schemaConditions:
+    - fieldPath: "item"
+      operator: "equals"
+      value: "Ebony Blade"
+    - fieldPath: "action"
+      operator: "equals"
+      value: "unequipped"
+
+response:
+  type: "disable_virtual_npc"
+  content: "I {% if event_json.action == \"equipped\" %}equip{{ else }}unequip{% endif %} {{ event_json.item }}, feeling its {% if event_json.action == \"equipped\" %}weight and presence{% else %}absence{% endif %}."
+  targetName: "Ebon Blade"
+
+audience: "player"
+
+enabled: true
+interrupt: false
 probability: 1
 cooldownSeconds: 30
 priority: 1
 
 ```
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/transformation.png" alt="construction" width="500"/>
+</p>
+
+### Vampire Lord transformation triggers
+
+
+```yaml
+name: "Vampire Lord"
+description: "Vampire Lord reverting form"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Vampire Lord"
+    - fieldPath: "actor"
+      operator: "equals"
+      value: "{{ player.name }}"
+      caseSensitive: false
+
+response:
+  type: "direct_narration"
+  content: "{{ event_json.actor }} transforms, changing into a powerful, muscular and terrible hybrid of bat and monster. A vampire Lord true form! Few can withstand its presence and the horror it emanates."
+
+audience: "everyone"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+
+```yaml
+name: "Revert Vampire Lord Form"
+description: "Auto-generated trigger for spell_cast"
+
+eventCriteria:
+  eventType: "spell_cast"
+  schemaConditions:
+    - fieldPath: "spell"
+      operator: "equals"
+      value: "Revert Form"
+    - fieldPath: "actor"
+      operator: "equals"
+      value: "{{ player.name }}"
+      caseSensitive: false
+
+response:
+  type: "direct_narration"
+  content: "{{ player.name }} reverts his monstrous form back to his human self"
+
+audience: "everyone"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1
+
+```
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/Mace.png" alt="construction" width="500"/>
+</p>
+
+### Mace of Molag Bal hit
+
+Changing the weapon_id ( you can see it on a weapon hit on the Event Monitor) and altering the content description is enough to customize it to your liking, conveying the npc being hit with how you want him to react.
+
+```yaml
+name: "Mace of Molag Bal hit"
+description: "Auto-generated trigger for hit"
+
+eventCriteria:
+  eventType: "hit"
+  schemaConditions:
+    - fieldPath: "flags"
+      operator: "equals"
+      value: "None"
+    - fieldPath: "aggressor"
+      operator: "equals"
+      value: "{{ player.name }}"
+      caseSensitive: false
+    - fieldPath: "weapon_id"
+      operator: "equals"
+      value: 144355
+
+response:
+  type: "direct_narration"
+  content: "{{ player.name }} hits {{ event_json.target }} with the infamous Mace of Molag Bal, the feeling is more than the terrible pain, its the dread of soon having its eternal soul absorbed, an afterlife denied forever"
+
+audience: "nearby_npcs"
+
+enabled: true
+interrupt: false
+probability: 1
+cooldownSeconds: 30
+priority: 1 
+
+```

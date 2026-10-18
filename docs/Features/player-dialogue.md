@@ -127,7 +127,7 @@ Used to distinguish **voices**, **locations**, and **narrative context** for dif
 - **Combine with GameMaster, Narrator, and System entities** to produce deeply layered narrative moments
 
 
-## 🕯 Whisper Mode — Privacy Bubble System
+## 🕯️ Whisper Mode — Privacy Bubble System {#whisper-mode}
 
 **Overview**  
 Whisper Mode is a dynamic interaction system that limits how far NPCs can perceive or respond to player actions, speech, and events. When activated, it creates a *privacy bubble* around the player, reducing detection, dialogue triggers, and AI event propagation beyond a defined range. This allows private or stealthy interactions without unwanted NPC interruptions.

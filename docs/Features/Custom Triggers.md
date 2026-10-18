@@ -1,14 +1,31 @@
 ---
 id: customtriggers
-title: Custom Triggers
+title: Trigger System
 displayed_sidebar: tutorialSidebar
 ---
 
 #  Event Trigger System
 
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/trigger.png" alt="construction" width="500"/>
+</p>
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/options12.PNG" alt="dialogue" width="1100"/>
+</p>
+
+
+
+
 The Schema-Aware Trigger System in SkyrimNet allows you to define custom reactions to in-game events. This system makes NPCs, the player character, and the world itself more dynamic, offering immersive responses that feel tailored to what's happening in real time.
 
 Triggers are event-driven rules that check for specific gameplay conditions, such as casting a spell or using an item. When conditions are met, a templated response is generated — from a whispered thought to a loud reaction from nearby NPCs.
+Triggers can:
+- React to spells, items, combat, dialogue, animations, and more
+- Generate narrative text or dialogue
+- Silently record events for memory or future logic
+- Update persistent character data
 
 Triggers, for now, dont allow using additional scripts or decorators on their descriptions.
 
@@ -27,17 +44,45 @@ Each trigger consists of:
 
 Triggers can be created manually or automatically based on spell/item customizations.
 
+## Trigger Lifecycle
+
+1. **Event Occurs**  
+   (e.g. spell cast, item equipped, animation played)
+
+2. **Schema Validation**  
+   Event data is validated against its registered schema.
+
+3. **Condition Evaluation**  
+   All trigger conditions must match.
+
+4. **Probability Check**  
+   Trigger may randomly fire based on configured chance.
+
+5. **Cooldown Check**  
+   Prevents repeated firing.
+
+6. **Response Execution**  
+   Response content is rendered and executed
+
+
+
 ---
 
 ## 🎭 Response Types
 
-| Type             | Description                                        |
-|------------------|----------------------------------------------------|
-| **Player Dialogue** | Spoken aloud by the player character              |
-| **Player Thought**   | Silent internal monologue (immersive introspection) |
-| **Direct Narration** | Descriptive text, often from an NPC or narrator  |
-
 Each response style sets a different narrative tone and use case.
+
+## Response Types
+
+|  Response Type | Description | Visibility / Effect | Best Use Cases |
+|----------------|-------------|---------------------|-----------------|
+| 🧠 **Player Thought** | Internal monologue shown to the player | Player only, no NPC awareness | Sensations, instincts, reflections |
+| 🗣️ **Player Dialogue** | Spoken by the player character | Heard by selected audience; can affect NPC reactions and memories | Auto-comments, taunts, reactive speech |
+| 📖 **Direct Narration** | Third-person or narrator-style description | Not attributed to player or NPC speech | Combat descriptions, atmosphere, cinematic or adult scenes |
+| 🕒 **Persistent Event (No Response)** | Records the event without visible output | Affects memory, emotions, or future triggers | Hidden consequences, long-term logic |
+| 📓 **Create Diary Entry** | Writes a persistent diary entry | Stored and readable later | Quest logs, major story moments, personal memories |
+| 🧬 **Update Dynamic Bio** | Updates NPC biography/personality state | Alters future LLM context, dialogue, and behavior | Relationship changes, corruption arcs, character growth |
+
 
 ---
 
@@ -114,17 +159,45 @@ You can also **search, filter**, and **reload** triggers instantly. The UI is sc
 For triggers to be listed properly in the web-ui, make sure their yaml file name matches **exactly** with the trigger name, contained in his own setting.
 
 ---
+## Quick Trigger Creation
+
+You can use the "create trigger" button associated with items and spells you browse on the **Game data explorer**. 
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/incinerate.png" alt="construction" width="1200"/>
+</p>
+
+
+The system will then take you to a fully pregenerated trigger, containing all relevant variables to that event. You can then edit it at your leisure, like changing the title, response types, description, etc.
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/incineratetrig.png" alt="construction" width="800"/>
+</p>
+
+The **Event Monitor** also includes a "create trigger button". This allows you to use generate pre-made templates for all kinds of events, as they flow in your game , in real time.
+
+
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/eventrigger.PNG" alt="construction" width="1200"/>
+</p>
+
+
+
+
 
 ## 🔄 Integration with Other Systems
 
 Triggers integrate seamlessly with:
 
-- **Item and Spell Customizations**: Auto-generating responses based on renamed spells or items
+
 - **Memory and Emotion Systems**: Feeding into emotional state and memory entries
 - **NPC Dialogue and Ambient Behavior**: Creating realistic chatter or commentary in response to events
 
 This makes the trigger system a **bridge between world simulation and narrative design** — powerful for both modders and storytellers.
 
 ---
+
+
 
 

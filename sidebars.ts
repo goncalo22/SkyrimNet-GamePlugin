@@ -3,7 +3,7 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
    tutorialSidebar: {
     'Features': ['Features/overview','Features/events-and-reactions','Features/gamemaster','Features/player-dialogue', 'Features/action-system', 'Features/customization','Features/overrides', 'Features/gamedataexplorer', 'Features/customtriggers',
-      'Features/voicesamples','Features/filter-system','Features/omnisight', 'Features/universal-translator', 'Features/event-manager',
+      'Features/voicesamples','Features/filter-system','Features/omnisight', 'Features/universal-translator', 'Features/event-manager', 'Features/virtual-entities', 'Features/agent-helpers', 'Features/world-knowledge' , 'Features/chat-ui' , 'Features/npc-thoughts' ,'Features/voiceeffects' ,
        ],
 
     'Installation Guide': [
@@ -14,7 +14,8 @@ const sidebars: SidebarsConfig = {
     'Large Language Models': [
       'Large Language Models/model-agents',
       'Large Language Models/openrouter',
-      'Large Language Models/suggested-llms'
+      'Large Language Models/suggested-llms',
+      'Large Language Models/providers' ,
     ],
      'Memory System': ['Memory System/memory-recall','Memory System/sqlite-storage','Memory System/diaries'],
 
@@ -25,8 +26,10 @@ const sidebars: SidebarsConfig = {
     'Text to Speech': [
       'Text to Speech/tts-getting-started',
       'Text to Speech/piper',
+      'Text to Speech/pocket',
       'Text to Speech/xtts',
       'Text to Speech/zonos',
+      'Text to Speech/inworld',
       
     ],
     'Speech to Text': [

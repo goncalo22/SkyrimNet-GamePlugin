@@ -16,6 +16,12 @@ Local Whisper STT is SkyrimNet’s offline speech recognition system, powered by
 
 This system is ideal for immersive AI interactions—letting NPCs understand spoken commands, dialogue, or emotions, all while preserving user privacy.
 
+<p align="center">
+  <img src="/SkyrimNet-GamePlugin/img/STT1.PNG" alt="whisper" width="1000"/>
+</p>
+
+
+
 🔍 Key Features
 ✅ Privacy-first: All audio is processed locally—no external servers involved.
 
