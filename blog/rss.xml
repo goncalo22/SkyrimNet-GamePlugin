@@ -4,10 +4,162 @@
         <title>SkyrimNet Documentation Blog</title>
         <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</link>
         <description>SkyrimNet Documentation Blog</description>
-        <lastBuildDate>Sat, 03 Oct 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 15 Oct 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[SkyrimNet Beta27  Released]]></title>
+            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release</link>
+            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release</guid>
+            <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[SkyrimNet Beta27]]></description>
+            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 27 Latest</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="memory-embedding-model-including-multilingual-ones-daikichi">Memory embedding model, including multilingual ones @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#memory-embedding-model-including-multilingual-ones-daikichi" class="hash-link" aria-label="Direct link to Memory embedding model, including multilingual ones @Daikichi" title="Direct link to Memory embedding model, including multilingual ones @Daikichi">​</a></h2>
+<p>Memory → Embedding Model picks the model that matches memories to the conversation. New installs default to Bekko Embedding v1, which recalls better than the old all-MiniLM-L6-v2 in English and other languages, with recall no slower. Two multilingual models let NPCs recall memories written in Russian, Japanese and other languages by meaning, not only by shared words.</p>
+<ul>
+<li><strong>Bekko Embedding v1</strong> (the new default): the best recall; 234 MB download.</li>
+<li><strong>Granite Embedding 107M Multilingual</strong>: about all-MiniLM-L6-v2's speed; 442 MB download.</li>
+<li>Right memory in the top five on real saves (all-MiniLM-L6-v2, Granite, Bekko): English 65%, 71%, 76%; Russian 46%, 88%, 93%.</li>
+<li>Existing installs are not switched. Settings › Updated Defaults offers Bekko; Keep Old stays on the model you have.</li>
+<li>Save Changes switches the running game: the model downloads, then memories re-embed in the background, with progress on the Memories page. Saved at the main menu, it loads with the next save.</li>
+<li>If the model cannot be downloaded or loaded, the setting goes back to the previous model and the settings page says why.</li>
+<li>Custom models: an ONNX model and its <code>tokenizer.json</code> in <code>models/embedding/custom/&lt;name&gt;/</code>. The <code>README.txt</code> there explains the rest.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="speaker-selector-strictness-min">Speaker Selector Strictness @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#speaker-selector-strictness-min" class="hash-link" aria-label="Direct link to Speaker Selector Strictness @Min" title="Direct link to Speaker Selector Strictness @Min">​</a></h2>
+<p>Tweaks to target selector behavior with Jev to improve response decision coherency and consistency, and make the interject summary more applicable. Settings → Conversations → Speaker Selector has a new <strong>Strictness</strong> select that sets how readily NPCs speak up unprompted when the decision model picks who answers.</p>
+<ul>
+<li><strong>Chatty</strong>: the Beta26 behaviour. Companions react to whatever happens around you, and a loose fit with an NPC's "interjects when" bio text is enough.</li>
+<li><strong>Balanced</strong> (the default): companions need a fit with their bio text or something that happens to you (a fight, a close call, a find, a choice you just made); other NPCs speak on a topical fit with their bio. Something dramatic or unexpected still gets a reaction from someone.</li>
+<li><strong>Strict</strong>: anyone not addressed needs a specific match with their interjection text, and silence is the default.</li>
+<li>In continuous mode a bystander joins only when named, spoken to, or their bio's interjection triggers match.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="experimental-better-facial-animations-integration-min">Experimental Better Facial Animations Integration @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#experimental-better-facial-animations-integration-min" class="hash-link" aria-label="Direct link to Experimental Better Facial Animations Integration @Min" title="Direct link to Experimental Better Facial Animations Integration @Min">​</a></h2>
+<p>With Better Facial Animations 4.1 installed, NPC replies and the player's own voiced lines get its Audio2Face faces: lips, jaw, brows and eyes driven by the actual audio, with the speaker's current mood as the expression. SkyrimNet's own lipsync still moves the mouth until BFA takes a sentence over and whenever BFA declines one.</p>
+<ul>
+<li>Settings → Voice → Animation Tuning → <strong>Use Better Facial Animations</strong> (on by default); nothing changes when BFA is not installed.</li>
+<li>BFA's own rules still apply: its Enabled and Player switches, race filters, scenes and Potato mode decide which lines it animates.</li>
+<li>Needs a recent version of BFA: Get it from here.
+<a href="https://www.nexusmods.com/skyrimspecialedition/mods/193598?tab=description" target="_blank" rel="noopener noreferrer">https://www.nexusmods.com/skyrimspecialedition/mods/193598?tab=description</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="speech-to-text-prompting-min">Speech-to-text prompting @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#speech-to-text-prompting-min" class="hash-link" aria-label="Direct link to Speech-to-text prompting @Min" title="Direct link to Speech-to-text prompting @Min">​</a></h2>
+<p>When you speak, speech-to-text now receives a list of the names you are likely to say, so "Farengar" and "Dragonsreach" come back spelled right instead of as sound-alike words. It is on by default for Local Whisper and External Whisper.</p>
+<ul>
+<li>The names: characters near you (followers first), your pinned characters, your own name, where you are (location, hold, interior), and nearby map markers and doors.</li>
+<li>Turn it off with <strong>Name Hints</strong> on the Speech-to-Text page.</li>
+<li>The <code>stt_hints</code> prompt in the Content Library decides the text that is sent; edit it to drop places or change the wording. We'll probably want to add some common Skyrim terms to this later - open to feedback on this, though we can't send a ton here. Context window is tight.</li>
+<li>For prompt authors: the new <code>get_place_names()</code> decorator lists the places around the player by name (<code>"current"</code> or <code>"nearby"</code>).</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="import-bard-songs-from-audio-files-daikichi">Import bard songs from audio files @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#import-bard-songs-from-audio-files-daikichi" class="hash-link" aria-label="Direct link to Import bard songs from audio files @Daikichi" title="Direct link to Import bard songs from audio files @Daikichi">​</a></h2>
+<p>Give bards songs without a music API: import an .mp3, .wav, .ogg or .flac file, and bards sing it like a composed song. Voice &gt; Bard Singing &gt; Songs &gt; <strong>Import song</strong>.</p>
+<ul>
+<li>Pick a voice (male or female), or mark it <strong>Instrumental</strong> so any bard plays it. Ask for an instrumental by its style tags ("something classical"), not only its title.</li>
+<li><strong>"This is my song"</strong> keeps it for your own <code>/playsong</code>; NPC bards won't pick it.</li>
+<li>A <code>.yaml</code> song file with the same name as the audio fills in the form. Download saves the pair, so songs can be shared by hand. In a browser, select both files together.</li>
+<li><strong>"Compose New Songs With AI"</strong> (on by default): turn it off and bards only sing songs you have, and decline requests none match.</li>
+<li>Imported songs are never evicted. They are stored per save.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="share-one-elevenlabs-account-between-several-players-min">Share one ElevenLabs account between several players @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#share-one-elevenlabs-account-between-several-players-min" class="hash-link" aria-label="Direct link to Share one ElevenLabs account between several players @Min" title="Direct link to Share one ElevenLabs account between several players @Min">​</a></h2>
+<p>Several people can now use one ElevenLabs account without deleting and re-cloning each other's voices.</p>
+<ul>
+<li>Toggle: Voice → Text-to-Speech → ElevenLabs → Advanced → <strong>Shared Account</strong> (off by default). Everyone on the account should turn it on.</li>
+<li>With it on, a voice type someone else already cloned is reused as is, so the first person to clone a voice type picks its sample for everyone.</li>
+<li>Player and custom-NPC voices are still cloned separately for each player.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whisper-gpu-setup-without-a-specific-cuda-toolkit-dowser">Whisper GPU setup without a specific CUDA toolkit @Dowser<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#whisper-gpu-setup-without-a-specific-cuda-toolkit-dowser" class="hash-link" aria-label="Direct link to Whisper GPU setup without a specific CUDA toolkit @Dowser" title="Direct link to Whisper GPU setup without a specific CUDA toolkit @Dowser">​</a></h2>
+<p>Local Whisper speech-to-text no longer needs exactly the CUDA 12.9 toolkit: any CUDA 12.x runtime from 12.9 up works. An older or missing runtime falls back to Vulkan or CPU. (Build size has gone up a little due to supporting more CUDA runtimes.)</p>
+<ul>
+<li>The GPU Device list on the Speech-to-Text page names the real devices (for example "GPU 0 - CUDA0", "GPU 1 - Vulkan0") once speech-to-text has started.</li>
+<li>The device setting is now a ggml device index: CUDA devices first, then Vulkan, then CPU. Single-GPU setups keep device 0; multi-GPU users should re-pick their card.</li>
+<li>A saved device that is not listed yet stays selected and is labelled as such.</li>
+<li>The OpenCL backend is gone; Intel and AMD GPUs use Vulkan.</li>
+<li>Why CUDA was skipped is one line in <code>SkyrimNet.log</code> ("CUDA backend skipped").</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="reasoning-effort-per-model-min">Reasoning effort per model @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#reasoning-effort-per-model-min" class="hash-link" aria-label="Direct link to Reasoning effort per model @Min" title="Direct link to Reasoning effort per model @Min">​</a></h2>
+<p>The "Allow Reasoning" toggle is now a level: off, model default, minimal, low, medium or high. Set it per model in the rotation editor's gear panel (or per variant / globally in <code>OpenRouter.yaml</code> as <code>reasoning_effort</code>). Thinking models such as Gemini 3.x Flash can be kept at minimal instead of their default medium, which is where most of their latency and output tokens went.</p>
+<ul>
+<li>A model that cannot turn reasoning off (OpenRouter's "reasoning is mandatory" 400) no longer fails when the level is off: the request is retried once at minimal and the model is remembered for the session, so later requests pay no extra round trip.</li>
+<li>Existing configs keep working: <code>reasoning: true</code> reads as model default and <code>reasoning: false</code> as off. A save writes the new key.</li>
+<li>Presets (catalog and your own) can set <code>reasoning_effort</code> globally, per variant or per model, and a recommended model in the picker can carry one.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dialogue-daikichi">Dialogue @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#dialogue-daikichi" class="hash-link" aria-label="Direct link to Dialogue @Daikichi" title="Direct link to Dialogue @Daikichi">​</a></h2>
+<ul>
+<li><strong>Fewer unrelated memories in recall</strong> — NPCs are handed fewer memories unrelated to the conversation, and the closest match comes first more often. Memory → Min Relevance Score defaults to 0.6 (was 0.5); existing configs are offered it under Updated Defaults. Similarity is now scaled differently, so a hand-tuned Similarity Threshold may need a fresh look.</li>
+<li><strong>Lore found by name, and less unrelated lore</strong> — NPCs find a world knowledge entry when asked about it by name, and get unrelated lore far less often. Knowledge re-embeds once in the background. New Knowledge Similarity Threshold (0.40); Knowledge Min Score 0.575, offered under Updated Defaults.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="llm--routing-min">LLM &amp; Routing @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#llm--routing-min" class="hash-link" aria-label="Direct link to LLM &amp; Routing @Min" title="Direct link to LLM &amp; Routing @Min">​</a></h2>
+<ul>
+<li><strong>Latency Improvements</strong> — Reduced the latency on all outbound HTTP requests to remote servers. In benchmarks, this ranged from a 60-210ms reduction in latency for every call (paid 3-4x over the course of a given dialogue request). Will be more significant than benchmarked results for non-North-American players who have longer round-trip times to remote providers.</li>
+<li><strong>Prompt caching</strong> — Improved engine support for prompt caching. Each provider's cache lifetime, 5 minutes or 1 hour, is under Advanced on AI › Providers. A new experimental plugin restructures the prompts to use this: <a href="https://discord.com/channels/1287232260617015336/1559073450365165629" target="_blank" rel="noopener noreferrer">https://discord.com/channels/1287232260617015336/1559073450365165629</a>. Should reduce costs and increase speeds.</li>
+<li><strong>LLM replies finish, stop and fail over as they should</strong> — A reply whose first model stalls ends when its backup finishes, a long backup reply is no longer cut at 30 s, and a cancelled reply stops streaming, Bard Singing's music too. Profiles under non-English folder names load their settings.</li>
+<li><strong>Presets set an fp8 quantization floor</strong> — Applying a built-in preset, or a fresh install, sets the quantization floor to fp8, so OpenRouter skips providers declared below it. Change it with Quantization floor on the Providers page.</li>
+<li><strong>External Whisper defaults to OpenRouter</strong> — New installs point External Whisper speech input at OpenRouter (<code>openai/whisper-1</code>), so the OpenRouter key you already use for the LLM works for STT; existing STT configs keep their saved endpoint and model. External STT remains fairly slow though; I'd recommend using local if you have the specs for it.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="for-mod-authors-min">For Mod Authors @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#for-mod-authors-min" class="hash-link" aria-label="Direct link to For Mod Authors @Min" title="Direct link to For Mod Authors @Min">​</a></h2>
+<ul>
+<li><strong>Papyrus can flip the SkyrimNet master switch</strong> — <code>SkyrimNetApi.TriggerToggleGlobalAI()</code> turns all of SkyrimNet on or off, exactly like pressing the master toggle hotkey. The DLL has offered it for a while, but the script never declared it, so the game refused to bind it and logged an error on every load.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/15/beta27-release#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>
+<p><strong>NPCs recalled nothing when playing in Russian, Japanese or Chinese</strong> — NPCs now recall memories and world knowledge in Japanese and Chinese, and bards and <code>/playsong</code> find stored songs with non-English titles. @Daikichi</p>
+</li>
+<li>
+<p><strong>NPCs would sometimes recall no memories after walking into a new area</strong> — The last conversation's memory search is kept through area changes until it expires, and a failed one no longer leaves a placeholder for five minutes. @Daikichi</p>
+</li>
+<li>
+<p><strong>NPCs recalled no memories when no memory search was ready</strong> — When the LLM memory search has not run yet or fails, recall searches with the recent conversation's text instead of only the location. @Daikichi</p>
+</li>
+<li>
+<p><strong>Diary and thought prompts reused stale results from the last dialogue turn</strong> — Diaries, thoughts, book reactions and parsed strings no longer read a finished turn's cached decorator values, and simultaneous turns no longer have a risk of leaking them. @Min</p>
+</li>
+<li>
+<p><strong>Line of Sight Improvements</strong> — Fixed several issue that were causing line-of-sight to be ignored in various situations, letting NPC's hear you through walls. Fixed. @Min</p>
+</li>
+<li>
+<p><strong>Stutter fix when an NPC fired a vanilla dialogue line</strong> — Fixed a condition that could cause a micro-freeze when an NPC chose a quest line action. @Min</p>
+</li>
+<li>
+<p><strong>NPCs call you the Dragonborn before you are one</strong> — About 50 character bios no longer refer to the player as the Dragonborn when it was only a stand-in for "the player", such as Leyathil's rescuer, Melana's companion, the Skaal freed from Miraak, or Cicero's Listener. Greybeards, dragons, Miraak and other characters whose story centers on the Dragonborn still speak of the Dragonborn. @Daikichi</p>
+</li>
+<li>
+<p><strong>Stray gendered pronoun in player thoughts prompt</strong> — Changed one instance of "her" in the player thoughts prompt to "their." @Daikichi</p>
+</li>
+<li>
+<p><strong>ElevenLabs Silent Voice</strong> — Fixed a regression in Beta26 that could cause ElevenLabs to go silent after re-cloning. @Min</p>
+</li>
+<li>
+<p><strong>External Whisper needed an API key for a local server</strong> — External Whisper pointed at your own server (e.g. whisper.cpp) works with the API key left blank; OpenAI and OpenRouter still need one. @Daikichi</p>
+</li>
+<li>
+<p><strong>A local decision model needed a placeholder API key</strong> — A decision provider you add yourself, or the built-in OpenRouter (Decisions) pointed at your own server, no longer needs a placeholder API key. @Daikichi</p>
+</li>
+<li>
+<p><strong>Requests to nano-gpt failed after a minute or two idle</strong> — The request is redone on a new connection instead of failing with "Error in the HTTP2 framing layer"; nano-gpt connections are kept alive. @Min</p>
+</li>
+<li>
+<p><strong>API Style could not be set on a new provider</strong> — Pick a new provider's API Style before saving, even right after renaming it. The dropdown is now readable on dark themes. @Daikichi</p>
+</li>
+<li>
+<p><strong>Update Bio showed "The string did not match the expected pattern."</strong> — When Update Bio cannot run, the toast now says why, such as an NPC you have not met yet in this save. @Daikichi</p>
+</li>
+<li>
+<p><strong>Deciding one updated default dropped the rest</strong> — Accepting or keeping one change under Settings › Updated Defaults leaves the others listed, this launch and the next. @Daikichi</p>
+</li>
+<li>
+<p><strong>The MCM fills Papyrus.0.log with CurrentPage_var errors</strong> — Loading a save no longer writes dozens of "Failed to find variable ::CurrentPage_var" errors from <code>skynet_McmScript</code> to the Papyrus log. @Min</p>
+</li>
+<li>
+<p><strong>Developer kit C++ headers</strong> — SKSE plugins that included <code>PublicAPI.h</code> from the Beta26 developer kit failed to compile because <code>PublicAPIDiaryQuery.h</code> was missing from the kit. The kit now includes it under <code>CppAPI/</code>. @Min</p>
+</li>
+<li>
+<p><strong>New game after a cancelled load no longer breaks the database</strong> — Declining a save's "continue loading?" prompt and then starting a new game showed "Database is not initialized"; the new game now starts normally. @Daikichi</p>
+</li>
+</ul>
+<p>Full release notes and download on GitHub (vbeta27): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta27" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta27</a></p>]]></content:encoded>
+            <category>release</category>
+            <category>beta27</category>
+        </item>
         <item>
             <title><![CDATA[SkyrimNet Beta26  Released]]></title>
             <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release</link>
@@ -15,7 +167,6 @@
             <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[SkyrimNet Beta26]]></description>
             <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 26 Latest</p>
-<h1>SkyrimNet Beta26</h1>
 <p>Beta26 introduces <strong>TypeSafe's Jev</strong> as the new approach to choosing conversation targets, speakers, and moods. It brings a significant improvement in speed, cost, and reliability for these behind-the-scenes decisions, while your chosen dialogue models still write what characters say. You should notice even faster conversation responses than in beta25, which was in turn much faster than beta24.</p>
 <p>This release also makes spoken voices more consistent throughout conversations, improves memory recall for non-english users, fixes several VR issues, fixes subtitles and OmniSight compatibility with upscalers, and expands the tools available to mod authors.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="faster-cheaper-more-reliable-conversation-decisions-min-dowser">Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#faster-cheaper-more-reliable-conversation-decisions-min-dowser" class="hash-link" aria-label="Direct link to Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)" title="Direct link to Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)">​</a></h2>
@@ -2558,97 +2709,6 @@ The NPC's original dialogue will be muted, transformed with the configured speec
 </ul>]]></content:encoded>
             <category>release</category>
             <category>beta8</category>
-        </item>
-        <item>
-            <title><![CDATA[SkyrimNet Beta7  Released]]></title>
-            <link>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release</link>
-            <guid>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release</guid>
-            <pubDate>Sun, 02 Nov 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[SkyrimNet Beta7]]></description>
-            <content:encoded><![CDATA[<p>🎉  SkyrimNet Beta 7 Latest</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="backwards-incompatible-prompt-restructuring---min">Backwards Incompatible Prompt Restructuring   @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#backwards-incompatible-prompt-restructuring---min" class="hash-link" aria-label="Direct link to Backwards Incompatible Prompt Restructuring   @Min" title="Direct link to Backwards Incompatible Prompt Restructuring   @Min">​</a></h3>
-<p>The coherency of our system prompt has been mediocre, and has been getting worse as more and more community plugins are developed. In order to improve the quality of LLM roleplay, I have done a one-time backwards incompatible restructuring of our system prompt and character bio.</p>
-<p>Every mod-added addition to the bio, or system head should number itself accordingly so that the file ends up in the appropriate place in the prompt for consistency. For example, ### Worn Equipment is now nested under ## Appearance &amp; Physical State. I've updated @wind and @Lazy Palm 's mods to follow this convention, though all mod authors are likely to need to rename their files to account for this if they have additions to the character bio or system head sections, in order to ensure that their information is placed at the right spot. Check out the character_bio and system_head folders to reference the new structure.</p>
-<p>This will result in stronger and more consistent LLM responses, particularly from non-premium models (Though Sonnet and others benefit as well), and provides a solid base for us to build upon moving forward.  Almost every prompt has been touched in the character_bio and system_head submodules</p>
-<p>Definitely open to suggestions and feedback on the new system prompt structure. Let me know what folks think.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="overhauled-uuid-algorithm----min">Overhauled UUID algorithm.    @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#overhauled-uuid-algorithm----min" class="hash-link" aria-label="Direct link to Overhauled UUID algorithm.    @Min" title="Direct link to Overhauled UUID algorithm.    @Min">​</a></h3>
-<p>There were several sources of drift with the old algorithm that could cause duplicate and/or drifting uuid's.,</p>
-<p>I've written a diagnostic feature to detect this problem / migrate the entire database to the new uuid algorithm so that people don't lose events/memories (Like many of you, I also don't like restarting constantly if I can help it  ).,</p>
-<p>This should correct cases where actors lost access to their memories and past events. There were a few reasons why this could happen, including adding/removing mods, changing load order, and other factors.,</p>
-<p>There is still a remaining source of drift for non-generic actors; Their ref id mutates regularly throughout normal play. I haven't addressed this just yet entirely, and am not sure if I need to or not as of yet. If I do need to address this, you'll be able to use this same tool to migrate to whatever I end up changing without losing data/progress.,</p>
-<p>Consider backing up your database before proceeding if you want to be able to revert back to rc6. The database can be found in skse/plugins/SkyrimNet/data/,
-To migrate your database to the new schemas, first:,</p>
-<ol>
-<li>Visit the debug page at <a href="http://localhost:8080/debug" target="_blank" rel="noopener noreferrer">http://localhost:8080/debug</a></li>
-<li>Click the Execute Migration button under the Full UUID Migration section. Feel free to dry run it first with the provided interface. You must wait for this to complete before continuing to play the game.</li>
-<li>Save, reload, and then Execute Migration once more. Wait for this to complete.</li>
-<li>Save the game and continue playing.</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-diaries-min">New Feature: Diaries @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-diaries-min" class="hash-link" aria-label="Direct link to New Feature: Diaries @Min" title="Direct link to New Feature: Diaries @Min">​</a></h3>
-<p>Added UI and experience around generating, viewing, and managing Diary Entries. Diary entries are currently triggered manually, just like dynamic bio updates,</p>
-<p>Diary entries are generated based upon recent memories, and recent events.,</p>
-<p>Added new model type for this, so that you can use a separate model for diaries. Note: The default for this is Sonnet. If you're cost-adverse, I'd suggest changing this to qwen or deepseek r1.,</p>
-<p>Diaries contain their own event type with a proper schema; You can create triggers/etc off of them like anything else. This event is persistent, and exposed only to the actor that made the diary.,</p>
-<p>Diary entries create an entry into the memory database with embeddings, so that they can be recalled by the actor later like any other memory.,</p>
-<p>New Diary specific configuration: Check out the available options.,</p>
-<p>I tested this feature a fair bit, but there may be some rough edges: Send any feedback you may have around this! New diaries for actors that did not previously have one can (currently) only be generated from the Character page or the dashboard.,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-open-mic-input-mode-daikichi">New Feature: Open Mic input mode @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-open-mic-input-mode-daikichi" class="hash-link" aria-label="Direct link to New Feature: Open Mic input mode @Daikichi" title="Direct link to New Feature: Open Mic input mode @Daikichi">​</a></h3>
-<p>Adds a toggle hotkey (default unset) to use voice activated input as an alternative to push-to-talk.,</p>
-<p>Also changed the default Silence Duration in STTConfig from 500ms to 1000ms (the period of silence required after you speak for the speech to be finalized).,</p>
-<p>Added Open Mic VRIK functions as well.,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-allow-tts-engine-and-tts-language-overrides-daikichi">New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-allow-tts-engine-and-tts-language-overrides-daikichi" class="hash-link" aria-label="Direct link to New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi," title="Direct link to New Feature: Allow TTS Engine and TTS Language Overrides @Daikichi,">​</a></h3>
-<p>Now you can set specific npcs or groups to use one tts service while everyone else uses the global TTS,</p>
-<p>Overrides for the narrator / player thoughts can be done in the VirtualEntities config,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-elevenlabs-support-daikichi">New Feature: ElevenLabs support @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-elevenlabs-support-daikichi" class="hash-link" aria-label="Direct link to New Feature: ElevenLabs support @Daikichi" title="Direct link to New Feature: ElevenLabs support @Daikichi">​</a></h3>
-<p>Meant to be used in combination with the per-npc TTS override to give specific NPCs a very high quality (but expensive) TTS.,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-silent-dialogue-tts-daikichi">New Feature: Silent Dialogue TTS @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-feature-silent-dialogue-tts-daikichi" class="hash-link" aria-label="Direct link to New Feature: Silent Dialogue TTS @Daikichi" title="Direct link to New Feature: Silent Dialogue TTS @Daikichi">​</a></h3>
-<p>Adds a feature to voice silent NPC lines with TTS (from mods with no voice acting).,</p>
-<p>To enable this feature, download Dragonborn Voice Over but disable or delete its DBVO.esp file (no voice pack is needed).,</p>
-<p>Lip sync/subtitles and the spoken dialogue may not match up perfectly, though we make our best effort.,</p>
-<p>Added a config option to aggressively sync displayed subtitles with the TTS audio. Disabled by default due to some potential UX friction. @Daikichi,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="make-llm-parameters-optional-gemini-support-daikichi">Make LLM parameters optional (Gemini Support) @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#make-llm-parameters-optional-gemini-support-daikichi" class="hash-link" aria-label="Direct link to Make LLM parameters optional (Gemini Support) @Daikichi" title="Direct link to Make LLM parameters optional (Gemini Support) @Daikichi">​</a></h3>
-<p>Setting LLM generation parameters such as top_p to blank now removes them from the request,
-This effectively adds support for Gemini,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="add-support-for-structured-outputs-daikichi">Add support for structured outputs @Daikichi<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#add-support-for-structured-outputs-daikichi" class="hash-link" aria-label="Direct link to Add support for structured outputs @Daikichi" title="Direct link to Add support for structured outputs @Daikichi">​</a></h3>
-<p>New flag in OpenRouter Config to enforce JSON output from LLMs (only affects memory generation),
-Useful for local model setups (LM Studio),
-Limited support via OpenRouter (only some providers),</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="prompt-improvements-min">Prompt Improvements @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#prompt-improvements-min" class="hash-link" aria-label="Direct link to Prompt Improvements @Min" title="Direct link to Prompt Improvements @Min">​</a></h3>
-<p>Overhauled Dynamic Bio Update prompt to enforce pruning, and generally avoid wild bio swings. Includes last diary entry.,</p>
-<p>Added length guidelines to book reading events.,</p>
-<p>Added awareness of summoned / reanimated / knocked down / etc states from new decorators.,</p>
-<p>Tweaked memory generation to add mild length guidelines.,</p>
-<p>Small presentation changes to various prompts.,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-decorators-min">New Decorators @Min<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#new-decorators-min" class="hash-link" aria-label="Direct link to New Decorators @Min" title="Direct link to New Decorators @Min">​</a></h3>
-<p>Added has_perk decorator <code>{% if has_perk(player.UUID, \"AdvancedSmithing\") %}You have advanced smithing!{% endif %},</code>
-Added get_all_perks decorator</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">metadata.returnInfo.description = "Array of objects with 'editorID' and 'rank' properties for each perk"; </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> metadata.returnInfo.exampleValue = nlohmann::json::array({</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      {{"editorID", "AdvancedSmithing"}, {"rank", 1}},</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      {{"editorID", "Locksmith"}, {"rank", 2}} });</span><br></span></code></pre></div></div>
-<p>Added get_relationship_rank decorator <code>{% if get_relationship_rank(player.UUID, npc.UUID) &gt;= 3 %}You are a good friend of John Doe!{% endif %}</code></p>
-<p>Added is_in_combat decorator <code>{% if is_in_combat(player.UUID) %}You are in combat!{% endif %}</code></p>
-<p>Added is_capable_of_speech decorator <code>{% if is_capable_of_speech(player.UUID) %}This actor is capable of intelligent speech!{% endif %}</code></p>
-<p><code>has_weapon_drawn</code> - Checks if an actor has their weapons drawn.,
-<code>is_sprinting</code> - True if an actor is sprinting.,</p>
-<p><code>is_walking</code> - True if an actor is walking.,</p>
-<p><code>is_sneaking</code> - True if an actor is sneaking.,</p>
-<p><code>is_swimming</code> - True if an actor is swimming.,</p>
-<p><code>is_unconscious</code> - True if an actor is unconscious.,</p>
-<p>Incorporated all of these into a new physical activity prompt, and updated the equipment prompt: <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/commit/d22f4c2d5c61dd328b5982da8ab483bb217dcb6f</a>,</p>
-<p><code>get_latest_diary_entry</code> - Returns latest diary entry for an actor.,</p>
-<p><code>get_diary_entries</code> - Returns the last N diary entries for an actor.,</p>
-<p><code>get_spell_list</code> - Returns an object containing all spells known by an actor.,</p>
-<p><code>is_summoned</code> - Returns true if actor is summoned.,</p>
-<p><code>is_reanimated</code> - Returns true if actor is reanimated.,</p>
-<p><code>is_knocked_down</code> - Returns true if actor is in essential down or bleedout.,</p>
-<p><code>is_hostile_to_actor</code> decorator for checking if one actor is hostile to another. @Min,</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="api-improvements">API Improvements<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/11/02/beta7-release#api-improvements" class="hash-link" aria-label="Direct link to API Improvements" title="Direct link to API Improvements">​</a></h3>
-<p>Sending an empty DirectNarration will trigger a response without leaving anything in the context @Min
-ParseString Papyrus function now converts variable names to lowercase @Min
-Added new api GetTimeSinceLastAudioEnded() to allow modders to tell how long there has been silence for, for better pacing @Min
-Added new api GenerateDiaryEntry(actor) - Triggers a diary entry for a given actor.,
-Added new api UnregisterAction @Min,
-Added paralysis and brainCondition actor values to decnpc(npc.UUID) @Min</p>]]></content:encoded>
-            <category>release</category>
-            <category>beta7</category>
         </item>
     </channel>
 </rss>
