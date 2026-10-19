@@ -2,11 +2,128 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog</id>
     <title>SkyrimNet Documentation Blog</title>
-    <updated>2026-09-26T00:00:00.000Z</updated>
+    <updated>2026-10-03T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog"/>
     <subtitle>SkyrimNet Documentation Blog</subtitle>
     <icon>https://goncalo22.github.io/SkyrimNet-GamePlugin/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[SkyrimNet Beta26  Released]]></title>
+        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release</id>
+        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release"/>
+        <updated>2026-10-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[SkyrimNet Beta26]]></summary>
+        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 26 Latest</p>
+<h1>SkyrimNet Beta26</h1>
+<p>Beta26 introduces <strong>TypeSafe's Jev</strong> as the new approach to choosing conversation targets, speakers, and moods. It brings a significant improvement in speed, cost, and reliability for these behind-the-scenes decisions, while your chosen dialogue models still write what characters say. You should notice even faster conversation responses than in beta25, which was in turn much faster than beta24.</p>
+<p>This release also makes spoken voices more consistent throughout conversations, improves memory recall for non-english users, fixes several VR issues, fixes subtitles and OmniSight compatibility with upscalers, and expands the tools available to mod authors.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="faster-cheaper-more-reliable-conversation-decisions-min-dowser">Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#faster-cheaper-more-reliable-conversation-decisions-min-dowser" class="hash-link" aria-label="Direct link to Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)" title="Direct link to Faster, Cheaper, More Reliable Conversation Decisions (Min, Dowser)">​</a></h2>
+<p>SkyrimNet now uses <strong>TypeSafe's Jev</strong>, a dedicated decision model, for three of the main jobs previously handled by the chat-based <strong>Meta</strong> approach: <strong>figuring out who you are addressing, choosing who speaks next, and selecting character moods</strong>.</p>
+<p>Instead of asking a chat model a question and interpreting its written response, Jev chooses directly from the available options. This is a <strong>significantly faster, cheaper, and more reliable</strong> way to handle these tasks.</p>
+<p><strong>Your chosen dialogue models still write what characters say.</strong> Jev handles the supporting decisions, not the dialogue itself. The previous chat-based Meta approach remains available for now, and built-in conversation decisions fall back to it if a decision request fails.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="what-changes-in-conversation">What Changes in Conversation<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#what-changes-in-conversation" class="hash-link" aria-label="Direct link to What Changes in Conversation" title="Direct link to What Changes in Conversation">​</a></h3>
+<ul>
+<li><strong>Choosing who answers:</strong> When your intended recipient is unclear, the NPC you are looking at replies, or the nearest NPC if you are not looking at one.</li>
+<li><strong>Continue Narration:</strong> Pressing <strong>F8</strong> asks the decision model who should carry the scene forward, usually whoever spoke last. Without decisions, the last speaker continues as before.</li>
+<li><strong>Continuous mode:</strong> The GameMaster still decides that someone should speak and suggests a speaker; the decision model makes the next-speaker selection. Bystanders join only when named, spoken to, or directly concerned.</li>
+<li><strong>Knowing when to stay quiet:</strong> The next-speaker decision can always choose silence. <strong>Speaker Selector Silence Chance</strong> applies only to the previous chat-based selector.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="settings-and-providers">Settings and Providers<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#settings-and-providers" class="hash-link" aria-label="Direct link to Settings and Providers" title="Direct link to Settings and Providers">​</a></h3>
+<p><strong>Jev is enabled by default when you have an OpenRouter key</strong>, even if your dialogue models use other providers. <strong>Jev is a paid model with no free tier.</strong></p>
+<p>Under <strong>Settings → Conversations → Decision Model</strong>, you can toggle target, speaker, and mood selection independently and adjust how many recent events the model considers. There are also two optional confidence checks, both off by default.</p>
+<p><strong>AI → Providers</strong> now includes an <strong>API Style</strong> field with <strong>Chat Completions</strong>, <strong>Decisions</strong>, and <strong>System One</strong> options. The built-in <strong>OpenRouter (Decisions)</strong> provider reuses your OpenRouter key, and the <strong>Decisions</strong> variant is added automatically on load.</p>
+<p>To use TypeSafe directly with its own key, add a provider using <strong>System One</strong> and select it on the <strong>Decisions</strong> card under <strong>AI → Models</strong>. Decision models need a <strong>Decisions</strong> or <strong>System One</strong> provider rather than a chat-completions provider.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="speech-voice-input-and-audio">Speech, Voice Input, and Audio<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#speech-voice-input-and-audio" class="hash-link" aria-label="Direct link to Speech, Voice Input, and Audio" title="Direct link to Speech, Voice Input, and Audio">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="whispering-and-other-voice-styles-last-through-the-whole-reply-min">Whispering and Other Voice Styles Last Through the Whole Reply (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#whispering-and-other-voice-styles-last-through-the-whole-reply-min" class="hash-link" aria-label="Direct link to Whispering and Other Voice Styles Last Through the Whole Reply (Min)" title="Direct link to Whispering and Other Voice Styles Last Through the Whole Reply (Min)">​</a></h3>
+<p><strong>An NPC who starts whispering should not suddenly return to their normal voice after the first sentence.</strong></p>
+<p>SkyrimNet can include short instructions such as <code>[whispers]</code> alongside dialogue to tell a voice engine <strong>how to say the words</strong>. These are called <em>audio tags</em>, and this improvement works with <strong>any voice engine that supports them</strong>.</p>
+<p>Because speech is generated one sentence at a time, an instruction at the start of a reply could previously affect only its first sentence. These instructions now carry through the rest of that reply unless a later sentence supplies its own tags.</p>
+<p>One-off sounds such as laughs, coughs, and sighs are not carried over, so they happen once rather than repeating with every sentence. Subtitles are unchanged.</p>
+<p>Configure which instructions carry over under <strong>Voice → Carry-Over Audio Tags</strong>. Tags are grouped into categories such as <strong>Volume, Anger, and Sorrow</strong>; you can disable individual categories or add your own lists.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="more-consistent-elevenlabs-voices-between-sentences-and-turns-min">More Consistent ElevenLabs Voices Between Sentences and Turns (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#more-consistent-elevenlabs-voices-between-sentences-and-turns-min" class="hash-link" aria-label="Direct link to More Consistent ElevenLabs Voices Between Sentences and Turns (Min)" title="Direct link to More Consistent ElevenLabs Voices Between Sentences and Turns (Min)">​</a></h3>
+<p>ElevenLabs now receives the speaker's earlier lines with each request, helping it maintain a consistent tone instead of treating every sentence as if it were the start of a new conversation.</p>
+<p>This complements the audio-tag improvement above: tags preserve explicit instructions such as whispering, while earlier-line context helps the voice engine maintain the speaker's delivery across sentences and between replies.</p>
+<p><strong>Voice → Text-to-Speech → ElevenLabs → Send Earlier Lines as Context</strong> is enabled by default. It works with <strong><code>eleven_v4</code></strong> and <strong><code>eleven_v4_turbo</code></strong>. New model configurations default to <code>eleven_v4_turbo</code>; existing configurations keep their selected model.</p>
+<p><strong>While this option is enabled, lines are sent one request at a time.</strong> The tradeoff is that the end of a long reply may arrive later.</p>
+<p>Voices cloned from Skyrim voice types also start subsequent lines faster. Only the first line for each voice in a session looks up which ElevenLabs voice to use; later lines reuse that result and skip two requests, saving about <strong>0.2–0.4 seconds per line</strong>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="voice-input-subtitles-and-playback-fixes-min">Voice Input, Subtitles, and Playback Fixes (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#voice-input-subtitles-and-playback-fixes-min" class="hash-link" aria-label="Direct link to Voice Input, Subtitles, and Playback Fixes (Min)" title="Direct link to Voice Input, Subtitles, and Playback Fixes (Min)">​</a></h3>
+<ul>
+<li><strong>Short noises are ignored:</strong> Clicks, coughs, and breaths shorter than a quarter second no longer open an Open Mic line or reach transcription.</li>
+<li><strong>Subtitles without speech:</strong> NPC lines appear as subtitles when the voice engine is disabled or fails to generate a line.</li>
+<li><strong>Long subtitles keep updating:</strong> Long replies no longer freeze once the subtitle fills up. Subtitle rendering also avoids a timing conflict with the game that was a suspected, but unconfirmed, cause of crashes with long Russian lines.</li>
+<li><strong>Internal reasoning stays out of dialogue:</strong> Models that include their working text inside <code>&lt;think&gt;</code> blocks no longer have that text spoken or subtitled while the reply is arriving.</li>
+<li><strong>Bards do not talk over their own songs:</strong> Starting a song no longer makes the bard speak a line over its opening. Nearby NPCs still remember that the song began.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="memory-and-character-fixes">Memory and Character Fixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#memory-and-character-fixes" class="hash-link" aria-label="Direct link to Memory and Character Fixes" title="Direct link to Memory and Character Fixes">​</a></h2>
+<p><strong>Non-English memory recall (Min):</strong> Fixed recall problems affecting Russian, accented text, Chinese, Japanese, Korean, and curly quotes. Affected memories are reprocessed once on first load so they can be recalled correctly. NOTE: For users with long playthroughs, your first load may take a while depending on how many memories need to be updated and fixed. Some Russian community members in the alpha reported 15+ minutes for 6 month long playthroughs.</p>
+<p><strong>Edited memories (Zevick):</strong> Changing a memory's text on the Memories page now updates what NPCs recall it by, rather than continuing to match the old wording.</p>
+<p><strong>VR memory persistence (Min):</strong> With the VR playroom enabled, loading a save no longer puts NPC memories into a temporary database that disappears on the next launch.</p>
+<p><strong>NPCs with the same name (Zevick):</strong> Looking up an NPC by their game ID no longer mixes their diaries and memories with those of other NPCs who share the same name. These lookups also work for actors with non-English names.</p>
+<p><strong>Joyful memories (Zevick):</strong> New and edited memories marked <strong>JOY</strong> retain that type instead of being saved as <strong>EXPERIENCE</strong>. Existing entries are unchanged.</p>
+<p><strong>Player name updates (Zevick):</strong> NPCs and prompts use your new name as soon as character creation or <code>showracemenu</code> closes, rather than continuing to call you “Prisoner” until a save and reload.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="npc-awareness-and-game-controls-min">NPC Awareness and Game Controls (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#npc-awareness-and-game-controls-min" class="hash-link" aria-label="Direct link to NPC Awareness and Game Controls (Min)" title="Direct link to NPC Awareness and Game Controls (Min)">​</a></h2>
+<p><strong>Actor filters:</strong> Closed several gaps that could allow excluded actors, including animals, to respond in some situations.</p>
+<p><strong>Line of sight hardening:</strong> Improved visibility checks in inn rooms and other situations to reduce cases where NPCs outside a closed room could overhear conversations, and show up in the chat menu. Please report if you still encounter this anywhere.</p>
+<p><strong>GameMaster toggle:</strong> Turning the GameMaster off through a hotkey, the wheel menu, VRIK, or MCM now stays off after restarting the game.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility-and-stability-min">Compatibility and Stability (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#compatibility-and-stability-min" class="hash-link" aria-label="Direct link to Compatibility and Stability (Min)" title="Direct link to Compatibility and Stability (Min)">​</a></h2>
+<p><strong>OmniSight with upscalers:</strong> Captures taken with upscaling or frame-generation mods, including PureDark's Skyrim Upscaler, no longer reach the vision model as blank images.</p>
+<p><strong>Model download verification:</strong> Downloaded model files are checked to make sure they are intact, using SHA-256 checksums. On the first launch after updating, each file is checked once. A file that fails verification is kept as <code>&lt;name&gt;.replaced</code> and downloaded again. A stalled download fails after one minute instead of hanging indefinitely.</p>
+<p><strong>Self-referencing prompt templates:</strong> A custom prompt that repeatedly includes itself now stops after 16 nested levels and is identified in <code>SkyrimNet.log</code>, rather than crashing the game when you speak or type.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="plugin-hub-min">Plugin Hub (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#plugin-hub-min" class="hash-link" aria-label="Direct link to Plugin Hub (Min)" title="Direct link to Plugin Hub (Min)">​</a></h2>
+<p><strong>Resubmit without starting over.</strong> Selecting <strong>Resubmit</strong> on <strong>My Plugins</strong> reopens the submission form with the details from the rejected attempt already filled in.</p>
+<p>Tagline and description fields now show character counts and prevent submission while either is over its limit.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="for-mod-and-content-authors">For Mod and Content Authors<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#for-mod-and-content-authors" class="hash-link" aria-label="Direct link to For Mod and Content Authors" title="Direct link to For Mod and Content Authors">​</a></h2>
+<p>The C++ public API is now <strong>v12</strong>, with custom decision requests alongside new diary, memory, event, actor-search, and timeline-state capabilities.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="custom-decision-requests-min">Custom Decision Requests (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#custom-decision-requests-min" class="hash-link" aria-label="Direct link to Custom Decision Requests (Min)" title="Direct link to Custom Decision Requests (Min)">​</a></h3>
+<p>Mods can ask the decision model typed questions, such as choosing an option, answering yes/no, or returning a score, without parsing a free-form chat reply.</p>
+<p>Ship a decision template under <strong><code>prompts/decisions/</code></strong> and call <strong><code>SkyrimNetApi.SendCustomDecisionToLLM</code></strong> from Papyrus or <strong><code>PublicSendCustomDecisionToLLM</code></strong> from C++ using public API v12.</p>
+<p>The callback's first argument is the answer to the template's first question, returned as a string: the option key, <code>"true"</code> or <code>"false"</code>, or the score. Probabilities and answers to further questions are available in the JSON argument. For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">GetJsonFloat(resultJson, "&lt;id&gt;.p.&lt;key&gt;", 0.0)</span><br></span></code></pre></div></div>
+<p><strong>Custom decision requests do not fall back to chat.</strong> Without a decision provider, the callback receives <code>success = 0</code> with error <code>no_decisions_route</code>, and nothing is sent. This differs from the built-in conversation decisions, which can fall back to chat prompts.</p>
+<p>The full callback contract and error codes are documented in <strong><code>SkyrimNetApi.psc</code></strong> and <strong><code>PublicAPI.h</code></strong>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="diary-and-memory-apis-zevick">Diary and Memory APIs (Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#diary-and-memory-apis-zevick" class="hash-link" aria-label="Direct link to Diary and Memory APIs (Zevick)" title="Direct link to Diary and Memory APIs (Zevick)">​</a></h3>
+<p>C++ integrations can add, edit, and delete diary entries for any actor, and edit or delete actor memories.</p>
+<ul>
+<li><strong><code>PublicAddDiaryEntry</code>, <code>PublicUpdateDiaryEntry</code>, and <code>PublicDeleteDiaryEntry</code>:</strong> Added diary entries receive a memory and fire <code>SkyrimNet_DiaryCreated</code>, like generated entries. Tags are stored as supplied by the caller.</li>
+<li><strong><code>PublicUpdateMemory</code> and <code>PublicDeleteMemory</code>:</strong> Update a memory using a JSON object containing the fields to change, or delete it. World knowledge and a diary entry's own memory are excluded from editing.</li>
+<li><strong>Change notifications:</strong> Edits and deletions, including those made through the dashboard, fire <code>SkyrimNet_DiaryUpdated</code>, <code>SkyrimNet_DiaryDeleted</code>, <code>SkyrimNet_MemoryUpdated</code>, or <code>SkyrimNet_MemoryDeleted</code>. Query results include <code>updated_at</code>.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="diary-queries-zevick">Diary Queries (Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#diary-queries-zevick" class="hash-link" aria-label="Direct link to Diary Queries (Zevick)" title="Direct link to Diary Queries (Zevick)">​</a></h3>
+<p><strong><code>PublicQueryDiaryEntries</code></strong> filters an actor's diary by tags, emotion, location, importance, date, or ID range. It uses the same JSON query style as <code>PublicQueryMemoriesForActor</code>, with a typed <strong><code>DiaryQuery</code></strong> in <strong><code>PublicAPIDiaryQuery.h</code></strong>.</p>
+<p>Order by ID to read entries in the order they were written. IDs never rewind or get reused, even when loading an earlier save causes <code>entry_date</code> to move backward.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="event-registration-and-recipient-control-zevick">Event Registration and Recipient Control (Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#event-registration-and-recipient-control-zevick" class="hash-link" aria-label="Direct link to Event Registration and Recipient Control (Zevick)" title="Direct link to Event Registration and Recipient Control (Zevick)">​</a></h3>
+<p><strong><code>PublicRegisterEvent</code></strong> registers any event type from C++, like Papyrus <code>RegisterEvent</code>.</p>
+<p>Supplying an actor list limits perception to those actors plus the event's originator and target. Nearby bystanders, virtual NPCs, and the player are not automatically included, allowing something like a letter's contents to reach only its recipient. Without a list, the event reaches everyone nearby as before.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="actor-search-and-timeline-state-zevick">Actor Search and Timeline State (Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#actor-search-and-timeline-state-zevick" class="hash-link" aria-label="Direct link to Actor Search and Timeline State (Zevick)" title="Direct link to Actor Search and Timeline State (Zevick)">​</a></h3>
+<p><strong><code>PublicSearchActors</code></strong> finds any actor SkyrimNet has registered in the current save by partial name, whether currently loaded or not, with the best match first.</p>
+<p><strong><code>PublicGetTimelineState</code></strong> reports <code>none</code>, <code>pending</code>, <code>kept</code>, or <code>cleared</code>, so integrations can tell when the keep/clear choice after loading a save has been resolved. Writes are refused while the state is <code>pending</code>; <strong><code>SkyrimNet_TimelineResolved</code></strong> fires with the outcome.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="carry-over-audio-tags-in-plugins-min">Carry-Over Audio Tags in Plugins (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#carry-over-audio-tags-in-plugins-min" class="hash-link" aria-label="Direct link to Carry-Over Audio Tags in Plugins (Min)" title="Direct link to Carry-Over Audio Tags in Plugins (Min)">​</a></h3>
+<p>Plugins can add their own lists of audio tags to carry across sentences by shipping <strong><code>config/</code> lists in the Content Library</strong>. These extend the categories shown under <strong>Voice → Carry-Over Audio Tags</strong>.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="skyrimnet-beta26-tldr">SkyrimNet Beta26: TL;DR<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#skyrimnet-beta26-tldr" class="hash-link" aria-label="Direct link to SkyrimNet Beta26: TL;DR" title="Direct link to SkyrimNet Beta26: TL;DR">​</a></h2>
+<ul>
+<li><strong>Jev conversation decisions:</strong> Significantly faster, cheaper, and more reliable target, speaker, and mood selection; your dialogue models still write the conversations.</li>
+<li><strong>Setup and fallback:</strong> Jev runs by default with an OpenRouter key and has no free tier; the previous chat-based Meta approach remains available as a fallback.</li>
+<li><strong>Conversation flow:</strong> Better handling of unclear recipients, Continue Narration, and bystanders joining continuous conversations.</li>
+<li><strong>Consistent voice styles:</strong> Whispering and other speech instructions carry through a whole reply on tag-supporting voice engines, without repeating one-off sounds.</li>
+<li><strong>ElevenLabs improvements:</strong> Earlier-line context helps maintain tone between sentences and turns, while reused voice lookups reduce delays.</li>
+<li><strong>Voice and subtitles:</strong> Ignore very short noises, keep subtitles working when speech is unavailable, and fix long subtitles and spoken reasoning text.</li>
+<li><strong>Memory fixes:</strong> Improve multilingual and edited-memory recall, separate same-named NPCs' histories, and preserve joyful memories' type.</li>
+<li><strong>VR memory persistence:</strong> NPC memories survive restarts when using the VR playroom.</li>
+<li><strong>NPC awareness and controls:</strong> Stronger actor filters and visibility checks, immediate player-name updates, and a GameMaster toggle that stays set after restarting.</li>
+<li><strong>Compatibility and stability:</strong> Fix blank OmniSight captures with upscalers, verify model downloads, and prevent self-referencing prompt crashes.</li>
+<li><strong>Plugin Hub:</strong> Resubmit rejected plugins without retyping the form, with character counts and length checks before submission.</li>
+<li><strong>Custom mod decisions:</strong> Papyrus and C++ mods can request option choices, yes/no answers, and scores with structured results.</li>
+<li><strong>Expanded mod APIs:</strong> Create and edit diaries, update memories, control event recipients, search actors, and track save-timeline decisions.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="important">IMPORTANT:<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/10/03/beta26-release#important" class="hash-link" aria-label="Direct link to IMPORTANT:" title="Direct link to IMPORTANT:">​</a></h2>
+<ul>
+<li>As mentioned above, users playing in non-roman languages like Russian or Japanese will have a much longer load-time their first load after the upgrade. This is normal, as the system repairs memories that were previously failing to work correctly. Be patient - And enjoy greatly increased memory recall precision after this is done.</li>
+</ul>
+<p>Full release notes and download on GitHub (vbeta26-rc4): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta26-rc4" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta26-rc4</a></p>]]></content>
+        <category label="release" term="release"/>
+        <category label="beta26" term="beta26"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SkyrimNet Beta25  Released]]></title>
         <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release</id>
@@ -192,7 +309,20 @@
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-tracing-min">Request Tracing (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#request-tracing-min" class="hash-link" aria-label="Direct link to Request Tracing (Min)" title="Direct link to Request Tracing (Min)">​</a></h3>
 <p>Request traces include <code>provider</code>, <code>upstream_provider</code> when reported by OpenRouter, and streaming <code>ttft_ms</code> on success and failure paths. Late responses from an abandoned attempt can still contribute timing measurements without being served as the reply. Routing also supports directives scoped to an individual variant, so a provider can be skipped for one task without excluding it from all tasks.</p>
-<p>Full release notes and download on GitHub (vbeta25-rc13): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13</a></p>]]></content>
+<p>Full release notes and download on GitHub (vbeta25-rc13): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25-rc13</a></p>
+<h1>SkyrimNet Beta25.1</h1>
+<h1>SkyrimNet Beta25.1</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dialogue-actions-min-zevick">Dialogue Actions (Min, Zevick)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#dialogue-actions-min-zevick" class="hash-link" aria-label="Direct link to Dialogue Actions (Min, Zevick)" title="Direct link to Dialogue Actions (Min, Zevick)">​</a></h2>
+<ul>
+<li>Fixed a number of mod compatibility related stability issues associated with the new dialogue action system.</li>
+<li>Added a new toggle to the Dialogue Action page to allow users to fully disable the system. See Dialogue Actions -&gt; Filter for the new toggle if you encounter problems.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="content-library--plugin-hub-min">Content Library &amp; Plugin Hub (Min)<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2026/09/26/beta25-release#content-library--plugin-hub-min" class="hash-link" aria-label="Direct link to Content Library &amp; Plugin Hub (Min)" title="Direct link to Content Library &amp; Plugin Hub (Min)">​</a></h2>
+<ul>
+<li>Substantially increased the limit on the number of files that can be included in a plugin.</li>
+<li>Fixed a display issue when large tag-lines were added to plugins.</li>
+</ul>
+<p>Full release notes and download on GitHub (vbeta25.1-rc2): <a href="https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25.1-rc2" target="_blank" rel="noopener noreferrer">https://github.com/MinLL/SkyrimNet-GamePlugin/releases/tag/vbeta25.1-rc2</a></p>]]></content>
         <category label="release" term="release"/>
         <category label="beta25" term="beta25"/>
     </entry>
@@ -2518,78 +2648,5 @@ Added new api UnregisterAction @Min,
 Added paralysis and brainCondition actor values to decnpc(npc.UUID) @Min</p>]]></content>
         <category label="release" term="release"/>
         <category label="beta7" term="beta7"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SkyrimNet Beta6  Released]]></title>
-        <id>https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release</id>
-        <link href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release"/>
-        <updated>2025-10-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[SkyrimNet Beta6]]></summary>
-        <content type="html"><![CDATA[<p>🎉  SkyrimNet Beta 6 Latest</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="summary">Summary<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary">​</a></h3>
-<p>This release is mostly focused on bugfixes, quality of life improvements, and several cool new features such as model rotation, automatic voiced player vanilla dialogue through DBVO, XTTS voice cloning, and a new whisper mode.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="xtts-voice-cloning-elbios">XTTS Voice cloning @Elbios<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#xtts-voice-cloning-elbios" class="hash-link" aria-label="Direct link to XTTS Voice cloning @Elbios" title="Direct link to XTTS Voice cloning @Elbios">​</a></h3>
-<p>Now XTTS has automatic voice cloning just like Zonos or our other Gradios TTS with the same mechanism.
-When running XTTS locally, requires updated xtts-api-server available here
-When using vast AI, no action is needed
-Comes with an option to turn automatic voice cloning off.
-Model Rotation @mikastamm
-New model rotation feature, that changes the dialogue model after each generation.</p>
-<p>In the model name field, you can now have multiple models, seperated by commas. After each converation turn, it will switch models to the next in the list. This only works for the ‘Default’ (Conversation) model type</p>
-<p>This can make the NPCs responses more varied or keep weaker models on-track by having a smarter model respond every once in a while.</p>
-<p>Try mixing in a stronger model once in a while to keep the conversation interesting.</p>
-<p><strong>Example:</strong></p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">"openrouter/sonoma-dusk-alpha, anthropic/claude-3.7-sonnet, anthropic/claude-3.7-sonnet"</span><br></span></code></pre></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="api-extensions-mikastamm-minll">Api Extensions @mikastamm @MinLL<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#api-extensions-mikastamm-minll" class="hash-link" aria-label="Direct link to Api Extensions @mikastamm @MinLL" title="Direct link to Api Extensions @mikastamm @MinLL">​</a></h3>
-<p>The following papyrus functions were added to the api:</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">; Change values of SkyrimNets config</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - name: The name of the configuration section to modify (eg. game, Memory)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - jsonPatch: The partial json, containg only the values to apply to the config. Must match the structure of the yaml file of the configuration section</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">bool function PatchConfig(String name, String jsonPatch) Global Native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Makes the specified actor run the specified action. Arguments can be supplied as a json string. Runs the action irrespective of cooldowns or eligibility.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function ExecuteAction(string actionName, Actor akOriginator, string argsJson) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Sets the cooldown for the specified action</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function SetActionCooldown(string actionName, int cooldownTimeSeconds) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Gets the remaining cooldown time for the specified action in seconds. Returns -1 if no cooldown is set.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function GetRemainingCooldown(string actionName) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Utility functions to set configuration values</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - name: The name of the configuration section to modify. Options:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">;       game, OpenRouter, XTTS, Zonos, Piper, STT, ActorFilter, Phonetic, Hotkey, furniture, PlayerDialogue, VirtualEntities, Entity, Memory, ItemCustomization, Actions, DynamicBio, Events, VastAI, WebServer, VoiceSamples, SpellCustomization</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - jsonPath: The partial json, of the values to apply to the config</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">bool function PatchConfig(String name, String jsonPatch) Global Native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Makes the specified actor run the specified action. Arguments can be supplied as a json string. Runs the action irrespective of cooldowns or eligibility.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function ExecuteAction(string actionName, Actor akOriginator, string argsJson) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Sets the cooldown for the specified action</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function SetActionCooldown(string actionName, int cooldownTimeSeconds) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Gets the remaining cooldown time for the specified action in seconds. Returns -1 if no cooldown is set.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function GetRemainingCooldown(string actionName) global native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - Toggles interaction.maxDistance between interaction.whisperMaxDistance and interaction.normalMaxDistance</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; - Shows notification with current state (Whisper mode: ON/OFF)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">; Functions identically to pressing the configured whisper toggle key</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">int function TriggerToggleWhisperMode() Global Native</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre></div></div>
-<ul>
-<li>Add two missing actions to VRIK @mikastamm</li>
-<li>Add a simple List Menu to change some commonly toggled configs from in-game (Still needs a spell to open it, but it works) @mikastamm</li>
-<li>Added a new is_player decorator for prompt usage. Example: is_player(npc.UUID). This will return true if the actor is the player. @MinLL</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="player-voiced-vanilla-dialogue-dragonborn-voice-over-integration-dekana">Player-Voiced Vanilla Dialogue (Dragonborn Voice Over Integration) @Dekana<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#player-voiced-vanilla-dialogue-dragonborn-voice-over-integration-dekana" class="hash-link" aria-label="Direct link to Player-Voiced Vanilla Dialogue (Dragonborn Voice Over Integration) @Dekana" title="Direct link to Player-Voiced Vanilla Dialogue (Dragonborn Voice Over Integration) @Dekana">​</a></h3>
-<p>SkyrimNet now supports voicing the player's vanilla dialogue lines with TTS.
-To enable this feature, download Dragonborn Voice Over but disable or delete its DBVO.esp file (no voice pack is needed).
-SkyrimNet will capture the dialogue event from DBVO and send it to TTS, rather than using a static voice pack.
-You can adjust the delay before an NPC responds to your dialogue selection in Advanced Configuration -&gt; game -&gt; Player-Voiced Vanilla Dialogue (DBVO).
-If the DBVO.esp file is active, then this feature will be disabled.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-feature-whisper-mode-minll">New Feature: Whisper Mode @MinLL<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#new-feature-whisper-mode-minll" class="hash-link" aria-label="Direct link to New Feature: Whisper Mode @MinLL" title="Direct link to New Feature: Whisper Mode @MinLL">​</a></h3>
-<ul>
-<li>Players can now toggle between two configureable "max interaction ranges".
-This setting limits the range at which actors will perceive events. You can configure the radius via the game config.
-Useful if you want to have a more private conversation without nosy folks interrupting.
-More coming in this particular area soon.</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tweaks-minll">Tweaks @MinLL<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#tweaks-minll" class="hash-link" aria-label="Direct link to Tweaks @MinLL" title="Direct link to Tweaks @MinLL">​</a></h3>
-<ul>
-<li>Actor / Memory Whitelists will now bypass "Is capable of speech" filter. @MinLL</li>
-<li>Actor skills are now exposed in the return value from decnpc in templates. Ex. decnpc(npc.UUID).onehanded @MinLL</li>
-<li>Added memory generation filter, allowing you to control which actor's generate memories.</li>
-<li>Newly registered event schemas are now enabled by default @MinLL</li>
-<li>Added new SkyrimNet factions to actor filter by default. No flow is published at present for easily adding/removing things to these outside of the console, but this will let us later set up a flow to allow users to - easily allowlist/denylist NPC's. @vrelk</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bugfixes">Bugfixes<a href="https://goncalo22.github.io/SkyrimNet-GamePlugin/blog/2025/10/12/beta6-release#bugfixes" class="hash-link" aria-label="Direct link to Bugfixes" title="Direct link to Bugfixes">​</a></h3>
-<ul>
-<li>Sanitized TTS input to avoid weird audio glitches with unicode characters and symbols @MinLL</li>
-<li>Added output sanitization to handle some Chinese models sending excessive newlines in their output. @MinLL</li>
-<li>Fixed utf8 sanitization issue with template input. @MinLL</li>
-<li>Fixed triggers not working for short lived events registered from Papyrus @MinLL</li>
-<li>Add missing npc from 3DNPC mod @mikastamm</li>
-<li>Adds prompt for the follower Koemia @mikastamm</li>
-<li>Fix typo in action selection prompt @Dekana</li>
-<li>Fix misnamed prompt file for the character Silvia @Dekana</li>
-<li>Add instructions in the github readme and the TTS test page to install piper models @Dekana</li>
-<li>Change cuda link to archived 12.9 in the github readme @Dekana</li>
-<li>Remove "emotions" key from zonos default settings so that SkyrimNet's custom mood values will be used @Dekana</li>
-<li>Fix error spam for disembodied speakers (eg. Augur of Dunlain and Hermeus Mora) @Dekana</li>
-<li>Better Error message if a user has not downloaded the Piper models and tries to run it @Dekana</li>
-<li>Fix inability to add new event entries to the player response configuration @Dekana</li>
-<li>Fix STT sometimes rejecting short voice inputs @mikastamm</li>
-<li>Added an extra option Max Interaction Distance : Governs at which distance from the player the audio cuts out. Useful for when followers are not as fast as you and still speaking while you run away @mikastamm</li>
-<li>Make dialogue transformation available in VRIK @mikastamm</li>
-</ul>]]></content>
-        <category label="release" term="release"/>
-        <category label="beta6" term="beta6"/>
     </entry>
 </feed>
